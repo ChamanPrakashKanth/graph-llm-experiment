@@ -1,0 +1,42 @@
+[
+  {
+    "question": "How does load cause structural failure?",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Failure"
+    ],
+    "answer": "External load produces stress, stress produces strain, and excessive strain leads to failure."
+  },
+  {
+    "question": "Why does a column buckle under compression?",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Lateral Deflection",
+      "Buckling"
+    ],
+    "answer": "Compression in a slender member amplifies lateral deflection until buckling occurs."
+  },
+  {
+    "question": "Why does cyclic loading cause fatigue?",
+    "reasoning_path": [
+      "Cyclic Load",
+      "Stress Concentration",
+      "Crack Initiation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated loads concentrate stress, initiate cracks, and accumulate fatigue damage."
+  },
+  {
+    "question": "Why does thermal stress create cracking?",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Thermal Expansion",
+      "Thermal Stress",
+      "Cracking"
+    ],
+    "answer": "Uneven temperature creates differential expansion, thermal stress, and eventually cracking."
+  }
+]

@@ -231,6 +231,14 @@ def load_checkpoint(
 
 
 def latest_checkpoint(checkpoint_dir: str | Path = "checkpoints/cat_v2") -> Optional[Path]:
-    checkpoints = sorted(Path(checkpoint_dir).glob("cat_v2_epoch_*.pt"))
-    return checkpoints[-1] if checkpoints else None
+    checkpoints = list(Path(checkpoint_dir).glob("cat_v2_epoch_*.pt"))
+    if not checkpoints:
+        return None
+    def get_epoch(p: Path) -> int:
+        try:
+            return int(p.stem.split("_")[-1])
+        except (ValueError, IndexError):
+            return 0
+    checkpoints.sort(key=get_epoch)
+    return checkpoints[-1]
 
