@@ -181,14 +181,19 @@ class PathGenerator(nn.Module):
 
     def forward(
         self,
-        graph_state: torch.Tensor,
+        memory: ConceptMemory,
+        input_norm: nn.LayerNorm,
+        graph_reasoner: GraphMessagePassing,
+        propagation_matrix: torch.Tensor,
+        initial_activation_probs: torch.Tensor,
         question_context: torch.Tensor,
         activation_logits: torch.Tensor,
         transition_mask: torch.Tensor,
         first_step_mask: torch.Tensor,
         target_paths: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
-        batch_size, num_concepts, concept_dim = graph_state.shape
+        batch_size = question_context.size(0)
+        num_concepts = initial_activation_probs.size(1)
         hidden = torch.tanh(self.question_init(question_context))
         context = torch.tanh(self.context_projection(question_context))
         prev_embedding = self.start_embedding.unsqueeze(0).expand(batch_size, -1)
@@ -196,14 +201,33 @@ class PathGenerator(nn.Module):
             (batch_size,),
             self.eos_id,
             dtype=torch.long,
-            device=graph_state.device,
+            device=question_context.device,
         )
 
         logits_steps: List[torch.Tensor] = []
         prediction_steps: List[torch.Tensor] = []
         score_steps: List[torch.Tensor] = []
 
+        # Track GNN activations and states iteratively
+        activation_probs = initial_activation_probs.clone()
+        final_graph_state = None
+
         for step in range(self.path_length):
+            # Dynamic GNN memory propagation at each iteration
+            concept_memory = memory.all_embeddings().unsqueeze(0).expand(batch_size, -1, -1)
+            current_state = input_norm(
+                concept_memory
+                + question_context.unsqueeze(1) * activation_probs.unsqueeze(-1)
+            )
+            graph_state = graph_reasoner(current_state, propagation_matrix)
+            final_graph_state = graph_state
+
+            if step > 0:
+                prev_embedding = graph_state[
+                    torch.arange(batch_size, device=graph_state.device),
+                    prev_ids,
+                ]
+
             decoder_input = torch.cat([prev_embedding, context], dim=-1)
             hidden = self.gru(decoder_input, hidden)
 
@@ -233,15 +257,16 @@ class PathGenerator(nn.Module):
                 next_ids = predicted
 
             prev_ids = next_ids.clamp(min=0, max=num_concepts - 1)
-            prev_embedding = graph_state[
-                torch.arange(batch_size, device=graph_state.device),
-                prev_ids,
-            ]
+            
+            # Recursive feedback loop: Inject predicted/target concept back into activations
+            activation_probs = activation_probs.clone()
+            activation_probs.scatter_(1, prev_ids.unsqueeze(1), 1.0)
 
         return {
             "path_logits": torch.stack(logits_steps, dim=1),
             "predicted_path": torch.stack(prediction_steps, dim=1),
             "path_scores": torch.stack(score_steps, dim=1),
+            "final_graph_state": final_graph_state,
         }
 
 
@@ -367,16 +392,12 @@ class CATReasoningModel(nn.Module):
         activated = self.activator(question_embedding, top_k=self.top_k)
         activation_probs = activated["activation_probs"]
 
-        batch_size = input_ids.size(0)
-        concept_memory = self.memory.all_embeddings().unsqueeze(0).expand(batch_size, -1, -1)
-        initial_state = self.input_norm(
-            concept_memory
-            + projected_question.unsqueeze(1) * activation_probs.unsqueeze(-1)
-        )
-        graph_state = self.graph_reasoner(initial_state, self.propagation_matrix)
-
         path_output = self.path_generator(
-            graph_state=graph_state,
+            memory=self.memory,
+            input_norm=self.input_norm,
+            graph_reasoner=self.graph_reasoner,
+            propagation_matrix=self.propagation_matrix,
+            initial_activation_probs=activation_probs,
             question_context=projected_question,
             activation_logits=activated["activation_logits"],
             transition_mask=self.transition_mask,
@@ -389,7 +410,7 @@ class CATReasoningModel(nn.Module):
             "activation_logits": activated["activation_logits"],
             "activated_concepts": activated["concept_ids"],
             "activation_scores": activated["concept_scores"],
-            "graph_state": graph_state,
+            "graph_state": path_output["final_graph_state"],
             "path_logits": path_output["path_logits"],
             "predicted_path": path_output["predicted_path"],
             "path_scores": path_output["path_scores"],

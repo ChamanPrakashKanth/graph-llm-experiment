@@ -58,14 +58,7 @@ def predict_next_concepts(loaded, question, partial_path):
     activation_logits = activated["activation_logits"]
     activation_probs = activated["activation_probs"].squeeze(0).cpu().tolist()
     
-    # Build graph state
-    concept_memory = model.memory.all_embeddings().unsqueeze(0)
-    initial_state = model.input_norm(
-        concept_memory + projected_question.unsqueeze(1) * activated["activation_probs"].unsqueeze(-1)
-    )
-    graph_state = model.graph_reasoner(initial_state, model.propagation_matrix)
-    
-    # Step through partial path
+    # Iterative GNN and path step updates
     hidden = torch.tanh(model.path_generator.question_init(projected_question))
     context = torch.tanh(model.path_generator.context_projection(projected_question))
     prev_embedding = model.path_generator.start_embedding.unsqueeze(0)
@@ -73,24 +66,45 @@ def predict_next_concepts(loaded, question, partial_path):
     num_concepts = vocab.size()
     prev_ids = torch.full((1,), model.vocab_eos_id, dtype=torch.long, device=device)
     
+    # Track dynamic GNN activations
+    gui_activation_probs = activated["activation_probs"].clone()
+    
+    # 1. Step through partial path recursively
     step = 0
     for concept_name in partial_path:
+        concept_memory = model.memory.all_embeddings().unsqueeze(0)
+        current_state = model.input_norm(
+            concept_memory + projected_question.unsqueeze(1) * gui_activation_probs.unsqueeze(-1)
+        )
+        graph_state = model.graph_reasoner(current_state, model.propagation_matrix)
+        
+        if step > 0:
+            prev_embedding = graph_state[0, prev_ids]
+            
         decoder_input = torch.cat([prev_embedding, context], dim=-1)
         hidden = model.path_generator.gru(decoder_input, hidden)
         
-        if step == 0:
-            allowed = model.first_step_mask.unsqueeze(0)
-        else:
-            allowed = model.transition_mask[prev_ids]
-            
         concept_id = vocab.concept_to_id.get(concept_name)
         if concept_id is None:
             break
         prev_ids = torch.tensor([concept_id], dtype=torch.long, device=device)
-        prev_embedding = graph_state[0, prev_ids]
-        step += 1
         
-    # Get predictions for the next concept
+        # Feedback update
+        gui_activation_probs = gui_activation_probs.clone()
+        gui_activation_probs[0, prev_ids] = 1.0
+        
+        step += 1
+
+    # 2. Get predictions for the next concept
+    concept_memory = model.memory.all_embeddings().unsqueeze(0)
+    current_state = model.input_norm(
+        concept_memory + projected_question.unsqueeze(1) * gui_activation_probs.unsqueeze(-1)
+    )
+    graph_state = model.graph_reasoner(current_state, model.propagation_matrix)
+    
+    if step > 0:
+        prev_embedding = graph_state[0, prev_ids]
+
     decoder_input = torch.cat([prev_embedding, context], dim=-1)
     hidden = model.path_generator.gru(decoder_input, hidden)
     
@@ -117,13 +131,24 @@ def predict_next_concepts(loaded, question, partial_path):
         })
     predictions.sort(key=lambda x: -x["probability"])
     
-    # Auto-complete remainder of path from here
+    # 3. Auto-complete remainder of path from here recursively
     autocomplete_ids = []
     curr_prev_ids = prev_ids.clone()
     curr_prev_embedding = prev_embedding.clone()
     curr_hidden = hidden.clone()
+    curr_activation_probs = gui_activation_probs.clone()
     
     for auto_step in range(step, model.path_generator.path_length):
+        # Dynamic GNN inside autocomplete step
+        concept_memory = model.memory.all_embeddings().unsqueeze(0)
+        current_state = model.input_norm(
+            concept_memory + projected_question.unsqueeze(1) * curr_activation_probs.unsqueeze(-1)
+        )
+        auto_graph_state = model.graph_reasoner(current_state, model.propagation_matrix)
+        
+        if auto_step > 0:
+            curr_prev_embedding = auto_graph_state[0, curr_prev_ids]
+            
         auto_decoder_input = torch.cat([curr_prev_embedding, context], dim=-1)
         curr_hidden = model.path_generator.gru(auto_decoder_input, curr_hidden)
         
@@ -137,7 +162,10 @@ def predict_next_concepts(loaded, question, partial_path):
         if pred_id == model.vocab_eos_id or pred_id == model.vocab_pad_id:
             break
         curr_prev_ids = predicted
-        curr_prev_embedding = graph_state[0, curr_prev_ids]
+        
+        # Feedback update in autocomplete loop
+        curr_activation_probs = curr_activation_probs.clone()
+        curr_activation_probs[0, curr_prev_ids] = 1.0
         
     autocomplete_path = vocab.decode_path(autocomplete_ids)
     
