@@ -62,6 +62,9 @@ def resolve_checkpoint(args) -> Optional[Path]:
 def train_command(args) -> None:
     set_seed(args.seed)
     dataset, loader = build_dataset_and_loader(args, shuffle=True)
+    if getattr(args, "graph_file", None):
+        print(f"Loading custom grown GNN graph from: {args.graph_file}")
+        dataset.graph = ReasoningGraph.load_json(args.graph_file)
     model = build_model_from_dataset(
         dataset,
         concept_dim=args.concept_dim,
@@ -113,6 +116,8 @@ def load_or_build_system(args) -> CATReasoningSystem:
         )
 
     dataset, _ = build_dataset_and_loader(args, shuffle=False)
+    if getattr(args, "graph_file", None):
+        dataset.graph = ReasoningGraph.load_json(args.graph_file)
     model = build_model_from_dataset(
         dataset,
         concept_dim=args.concept_dim,
@@ -268,6 +273,7 @@ def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--dropout", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--graph-file", default=None)
 
 
 def build_parser() -> argparse.ArgumentParser:

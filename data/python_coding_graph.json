@@ -1,0 +1,1041 @@
+{
+  "nodes": [
+    {
+      "name": "API Call",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Base Class Define",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Binary Stream",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "CSV Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Compile Pattern",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Counter Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Dictionary Access",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Dictionary Input",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Dumps Function",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Elapsed Time",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Except Clause",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Exception Handling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "File Input",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "File Open Write",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "File Write Mode",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Filtered Output",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Frequency Map",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Function Define",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Function Execution",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Graceful Recovery",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "HTTP Request",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Hash Map",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Image Saved",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Inheritance Declaration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Intersection Operation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "JSON Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "JSON Parsing",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Lambda Key",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Lazy Evaluation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Line Iteration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "List Comprehension",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "List Input",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "List of Dictionaries",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Match Extraction",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Match Group Extract",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Method Override",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Modulo Condition",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Regex Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Result List",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Row Writing",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Search Method",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Serialized String",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Set Conversion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Sort Function",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Sorted Output",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Start Executing",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Start Timer",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "State Retention",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Substring Search",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Super Init",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thread Instantiate",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thread Joining",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Threading Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Time Import",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Try Block",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Writer Instantiate",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Yield Keyword",
+      "activation": 0.0,
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "API Call",
+      "target": "Dictionary Access",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "API Call",
+      "target": "JSON Parsing",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Base Class Define",
+      "target": "Inheritance Declaration",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Base Class Define",
+      "target": "Super Init",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Binary Stream",
+      "target": "File Write Mode",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Binary Stream",
+      "target": "Image Saved",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "CSV Import",
+      "target": "File Open Write",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "CSV Import",
+      "target": "Writer Instantiate",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Compile Pattern",
+      "target": "Match Group Extract",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Compile Pattern",
+      "target": "Search Method",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Counter Import",
+      "target": "Frequency Map",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Dictionary Input",
+      "target": "Dumps Function",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Dictionary Input",
+      "target": "Serialized String",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Dumps Function",
+      "target": "Serialized String",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Except Clause",
+      "target": "Exception Handling",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Except Clause",
+      "target": "Graceful Recovery",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Exception Handling",
+      "target": "Graceful Recovery",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "File Input",
+      "target": "Line Iteration",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "File Input",
+      "target": "Substring Search",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "File Open Write",
+      "target": "Row Writing",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "File Open Write",
+      "target": "Writer Instantiate",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "File Write Mode",
+      "target": "Image Saved",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Function Define",
+      "target": "State Retention",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Function Define",
+      "target": "Yield Keyword",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Function Execution",
+      "target": "Elapsed Time",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "HTTP Request",
+      "target": "API Call",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "HTTP Request",
+      "target": "Binary Stream",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "HTTP Request",
+      "target": "File Write Mode",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "HTTP Request",
+      "target": "JSON Parsing",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Hash Map",
+      "target": "Counter Import",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Hash Map",
+      "target": "Frequency Map",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Inheritance Declaration",
+      "target": "Method Override",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Inheritance Declaration",
+      "target": "Super Init",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Intersection Operation",
+      "target": "Result List",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "JSON Import",
+      "target": "Dictionary Input",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "JSON Import",
+      "target": "Dumps Function",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "JSON Parsing",
+      "target": "Dictionary Access",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Lambda Key",
+      "target": "Sort Function",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Lambda Key",
+      "target": "Sorted Output",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Line Iteration",
+      "target": "Match Extraction",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Line Iteration",
+      "target": "Substring Search",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Comprehension",
+      "target": "Filtered Output",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "Counter Import",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "Hash Map",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "Intersection Operation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "List Comprehension",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "Modulo Condition",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List Input",
+      "target": "Set Conversion",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List of Dictionaries",
+      "target": "Lambda Key",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "List of Dictionaries",
+      "target": "Sort Function",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Modulo Condition",
+      "target": "Filtered Output",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Modulo Condition",
+      "target": "List Comprehension",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Regex Import",
+      "target": "Compile Pattern",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Regex Import",
+      "target": "Search Method",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Search Method",
+      "target": "Match Group Extract",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Set Conversion",
+      "target": "Intersection Operation",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Set Conversion",
+      "target": "Result List",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Sort Function",
+      "target": "Sorted Output",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Start Executing",
+      "target": "Thread Joining",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Start Timer",
+      "target": "Elapsed Time",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Start Timer",
+      "target": "Function Execution",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "State Retention",
+      "target": "Lazy Evaluation",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Substring Search",
+      "target": "Match Extraction",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Super Init",
+      "target": "Method Override",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Thread Instantiate",
+      "target": "Start Executing",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Thread Instantiate",
+      "target": "Thread Joining",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Threading Import",
+      "target": "Start Executing",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Threading Import",
+      "target": "Thread Instantiate",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Time Import",
+      "target": "Function Execution",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Time Import",
+      "target": "Start Timer",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Try Block",
+      "target": "Except Clause",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Try Block",
+      "target": "Exception Handling",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Writer Instantiate",
+      "target": "Row Writing",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Yield Keyword",
+      "target": "Lazy Evaluation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Yield Keyword",
+      "target": "State Retention",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    }
+  ]
+}

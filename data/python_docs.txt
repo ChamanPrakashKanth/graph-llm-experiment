@@ -1,0 +1,15 @@
+To perform file I/O, we initiate a file input, then begin line iteration, perform substring search to find keywords, and execute match extraction.
+To filter collections, we accept a list input, apply a modulo condition, run list comprehension, and produce a filtered output.
+For API operations, we perform HTTP request, make API call, run JSON parsing on the response, and use dictionary access.
+To sort structured data, we start with a list of dictionaries, define a lambda key, pass it to a sort function, and print the sorted output.
+To count items, we accept a list input, build a hash map, use counter import from collections, and output the frequency map.
+For safety, we enter a try block, define an except clause, perform exception handling, and allow graceful recovery.
+For object-oriented programming, we write base class define, add inheritance declaration, run super init, and write method override.
+For string search, we use regex import, compile pattern with regular expressions, run search method, and perform match group extract.
+To write tables, we use CSV import, use file open write, run writer instantiate, and perform row writing.
+For concurrency, we perform threading import, write thread instantiate, start executing, and execute thread joining.
+To serialize data, we use JSON import, accept dictionary input, call dumps function, and return the serialized string.
+To measure duration, we use time import, start timer, execute function execution, and record elapsed time.
+To compare lists, we take list input, perform set conversion, run intersection operation, and obtain result list.
+For memory-efficient loops, we write function define, insert yield keyword, achieve state retention, and perform lazy evaluation.
+To download assets, we make HTTP request, process the binary stream, use file write mode, and check if the image saved.
