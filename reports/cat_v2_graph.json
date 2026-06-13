@@ -1,0 +1,534 @@
+{
+  "nodes": [
+    {
+      "name": "Acoustic Feedback",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Adverse Pressure Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Boundary Layer",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Buckling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Collapse",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Combustion Instability",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Compression",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Convergence",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Convergence Failure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Cooling Rate",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Crack Initiation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Cracking",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Cyclic Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Drag Increase",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Energy Loss",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Failure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fatigue Failure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Flow Separation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Friction",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Flux",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Release",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Transfer",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Instability",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Lateral Deflection",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Low Pressure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Mesh Quality",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Numerical Instability",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Numerical Stability",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Pressure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Pressure Drop",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Pressure Wave",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Residual",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Slenderness",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Strain",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress Concentration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Surface Erosion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Temperature Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thermal Expansion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thermal Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Turbulence",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Under Relaxation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Vapor Bubble",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Velocity",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Vortex",
+      "activation": 0.0,
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "Acoustic Feedback",
+      "target": "Combustion Instability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Adverse Pressure Gradient",
+      "target": "Boundary Layer",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Flow Separation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Collapse",
+      "target": "Surface Erosion",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Compression",
+      "target": "Slenderness",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Crack Initiation",
+      "target": "Fatigue Failure",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Cyclic Load",
+      "target": "Stress Concentration",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Energy Loss",
+      "target": "Pressure Drop",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Flow Separation",
+      "target": "Drag Increase",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Friction",
+      "target": "Energy Loss",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Flux",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Release",
+      "target": "Pressure Wave",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Transfer",
+      "target": "Cooling Rate",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Instability",
+      "target": "Vortex",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Lateral Deflection",
+      "target": "Buckling",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Load",
+      "target": "Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Low Pressure",
+      "target": "Vapor Bubble",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Mesh Quality",
+      "target": "Numerical Instability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Numerical Instability",
+      "target": "Residual",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Numerical Stability",
+      "target": "Convergence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Pressure",
+      "target": "Friction",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Pressure",
+      "target": "Velocity",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Pressure Wave",
+      "target": "Acoustic Feedback",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Residual",
+      "target": "Convergence Failure",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Residual",
+      "target": "Under Relaxation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Slenderness",
+      "target": "Lateral Deflection",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Strain",
+      "target": "Failure",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Stress",
+      "target": "Strain",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Stress Concentration",
+      "target": "Crack Initiation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Temperature Gradient",
+      "target": "Heat Flux",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Temperature Gradient",
+      "target": "Thermal Expansion",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Thermal Expansion",
+      "target": "Thermal Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Thermal Stress",
+      "target": "Cracking",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Under Relaxation",
+      "target": "Numerical Stability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Vapor Bubble",
+      "target": "Collapse",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Velocity",
+      "target": "Instability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Vortex",
+      "target": "Turbulence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    }
+  ]
+}

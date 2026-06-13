@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Why does pressure drop in a pipe?",
+    "reasoning_path": [
+      "Pressure",
+      "Friction",
+      "Energy Loss",
+      "Pressure Drop"
+    ],
+    "answer": "Pressure drops because wall friction converts mechanical energy into losses."
+  },
+  {
+    "question": "Why does turbulence increase at high speed?",
+    "reasoning_path": [
+      "Velocity",
+      "Instability",
+      "Vortex",
+      "Turbulence"
+    ],
+    "answer": "Higher velocity amplifies instabilities, which form vortices and increase turbulence."
+  },
+  {
+    "question": "Why can poor mesh quality cause convergence failure?",
+    "reasoning_path": [
+      "Mesh Quality",
+      "Numerical Instability",
+      "Residual",
+      "Convergence Failure"
+    ],
+    "answer": "Poor mesh quality introduces numerical instability, causing residuals to stagnate or diverge."
+  },
+  {
+    "question": "How does load cause structural failure?",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Failure"
+    ],
+    "answer": "External load produces stress, stress produces strain, and excessive strain leads to failure."
+  },
+  {
+    "question": "Why does a boundary layer separate?",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Flow Separation",
+      "Drag Increase"
+    ],
+    "answer": "An adverse pressure gradient slows the boundary layer until flow separates and drag rises."
+  },
+  {
+    "question": "Why does thermal stress create cracking?",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Thermal Expansion",
+      "Thermal Stress",
+      "Cracking"
+    ],
+    "answer": "Uneven temperature creates differential expansion, thermal stress, and eventually cracking."
+  },
+  {
+    "question": "Why does cavitation damage pumps?",
+    "reasoning_path": [
+      "Low Pressure",
+      "Vapor Bubble",
+      "Collapse",
+      "Surface Erosion"
+    ],
+    "answer": "Low pressure forms vapor bubbles whose collapse produces local impacts and erosion."
+  },
+  {
+    "question": "Why does a column buckle under compression?",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Lateral Deflection",
+      "Buckling"
+    ],
+    "answer": "Compression in a slender member amplifies lateral deflection until buckling occurs."
+  },
+  {
+    "question": "Why does cyclic loading cause fatigue?",
+    "reasoning_path": [
+      "Cyclic Load",
+      "Stress Concentration",
+      "Crack Initiation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated loads concentrate stress, initiate cracks, and accumulate fatigue damage."
+  },
+  {
+    "question": "Why does heat flux increase with temperature gradient?",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Heat Flux",
+      "Heat Transfer",
+      "Cooling Rate"
+    ],
+    "answer": "A larger temperature gradient increases heat flux and raises the cooling rate."
+  },
+  {
+    "question": "Why do residuals oscillate during a CFD solve?",
+    "reasoning_path": [
+      "Residual",
+      "Under Relaxation",
+      "Numerical Stability",
+      "Convergence"
+    ],
+    "answer": "Residual oscillation often indicates insufficient damping or unstable numerical updates."
+  },
+  {
+    "question": "Why can combustion become unstable?",
+    "reasoning_path": [
+      "Heat Release",
+      "Pressure Wave",
+      "Acoustic Feedback",
+      "Combustion Instability"
+    ],
+    "answer": "Heat release can couple with pressure waves, creating acoustic feedback and instability."
+  }
+]

@@ -3,6 +3,8 @@ venv/
 
 __pycache__/
 *.pyc
+.test_tmp/
+cat_v2_test_tmp/
 
 .idea/
 .vscode/

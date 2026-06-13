@@ -1,0 +1,22 @@
+[
+    {
+        "question": "Why does pressure drop?",
+        "reasoning_path": [
+            "Pressure",
+            "Friction",
+            "Energy Loss",
+            "Pressure Drop"
+        ],
+        "answer": "Pressure decreases because friction causes energy losses."
+    },
+    {
+        "question": "Why does turbulence increase?",
+        "reasoning_path": [
+            "Velocity",
+            "Instability",
+            "Vortex",
+            "Turbulence"
+        ],
+        "answer": "Instabilities create vortices which increase turbulence."
+    }
+]

@@ -1,0 +1,8 @@
+=================================
+CAT EXPERIMENT REPORT
+=================================
+
+Parameters: 187552080
+Final SNR: 18.2142
+Training Steps: 20
+Final Loss: 10.760180
