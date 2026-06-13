@@ -1,0 +1,5 @@
+Pressure and velocity are fundamental variables in CFD.
+
+The Navier Stokes equations describe fluid motion.
+
+Turbulence models such as k epsilon are commonly used.
