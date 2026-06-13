@@ -1,0 +1,152 @@
+[
+  {
+    "question": "How to read a file line by line and find a word?",
+    "reasoning_path": [
+      "File Input",
+      "Line Iteration",
+      "Substring Search",
+      "Match Extraction"
+    ],
+    "answer": "Open the file using `with open('file.txt') as f:`, iterate over it using `for line in f:`, check `if 'word' in line:`, and extract or print the matching line."
+  },
+  {
+    "question": "How to filter a list of numbers to find even numbers?",
+    "reasoning_path": [
+      "List Input",
+      "Modulo Condition",
+      "List Comprehension",
+      "Filtered Output"
+    ],
+    "answer": "Accept the input list, apply a modulo condition `x % 2 == 0` within a list comprehension `[x for x in numbers if x % 2 == 0]`, and return the filtered list."
+  },
+  {
+    "question": "How to fetch a URL and parse JSON in Python?",
+    "reasoning_path": [
+      "HTTP Request",
+      "API Call",
+      "JSON Parsing",
+      "Dictionary Access"
+    ],
+    "answer": "Use the requests library to send an HTTP GET request to the URL, decode the response body using `.json()`, and retrieve value by key."
+  },
+  {
+    "question": "How to sort a list of dictionaries by a key?",
+    "reasoning_path": [
+      "List of Dictionaries",
+      "Lambda Key",
+      "Sort Function",
+      "Sorted Output"
+    ],
+    "answer": "Use Python's built-in `sorted(data, key=lambda x: x['key'])` where a lambda function acts as the sorting key."
+  },
+  {
+    "question": "How to count occurrences of items in a list?",
+    "reasoning_path": [
+      "List Input",
+      "Hash Map",
+      "Counter Import",
+      "Frequency Map"
+    ],
+    "answer": "Import `Counter` from the `collections` module, pass the list to construct a hash map, and return the frequency map."
+  },
+  {
+    "question": "How to handle exceptions in python?",
+    "reasoning_path": [
+      "Try Block",
+      "Except Clause",
+      "Exception Handling",
+      "Graceful Recovery"
+    ],
+    "answer": "Place code in a `try` block, catch potential errors in an `except ExceptionName as e:` clause, handle the error, and execute graceful recovery."
+  },
+  {
+    "question": "How to write a basic class with inheritance?",
+    "reasoning_path": [
+      "Base Class Define",
+      "Inheritance Declaration",
+      "Super Init",
+      "Method Override"
+    ],
+    "answer": "Define a base class, declare inheritance using `class Child(Base):`, initialize base fields with `super().__init__()`, and override methods."
+  },
+  {
+    "question": "How to find a regex pattern in a string?",
+    "reasoning_path": [
+      "Regex Import",
+      "Compile Pattern",
+      "Search Method",
+      "Match Group Extract"
+    ],
+    "answer": "Import `re`, compile the regular expression pattern using `re.compile()`, call `.search()` or `.match()`, and extract subgroups using `.group()`."
+  },
+  {
+    "question": "How to write data to a CSV file?",
+    "reasoning_path": [
+      "CSV Import",
+      "File Open Write",
+      "Writer Instantiate",
+      "Row Writing"
+    ],
+    "answer": "Import `csv`, open the file in write mode, instantiate a writer with `csv.writer()`, and write records using `.writerow()`."
+  },
+  {
+    "question": "How to run a task concurrently in Python?",
+    "reasoning_path": [
+      "Threading Import",
+      "Thread Instantiate",
+      "Start Executing",
+      "Thread Joining"
+    ],
+    "answer": "Import `threading`, instantiate a thread object passing the target function, start execution with `.start()`, and wait with `.join()`."
+  },
+  {
+    "question": "How to serialize a dictionary to a JSON string?",
+    "reasoning_path": [
+      "JSON Import",
+      "Dictionary Input",
+      "Dumps Function",
+      "Serialized String"
+    ],
+    "answer": "Import the `json` module, prepare the input dictionary, call `json.dumps(dictionary)`, and obtain the serialized JSON string."
+  },
+  {
+    "question": "How to calculate execution time of a python function?",
+    "reasoning_path": [
+      "Time Import",
+      "Start Timer",
+      "Function Execution",
+      "Elapsed Time"
+    ],
+    "answer": "Import `time`, record the start time using `time.perf_counter()`, run the function, record the end time, and calculate elapsed duration."
+  },
+  {
+    "question": "How to find the intersection of two lists?",
+    "reasoning_path": [
+      "List Input",
+      "Set Conversion",
+      "Intersection Operation",
+      "Result List"
+    ],
+    "answer": "Convert both input lists to sets, perform a set intersection using `set1.intersection(set2)`, and convert back to a list."
+  },
+  {
+    "question": "How to create a generator function in python?",
+    "reasoning_path": [
+      "Function Define",
+      "Yield Keyword",
+      "State Retention",
+      "Lazy Evaluation"
+    ],
+    "answer": "Define a function, use the `yield` keyword to return values one at a time while retaining state, achieving memory-efficient lazy evaluation."
+  },
+  {
+    "question": "How to download an image from a URL?",
+    "reasoning_path": [
+      "HTTP Request",
+      "Binary Stream",
+      "File Write Mode",
+      "Image Saved"
+    ],
+    "answer": "Make a request with `requests.get(url, stream=True)`, check status, open a file in write-binary mode `wb`, and write the raw content chunks."
+  }
+]

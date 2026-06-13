@@ -20,6 +20,8 @@ _LOADED_CHECKPOINTS = {}
 def get_checkpoint_system(name):
     if name == "structural":
         path = latest_checkpoint("checkpoints/cat_v2_structural")
+    elif name == "python_coding":
+        path = latest_checkpoint("checkpoints/cat_v2_python_coding")
     else:
         path = latest_checkpoint("checkpoints/cat_v2")
         
@@ -185,6 +187,8 @@ class CATGUIRequestHandler(BaseHTTPRequestHandler):
                 checkpoints.append({"id": "cfd", "name": "CFD / Fluid Dynamics (CAT V2)"})
             if latest_checkpoint("checkpoints/cat_v2_structural"):
                 checkpoints.append({"id": "structural", "name": "Structural Engineering (CAT V2)"})
+            if latest_checkpoint("checkpoints/cat_v2_python_coding"):
+                checkpoints.append({"id": "python_coding", "name": "Python Coding AI (CAT V2)"})
             self.wfile.write(json.dumps({"checkpoints": checkpoints}).encode("utf-8"))
         else:
             self.send_response(404)
@@ -596,6 +600,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <select id="checkpoint-select">
                         <option value="structural">Structural Engineering (Latest 30 epochs)</option>
                         <option value="cfd">CFD / Fluid Dynamics (Latest 3 epochs)</option>
+                        <option value="python_coding">Python Coding AI (CAT V2)</option>
                     </select>
                 </div>
 
@@ -686,6 +691,12 @@ HTML_CONTENT = """<!DOCTYPE html>
                 "Why does turbulence increase at high speed?",
                 "Why can poor mesh quality cause convergence failure?",
                 "Why does cavitation damage pumps?"
+            ],
+            python_coding: [
+                "How to read a file line by line and find a word?",
+                "How to filter a list of numbers to find even numbers?",
+                "How to fetch a URL and parse JSON in Python?",
+                "How to sort a list of dictionaries by a key?"
             ]
         };
 
