@@ -77,6 +77,7 @@ graph TD
   * 🧮 **Computational Fluid Dynamics (CFD)**
   * 🏗️ **Structural Engineering**
   * 🐍 **Python Coding AI** (Planning and mapping programming tasks to code concepts)
+  * 📐 **MIT OCW Engineering Mathematics** (18.01 Calculus + 18.02 Multivariable + 18.03 ODEs + 18.06 Linear Algebra)
 * **Interactive Lab GUI**: A built-in web interface featuring vis.js network graphs to inspect node activations and next-concept probability bars in real time.
 * **Extreme Memory Compression**: Eliminates standard token KV Cache scaling, enabling deployment of high-order reasoning graphs on edge CPUs.
 
@@ -99,6 +100,50 @@ The recursive CAT V2 model was trained on this GNN-grown graph (`data/python_cod
 * **Evaluation F1 (Concept Precision/Recall)**: **39.58%**
 * **Exact Path Matches**: **39.58%**
 * **Path Token Accuracy**: **84.90%** (training), **39.58%** (evaluation)
+
+---
+
+## 📐 Scaling Experiment: MIT OCW Engineering Mathematics
+
+To stress-test the architecture at scale, the model was trained on **119 samples spanning the full MIT OpenCourseWare engineering mathematics curriculum** — 18.01 (Single Variable Calculus), 18.02 (Multivariable Calculus), 18.03 (Differential Equations), and 18.06 (Linear Algebra).
+
+### Dataset & Graph Scale
+
+| Metric | Python Coding AI | MIT OCW Mathematics | Scale Factor |
+| :--- | :--- | :--- | :--- |
+| **Training Samples** | 15 | **119** | 8× |
+| **Concept Nodes** | 45 | **374** | 8× |
+| **Directed Edges** | 132 | **889** | 7× |
+| **Edge Types** | path + co-occurrence | **144 path + 745 co-occurrence** | — |
+
+The GNN concept graph was grown from `data/mit_math_docs.txt` via sentence co-occurrence scanning, producing a **374-node, 889-edge** reasoning substrate — the largest graph ever loaded into CAT V2.
+
+### Empirical Training Results (30 Epochs)
+
+| Metric | Python Coding (45 concepts) | MIT Math (374 concepts) |
+| :--- | :--- | :--- |
+| **Train Concept F1** | 84.89% | **67.94%** |
+| **Eval Concept F1** | 39.58% | **8.11%** |
+| **Train Token Accuracy** | 84.90% | **64.17%** |
+| **Eval Token Accuracy** | 39.58% | **7.50%** |
+| **Eval Exact Match** | 39.58% | **5.83%** |
+
+### Key Finding: Attractor Trap at Scale
+
+At 374 concepts in a 128-dimensional embedding space, the model collapsed into a **single attractor basin** — every query (regardless of course or topic) produces the identical reasoning path:
+
+$$\text{System Matrix} \rightarrow \text{Eigenvalue Decomposition} \rightarrow \text{Matrix Exponential} \rightarrow \text{Initial Condition} \rightarrow \text{System Solution} \rightarrow \dots$$
+
+This empirically validates the **Attractor Trap** failure mode described in §3 below: the Concept Activator cannot discriminate between 374 mathematical concepts with only 128 embedding dimensions (~1,700 params/concept vs ~14,000 params/concept on the Python domain). Once the wrong entry-point is activated, the transition mask locks the path into the densest subgraph neighborhood with no self-correction mechanism.
+
+Critically, the **0% path hallucination guarantee still holds** — the predicted path follows valid graph edges. The architecture's structural integrity is preserved even at failure; it simply generates the *wrong valid path*.
+
+### Reproducing the Experiment
+
+```powershell
+# Full pipeline: grow graph → train → evaluate → infer
+powershell -ExecutionPolicy Bypass -File scripts/train_mit_math.ps1
+```
 
 ---
 
@@ -198,7 +243,7 @@ Compile GNN transition edges based on documentation sentence co-occurrences:
 ```
 
 ### 3. Train the Domain Models
-Train models on structural, CFD, or python coding reasoning datasets:
+Train models on structural, CFD, python coding, or MIT mathematics reasoning datasets:
 ```powershell
 # Train Python Coding AI on Grown Graph (30 Epochs)
 .\.venv\Scripts\python.exe run_reasoning.py train --dataset data/python_coding_dataset.json --checkpoint-dir checkpoints/cat_v2_python_coding --graph-file data/python_coding_graph.json --epochs 30
@@ -208,6 +253,9 @@ Train models on structural, CFD, or python coding reasoning datasets:
 
 # Train CFD Reasoning (3 Epochs)
 .\.venv\Scripts\python.exe run_reasoning.py train --dataset data/reasoning_dataset.json --checkpoint-dir checkpoints/cat_v2 --epochs 3
+
+# Train MIT OCW Engineering Mathematics (30 Epochs, 374 concepts)
+.\.venv\Scripts\python.exe run_reasoning.py train --dataset data/mit_math_dataset.json --checkpoint-dir checkpoints/cat_v2_mit_math --graph-file data/mit_math_graph.json --epochs 30
 ```
 
 ### 4. Path Inference
@@ -236,6 +284,6 @@ Open your browser and navigate to:
 👉 **[http://localhost:8080/](http://localhost:8080/)**
 
 ### GUI Capabilities:
-* **Domain Checkpoint Selector**: Switch between `Python Coding AI`, `Structural Engineering`, and `CFD` on the fly.
+* **Domain Checkpoint Selector**: Switch between `Python Coding AI`, `Structural Engineering`, `CFD`, and `MIT OCW Mathematics` on the fly.
 * **Probabilistic Path Builder**: Shows all mathematically valid next concepts along with active probability bars.
 * **Interactive Node Network**: Real-time layout highlighting the active concept nodes and current planning paths.

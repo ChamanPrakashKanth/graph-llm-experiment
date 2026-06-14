@@ -1,0 +1,121 @@
+The foundation of calculus begins with the limit definition, where a function evaluation approaches a value through a limit process, establishing continuity check of the function.
+The epsilon tolerance defines a narrow band around the output, and the delta neighborhood constrains the input, together forming the rigorous bound of the limit definition.
+A derivative is computed by taking a secant line through two nearby points, applying a limit process as the gap shrinks to zero, producing the tangent line and instantaneous rate.
+To differentiate a monomial like x to the n, the power rule performs exponent reduction, yielding a coefficient times x to the n minus one as the derivative.
+Differentiating a product of two functions requires accounting for the first derivative of one factor and the second derivative of the other, yielding the product rule.
+For a composite function, the chain rule multiplies the outer derivative by the inner derivative, chaining the rates through composition.
+When a curve is defined by an implicit equation, applying the chain rule with respect to x performs differentiation and slope extraction for implicit curves.
+The mean value theorem guarantees that on a differentiable interval, there exists a point where the secant slope matches the tangent slope for a continuous function.
+An indeterminate form such as zero over zero is resolved by L'Hopital rule, which takes the derivative ratio and retries the limit evaluation.
+At a critical point where the derivative is zero, the second derivative test checks concavity to classify the extremum as maximum, minimum, or inconclusive.
+Concavity analysis uses the second derivative to determine whether a critical point corresponds to concave up or concave down curvature for extremum classification.
+The definite integral is defined by taking a partition of the interval, forming a Riemann sum of rectangle areas, and applying the limit process.
+The fundamental theorem connects the antiderivative with the accumulation function, establishing that integration and differentiation are inverse operations.
+Substitution simplifies a composite integrand by replacing the inner expression using variable substitution, reversing the chain rule reversal to get a simplified integral.
+Integration by parts handles a product integrand by splitting into u and dv, performing a reduction that trades one antiderivative for a simpler one.
+A rational function with a factored denominator decomposes into partial fractions, each yielding simple integrals that are individually tractable.
+A Taylor series builds a polynomial approximation from the function value and its higher derivatives at a single point, converging within the convergence radius.
+The ratio test applied to a power series determines the convergence radius, bounding the region of series validity for the Taylor expansion.
+Linearization uses the tangent line at a point to create a first order approximation, with an error estimate proportional to the square of displacement.
+An improper integral over an infinite interval requires a limit process and a convergence test to determine whether the accumulated area is finite.
+Related rates problems start from a geometric relation, apply implicit differentiation, and compute the time derivative to connect changing quantities.
+The integral test compares a decreasing function to its integral, using the integral comparison as a convergence test for the series behavior.
+Newton iteration starts with an initial guess, follows the tangent line to the axis for root approximation, refining closer each Newton iteration step.
+The squeeze theorem uses a lower bound and an upper bound that share a common limit to force the squeezed function to the same limit evaluation.
+The disk method computes volume by revolving a curve around a revolution axis, integrating the circular cross section areas via disk integration.
+Arc length of a parametric curve is found by computing the speed function and evaluating the arc length integral to get the total curve length.
+The quotient rule differentiates a ratio by combining the numerator derivative and denominator derivative in the formula f prime g minus f g prime over g squared.
+Continuity at a point requires limit existence, a defined function value, and an equality check confirming both match.
+The intermediate value theorem says a continuous function with a sign change on an interval must have a root existence guaranteed by continuity.
+The comparison test uses a known series and term comparison with a dominance bound to establish a convergence test result.
+
+In multivariable calculus, a multivariable function has partial derivatives with respect to each variable, which combine into the gradient vector pointing in the direction of steepest ascent.
+The directional derivative equals the dot product of the gradient vector with a unit direction vector, measuring the rate along any chosen direction.
+A vector function has partial derivatives organized into the Jacobian matrix, which provides the best linear approximation of the mapping.
+A double integral partitions a region into small rectangles, sums column heights via iterated integration, computing volume under a surface.
+Circular symmetry in a domain suggests switching to polar coordinates, where the Jacobian factor r appears in the area element for a simplified integral.
+The divergence theorem equates a volume integral of the divergence to the flux through the enclosing surface integral for any smooth vector field.
+A vector field that swirls has nonzero curl, computed from cross product of the del operator with the field, measuring circulation density.
+Stokes theorem connects the line integral of a field around a curve to the surface integral of the curl over the bounded surface.
+Green theorem converts a line integral around a planar region into a double integral of the appropriate partial derivative combination.
+The tangent plane to a surface uses partial derivatives at the surface point to construct a linear approximation of the surface nearby.
+The multivariable chain rule accounts for all paths of dependency through partial derivatives, summing contributions to get the total derivative of a composite function.
+Lagrange multiplier optimization finds the constrained extremum where the gradient of the objective function is parallel to the gradient of the constraint surface.
+A conservative field has a potential function whose gradient recovers the field, and the zero curl property confirms path independence.
+Work along a path is computed as a line integral where the force field is dotted with the path parametrization differential via the dot product.
+The flux integral measures flow of a vector field through a surface by integrating the dot product of the field with the outward normal vector.
+A triple integral computes mass by integrating the density function over each volume element using iterated integration throughout the solid.
+Axial symmetry suggests cylindrical coordinates, where the Jacobian factor r naturally scales the volume element for the simplified integral.
+The Hessian matrix at a critical point has eigenvalues that determine curvature, and mixed curvature signals a saddle point.
+Radial symmetry calls for spherical coordinates with a Jacobian factor of rho squared sine phi for the simplified integral.
+At a local extremum of a multivariable function, the gradient must be the gradient zero vector since all partial derivatives vanish.
+Surface integral computation requires a surface parametrization, computing the cross product of tangent vectors to get the area element.
+Fubini theorem ensures the iterated integration of a measurable function can undergo an order switch without changing the double integral result.
+The Hessian determinant combined with eigenvalue sign analysis provides the classification of each critical point in two dimensions.
+
+The study of differential equations begins with a separable equation, where variable isolation allows both sides to be solved by integration to find the general solution.
+A linear ODE in first order is solved by an integrating factor that turns the left side into an exact derivative, enabling direct integration for the solution.
+Constant coefficients in a linear ODE motivate the exponential ansatz, leading to the characteristic equation whose roots define the general solution.
+Linearity guarantees that any combination of homogeneous solutions satisfies the equation via superposition, building the general solution from basis solutions.
+Resonance occurs when the forcing frequency equals the natural frequency, and without damping, the system exhibits unbounded growth of amplitude.
+The damping coefficient controls energy dissipation, preventing unbounded growth and producing bounded amplitude in a damped resonance scenario.
+The Laplace transform moves a signal from the time domain to s-space, converting the ODE to an algebraic equation, solved by algebra and then inverse transform.
+A Laplace product of two transforms corresponds to the convolution integral in the time domain solution, combining input with impulse response.
+The Wronskian determinant of a solution set is a nonzero test that confirms linear independence of the fundamental solutions.
+The system matrix eigenvalue computation reveals the sign analysis of real parts, determining the stability classification of the linear ODE system.
+A phase portrait of an autonomous system plots the vector field and trajectory plot in state space, revealing qualitative dynamics without explicit solutions.
+Variation of parameters starts from homogeneous solutions, constructs parameter functions that vary with time, yielding a particular solution for nonhomogeneous forcing.
+The method of undetermined coefficients assumes a form matching the forcing function, then performs coefficient matching to determine the particular solution.
+A Fourier series represents a periodic function as a sum of harmonic components, with coefficient integration computing each amplitude via orthogonal inner products.
+An impulse input is modeled by the delta function, and the system's transfer function determines the impulse response.
+A sudden input is represented by the step function, and the Laplace transform converts it to algebraic form for the system response.
+Euler formula writes sinusoidal input as a complex exponential, which simplifies differentiation and yields a simplified solution to the ODE.
+Eigenvalue analysis determines fixed point classification: real eigenvalues give a node, while complex eigenvalues create oscillatory spirals.
+A nonlinear system may have a periodic orbit that acts as an attracting trajectory, forming a limit cycle of sustained oscillation.
+The matrix exponential of the system matrix applied to the initial condition gives the system solution of a linear ODE system.
+Expressing a system in its eigenvector basis produces a diagonal system where each mode evolves independently as a decoupled solution.
+The transfer function is the Laplace transform ratio of output signal to input signal, characterizing the system's frequency behavior.
+A higher order ODE introduces state variables for each derivative, reducing to a first order system in matrix form.
+The existence theorem requires the Lipschitz condition near the initial value to guarantee a unique solution locally.
+Euler method advances from an initial value using the tangent step at each point, building a discrete approximation of the solution curve.
+A rational transform decomposes via partial fractions, enabling table lookup for each term during the inverse transform.
+Complex eigenvalues with a negative real part produce oscillatory decay in the underdamped response of a second-order system.
+After transient decay via the exponential decay of the transient component, only the forcing response remains as the steady state.
+A parameter change that shifts an equilibrium shift past a critical threshold triggers a bifurcation that changes the qualitative dynamics.
+
+Gaussian elimination takes an augmented matrix, performs row reduction to reach upper triangular form, then applies back substitution to find unknowns.
+LU decomposition records the elimination steps: the multipliers in a lower triangular matrix and the result in an upper triangular matrix.
+A homogeneous system Ax equals zero has free variables whose span defines the null space as the full solution set.
+The rank of a matrix counts pivot columns, each representing a linearly independent column in the column space.
+An eigenvalue equation Av equals lambda v defines eigenvectors and eigenvalues; the eigenvector matrix and diagonal matrix achieve diagonalization.
+A singular matrix has zero determinant, meaning the square matrix performs zero volume scaling and is non-invertible.
+Orthogonal projection drops a perpendicular from a vector onto a subspace, achieving the minimum distance approximation.
+Gram-Schmidt orthogonalization starts from a linearly independent set, applies orthogonalization by subtracting projections, and finishes with normalization to unit length.
+An overdetermined system Ax equals b has more equations than unknowns, so the normal equations provide the projection yielding a least squares solution.
+The SVD factorizes a matrix using singular values, and the number of nonzero singular values equals the rank, with remaining vectors spanning the null space.
+A change of basis uses a transition matrix to convert from the original basis to new coordinates.
+A symmetric matrix has a positive definite quadratic form if and only if all positive eigenvalues are strictly greater than zero.
+The spectral theorem guarantees that a symmetric matrix has real eigenvalues, orthogonal eigenvectors, and the decomposition Q Lambda Q transpose.
+The fundamental theorem of linear algebra states that the row space dimension equals column space dimension, confirming rank equality.
+A linear transformation is a linear map from a domain space to a range space that preserves vector addition and scalar multiplication.
+Invertibility requires a square matrix with nonzero determinant, guaranteeing a well-defined matrix inverse.
+QR decomposition applies Gram-Schmidt to column vectors, producing an orthogonal matrix Q and upper triangular R.
+The trace is the diagonal sum of a matrix, which also equals the eigenvalue sum, a fundamental trace property.
+The four subspaces theorem organizes the column space, null space, row space, and left null space into two pairs of orthogonal complements.
+An orthogonal matrix has orthonormal columns that guarantee inner product preservation and length preservation under transformation.
+The power method repeatedly multiplies a random vector by the matrix, amplifying the dominant mode until convergence to the dominant eigenvalue.
+The condition number is the max min ratio of singular values, measuring the numerical sensitivity of a system to input perturbation.
+Cramer rule solves a system of equations by computing determinant ratios, replacing one column at a time for variable extraction.
+The image of a linear map equals the column space, since multiplying Ax produces a linear combination of column vectors forming the image space.
+Diagonalization enables efficient computation of matrix power by raising diagonal powers to n and transforming back.
+A Markov chain transition matrix is a stochastic matrix with column sum one, guaranteeing eigenvalue one as a steady state property.
+The pseudoinverse uses SVD to generalize matrix inversion for a non-square matrix, providing the minimum-norm generalized solution.
+
+The gradient vector from multivariable calculus and the Hessian matrix connect to eigenvalue analysis from linear algebra when determining optimization convergence at critical points.
+The system matrix from differential equations is solved via eigenvalue decomposition from linear algebra, using the matrix exponential for ODE solution.
+Fourier series decomposition relies on the orthogonal basis of sines and cosines, where coefficient projection via inner product mirrors the orthogonality concepts of linear algebra.
+The Jacobian matrix from multivariable calculus has a determinant that measures volume scaling, the same concept studied in linear algebra for coordinate transform mappings.
+Taylor series from single-variable calculus express functions as power series, paralleling how Laplace transform converts time-domain signals to frequency analysis modes.
+Separable equations from differential equations are solved by computing the antiderivative on each side, relying on the fundamental theorem from calculus for the ODE solution.
+The divergence from vector calculus measures local source strength, and when integrated via the divergence theorem it yields the flux forming conservation law in PDE formulation.
+The positive definite criterion from linear algebra defines a Lyapunov function whose energy decay along trajectories proves ODE stability.

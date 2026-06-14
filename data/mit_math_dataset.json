@@ -1,0 +1,596 @@
+[
+  {
+    "question": "Why does a limit describe the behavior of a function near a point?",
+    "reasoning_path": ["Function Evaluation", "Approaching Value", "Limit Definition", "Continuity Check"],
+    "answer": "A limit captures the value a function approaches as its input nears a point, establishing whether the function is continuous there."
+  },
+  {
+    "question": "How does the epsilon-delta definition formalize limits?",
+    "reasoning_path": ["Epsilon Tolerance", "Delta Neighborhood", "Limit Definition", "Rigorous Bound"],
+    "answer": "For every epsilon tolerance around the limit value, there exists a delta neighborhood around the input ensuring the function stays within epsilon."
+  },
+  {
+    "question": "Why does a derivative measure instantaneous rate of change?",
+    "reasoning_path": ["Secant Line", "Limit Process", "Tangent Line", "Derivative"],
+    "answer": "The derivative is the limit of secant line slopes as the two points merge, yielding the tangent slope as the instantaneous rate."
+  },
+  {
+    "question": "How does the power rule simplify differentiation?",
+    "reasoning_path": ["Monomial", "Exponent Reduction", "Power Rule", "Derivative"],
+    "answer": "For x^n, the power rule brings the exponent down as a coefficient and reduces the power by one, giving nx^(n-1)."
+  },
+  {
+    "question": "Why does the product rule involve two terms?",
+    "reasoning_path": ["Two Functions", "First Derivative", "Second Derivative", "Product Rule"],
+    "answer": "Differentiating a product f*g requires accounting for the change in each factor while holding the other fixed, yielding f'g + fg'."
+  },
+  {
+    "question": "Why does the chain rule decompose composite function derivatives?",
+    "reasoning_path": ["Composite Function", "Inner Derivative", "Outer Derivative", "Chain Rule"],
+    "answer": "The chain rule multiplies the outer function derivative by the inner function derivative, chaining the rates of change through composition."
+  },
+  {
+    "question": "How does implicit differentiation handle curves that are not functions?",
+    "reasoning_path": ["Implicit Equation", "Chain Rule", "Differentiation", "Slope Extraction"],
+    "answer": "Implicit differentiation applies the chain rule to both sides of an equation relating x and y, then solves for dy/dx."
+  },
+  {
+    "question": "Why does the mean value theorem guarantee an intermediate slope?",
+    "reasoning_path": ["Continuous Function", "Differentiable Interval", "Secant Slope", "Mean Value Theorem"],
+    "answer": "On a differentiable interval, there must exist a point where the tangent slope equals the average slope across the interval."
+  },
+  {
+    "question": "How does L'Hopital's rule resolve indeterminate forms?",
+    "reasoning_path": ["Indeterminate Form", "Derivative Ratio", "Limit Evaluation", "L'Hopital Rule"],
+    "answer": "When a limit yields 0/0 or infinity/infinity, differentiating numerator and denominator separately resolves the indeterminate form."
+  },
+  {
+    "question": "Why does a critical point indicate a potential extremum?",
+    "reasoning_path": ["Derivative Zero", "Critical Point", "Second Derivative Test", "Extremum"],
+    "answer": "Where the derivative is zero the function has no instantaneous change, so the point may be a local maximum, minimum, or saddle."
+  },
+  {
+    "question": "How does the second derivative test classify critical points?",
+    "reasoning_path": ["Critical Point", "Second Derivative", "Concavity", "Extremum Classification"],
+    "answer": "A positive second derivative indicates concave up (local min), negative indicates concave down (local max), and zero is inconclusive."
+  },
+  {
+    "question": "Why does the definite integral compute area under a curve?",
+    "reasoning_path": ["Partition", "Riemann Sum", "Limit Process", "Definite Integral"],
+    "answer": "Partitioning the interval into thin rectangles and taking the limit as width approaches zero produces the exact area."
+  },
+  {
+    "question": "How does the Fundamental Theorem of Calculus connect derivatives and integrals?",
+    "reasoning_path": ["Antiderivative", "Accumulation Function", "Fundamental Theorem", "Integration"],
+    "answer": "The FTC states that integration and differentiation are inverse operations: the integral of f' recovers f, and d/dx of the integral of f returns f."
+  },
+  {
+    "question": "Why does substitution simplify certain integrals?",
+    "reasoning_path": ["Composite Integrand", "Variable Substitution", "Chain Rule Reversal", "Simplified Integral"],
+    "answer": "Substitution reverses the chain rule by replacing a composite expression with a single variable, simplifying the integrand."
+  },
+  {
+    "question": "How does integration by parts handle products of functions?",
+    "reasoning_path": ["Product Integrand", "Integration By Parts", "Reduction", "Antiderivative"],
+    "answer": "Integration by parts reverses the product rule: it trades one integral for another, typically simpler one, via the formula integral(u dv) = uv - integral(v du)."
+  },
+  {
+    "question": "Why do partial fractions decompose rational integrands?",
+    "reasoning_path": ["Rational Function", "Factored Denominator", "Partial Fractions", "Simple Integrals"],
+    "answer": "Decomposing a rational function into simpler fractions with linear or quadratic denominators makes each piece individually integrable."
+  },
+  {
+    "question": "How does a Taylor series approximate a function near a point?",
+    "reasoning_path": ["Function Value", "Higher Derivatives", "Polynomial Approximation", "Taylor Series"],
+    "answer": "A Taylor series builds a polynomial from the function value and all its derivatives at a point, converging to the function within its radius."
+  },
+  {
+    "question": "Why does the radius of convergence limit Taylor series validity?",
+    "reasoning_path": ["Power Series", "Ratio Test", "Convergence Radius", "Series Validity"],
+    "answer": "The ratio test reveals how far from the expansion point the series terms decrease, bounding the region where the approximation converges."
+  },
+  {
+    "question": "How does linearization approximate nonlinear functions?",
+    "reasoning_path": ["Tangent Line", "First Order Approximation", "Linearization", "Error Estimate"],
+    "answer": "Linearization uses the tangent line at a point as a first-order approximation, with the error proportional to the square of the displacement."
+  },
+  {
+    "question": "Why do improper integrals require limit analysis?",
+    "reasoning_path": ["Infinite Interval", "Limit Process", "Convergence Test", "Improper Integral"],
+    "answer": "When the interval is infinite or the integrand is unbounded, a limiting process determines whether the accumulated area converges to a finite value."
+  },
+  {
+    "question": "How does related rates connect changing quantities?",
+    "reasoning_path": ["Geometric Relation", "Implicit Differentiation", "Time Derivative", "Related Rates"],
+    "answer": "Related rates differentiate a geometric equation with respect to time, linking the rates of change of multiple coupled quantities."
+  },
+  {
+    "question": "Why does the integral test determine series convergence?",
+    "reasoning_path": ["Decreasing Function", "Integral Comparison", "Convergence Test", "Series Behavior"],
+    "answer": "If the integral of a positive decreasing function converges, the corresponding series converges, since partial sums are bounded by the integral."
+  },
+  {
+    "question": "How does Newton's method find roots iteratively?",
+    "reasoning_path": ["Initial Guess", "Tangent Line", "Root Approximation", "Newton Iteration"],
+    "answer": "Newton's method follows the tangent line from the current guess to the x-axis, producing a closer approximation to the root each iteration."
+  },
+  {
+    "question": "Why does the squeeze theorem establish limits of bounded functions?",
+    "reasoning_path": ["Lower Bound", "Upper Bound", "Squeeze Theorem", "Limit Evaluation"],
+    "answer": "If a function is squeezed between two functions sharing the same limit, it must converge to that limit as well."
+  },
+  {
+    "question": "How does the disk method compute volumes of revolution?",
+    "reasoning_path": ["Revolution Axis", "Circular Cross Section", "Disk Integration", "Volume"],
+    "answer": "Revolving a curve around an axis creates circular disks whose areas are integrated along the axis to yield the solid volume."
+  },
+  {
+    "question": "Why does arc length require integrating the speed of a parametric curve?",
+    "reasoning_path": ["Parametric Curve", "Speed Function", "Arc Length Integral", "Curve Length"],
+    "answer": "Arc length sums infinitesimal displacements along the curve, which equal the magnitude of the velocity vector integrated over the parameter."
+  },
+  {
+    "question": "How does the quotient rule differentiate a ratio of functions?",
+    "reasoning_path": ["Numerator Derivative", "Denominator Derivative", "Quotient Rule", "Derivative"],
+    "answer": "The quotient rule computes (f'g - fg')/g^2 by combining the derivatives of numerator and denominator with proper sign and denominator squared."
+  },
+  {
+    "question": "Why does continuity require matching limit and function value?",
+    "reasoning_path": ["Limit Existence", "Function Value", "Equality Check", "Continuity"],
+    "answer": "A function is continuous at a point only if the limit exists, the function is defined there, and both values agree."
+  },
+  {
+    "question": "How does the intermediate value theorem guarantee root existence?",
+    "reasoning_path": ["Continuous Function", "Sign Change", "Intermediate Value Theorem", "Root Existence"],
+    "answer": "A continuous function changing sign on an interval must cross zero somewhere within, guaranteeing at least one root."
+  },
+  {
+    "question": "Why does the comparison test relate series to known benchmarks?",
+    "reasoning_path": ["Known Series", "Term Comparison", "Dominance Bound", "Convergence Test"],
+    "answer": "Comparing terms to a convergent or divergent benchmark series establishes convergence or divergence by bounding the partial sums."
+  },
+
+  {
+    "question": "Why does the gradient point in the direction of steepest ascent?",
+    "reasoning_path": ["Partial Derivatives", "Gradient Vector", "Directional Derivative", "Steepest Ascent"],
+    "answer": "The gradient combines all partial derivatives into a vector whose direction maximizes the directional derivative, pointing uphill most steeply."
+  },
+  {
+    "question": "How do partial derivatives measure change along coordinate axes?",
+    "reasoning_path": ["Multivariable Function", "Variable Isolation", "Partial Derivative", "Rate Along Axis"],
+    "answer": "Holding all variables but one fixed, the partial derivative gives the rate of change of the function along that single coordinate axis."
+  },
+  {
+    "question": "Why does the Jacobian matrix generalize the derivative to vector functions?",
+    "reasoning_path": ["Vector Function", "Partial Derivatives", "Jacobian Matrix", "Linear Approximation"],
+    "answer": "The Jacobian collects all partial derivatives of a vector function into a matrix that provides the best local linear approximation."
+  },
+  {
+    "question": "How does a double integral compute volume under a surface?",
+    "reasoning_path": ["Region Partition", "Column Heights", "Iterated Integration", "Double Integral"],
+    "answer": "Partitioning the domain into small rectangles and summing column heights gives a Riemann sum converging to the double integral."
+  },
+  {
+    "question": "Why does changing to polar coordinates simplify circular region integrals?",
+    "reasoning_path": ["Circular Symmetry", "Polar Coordinates", "Jacobian Factor", "Simplified Integral"],
+    "answer": "Polar coordinates align with circular boundaries, and the r factor in the Jacobian naturally accounts for the area element dA = r dr dtheta."
+  },
+  {
+    "question": "How does the divergence theorem relate volume and surface integrals?",
+    "reasoning_path": ["Volume Integral", "Divergence", "Flux", "Surface Integral"],
+    "answer": "The divergence theorem equates the integral of a vector field's divergence over a volume to the total outward flux through its boundary surface."
+  },
+  {
+    "question": "Why does curl measure local rotation of a vector field?",
+    "reasoning_path": ["Vector Field", "Circulation Density", "Cross Product", "Curl"],
+    "answer": "Curl computes the infinitesimal circulation per unit area around a point, measuring how much the field rotates locally."
+  },
+  {
+    "question": "How does Stokes' theorem connect line and surface integrals?",
+    "reasoning_path": ["Line Integral", "Curl", "Surface Integral", "Stokes Theorem"],
+    "answer": "Stokes' theorem equates the circulation of a vector field around a closed curve to the integral of its curl over any spanning surface."
+  },
+  {
+    "question": "Why does Green's theorem simplify planar circulation calculations?",
+    "reasoning_path": ["Planar Region", "Line Integral", "Double Integral", "Green Theorem"],
+    "answer": "Green's theorem converts a line integral around a planar closed curve into a double integral over the enclosed region, simplifying evaluation."
+  },
+  {
+    "question": "How does the tangent plane approximate a surface near a point?",
+    "reasoning_path": ["Surface Point", "Partial Derivatives", "Tangent Plane", "Linear Approximation"],
+    "answer": "The tangent plane uses both partial derivatives at a point to construct a flat surface that best approximates the original surface locally."
+  },
+  {
+    "question": "Why does the chain rule extend to multivariable compositions?",
+    "reasoning_path": ["Composite Function", "Partial Derivatives", "Multivariable Chain Rule", "Total Derivative"],
+    "answer": "When composing multivariable functions, each path of dependence contributes a partial derivative term, summed to give the total rate of change."
+  },
+  {
+    "question": "How does Lagrange multiplier optimization handle constraints?",
+    "reasoning_path": ["Objective Function", "Constraint Surface", "Lagrange Multiplier", "Constrained Extremum"],
+    "answer": "At a constrained extremum, the gradient of the objective must be parallel to the gradient of the constraint, linked by a Lagrange multiplier."
+  },
+  {
+    "question": "Why does a conservative vector field have zero curl?",
+    "reasoning_path": ["Path Independence", "Potential Function", "Zero Curl", "Conservative Field"],
+    "answer": "A conservative field derives from a potential function, whose mixed partial derivatives commute, making the curl identically zero."
+  },
+  {
+    "question": "How does a line integral compute work along a path?",
+    "reasoning_path": ["Force Field", "Path Parametrization", "Dot Product", "Line Integral"],
+    "answer": "The line integral sums the dot product of the force with the differential displacement along the parametrized path, giving total work."
+  },
+  {
+    "question": "Why does the flux integral measure flow through a surface?",
+    "reasoning_path": ["Vector Field", "Normal Vector", "Dot Product", "Flux Integral"],
+    "answer": "The flux integral accumulates the component of the vector field normal to each surface element, measuring net flow through the boundary."
+  },
+  {
+    "question": "How does a triple integral compute mass of a solid?",
+    "reasoning_path": ["Density Function", "Volume Element", "Iterated Integration", "Triple Integral"],
+    "answer": "Integrating the density function over all volume elements via iterated integration yields the total mass of the solid region."
+  },
+  {
+    "question": "Why does cylindrical coordinate substitution suit axial symmetry?",
+    "reasoning_path": ["Axial Symmetry", "Cylindrical Coordinates", "Jacobian Factor", "Simplified Integral"],
+    "answer": "Cylindrical coordinates factor out the radial symmetry, and the r Jacobian naturally handles the area scaling for axis-aligned regions."
+  },
+  {
+    "question": "How does the directional derivative measure slope in any direction?",
+    "reasoning_path": ["Unit Direction", "Gradient Vector", "Dot Product", "Directional Derivative"],
+    "answer": "The directional derivative is the dot product of the gradient with a unit direction vector, giving the rate of change in that direction."
+  },
+  {
+    "question": "Why does a saddle point fail both the max and min tests?",
+    "reasoning_path": ["Critical Point", "Hessian Matrix", "Mixed Curvature", "Saddle Point"],
+    "answer": "At a saddle point the Hessian has eigenvalues of opposite sign, meaning the surface curves up in one direction and down in another."
+  },
+  {
+    "question": "How does spherical coordinate transformation handle radial symmetry?",
+    "reasoning_path": ["Radial Symmetry", "Spherical Coordinates", "Jacobian Factor", "Simplified Integral"],
+    "answer": "Spherical coordinates decompose space into radius, polar, and azimuthal angles, with a rho-squared sine-phi Jacobian matching the geometry."
+  },
+  {
+    "question": "Why does the gradient vanish at a local extremum of a multivariable function?",
+    "reasoning_path": ["Multivariable Function", "Partial Derivatives", "Gradient Zero", "Local Extremum"],
+    "answer": "At a local extremum, every directional derivative must be zero, which forces all partial derivatives and hence the gradient to vanish."
+  },
+  {
+    "question": "How does parametrizing a surface enable surface integral computation?",
+    "reasoning_path": ["Surface Parametrization", "Cross Product", "Area Element", "Surface Integral"],
+    "answer": "Parametrization maps a 2D domain onto the surface, and the cross product of partial derivatives provides the oriented area element for integration."
+  },
+  {
+    "question": "Why does Fubini's theorem allow switching integration order?",
+    "reasoning_path": ["Iterated Integration", "Measurable Function", "Order Switch", "Fubini Theorem"],
+    "answer": "Fubini's theorem guarantees that for continuous functions on rectangular domains, the double integral equals either iterated integral regardless of order."
+  },
+  {
+    "question": "How does the second partials test classify critical points in 2D?",
+    "reasoning_path": ["Critical Point", "Hessian Determinant", "Eigenvalue Sign", "Classification"],
+    "answer": "The Hessian determinant and the sign of f_xx together classify critical points as local max, min, or saddle depending on concavity."
+  },
+
+  {
+    "question": "Why does separation of variables solve certain first-order ODEs?",
+    "reasoning_path": ["Separable Equation", "Variable Isolation", "Integration", "General Solution"],
+    "answer": "When dy/dx factors into g(y)*h(x), separating and integrating both sides independently yields the general solution."
+  },
+  {
+    "question": "How does an integrating factor solve first-order linear ODEs?",
+    "reasoning_path": ["Linear ODE", "Integrating Factor", "Exact Derivative", "Solution"],
+    "answer": "Multiplying by an integrating factor makes the left side an exact derivative, so integrating both sides directly yields the solution."
+  },
+  {
+    "question": "Why does the characteristic equation determine solutions of constant-coefficient ODEs?",
+    "reasoning_path": ["Constant Coefficients", "Exponential Ansatz", "Characteristic Equation", "General Solution"],
+    "answer": "Substituting an exponential ansatz e^(rt) converts the ODE to a polynomial in r, whose roots give the exponential solution components."
+  },
+  {
+    "question": "How does the superposition principle apply to linear ODEs?",
+    "reasoning_path": ["Linearity", "Homogeneous Solutions", "Superposition", "General Solution"],
+    "answer": "Linearity guarantees any linear combination of homogeneous solutions is also a solution, so the general solution is their weighted sum."
+  },
+  {
+    "question": "Why does resonance cause unbounded growth in forced oscillators?",
+    "reasoning_path": ["Forcing Frequency", "Natural Frequency", "Resonance", "Unbounded Growth"],
+    "answer": "When forcing matches the natural frequency, energy continuously pumps into the system with no phase offset to dissipate it."
+  },
+  {
+    "question": "How does damping prevent infinite amplitude at resonance?",
+    "reasoning_path": ["Damping Coefficient", "Energy Dissipation", "Bounded Amplitude", "Damped Resonance"],
+    "answer": "Damping converts kinetic energy to heat, balancing the energy input from forcing and bounding the oscillation amplitude."
+  },
+  {
+    "question": "Why does the Laplace transform convert ODEs to algebraic equations?",
+    "reasoning_path": ["Time Domain", "Laplace Transform", "Algebraic Equation", "Inverse Transform"],
+    "answer": "The Laplace transform converts derivatives to polynomial multiplications in s-space, reducing the ODE to an algebraic equation solved by algebra."
+  },
+  {
+    "question": "How does convolution arise from Laplace transform products?",
+    "reasoning_path": ["Laplace Product", "Inverse Transform", "Convolution Integral", "Time Domain Solution"],
+    "answer": "Multiplying two Laplace transforms corresponds to convolving their time-domain originals, combining input signals with system impulse responses."
+  },
+  {
+    "question": "Why does the Wronskian test linear independence of solutions?",
+    "reasoning_path": ["Solution Set", "Wronskian Determinant", "Nonzero Test", "Linear Independence"],
+    "answer": "A nonzero Wronskian determinant at any point guarantees the solutions cannot be proportional, confirming linear independence."
+  },
+  {
+    "question": "How do eigenvalues determine stability of a linear system?",
+    "reasoning_path": ["System Matrix", "Eigenvalue Computation", "Sign Analysis", "Stability Classification"],
+    "answer": "Negative real parts of all eigenvalues mean all modes decay, giving asymptotic stability; any positive real part implies instability."
+  },
+  {
+    "question": "Why does a phase portrait reveal qualitative ODE behavior?",
+    "reasoning_path": ["Autonomous System", "Vector Field", "Trajectory Plot", "Phase Portrait"],
+    "answer": "Plotting the direction field and trajectories in state space reveals fixed points, cycles, and stability without solving explicitly."
+  },
+  {
+    "question": "How does variation of parameters find particular solutions?",
+    "reasoning_path": ["Homogeneous Solutions", "Parameter Functions", "Variation Of Parameters", "Particular Solution"],
+    "answer": "Variation of parameters replaces constants in the homogeneous solution with functions, then solves for those functions to match the forcing."
+  },
+  {
+    "question": "Why does the method of undetermined coefficients assume a solution form?",
+    "reasoning_path": ["Forcing Function", "Assumed Form", "Coefficient Matching", "Particular Solution"],
+    "answer": "For polynomial, exponential, or sinusoidal forcing, the particular solution has the same form, and substituting determines the unknown coefficients."
+  },
+  {
+    "question": "How does a Fourier series decompose periodic functions?",
+    "reasoning_path": ["Periodic Function", "Harmonic Components", "Coefficient Integration", "Fourier Series"],
+    "answer": "A Fourier series expresses a periodic function as a sum of sines and cosines, with coefficients computed via inner product integrals."
+  },
+  {
+    "question": "Why does the delta function model instantaneous impulse?",
+    "reasoning_path": ["Impulse Input", "Delta Function", "Transfer Function", "Impulse Response"],
+    "answer": "The delta function concentrates all energy at a single instant, and the system response to it fully characterizes the linear system."
+  },
+  {
+    "question": "How does a step function model sudden input changes?",
+    "reasoning_path": ["Sudden Input", "Step Function", "Laplace Transform", "System Response"],
+    "answer": "The Heaviside step function switches a forcing term on at a given time, and its Laplace transform enables straightforward solution."
+  },
+  {
+    "question": "Why do complex exponentials simplify sinusoidal ODE solutions?",
+    "reasoning_path": ["Euler Formula", "Complex Exponential", "Sinusoidal Input", "Simplified Solution"],
+    "answer": "Euler's formula lets sinusoids be written as complex exponentials, making differentiation algebraic and simplifying the particular solution."
+  },
+  {
+    "question": "How does a node fixed point differ from a spiral in phase space?",
+    "reasoning_path": ["Eigenvalue Analysis", "Real Eigenvalues", "Complex Eigenvalues", "Fixed Point Classification"],
+    "answer": "Real eigenvalues of the same sign produce a node with straight trajectories; complex eigenvalues add oscillation, creating spirals."
+  },
+  {
+    "question": "Why does a limit cycle represent sustained oscillation?",
+    "reasoning_path": ["Nonlinear System", "Periodic Orbit", "Attracting Trajectory", "Limit Cycle"],
+    "answer": "A limit cycle is an isolated periodic orbit that nearby trajectories converge to, producing self-sustained oscillation in nonlinear systems."
+  },
+  {
+    "question": "How does the matrix exponential solve linear systems of ODEs?",
+    "reasoning_path": ["System Matrix", "Matrix Exponential", "Initial Condition", "System Solution"],
+    "answer": "The solution x(t) = e^(At) x_0 uses the matrix exponential to evolve the initial state through the linear dynamics."
+  },
+  {
+    "question": "Why does decoupling diagonalize systems via eigenvectors?",
+    "reasoning_path": ["Eigenvector Basis", "Diagonal System", "Independent Modes", "Decoupled Solution"],
+    "answer": "Expressing the system in its eigenvector basis diagonalizes the matrix, so each mode evolves independently as a simple exponential."
+  },
+  {
+    "question": "How does the transfer function characterize a linear system?",
+    "reasoning_path": ["Input Signal", "Laplace Transform", "Transfer Function", "Output Signal"],
+    "answer": "The transfer function H(s) is the ratio of output to input in Laplace space, fully characterizing the system's frequency response."
+  },
+  {
+    "question": "Why does a higher-order ODE reduce to a first-order system?",
+    "reasoning_path": ["Higher Order ODE", "State Variables", "First Order System", "Matrix Form"],
+    "answer": "Introducing state variables for each derivative rewrites an nth-order ODE as n coupled first-order equations in matrix form."
+  },
+  {
+    "question": "How does the existence and uniqueness theorem guarantee ODE solutions?",
+    "reasoning_path": ["Lipschitz Condition", "Initial Value", "Existence Theorem", "Unique Solution"],
+    "answer": "If the right-hand side satisfies a Lipschitz condition near the initial value, Picard iteration converges to a unique local solution."
+  },
+  {
+    "question": "Why does Euler's method approximate ODE solutions numerically?",
+    "reasoning_path": ["Initial Value", "Tangent Step", "Discrete Approximation", "Euler Method"],
+    "answer": "Euler's method follows the tangent line for a small step, then recomputes the slope, building a piecewise-linear approximation to the solution."
+  },
+  {
+    "question": "How does the partial fraction expansion invert Laplace transforms?",
+    "reasoning_path": ["Rational Transform", "Partial Fractions", "Table Lookup", "Inverse Transform"],
+    "answer": "Decomposing a rational Laplace transform into partial fractions allows each term to be inverted using standard transform tables."
+  },
+  {
+    "question": "Why does an underdamped system oscillate while decaying?",
+    "reasoning_path": ["Complex Eigenvalues", "Negative Real Part", "Oscillatory Decay", "Underdamped Response"],
+    "answer": "Complex eigenvalues with negative real parts produce exponentially decaying envelopes modulated by sinusoidal oscillation."
+  },
+  {
+    "question": "How does the steady-state solution emerge from transient decay?",
+    "reasoning_path": ["Transient Component", "Exponential Decay", "Forcing Response", "Steady State"],
+    "answer": "The homogeneous transient decays exponentially, leaving only the particular solution driven by the forcing as the long-term steady state."
+  },
+  {
+    "question": "Why does a bifurcation change the number of equilibria?",
+    "reasoning_path": ["Parameter Change", "Equilibrium Shift", "Critical Threshold", "Bifurcation"],
+    "answer": "As a parameter crosses a critical threshold, equilibria can merge, split, or appear, qualitatively changing the system's phase portrait."
+  },
+
+  {
+    "question": "How does Gaussian elimination solve systems of linear equations?",
+    "reasoning_path": ["Augmented Matrix", "Row Reduction", "Upper Triangular", "Back Substitution"],
+    "answer": "Gaussian elimination applies row operations to reduce the augmented matrix to upper triangular form, then back substitution finds all unknowns."
+  },
+  {
+    "question": "Why does LU decomposition factor a matrix into triangular parts?",
+    "reasoning_path": ["Elimination Steps", "Lower Triangular", "Upper Triangular", "LU Decomposition"],
+    "answer": "LU decomposition records the elimination multipliers in L and the result in U, enabling efficient repeated solves for different right-hand sides."
+  },
+  {
+    "question": "How does the null space capture all solutions to Ax=0?",
+    "reasoning_path": ["Homogeneous System", "Free Variables", "Null Space", "Solution Set"],
+    "answer": "Free variables parametrize all vectors mapped to zero by A, forming the null space as a subspace of the domain."
+  },
+  {
+    "question": "Why does the rank determine the dimension of the column space?",
+    "reasoning_path": ["Pivot Columns", "Linear Independence", "Column Space", "Rank"],
+    "answer": "The number of pivots after elimination equals the number of linearly independent columns, defining the column space dimension as the rank."
+  },
+  {
+    "question": "How does an eigenvalue decomposition diagonalize a matrix?",
+    "reasoning_path": ["Eigenvalue Equation", "Eigenvector Matrix", "Diagonal Matrix", "Diagonalization"],
+    "answer": "If A has n linearly independent eigenvectors forming P, then A = P D P^{-1} where D is diagonal with eigenvalues on the diagonal."
+  },
+  {
+    "question": "Why does the determinant equal zero for singular matrices?",
+    "reasoning_path": ["Square Matrix", "Volume Scaling", "Zero Determinant", "Singular Matrix"],
+    "answer": "The determinant measures the signed volume scaling of a linear map; zero means the transformation collapses space, making the matrix non-invertible."
+  },
+  {
+    "question": "How does orthogonal projection minimize distance to a subspace?",
+    "reasoning_path": ["Vector", "Subspace", "Orthogonal Projection", "Minimum Distance"],
+    "answer": "Projecting a vector onto a subspace drops a perpendicular, and the resulting projection is the closest point in the subspace."
+  },
+  {
+    "question": "Why does the Gram-Schmidt process produce orthonormal bases?",
+    "reasoning_path": ["Linearly Independent Set", "Orthogonalization", "Normalization", "Gram-Schmidt"],
+    "answer": "Gram-Schmidt iteratively subtracts projections onto previously found vectors and normalizes, yielding mutually orthogonal unit vectors."
+  },
+  {
+    "question": "How does least squares solve overdetermined systems?",
+    "reasoning_path": ["Overdetermined System", "Normal Equations", "Projection", "Least Squares Solution"],
+    "answer": "When Ax=b has no exact solution, the normal equations A^T A x = A^T b find the x that minimizes the squared error."
+  },
+  {
+    "question": "Why does the singular value decomposition reveal the rank?",
+    "reasoning_path": ["Singular Values", "Rank", "Null Space", "SVD"],
+    "answer": "The number of nonzero singular values equals the rank, and the corresponding right singular vectors span the null space complement."
+  },
+  {
+    "question": "How does a change of basis transform coordinate representations?",
+    "reasoning_path": ["Original Basis", "Transition Matrix", "New Coordinates", "Change Of Basis"],
+    "answer": "A transition matrix converts coordinates from one basis to another by expressing old basis vectors as linear combinations of the new ones."
+  },
+  {
+    "question": "Why does a positive definite matrix have all positive eigenvalues?",
+    "reasoning_path": ["Symmetric Matrix", "Quadratic Form", "Positive Eigenvalues", "Positive Definite"],
+    "answer": "A positive definite quadratic form x^T A x > 0 for all nonzero x requires every eigenvalue to be positive, ensuring upward curvature."
+  },
+  {
+    "question": "How does the spectral theorem decompose symmetric matrices?",
+    "reasoning_path": ["Symmetric Matrix", "Orthogonal Eigenvectors", "Real Eigenvalues", "Spectral Theorem"],
+    "answer": "The spectral theorem guarantees symmetric matrices have real eigenvalues and orthogonal eigenvectors, giving A = Q Lambda Q^T."
+  },
+  {
+    "question": "Why does matrix rank equal row rank equal column rank?",
+    "reasoning_path": ["Row Space", "Column Space", "Rank Equality", "Fundamental Theorem"],
+    "answer": "Row operations preserve the row space dimension while revealing pivots that count independent columns, forcing row and column rank to agree."
+  },
+  {
+    "question": "How does a linear transformation map between vector spaces?",
+    "reasoning_path": ["Domain Space", "Linear Map", "Range Space", "Linear Transformation"],
+    "answer": "A linear transformation preserves addition and scalar multiplication, mapping vectors from the domain to the range while maintaining linearity."
+  },
+  {
+    "question": "Why does the inverse exist only when the determinant is nonzero?",
+    "reasoning_path": ["Square Matrix", "Nonzero Determinant", "Invertibility", "Matrix Inverse"],
+    "answer": "A nonzero determinant means the linear map is bijective with no dimension collapse, making it possible to reverse the transformation."
+  },
+  {
+    "question": "How does QR decomposition factor a matrix into orthogonal and triangular parts?",
+    "reasoning_path": ["Column Vectors", "Gram-Schmidt", "Orthogonal Matrix", "QR Decomposition"],
+    "answer": "Applying Gram-Schmidt to columns yields Q (orthonormal), and the coefficients form R (upper triangular), giving A = QR."
+  },
+  {
+    "question": "Why does the trace equal the sum of eigenvalues?",
+    "reasoning_path": ["Diagonal Sum", "Characteristic Polynomial", "Eigenvalue Sum", "Trace Property"],
+    "answer": "The characteristic polynomial's coefficient of lambda^(n-1) equals the negative trace, and also equals the negative sum of eigenvalues."
+  },
+  {
+    "question": "How does the four fundamental subspaces theorem organize linear algebra?",
+    "reasoning_path": ["Column Space", "Null Space", "Row Space", "Four Subspaces"],
+    "answer": "The four subspaces (column space, null space, row space, left null space) partition R^n and R^m into orthogonal complementary pairs."
+  },
+  {
+    "question": "Why does an orthogonal matrix preserve lengths and angles?",
+    "reasoning_path": ["Orthonormal Columns", "Inner Product Preservation", "Length Preservation", "Orthogonal Matrix"],
+    "answer": "Orthogonal matrices satisfy Q^T Q = I, ensuring inner products (and hence lengths and angles) remain unchanged after transformation."
+  },
+  {
+    "question": "How does the power method compute dominant eigenvalues iteratively?",
+    "reasoning_path": ["Random Vector", "Repeated Multiplication", "Dominant Mode", "Power Method"],
+    "answer": "Repeatedly multiplying by A amplifies the component along the dominant eigenvector, and normalizing converges to the largest eigenvalue."
+  },
+  {
+    "question": "Why does the condition number measure sensitivity to perturbations?",
+    "reasoning_path": ["Singular Values", "Max Min Ratio", "Condition Number", "Numerical Sensitivity"],
+    "answer": "The condition number is the ratio of largest to smallest singular values, bounding how much errors in input amplify in the solution."
+  },
+  {
+    "question": "How does Cramer's rule solve small linear systems using determinants?",
+    "reasoning_path": ["System Of Equations", "Determinant Ratios", "Variable Extraction", "Cramer Rule"],
+    "answer": "Cramer's rule expresses each unknown as a ratio of determinants, replacing one column of the coefficient matrix with the right-hand side."
+  },
+  {
+    "question": "Why does a matrix's image equal its column space?",
+    "reasoning_path": ["Linear Combination", "Column Vectors", "Image Space", "Column Space"],
+    "answer": "Multiplying Ax computes a linear combination of columns of A, so every output lies in the span of the columns, which is the column space."
+  },
+  {
+    "question": "How does diagonalization simplify computing matrix powers?",
+    "reasoning_path": ["Diagonalization", "Diagonal Powers", "Matrix Power", "Efficient Computation"],
+    "answer": "With A = P D P^{-1}, A^n = P D^n P^{-1} reduces to powering the diagonal entries, making high powers computationally trivial."
+  },
+  {
+    "question": "Why does a Markov matrix have eigenvalue one?",
+    "reasoning_path": ["Column Sum One", "Stochastic Matrix", "Eigenvalue One", "Markov Chain"],
+    "answer": "Each column of a Markov matrix sums to one, meaning the all-ones vector is a left eigenvector with eigenvalue one."
+  },
+  {
+    "question": "How does the pseudoinverse generalize matrix inversion to non-square matrices?",
+    "reasoning_path": ["Non-Square Matrix", "SVD", "Pseudoinverse", "Generalized Solution"],
+    "answer": "The pseudoinverse inverts the nonzero singular values from the SVD, providing the minimum-norm least-squares solution for any matrix shape."
+  },
+
+  {
+    "question": "Why does the gradient from multivariable calculus connect to eigenvalue analysis in optimization?",
+    "reasoning_path": ["Gradient Vector", "Hessian Matrix", "Eigenvalue Analysis", "Optimization Convergence"],
+    "answer": "At critical points the gradient vanishes and the Hessian eigenvalues determine curvature, connecting multivariable calculus to linear algebra for optimization."
+  },
+  {
+    "question": "How does the matrix exponential from linear algebra solve systems of differential equations?",
+    "reasoning_path": ["System Matrix", "Eigenvalue Decomposition", "Matrix Exponential", "ODE Solution"],
+    "answer": "Diagonalizing the coefficient matrix lets the matrix exponential factor into simple exponentials of eigenvalues, solving coupled ODEs directly."
+  },
+  {
+    "question": "Why does the Fourier series from ODEs connect to orthogonality in linear algebra?",
+    "reasoning_path": ["Fourier Series", "Orthogonal Basis", "Inner Product", "Coefficient Projection"],
+    "answer": "Sines and cosines form an orthogonal basis for periodic functions, and Fourier coefficients are computed as inner product projections, mirroring linear algebra."
+  },
+  {
+    "question": "How does the Jacobian determinant from multivariable calculus relate to linear algebra's volume scaling?",
+    "reasoning_path": ["Jacobian Matrix", "Determinant", "Volume Scaling", "Coordinate Transform"],
+    "answer": "The Jacobian determinant measures how a coordinate transformation scales infinitesimal volumes, directly using the linear algebra concept of determinant as volume factor."
+  },
+  {
+    "question": "Why does Taylor expansion connect single-variable calculus to Laplace transform analysis?",
+    "reasoning_path": ["Taylor Series", "Power Series", "Laplace Transform", "Frequency Analysis"],
+    "answer": "Taylor expansion decomposes functions into polynomial terms, and Laplace transforms similarly decompose signals into exponential modes for frequency analysis."
+  },
+  {
+    "question": "How does the Fundamental Theorem of Calculus underpin solving separable ODEs?",
+    "reasoning_path": ["Separable Equation", "Antiderivative", "Fundamental Theorem", "ODE Solution"],
+    "answer": "After separating variables, integrating both sides relies on the Fundamental Theorem of Calculus to connect antiderivatives to the definite solution."
+  },
+  {
+    "question": "Why does the divergence theorem connect to conservation laws in differential equations?",
+    "reasoning_path": ["Divergence", "Flux", "Conservation Law", "PDE Formulation"],
+    "answer": "The divergence theorem equates outward flux to interior source strength, forming the mathematical basis of conservation-law PDEs."
+  },
+  {
+    "question": "How does positive definiteness connect quadratic forms in linear algebra to stability in ODEs?",
+    "reasoning_path": ["Positive Definite", "Lyapunov Function", "Energy Decay", "ODE Stability"],
+    "answer": "A positive definite Lyapunov function that decreases along trajectories proves stability, using the linear algebra criterion for positivity."
+  }
+]
