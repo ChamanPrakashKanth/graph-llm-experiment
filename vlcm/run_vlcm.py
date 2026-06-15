@@ -100,6 +100,7 @@ def train_command(args) -> None:
         gradient_clip=args.gradient_clip,
         checkpoint_dir=args.checkpoint_dir,
         device=args.device,
+        second_order_weight=args.second_order_weight,
     )
     print(
         f"samples={len(dataset)} "
@@ -307,6 +308,8 @@ def build_parser() -> argparse.ArgumentParser:
     train.add_argument("--weight-decay", type=float, default=0.01)
     train.add_argument("--gradient-clip", type=float, default=1.0)
     train.add_argument("--save-every", type=int, default=1)
+    train.add_argument("--second-order-weight", type=float, default=0.0,
+                       help="Weight for second-order differential smoothness loss (0.0=disabled)")
     train.set_defaults(func=train_command)
 
     infer = subcommands.add_parser("infer")
@@ -328,7 +331,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_shared_arguments(grow)
     grow.add_argument("--documents", nargs="+", default=["data"])
     grow.add_argument("--output", default="reports/vlcm_graph.json")
-    grow.add_argument("--png", default="reports/vlcm_grown_graph.png")
+    grow.add_argument("--png", default=None)
     grow.add_argument("--window", type=int, default=2)
     grow.set_defaults(func=grow_graph_command)
 

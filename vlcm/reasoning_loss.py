@@ -75,6 +75,57 @@ class TransitionPriorLoss(nn.Module):
         return torch.stack(penalties).mean()
 
 
+class SecondOrderDifferentialLoss(nn.Module):
+    """Penalize abrupt changes (acceleration) in the path logit trajectory.
+
+    Computes the discrete second derivative of path logits across time steps:
+        d2[t] = logits[t+1] - 2*logits[t] + logits[t-1]
+    and returns the mean squared magnitude of these acceleration vectors.
+
+    This encourages smooth transitions through concept space, helping the
+    model avoid attractor traps and erratic path jumps at scale.
+    """
+
+    def __init__(self, pad_id: int = 0) -> None:
+        super().__init__()
+        self.pad_id = pad_id
+
+    def forward(
+        self,
+        path_logits: torch.Tensor,
+        target_paths: torch.Tensor,
+    ) -> torch.Tensor:
+        # path_logits shape: (B, T, V)
+        # Need at least 3 time steps to compute second-order differences
+        if path_logits.size(1) < 3:
+            return path_logits.new_tensor(0.0)
+
+        # Use softmax probabilities for smoother gradients
+        probs = F.softmax(path_logits, dim=-1)  # B x T x V
+
+        # Compute first-order differences (velocity): delta[t] = probs[t+1] - probs[t]
+        first_diff = probs[:, 1:, :] - probs[:, :-1, :]  # B x (T-1) x V
+
+        # Compute second-order differences (acceleration): d2[t] = delta[t+1] - delta[t]
+        second_diff = first_diff[:, 1:, :] - first_diff[:, :-1, :]  # B x (T-2) x V
+
+        # Build validity mask: only penalize steps where all three involved
+        # path positions are non-padding
+        valid = (
+            (target_paths[:, :-2] != self.pad_id)
+            & (target_paths[:, 1:-1] != self.pad_id)
+            & (target_paths[:, 2:] != self.pad_id)
+        )  # B x (T-2)
+
+        if not torch.any(valid):
+            return path_logits.new_tensor(0.0)
+
+        # Mean squared acceleration over valid positions
+        sq_accel = (second_diff ** 2).sum(dim=-1)  # B x (T-2)
+        masked_accel = sq_accel * valid.float()
+        return masked_accel.sum() / valid.float().sum().clamp_min(1.0)
+
+
 class VLCMReasoningLoss(nn.Module):
     """Combined VLCM objective function."""
 
@@ -84,14 +135,17 @@ class VLCMReasoningLoss(nn.Module):
         path_weight: float = 1.0,
         activation_weight: float = 0.2,
         transition_weight: float = 0.05,
+        second_order_weight: float = 0.0,
     ) -> None:
         super().__init__()
         self.path_weight = path_weight
         self.activation_weight = activation_weight
         self.transition_weight = transition_weight
+        self.second_order_weight = second_order_weight
         self.path_loss = PathPredictionLoss(pad_id=pad_id)
         self.activation_loss = ConceptActivationLoss()
         self.transition_loss = TransitionPriorLoss(pad_id=pad_id)
+        self.second_order_loss = SecondOrderDifferentialLoss(pad_id=pad_id)
 
     def forward(
         self,
@@ -110,17 +164,23 @@ class VLCMReasoningLoss(nn.Module):
             target_paths,
             transition_mask,
         )
+        second_order = self.second_order_loss(
+            outputs["path_logits"],
+            target_paths,
+        )
 
         total = (
             self.path_weight * path
             + self.activation_weight * activation
             + self.transition_weight * transition
+            + self.second_order_weight * second_order
         )
 
         return total, {
             "path_loss": float(path.detach().cpu()),
             "activation_loss": float(activation.detach().cpu()),
             "transition_loss": float(transition.detach().cpu()),
+            "second_order_loss": float(second_order.detach().cpu()),
             "total_loss": float(total.detach().cpu()),
         }
 

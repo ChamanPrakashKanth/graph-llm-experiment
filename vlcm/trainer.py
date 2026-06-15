@@ -40,6 +40,7 @@ class VLCMTrainer:
         gradient_clip: float = 1.0,
         checkpoint_dir: str | Path = "checkpoints/vlcm",
         device: Optional[str] = None,
+        second_order_weight: float = 0.0,
     ) -> None:
         self.model = model
         self.train_loader = train_loader
@@ -51,7 +52,10 @@ class VLCMTrainer:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
 
-        self.loss_fn = VLCMReasoningLoss(pad_id=vocab.pad_id)
+        self.loss_fn = VLCMReasoningLoss(
+            pad_id=vocab.pad_id,
+            second_order_weight=second_order_weight,
+        )
         self.optimizer = AdamW(
             self.model.parameters(),
             lr=lr,

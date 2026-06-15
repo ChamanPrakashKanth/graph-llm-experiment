@@ -1,8 +1,9 @@
 # chat_server.py
-# MIT Engineering Mathematics Chat UI — powered by CAT V2
+# Multi-Domain Engineering Chat UI — powered by CAT V2 & VLCM
 import json
 import os
 import sys
+import math
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 import urllib.parse
@@ -14,30 +15,123 @@ sys.path.append(str(Path(__file__).parent))
 try:
     import torch
     import torch.nn.functional as F
-    from reasoning_trainer import load_checkpoint, latest_checkpoint
+    from reasoning_trainer import load_checkpoint as load_cat_checkpoint, latest_checkpoint as latest_cat_checkpoint
+    from vlcm.trainer import load_vlcm_checkpoint, latest_vlcm_checkpoint
     BACKEND_AVAILABLE = True
 except ImportError:
     BACKEND_AVAILABLE = False
 
-_LOADED_CHECKPOINTS = {}
+_LOADED_SYSTEMS = {}
+_LOADED_DATASETS = {}
 
-def get_mit_math_system():
-    """Load the MIT Math checkpoint."""
+DOMAINS = {
+    "mechanical_engineering": {
+        "name": "Mechanical Engineering (VLCM)",
+        "checkpoint_dir": "checkpoints/vlcm_mech_2nd_order",
+        "dataset_path": "data/mechanical_engineering_dataset.json",
+        "is_vlcm": True,
+        "symbol": "⚙️",
+        "desc": "1000-chunk dataset trained with Second-Order Differential Loss",
+    },
+    "mit_math": {
+        "name": "MIT OCW Mathematics (CAT V2)",
+        "checkpoint_dir": "checkpoints/cat_v2_mit_math",
+        "dataset_path": "data/mit_math_dataset.json",
+        "is_vlcm": False,
+        "symbol": "∫",
+        "desc": "Calculus, Linear Algebra, ODEs, and Multivariable Calculus",
+    },
+    "structural": {
+        "name": "Structural Engineering (CAT V2)",
+        "checkpoint_dir": "checkpoints/cat_v2_structural",
+        "dataset_path": "data/structural_reasoning_dataset.json",
+        "is_vlcm": False,
+        "symbol": "🏗️",
+        "desc": "Beams, stress-strain, columns buckling, fatigue, and materials science",
+    },
+    "cfd": {
+        "name": "CFD & Fluid Dynamics (CAT V2)",
+        "checkpoint_dir": "checkpoints/cat_v2",
+        "dataset_path": "data/reasoning_dataset.json",
+        "is_vlcm": False,
+        "symbol": "🌪️",
+        "desc": "Pipe flow, pressure drop, turbulence, boundary layers, and mesh quality",
+    },
+    "python_coding": {
+        "name": "Python Coding AI (CAT V2)",
+        "checkpoint_dir": "checkpoints/cat_v2_python_coding",
+        "dataset_path": "data/python_coding_dataset.json",
+        "is_vlcm": False,
+        "symbol": "🐍",
+        "desc": "Autoregressive code generation, lists, sorting, file I/O, and API requests",
+    },
+}
+
+def get_system(domain):
     if not BACKEND_AVAILABLE:
         return None
-    path = latest_checkpoint("checkpoints/cat_v2_mit_math")
+    if domain not in DOMAINS:
+        return None
+
+    info = DOMAINS[domain]
+    checkpoint_dir = info["checkpoint_dir"]
+    is_vlcm = info["is_vlcm"]
+
+    if is_vlcm:
+        path = latest_vlcm_checkpoint(checkpoint_dir)
+        loader = load_vlcm_checkpoint
+    else:
+        path = latest_cat_checkpoint(checkpoint_dir)
+        loader = load_cat_checkpoint
+
     if not path or not path.exists():
         return None
+
     path_str = str(path)
-    if path_str not in _LOADED_CHECKPOINTS:
-        print(f"Loading MIT Math checkpoint: {path_str}")
-        loaded = load_checkpoint(path, device="cpu")
-        _LOADED_CHECKPOINTS[path_str] = loaded
-    return _LOADED_CHECKPOINTS[path_str]
+    if path_str not in _LOADED_SYSTEMS:
+        print(f"Loading checkpoint for {domain}: {path_str}")
+        try:
+            loaded = loader(path, device="cpu")
+            _LOADED_SYSTEMS[path_str] = loaded
+        except Exception as e:
+            print(f"Failed to load checkpoint {path_str}: {e}")
+            return None
+    return _LOADED_SYSTEMS[path_str]
+
+def get_dataset(domain):
+    if domain not in DOMAINS:
+        return []
+    if domain not in _LOADED_DATASETS:
+        info = DOMAINS[domain]
+        path = Path(info["dataset_path"])
+        if path.exists():
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    _LOADED_DATASETS[domain] = json.load(f)
+            except Exception as e:
+                print(f"Failed to load dataset {path}: {e}")
+                _LOADED_DATASETS[domain] = []
+        else:
+            _LOADED_DATASETS[domain] = []
+    return _LOADED_DATASETS[domain]
+
+def find_best_match(question, dataset):
+    if not dataset:
+        return None
+    q_lower = question.lower()
+    best_score = 0
+    best_entry = None
+    for entry in dataset:
+        words = set(entry["question"].lower().split())
+        q_words = set(q_lower.split())
+        overlap = len(words & q_words)
+        if overlap > best_score:
+            best_score = overlap
+            best_entry = entry
+    return best_entry
 
 @torch.no_grad()
 def predict_reasoning(loaded, question):
-    """Run full auto-complete prediction for a question."""
     model = loaded["model"]
     vocab = loaded["vocab"]
     tokenizer = loaded["tokenizer"]
@@ -49,69 +143,38 @@ def predict_reasoning(loaded, question):
     input_ids = encoded["input_ids"].unsqueeze(0).to(device)
     attention_mask = encoded["attention_mask"].unsqueeze(0).to(device)
 
-    question_embedding = model.encode_question(input_ids, attention_mask)
-    projected_question = model.question_projection(question_embedding)
+    outputs = model(input_ids, attention_mask)
 
-    activated = model.activator(question_embedding, top_k=model.top_k)
-    activation_logits = activated["activation_logits"]
-    activation_probs = activated["activation_probs"].squeeze(0).cpu().tolist()
+    path_ids = outputs["predicted_path"][0].detach().cpu().tolist()
+    path_scores = outputs["path_scores"][0].detach().cpu().tolist()
 
-    hidden = torch.tanh(model.path_generator.question_init(projected_question))
-    context = torch.tanh(model.path_generator.context_projection(projected_question))
-    prev_embedding = model.path_generator.start_embedding.unsqueeze(0)
-
-    prev_ids = torch.full((1,), model.vocab_eos_id, dtype=torch.long, device=device)
-    gui_activation_probs = activated["activation_probs"].clone()
-
-    path_ids = []
     path_probs = []
-
-    for step in range(model.path_generator.path_length):
-        concept_memory = model.memory.all_embeddings().unsqueeze(0)
-        current_state = model.input_norm(
-            concept_memory + projected_question.unsqueeze(1) * gui_activation_probs.unsqueeze(-1)
-        )
-        graph_state = model.graph_reasoner(current_state, model.propagation_matrix)
-
-        if step > 0:
-            prev_embedding = graph_state[0, prev_ids]
-
-        decoder_input = torch.cat([prev_embedding, context], dim=-1)
-        hidden = model.path_generator.gru(decoder_input, hidden)
-
-        if step == 0:
-            allowed = model.first_step_mask.unsqueeze(0)
-        else:
-            allowed = model.transition_mask[prev_ids]
-
-        logits = model.path_generator.output_head(hidden) + 0.25 * activation_logits
-        logits = logits.masked_fill(~allowed, -1.0e4)
-
-        probs = F.softmax(logits, dim=-1).squeeze(0)
-        predicted = logits.argmax(dim=-1)
-        pred_id = int(predicted.item())
-        pred_prob = float(probs[pred_id].item())
-
-        path_ids.append(pred_id)
-        path_probs.append(pred_prob)
-
-        if pred_id == model.vocab_eos_id or pred_id == model.vocab_pad_id:
-            break
-
-        prev_ids = predicted
-        gui_activation_probs = gui_activation_probs.clone()
-        gui_activation_probs[0, prev_ids] = 1.0
+    for s in path_scores:
+        try:
+            p = math.exp(s)
+        except OverflowError:
+            p = 0.0
+        path_probs.append(min(max(p, 0.0), 1.0))
 
     reasoning_path = vocab.decode_path(path_ids)
+
+    # Sigmoid activations
+    if "activation_logits" in outputs:
+        activation_logits = outputs["activation_logits"]
+        activation_probs = torch.sigmoid(activation_logits).squeeze(0).cpu().tolist()
+    else:
+        activation_probs = [0.0] * vocab.size()
 
     # Collect top activated concepts
     top_concepts = []
     for idx, prob in enumerate(activation_probs):
-        if prob > 0.05:
-            top_concepts.append({
-                "name": vocab.id_to_concept[idx],
-                "activation": prob
-            })
+        if idx in vocab.id_to_concept:
+            concept_name = vocab.id_to_concept[idx]
+            if concept_name not in ("<PAD>", "<EOS>") and prob > 0.05:
+                top_concepts.append({
+                    "name": concept_name,
+                    "activation": prob
+                })
     top_concepts.sort(key=lambda x: -x["activation"])
 
     # Collect graph nodes/edges
@@ -120,7 +183,7 @@ def predict_reasoning(loaded, question):
         c_id = vocab.concept_to_id[name]
         nodes_list.append({
             "name": name,
-            "activation": float(activation_probs[c_id])
+            "activation": float(activation_probs[c_id]) if c_id < len(activation_probs) else 0.0
         })
 
     edges_list = []
@@ -140,35 +203,6 @@ def predict_reasoning(loaded, question):
         "edges": edges_list
     }
 
-
-# ─── Dataset-based knowledge for demo / fallback ─────────────────────────────
-
-def load_mit_math_dataset():
-    """Load the MIT math Q&A dataset for fallback answers."""
-    ds_path = Path(__file__).parent / "data" / "mit_math_dataset.json"
-    if ds_path.exists():
-        with open(ds_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return []
-
-MIT_MATH_QA = load_mit_math_dataset()
-
-
-def find_best_match(question):
-    """Simple keyword matching to find the closest dataset entry."""
-    q_lower = question.lower()
-    best_score = 0
-    best_entry = None
-    for entry in MIT_MATH_QA:
-        words = set(entry["question"].lower().split())
-        q_words = set(q_lower.split())
-        overlap = len(words & q_words)
-        if overlap > best_score:
-            best_score = overlap
-            best_entry = entry
-    return best_entry
-
-
 class ChatRequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
@@ -181,15 +215,19 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(CHAT_HTML.encode("utf-8"))
         elif parsed.path == "/api/status":
-            loaded = get_mit_math_system() if BACKEND_AVAILABLE else None
+            status_data = {}
+            for domain, info in DOMAINS.items():
+                loaded = get_system(domain)
+                ds = get_dataset(domain)
+                status_data[domain] = {
+                    "model_loaded": loaded is not None,
+                    "dataset_size": len(ds),
+                    "checkpoint_dir": info["checkpoint_dir"]
+                }
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({
-                "model_loaded": loaded is not None,
-                "dataset_size": len(MIT_MATH_QA),
-                "backend": "cat_v2_mit_math" if loaded else "dataset_fallback"
-            }).encode("utf-8"))
+            self.wfile.write(json.dumps(status_data).encode("utf-8"))
         else:
             self.send_response(404)
             self.end_headers()
@@ -202,13 +240,19 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
             try:
                 data = json.loads(body.decode("utf-8"))
                 question = data.get("question", "").strip()
+                domain = data.get("domain", "mechanical_engineering").strip()
+
                 if not question:
                     raise ValueError("Empty question")
+                if domain not in DOMAINS:
+                    domain = "mechanical_engineering"
 
                 response_data = {}
 
                 # Try model inference first
-                loaded = get_mit_math_system() if BACKEND_AVAILABLE else None
+                loaded = get_system(domain)
+                dataset = get_dataset(domain)
+
                 if loaded:
                     result = predict_reasoning(loaded, question)
                     response_data["reasoning_path"] = result["reasoning_path"]
@@ -218,8 +262,8 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                     response_data["edges"] = result["edges"]
                     response_data["source"] = "model"
 
-                # Always add dataset match for the answer text
-                match = find_best_match(question)
+                # Dataset match for the answer text
+                match = find_best_match(question, dataset)
                 if match:
                     response_data["answer"] = match["answer"]
                     if "reasoning_path" not in response_data:
@@ -248,7 +292,6 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
-
 # ─── HTML / CSS / JS ─────────────────────────────────────────────────────────
 
 CHAT_HTML = r"""<!DOCTYPE html>
@@ -256,13 +299,10 @@ CHAT_HTML = r"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIT Engineering Mathematics — CAT V2 Chat</title>
-    <meta name="description" content="Interactive chat interface for MIT OCW Engineering Mathematics powered by CAT V2 Concept Attention Transformer reasoning.">
+    <title>CAT V2 & VLCM — Engineering Reasoning Lab Chat</title>
+    <meta name="description" content="Interactive multi-domain chat interface powered by VLCM and Concept Attention Transformer reasoning.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ═══════════════════════════════════════════════════════════════
-           Design System Tokens
-           ═══════════════════════════════════════════════════════════════ */
         :root {
             --bg-deep: #07090e;
             --bg-base: #0c1018;
@@ -310,9 +350,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ═══════════════════════════════════════════════════════════════
-           Reset & Base
-           ═══════════════════════════════════════════════════════════════ */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -333,7 +370,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Ambient glow behind header */
         body::before {
             content: '';
             position: fixed;
@@ -347,9 +383,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             z-index: 0;
         }
 
-        /* ═══════════════════════════════════════════════════════════════
-           Header
-           ═══════════════════════════════════════════════════════════════ */
         #app-header {
             position: relative;
             z-index: 10;
@@ -437,9 +470,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             50% { opacity: 0.4; }
         }
 
-        /* ═══════════════════════════════════════════════════════════════
-           Main Layout
-           ═══════════════════════════════════════════════════════════════ */
         #app-main {
             flex: 1;
             display: flex;
@@ -448,10 +478,9 @@ CHAT_HTML = r"""<!DOCTYPE html>
             z-index: 1;
         }
 
-        /* ─── Sidebar ───────────────────────────────────────────────── */
         #sidebar {
-            width: 300px;
-            min-width: 300px;
+            width: 320px;
+            min-width: 320px;
             background: var(--bg-base);
             border-right: 1px solid var(--border-subtle);
             display: flex;
@@ -473,42 +502,59 @@ CHAT_HTML = r"""<!DOCTYPE html>
             margin-bottom: 0.75rem;
         }
 
-        .course-tabs {
+        .domain-tabs {
             display: flex;
-            gap: 0.35rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.4rem;
         }
 
-        .course-tab {
-            padding: 0.35rem 0.65rem;
-            font-size: 0.7rem;
+        .domain-tab {
+            padding: 0.6rem 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            background: transparent;
+            border-radius: var(--radius-md);
+            background: rgba(17, 24, 39, 0.3);
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all var(--transition-fast);
+            transition: all var(--transition-base);
             font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-align: left;
         }
 
-        .course-tab:hover {
+        .domain-tab:hover {
             background: var(--accent-indigo-dim);
             border-color: var(--border-accent);
-            color: var(--accent-indigo-light);
+            color: var(--text-primary);
         }
 
-        .course-tab.active {
+        .domain-tab.active {
             background: var(--accent-indigo-dim);
             border-color: var(--accent-indigo);
             color: var(--accent-indigo-light);
-            box-shadow: 0 0 12px rgba(99,102,241,0.15);
+            box-shadow: 0 0 12px rgba(99,102,241,0.12);
+        }
+
+        .domain-tab .domain-symbol {
+            font-size: 1rem;
+        }
+
+        .sidebar-questions-title {
+            padding: 1rem 1.25rem 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
         }
 
         .sidebar-questions {
             flex: 1;
             overflow-y: auto;
-            padding: 0.75rem;
+            padding: 0.5rem 0.75rem;
         }
 
         .sidebar-questions::-webkit-scrollbar { width: 4px; }
@@ -520,7 +566,7 @@ CHAT_HTML = r"""<!DOCTYPE html>
             margin-bottom: 0.4rem;
             border: 1px solid transparent;
             border-radius: var(--radius-sm);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             line-height: 1.45;
             color: var(--text-secondary);
             cursor: pointer;
@@ -554,7 +600,7 @@ CHAT_HTML = r"""<!DOCTYPE html>
 
         .question-tag {
             display: inline-block;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -563,13 +609,9 @@ CHAT_HTML = r"""<!DOCTYPE html>
             margin-bottom: 0.3rem;
         }
 
-        .tag-calculus { background: rgba(96, 165, 250, 0.12); color: var(--accent-blue); }
-        .tag-multivariable { background: rgba(52, 211, 153, 0.12); color: var(--accent-emerald); }
-        .tag-odes { background: rgba(251, 191, 36, 0.12); color: var(--accent-amber); }
-        .tag-linalg { background: rgba(192, 132, 252, 0.12); color: var(--accent-violet); }
-        .tag-cross { background: rgba(251, 113, 133, 0.12); color: var(--accent-rose); }
+        .tag-featured { background: rgba(251, 113, 133, 0.12); color: var(--accent-rose); border: 1px solid rgba(251, 113, 133, 0.2); }
+        .tag-general { background: rgba(99, 102, 241, 0.12); color: var(--accent-indigo-light); border: 1px solid rgba(99, 102, 241, 0.2); }
 
-        /* ─── Chat Area ─────────────────────────────────────────────── */
         #chat-area {
             flex: 1;
             display: flex;
@@ -579,7 +621,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             position: relative;
         }
 
-        /* Chat background pattern */
         #chat-area::before {
             content: '';
             position: absolute;
@@ -606,7 +647,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
         #messages-container::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.2); border-radius: 4px; }
         #messages-container::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.35); }
 
-        /* ─── Message Bubbles ───────────────────────────────────────── */
         .message {
             display: flex;
             gap: 0.75rem;
@@ -671,7 +711,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             border-bottom-left-radius: 4px;
         }
 
-        /* ─── Reasoning Path Visualization ──────────────────────────── */
         .reasoning-path-container {
             background: rgba(17, 24, 39, 0.6);
             border: 1px solid var(--border-subtle);
@@ -708,8 +747,8 @@ CHAT_HTML = r"""<!DOCTYPE html>
         .path-concept {
             display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            padding: 0.35rem 0.7rem;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
             border-radius: var(--radius-full);
             font-size: 0.75rem;
             font-weight: 600;
@@ -721,15 +760,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             from { opacity: 0; transform: scale(0.85); }
             to { opacity: 1; transform: scale(1); }
         }
-
-        .path-concept:nth-child(1) { animation-delay: 0.1s; }
-        .path-concept:nth-child(3) { animation-delay: 0.2s; }
-        .path-concept:nth-child(5) { animation-delay: 0.3s; }
-        .path-concept:nth-child(7) { animation-delay: 0.4s; }
-        .path-concept:nth-child(9) { animation-delay: 0.5s; }
-        .path-concept:nth-child(11) { animation-delay: 0.6s; }
-        .path-concept:nth-child(13) { animation-delay: 0.7s; }
-        .path-concept:nth-child(15) { animation-delay: 0.8s; }
 
         .path-concept.step-0 { background: rgba(96,165,250,0.15); color: var(--accent-blue); border: 1px solid rgba(96,165,250,0.3); }
         .path-concept.step-1 { background: rgba(99,102,241,0.15); color: var(--accent-indigo-light); border: 1px solid rgba(99,102,241,0.3); }
@@ -745,7 +775,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             flex-shrink: 0;
         }
 
-        /* ─── Concept Activations ───────────────────────────────────── */
         .concepts-grid {
             display: flex;
             flex-wrap: wrap;
@@ -781,7 +810,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             transition: width var(--transition-base);
         }
 
-        /* ─── Welcome Screen ────────────────────────────────────────── */
         #welcome-screen {
             flex: 1;
             display: flex;
@@ -832,47 +860,34 @@ CHAT_HTML = r"""<!DOCTYPE html>
             margin-bottom: 2rem;
         }
 
-        .welcome-courses {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
+        .welcome-details {
+            padding: 1.25rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
             max-width: 520px;
             width: 100%;
-        }
-
-        .welcome-course-card {
-            padding: 1rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
             text-align: left;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .welcome-course-card:hover {
-            border-color: var(--border-accent);
-            background: var(--bg-elevated);
-            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
+            animation: popIn 0.3s ease-out;
         }
 
-        .welcome-course-card .course-number {
-            font-size: 0.65rem;
+        .welcome-details-title {
+            font-size: 0.9rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 0.3rem;
+            color: var(--accent-indigo-light);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .welcome-course-card .course-name {
+        .welcome-details-desc {
             font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.3;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
-        /* ─── Input Area ────────────────────────────────────────────── */
         #input-area {
             position: relative;
             z-index: 2;
@@ -945,7 +960,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             margin-top: 0.5rem;
         }
 
-        /* ─── Typing Indicator ──────────────────────────────────────── */
         .typing-indicator {
             display: flex;
             gap: 4px;
@@ -973,7 +987,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             30% { transform: translateY(-6px); opacity: 1; }
         }
 
-        /* ─── Source badge ──────────────────────────────────────────── */
         .source-badge {
             font-size: 0.6rem;
             font-weight: 600;
@@ -999,7 +1012,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             border: 1px solid rgba(96,165,250,0.2);
         }
 
-        /* ─── Right Panel ───────────────────────────────────────────── */
         #right-panel {
             width: 320px;
             min-width: 320px;
@@ -1033,7 +1045,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             opacity: 0.6;
         }
 
-        /* Path timeline */
         .path-timeline {
             display: flex;
             flex-direction: column;
@@ -1091,7 +1102,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Activation bars */
         .activation-item {
             display: flex;
             align-items: center;
@@ -1131,16 +1141,6 @@ CHAT_HTML = r"""<!DOCTYPE html>
             text-align: right;
         }
 
-        .panel-scrollable {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 1.25rem 1rem;
-        }
-
-        .panel-scrollable::-webkit-scrollbar { width: 4px; }
-        .panel-scrollable::-webkit-scrollbar-track { background: transparent; }
-        .panel-scrollable::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
-
         .panel-empty {
             text-align: center;
             padding: 2rem 1rem;
@@ -1156,7 +1156,11 @@ CHAT_HTML = r"""<!DOCTYPE html>
             opacity: 0.3;
         }
 
-        /* ─── Responsive ────────────────────────────────────────────── */
+        @keyframes popIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         @media (max-width: 1100px) {
             #right-panel { display: none; }
         }
@@ -1171,10 +1175,10 @@ CHAT_HTML = r"""<!DOCTYPE html>
 <!-- ═══ HEADER ═══ -->
 <header id="app-header">
     <div class="header-left">
-        <div class="logo-icon">∫</div>
+        <div class="logo-icon" id="header-logo-icon">⚙️</div>
         <div class="header-title">
-            <h1>MIT Engineering Mathematics</h1>
-            <span>CAT V2 Concept Reasoning · 18.01 · 18.02 · 18.03 · 18.06</span>
+            <h1 id="header-domain-title">Mechanical Engineering Reasoning</h1>
+            <span>VLCM + CAT V2 Concept Reasoning System</span>
         </div>
     </div>
     <div class="header-right">
@@ -1191,46 +1195,49 @@ CHAT_HTML = r"""<!DOCTYPE html>
     <!-- ─── Sidebar ─── -->
     <aside id="sidebar">
         <div class="sidebar-header">
-            <h2>Explore Topics</h2>
-            <div class="course-tabs">
-                <button class="course-tab active" data-course="all" id="tab-all">All</button>
-                <button class="course-tab" data-course="18.01" id="tab-1801">18.01</button>
-                <button class="course-tab" data-course="18.02" id="tab-1802">18.02</button>
-                <button class="course-tab" data-course="18.03" id="tab-1803">18.03</button>
-                <button class="course-tab" data-course="18.06" id="tab-1806">18.06</button>
-                <button class="course-tab" data-course="cross" id="tab-cross">Cross</button>
+            <h2>Select Domain</h2>
+            <div class="domain-tabs">
+                <button class="domain-tab active" data-domain="mechanical_engineering" id="tab-mech">
+                    <span class="domain-symbol">⚙️</span>
+                    <span>Mechanical Engineering</span>
+                </button>
+                <button class="domain-tab" data-domain="mit_math" id="tab-math">
+                    <span class="domain-symbol">∫</span>
+                    <span>MIT OCW Math</span>
+                </button>
+                <button class="domain-tab" data-domain="structural" id="tab-struct">
+                    <span class="domain-symbol">🏗️</span>
+                    <span>Structural Eng.</span>
+                </button>
+                <button class="domain-tab" data-domain="cfd" id="tab-cfd">
+                    <span class="domain-symbol">🌪️</span>
+                    <span>CFD / Fluids</span>
+                </button>
+                <button class="domain-tab" data-domain="python_coding" id="tab-python">
+                    <span class="domain-symbol">🐍</span>
+                    <span>Python Coding AI</span>
+                </button>
             </div>
         </div>
+        <div class="sidebar-questions-title">Recommended Questions</div>
         <div class="sidebar-questions" id="questions-list">
             <!-- Populated by JS -->
         </div>
     </aside>
 
-    <!-- ─── Chat ─── -->
+    <!-- ─── Chat Area ─── -->
     <section id="chat-area">
         <div id="welcome-screen">
-            <div class="welcome-icon">∇</div>
-            <div class="welcome-title">Ask anything about engineering mathematics</div>
-            <div class="welcome-sub">
-                This AI uses a Concept Attention Transformer to reason through mathematical concepts
-                step by step — producing verifiable reasoning paths with 0% logic hallucinations.
+            <div class="welcome-icon" id="welcome-logo-icon">⚙️</div>
+            <div class="welcome-title" id="welcome-domain-title">Mechanical Engineering Reasoning</div>
+            <div class="welcome-sub" id="welcome-domain-desc">
+                1000-chunk dataset trained with Second-Order Differential Loss
             </div>
-            <div class="welcome-courses">
-                <div class="welcome-course-card" onclick="filterCourse('18.01')">
-                    <div class="course-number" style="color: var(--accent-blue);">18.01</div>
-                    <div class="course-name">Single Variable Calculus</div>
-                </div>
-                <div class="welcome-course-card" onclick="filterCourse('18.02')">
-                    <div class="course-number" style="color: var(--accent-emerald);">18.02</div>
-                    <div class="course-name">Multivariable Calculus</div>
-                </div>
-                <div class="welcome-course-card" onclick="filterCourse('18.03')">
-                    <div class="course-number" style="color: var(--accent-amber);">18.03</div>
-                    <div class="course-name">Differential Equations</div>
-                </div>
-                <div class="welcome-course-card" onclick="filterCourse('18.06')">
-                    <div class="course-number" style="color: var(--accent-violet);">18.06</div>
-                    <div class="course-name">Linear Algebra</div>
+            
+            <div class="welcome-details">
+                <div class="welcome-details-title">🧠 Explainable Concept-Level Reasoning</div>
+                <div class="welcome-details-desc">
+                    Unlike standard LLMs which generate tokens directly, this system searches for a logical sequence of engineering concepts first. The reasoning path is displayed dynamically alongside the answer, ensuring complete transparency.
                 </div>
             </div>
         </div>
@@ -1239,8 +1246,8 @@ CHAT_HTML = r"""<!DOCTYPE html>
 
         <div id="input-area">
             <div class="input-wrapper">
-                <textarea id="chat-input" rows="1" placeholder="Ask about limits, eigenvalues, Laplace transforms, or any MIT math topic..." maxlength="500"></textarea>
-                <button id="send-btn" aria-label="Send message">
+                <textarea id="chat-input" rows="1" placeholder="Ask an engineering question..." maxlength="500"></textarea>
+                <button id="send-btn" aria-label="Send message" disabled>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="22" y1="2" x2="11" y2="13"></line>
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -1282,72 +1289,60 @@ CHAT_HTML = r"""<!DOCTYPE html>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
-//  Data: MIT Math Suggested Questions
+//  Data: Multi-Domain Suggested Questions
 // ═══════════════════════════════════════════════════════════════
-const QUESTIONS = [
-    // ── 18.01 Single Variable Calculus ──
-    { course: "18.01", q: "Why does a limit describe the behavior of a function near a point?", tag: "Limits" },
-    { course: "18.01", q: "Why does a derivative measure instantaneous rate of change?", tag: "Derivatives" },
-    { course: "18.01", q: "How does the power rule simplify differentiation?", tag: "Derivatives" },
-    { course: "18.01", q: "Why does the chain rule decompose composite function derivatives?", tag: "Chain Rule" },
-    { course: "18.01", q: "How does the Fundamental Theorem of Calculus connect derivatives and integrals?", tag: "FTC" },
-    { course: "18.01", q: "How does a Taylor series approximate a function near a point?", tag: "Series" },
-    { course: "18.01", q: "How does L'Hopital's rule resolve indeterminate forms?", tag: "Limits" },
-    { course: "18.01", q: "How does Newton's method find roots iteratively?", tag: "Roots" },
-    { course: "18.01", q: "Why does the definite integral compute area under a curve?", tag: "Integration" },
-    { course: "18.01", q: "How does integration by parts handle products of functions?", tag: "Integration" },
+const DOMAIN_QUESTIONS = {
+    "mechanical_engineering": [
+        { q: "Why does a column buckle under compression?", tag: "Statics & Buckling" },
+        { q: "How does thermal stress cause cracking?", tag: "Heat Transfer" },
+        { q: "Why does cyclic loading cause fatigue?", tag: "Fatigue Failure" },
+        { q: "Why does cavitation damage pumps?", tag: "Fluids & Cavitation" },
+        { q: "Why does pressure drop in a pipe?", tag: "Pipe Flow" },
+        { q: "Why does a boundary layer separate?", tag: "Aerodynamics" },
+        { q: "Why do residuals oscillate during a CFD solve?", tag: "CFD Convergence" }
+    ],
+    "mit_math": [
+        { q: "Why does the gradient point in the direction of steepest ascent?", tag: "18.02 Calculus" },
+        { q: "How do eigenvalues determine stability of a linear system?", tag: "18.03 ODEs" },
+        { q: "Why does resonance cause unbounded growth in forced oscillators?", tag: "18.03 ODEs" },
+        { q: "Why does the Laplace transform convert ODEs to algebraic equations?", tag: "18.03 ODEs" },
+        { q: "How does an eigenvalue decomposition diagonalize a matrix?", tag: "18.06 Linalg" },
+        { q: "How does Gaussian elimination solve systems of linear equations?", tag: "18.06 Linalg" }
+    ],
+    "structural": [
+        { q: "How does load cause structural failure?", tag: "Load & Failure" },
+        { q: "Why does a column buckle under compression?", tag: "Compression" },
+        { q: "Why does cyclic loading cause fatigue?", tag: "Fatigue Loading" },
+        { q: "Why does thermal stress create cracking?", tag: "Thermal Stress" }
+    ],
+    "cfd": [
+        { q: "Why does pressure drop in a pipe?", tag: "Pressure Drop" },
+        { q: "Why does turbulence increase at high speed?", tag: "Turbulence" },
+        { q: "Why can poor mesh quality cause convergence failure?", tag: "Mesh Quality" },
+        { q: "Why does cavitation damage pumps?", tag: "Cavitation" }
+    ],
+    "python_coding": [
+        { q: "How to read a file line by line and find a word?", tag: "File I/O" },
+        { q: "How to filter a list of numbers to find even numbers?", tag: "Lists" },
+        { q: "How to fetch a URL and parse JSON in Python?", tag: "Network/APIs" },
+        { q: "How to sort a list of dictionaries by a key?", tag: "Sorting" }
+    ]
+};
 
-    // ── 18.02 Multivariable Calculus ──
-    { course: "18.02", q: "Why does the gradient point in the direction of steepest ascent?", tag: "Gradient" },
-    { course: "18.02", q: "How does a double integral compute volume under a surface?", tag: "Integration" },
-    { course: "18.02", q: "How does the divergence theorem relate volume and surface integrals?", tag: "Divergence" },
-    { course: "18.02", q: "How does Stokes' theorem connect line and surface integrals?", tag: "Stokes" },
-    { course: "18.02", q: "How does Lagrange multiplier optimization handle constraints?", tag: "Optimization" },
-    { course: "18.02", q: "Why does curl measure local rotation of a vector field?", tag: "Curl" },
-    { course: "18.02", q: "Why does a saddle point fail both the max and min tests?", tag: "Critical Pts" },
-    { course: "18.02", q: "How does the directional derivative measure slope in any direction?", tag: "Gradient" },
-
-    // ── 18.03 Differential Equations ──
-    { course: "18.03", q: "Why does separation of variables solve certain first-order ODEs?", tag: "1st Order" },
-    { course: "18.03", q: "How does an integrating factor solve first-order linear ODEs?", tag: "1st Order" },
-    { course: "18.03", q: "Why does the Laplace transform convert ODEs to algebraic equations?", tag: "Laplace" },
-    { course: "18.03", q: "How do eigenvalues determine stability of a linear system?", tag: "Stability" },
-    { course: "18.03", q: "Why does resonance cause unbounded growth in forced oscillators?", tag: "Resonance" },
-    { course: "18.03", q: "How does a Fourier series decompose periodic functions?", tag: "Fourier" },
-    { course: "18.03", q: "How does the matrix exponential solve linear systems of ODEs?", tag: "Systems" },
-    { course: "18.03", q: "Why does a phase portrait reveal qualitative ODE behavior?", tag: "Phase Space" },
-
-    // ── 18.06 Linear Algebra ──
-    { course: "18.06", q: "How does Gaussian elimination solve systems of linear equations?", tag: "Systems" },
-    { course: "18.06", q: "How does an eigenvalue decomposition diagonalize a matrix?", tag: "Eigenvalues" },
-    { course: "18.06", q: "Why does the singular value decomposition reveal the rank?", tag: "SVD" },
-    { course: "18.06", q: "How does orthogonal projection minimize distance to a subspace?", tag: "Projection" },
-    { course: "18.06", q: "How does least squares solve overdetermined systems?", tag: "Least Squares" },
-    { course: "18.06", q: "Why does the determinant equal zero for singular matrices?", tag: "Determinants" },
-    { course: "18.06", q: "Why does a positive definite matrix have all positive eigenvalues?", tag: "Definiteness" },
-    { course: "18.06", q: "How does diagonalization simplify computing matrix powers?", tag: "Eigenvalues" },
-
-    // ── Cross-domain ──
-    { course: "cross", q: "How does the matrix exponential from linear algebra solve systems of differential equations?", tag: "LA + ODE" },
-    { course: "cross", q: "Why does the gradient from multivariable calculus connect to eigenvalue analysis in optimization?", tag: "MVC + LA" },
-    { course: "cross", q: "How does positive definiteness connect quadratic forms in linear algebra to stability in ODEs?", tag: "LA + ODE" },
-    { course: "cross", q: "Why does the Fourier series from ODEs connect to orthogonality in linear algebra?", tag: "ODE + LA" },
-];
-
-const COURSE_COLORS = {
-    "18.01": { tag: "tag-calculus", name: "Calculus" },
-    "18.02": { tag: "tag-multivariable", name: "Multivariable" },
-    "18.03": { tag: "tag-odes", name: "ODEs" },
-    "18.06": { tag: "tag-linalg", name: "Linear Algebra" },
-    "cross": { tag: "tag-cross", name: "Cross-Domain" },
+const DOMAIN_DETAILS = {
+    "mechanical_engineering": { title: "Mechanical Engineering (VLCM)", icon: "⚙️", desc: "1000-chunk dataset trained with Second-Order Differential Loss", placeholder: "Ask about buckling, heat exchangers, fluid dynamics, stress tensors..." },
+    "mit_math": { title: "MIT OCW Mathematics (CAT V2)", icon: "∫", desc: "Calculus, Linear Algebra, ODEs, and Multivariable Calculus", placeholder: "Ask about eigenvalues, gradients, Laplace transforms, Fourier series..." },
+    "structural": { title: "Structural Engineering (CAT V2)", icon: "🏗️", desc: "Beams, stress-strain, columns buckling, fatigue, and materials science", placeholder: "Ask about load distributions, Euler buckling, S-N curves, strain..." },
+    "cfd": { title: "CFD & Fluid Dynamics (CAT V2)", icon: "🌪️", desc: "Pipe flow, pressure drop, turbulence, boundary layers, and mesh quality", placeholder: "Ask about boundary layers, adverse gradients, Navier-Stokes residuals..." },
+    "python_coding": { title: "Python Coding AI (CAT V2)", icon: "🐍", desc: "Autoregressive code generation, lists, sorting, file I/O, and API requests", placeholder: "Ask about file line parsing, list comprehensions, sorting dicts, JSON..." }
 };
 
 // ═══════════════════════════════════════════════════════════════
 //  State
 // ═══════════════════════════════════════════════════════════════
-let currentCourse = "all";
+let currentDomain = "mechanical_engineering";
 let isProcessing = false;
-let lastResult = null;
+let statusInfo = null;
 
 // ═══════════════════════════════════════════════════════════════
 //  DOM Refs
@@ -1360,13 +1355,19 @@ const questionsList = document.getElementById("questions-list");
 const panelPath = document.getElementById("panel-path");
 const panelActivations = document.getElementById("panel-activations");
 
+const headerLogoIcon = document.getElementById("header-logo-icon");
+const headerDomainTitle = document.getElementById("header-domain-title");
+const welcomeLogoIcon = document.getElementById("welcome-logo-icon");
+const welcomeDomainTitle = document.getElementById("welcome-domain-title");
+const welcomeDomainDesc = document.getElementById("welcome-domain-desc");
+
 // ═══════════════════════════════════════════════════════════════
 //  Initialize
 // ═══════════════════════════════════════════════════════════════
 renderSidebarQuestions();
 checkStatus();
 
-// ─── Event listeners ────
+// Event listeners
 chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
@@ -1377,16 +1378,47 @@ chatInput.addEventListener("keydown", (e) => {
 chatInput.addEventListener("input", () => {
     chatInput.style.height = "auto";
     chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + "px";
+    sendBtn.disabled = chatInput.value.trim().length === 0;
 });
 
 sendBtn.addEventListener("click", sendMessage);
 
-document.querySelectorAll(".course-tab").forEach(tab => {
+document.querySelectorAll(".domain-tab").forEach(tab => {
     tab.addEventListener("click", () => {
-        document.querySelectorAll(".course-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".domain-tab").forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
-        currentCourse = tab.dataset.course;
+        currentDomain = tab.dataset.domain;
+        
+        // Update Domain details across UI
+        const details = DOMAIN_DETAILS[currentDomain];
+        headerLogoIcon.textContent = details.icon;
+        headerDomainTitle.textContent = details.title;
+        welcomeLogoIcon.textContent = details.icon;
+        welcomeDomainTitle.textContent = details.title;
+        welcomeDomainDesc.textContent = details.desc;
+        chatInput.placeholder = details.placeholder;
+        
         renderSidebarQuestions();
+        updateStatusBadge();
+        
+        // Hide messages, show welcome screen when switching domains
+        messagesContainer.style.display = "none";
+        messagesContainer.innerHTML = "";
+        welcomeScreen.style.display = "flex";
+        
+        // Clear right panels
+        panelPath.innerHTML = `
+            <div class="panel-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <div>Ask a question to see the<br>concept reasoning path</div>
+            </div>
+        `;
+        panelActivations.innerHTML = `
+            <div class="panel-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <div>Concept activations will<br>appear here</div>
+            </div>
+        `;
     });
 });
 
@@ -1397,37 +1429,43 @@ document.querySelectorAll(".course-tab").forEach(tab => {
 async function checkStatus() {
     try {
         const res = await fetch("/api/status");
-        const data = await res.json();
-        const statusText = document.getElementById("status-text");
-        if (data.model_loaded) {
-            statusText.textContent = "Model Online";
-        } else {
-            statusText.textContent = `Dataset (${data.dataset_size} Q&A)`;
-        }
+        statusInfo = await res.json();
+        updateStatusBadge();
     } catch (e) {
         document.getElementById("status-text").textContent = "Offline";
     }
 }
 
-function filterCourse(course) {
-    currentCourse = course;
-    document.querySelectorAll(".course-tab").forEach(t => {
-        t.classList.toggle("active", t.dataset.course === course);
-    });
-    renderSidebarQuestions();
+function updateStatusBadge() {
+    const statusText = document.getElementById("status-text");
+    const statusDot = document.querySelector(".status-dot");
+    if (!statusInfo || !statusInfo[currentDomain]) {
+        statusText.textContent = "Offline";
+        statusDot.style.background = "#ef4444";
+        return;
+    }
+    const info = statusInfo[currentDomain];
+    if (info.model_loaded) {
+        statusText.textContent = "Model Online";
+        statusDot.style.background = "var(--accent-emerald)";
+    } else {
+        statusText.textContent = `Dataset (${info.dataset_size} samples)`;
+        statusDot.style.background = "var(--accent-amber)";
+    }
 }
 
 function renderSidebarQuestions() {
     questionsList.innerHTML = "";
-    const filtered = currentCourse === "all" ? QUESTIONS : QUESTIONS.filter(q => q.course === currentCourse);
+    const list = DOMAIN_QUESTIONS[currentDomain] || [];
 
-    filtered.forEach(item => {
+    list.forEach((item, idx) => {
         const card = document.createElement("div");
         card.className = "question-card";
 
-        const tagClass = COURSE_COLORS[item.course]?.tag || "tag-calculus";
+        const tagClass = idx === 0 ? "tag-featured" : "tag-general";
+        const tagText = idx === 0 ? "🔥 Featured" : item.tag;
         card.innerHTML = `
-            <span class="question-tag ${tagClass}">${item.course} · ${item.tag}</span>
+            <span class="question-tag ${tagClass}">${tagText}</span>
             <div>${item.q}</div>
         `;
 
@@ -1435,6 +1473,7 @@ function renderSidebarQuestions() {
             chatInput.value = item.q;
             chatInput.style.height = "auto";
             chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + "px";
+            sendBtn.disabled = false;
             sendMessage();
         });
 
@@ -1454,9 +1493,9 @@ async function sendMessage() {
     addMessage("user", text);
     chatInput.value = "";
     chatInput.style.height = "auto";
+    sendBtn.disabled = true;
 
     isProcessing = true;
-    sendBtn.disabled = true;
 
     // Show typing indicator
     const typingEl = addTypingIndicator();
@@ -1465,13 +1504,12 @@ async function sendMessage() {
         const res = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: text })
+            body: JSON.stringify({ question: text, domain: currentDomain })
         });
 
         if (!res.ok) throw new Error("Server error");
 
         const data = await res.json();
-        lastResult = data;
 
         // Remove typing
         typingEl.remove();
@@ -1488,7 +1526,6 @@ async function sendMessage() {
     }
 
     isProcessing = false;
-    sendBtn.disabled = false;
     scrollToBottom();
 }
 
@@ -1498,7 +1535,7 @@ function addMessage(role, text) {
 
     const avatar = document.createElement("div");
     avatar.className = "message-avatar";
-    avatar.textContent = role === "user" ? "U" : "∫";
+    avatar.textContent = role === "user" ? "U" : DOMAIN_DETAILS[currentDomain].icon;
 
     const body = document.createElement("div");
     body.className = "message-body";
@@ -1521,7 +1558,7 @@ function addAssistantMessage(data) {
 
     const avatar = document.createElement("div");
     avatar.className = "message-avatar";
-    avatar.textContent = "∫";
+    avatar.textContent = DOMAIN_DETAILS[currentDomain].icon;
 
     const body = document.createElement("div");
     body.className = "message-body";
@@ -1532,7 +1569,7 @@ function addAssistantMessage(data) {
     bubble.textContent = data.answer || "Path generated — see reasoning below.";
     body.appendChild(bubble);
 
-    // Reasoning path
+    // Reasoning path inline
     if (data.reasoning_path && data.reasoning_path.length > 0) {
         const pathContainer = document.createElement("div");
         pathContainer.className = "reasoning-path-container";
@@ -1569,7 +1606,7 @@ function addAssistantMessage(data) {
     if (data.source) {
         const badge = document.createElement("div");
         badge.className = `source-badge ${data.source === "model" ? "source-model" : "source-dataset"}`;
-        badge.textContent = data.source === "model" ? "⚡ CAT V2 Model" : "📚 Knowledge Base";
+        badge.textContent = data.source === "model" ? "⚡ VLCM/CAT Model" : "📚 Knowledge Base";
         body.appendChild(badge);
     }
 
@@ -1602,7 +1639,7 @@ function addTypingIndicator() {
 
     const avatar = document.createElement("div");
     avatar.className = "message-avatar";
-    avatar.textContent = "∫";
+    avatar.textContent = DOMAIN_DETAILS[currentDomain].icon;
 
     const body = document.createElement("div");
     body.className = "message-body";
@@ -1677,19 +1714,15 @@ def run_chat_server(port=8090):
     server_address = ("", port)
     httpd = HTTPServer(server_address, ChatRequestHandler)
     print(f"\n{'='*60}")
-    print(f"  MIT Engineering Mathematics Chat UI")
-    print(f"  Powered by CAT V2 Concept Attention Transformer")
+    print(f"  Multi-Domain Engineering Chat Server")
+    print(f"  Powered by CAT V2 & VLCM Models")
     print(f"{'='*60}")
     print(f"  -> Open: http://localhost:{port}/")
-    print(f"  -> Dataset: {len(MIT_MATH_QA)} Q&A pairs loaded")
-    if BACKEND_AVAILABLE:
-        loaded = get_mit_math_system()
-        if loaded:
-            print(f"  -> Model: CAT V2 MIT Math checkpoint ONLINE")
-        else:
-            print(f"  -> Model: No checkpoint found (using dataset fallback)")
-    else:
-        print(f"  -> Model: PyTorch not available (using dataset fallback)")
+    for domain, info in DOMAINS.items():
+        ds = get_dataset(domain)
+        loaded = get_system(domain)
+        status = "ONLINE" if loaded else "FALLBACK (dataset)"
+        print(f"  -> {info['name']}: {len(ds)} QA, Model: {status}")
     print(f"{'='*60}\n")
     try:
         httpd.serve_forever()
