@@ -236,6 +236,19 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(status_data).encode("utf-8"))
+        elif parsed.path == "/api/gate/suggestions":
+            try:
+                import gate_router
+                suggestions = gate_router.get_gate_suggested_questions()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps(suggestions).encode("utf-8"))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
         else:
             self.send_response(404)
             self.end_headers()
@@ -286,20 +299,33 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                         response_data["source"] = "none"
                     response_data["answer"] = "I don't have a specific answer for this question in my knowledge base. Try rephrasing or selecting a suggested question."
 
-                # Integrate math solver and equation lookup
+                # Integrate GATE orchestration: multi-concept routing + symbolic solver
                 try:
-                    import equations_database
-                    solved = equations_database.check_and_solve(question)
-                    if solved:
-                        response_data["solved_equation"] = solved
-                        solved_text = f"\n\n⚙️ **Math Solver Output:**\nSolved {solved['equation']} for **{solved['solved_variable']} = {solved['solved_value']}** using the formula $${solved['formula']}$$."
-                        response_data["answer"] += solved_text
-                    
-                    path_for_eqs = response_data.get("reasoning_path", [])
-                    relevant_eqs = equations_database.lookup_equations_by_concepts(path_for_eqs)
-                    response_data["relevant_equations"] = relevant_eqs
+                    import gate_router
+                    gate_result = gate_router.process_gate_query(
+                        question,
+                        model_path=response_data.get("reasoning_path"),
+                        top_concepts=response_data.get("top_concepts"),
+                    )
+                    if gate_result.get("concept_path"):
+                        response_data["reasoning_path"] = gate_result["concept_path"]
+                        response_data["gate_routing"] = gate_result["routing"]
+                    if gate_result.get("solved"):
+                        response_data["solved_equation"] = gate_result["solved"]
+                    if gate_result.get("gate_match"):
+                        response_data["gate_match"] = gate_result["gate_match"]
+                    if gate_result.get("concept_notes"):
+                        response_data["concept_notes"] = gate_result["concept_notes"]
+                    response_data["relevant_equations"] = gate_result.get("relevant_equations", [])
+                    gate_text = gate_result.get("composed_answer", "")
+                    if gate_text:
+                        if gate_result.get("solved") or gate_result.get("gate_match"):
+                            response_data["answer"] = gate_text
+                            response_data["source"] = "gate_solver"
+                        else:
+                            response_data["answer"] += f"\n\n{gate_text}"
                 except Exception as ex:
-                    print(f"Error in equation solver lookup: {ex}")
+                    print(f"Error in GATE orchestration: {ex}")
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")
@@ -1376,13 +1402,13 @@ CHAT_HTML = r"""<!DOCTYPE html>
 // ═══════════════════════════════════════════════════════════════
 const DOMAIN_QUESTIONS = {
     "mechanical_engineering": [
+        { q: "Calculate stress if load equals ten kN and area measures five m^2", tag: "GATE NAT" },
+        { q: "A steel column of length 2.0 m has pinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN?", tag: "GATE NAT" },
+        { q: "For a column of length L, if one end is fixed and the other is free, what is the effective length?", tag: "GATE MCQ" },
+        { q: "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe.", tag: "GATE Numerical" },
         { q: "Why does a column buckle under compression?", tag: "Statics & Buckling" },
         { q: "How does thermal stress cause cracking?", tag: "Heat Transfer" },
-        { q: "Why does cyclic loading cause fatigue?", tag: "Fatigue Failure" },
-        { q: "Why does cavitation damage pumps?", tag: "Fluids & Cavitation" },
-        { q: "Why does pressure drop in a pipe?", tag: "Pipe Flow" },
-        { q: "Why does a boundary layer separate?", tag: "Aerodynamics" },
-        { q: "Why do residuals oscillate during a CFD solve?", tag: "CFD Convergence" }
+        { q: "Why does cyclic loading cause fatigue?", tag: "Fatigue Failure" }
     ],
     "mit_math": [
         { q: "Why does the gradient point in the direction of steepest ascent?", tag: "18.02 Calculus" },
@@ -1411,13 +1437,14 @@ const DOMAIN_QUESTIONS = {
         { q: "How to sort a list of dictionaries by a key?", tag: "Sorting" }
     ],
     "mit_stanford_mech": [
+        { q: "Calculate stress if load equals ten kN and area measures five m^2", tag: "GATE NAT" },
+        { q: "A cantilever column of length 3.0 m has E = 210e9 Pa and I = 2.0e-6 m^4. Find the critical buckling load in kN.", tag: "GATE NAT" },
+        { q: "For a column with both ends pinned, the effective length factor K equals:", tag: "GATE MCQ" },
+        { q: "Find Carnot efficiency if hot reservoir temperature is 800 K and cold reservoir temperature is 300 K.", tag: "GATE NAT" },
         { q: "Why does a column buckle under compression?", tag: "Euler Buckling" },
         { q: "Determine critical buckling load for E = 200e9, I = 1.0e-5, L_e = 2.0", tag: "GATE Numerical Solver" },
         { q: "Why does repeated cyclic loading cause structural fatigue failure?", tag: "Fatigue failure" },
-        { q: "Why does an adverse pressure gradient cause flow separation?", tag: "Fluid Mechanics" },
-        { q: "Why does high fluid velocity cause turbulence in a pipe?", tag: "Fluid Mechanics" },
-        { q: "How does a temperature gradient produce structural thermal stress?", tag: "Heat Transfer" },
-        { q: "Why does pole placement determine feedback loop stability?", tag: "Control Systems" }
+        { q: "Why does an adverse pressure gradient cause flow separation?", tag: "Fluid Mechanics" }
     ]
 };
 

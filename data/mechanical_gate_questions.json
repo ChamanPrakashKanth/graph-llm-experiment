@@ -2,14 +2,61 @@
   {
     "id": "GATE-ME-2025-Q1",
     "type": "NAT",
-    "question": "A steel column of length 2.0 m haspinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN? (E = 200e9, I = 1e-5, L_e = 2.0)",
+    "question": "A steel column of length 2.0 m has pinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN?",
     "calculation_steps": [
       "1. Formula: P_cr = pi^2 * E * I / L_e^2",
-      "2. Since ends are pinned, effective length L_e = L = 2.0 m.",
+      "2. Since ends are pinned, effective length L_e = L = 2.0 m (K=1.0).",
       "3. Plug in values: P_cr = 3.14159^2 * 200e9 * 1e-5 / 2.0^2",
       "4. P_cr = 9.8696 * 2e6 / 4 = 4.9348e6 N = 4934.8 kN"
     ],
     "correct_answer": "4934.8",
     "physical_interpretation": "Loads exceeding 4934.8 kN will cause the column to deflect laterally and collapse."
+  },
+  {
+    "id": "GATE-ME-2025-Q2",
+    "type": "NAT",
+    "question": "Calculate stress if load equals ten kN and area measures five m^2",
+    "calculation_steps": [
+      "1. Formula: sigma = P / A",
+      "2. Convert load: P = 10 kN = 10000 N",
+      "3. Area A = 5 m^2",
+      "4. sigma = 10000 / 5 = 2000 Pa"
+    ],
+    "correct_answer": "2000",
+    "physical_interpretation": "Axial stress is force divided by cross-sectional area."
+  },
+  {
+    "id": "GATE-ME-2025-Q3",
+    "type": "NAT",
+    "question": "A cantilever column of length 3.0 m has E = 210e9 Pa and I = 2.0e-6 m^4. Find the critical buckling load in kN.",
+    "calculation_steps": [
+      "1. Cantilever = fixed-free, K = 2.0, L_e = 2L = 6.0 m",
+      "2. P_cr = pi^2 * E * I / L_e^2",
+      "3. P_cr = 9.8696 * 210e9 * 2e-6 / 36 = 1.15e6 N = 1150 kN"
+    ],
+    "correct_answer": "1150",
+    "physical_interpretation": "Cantilever columns have double the effective length of pinned columns."
+  },
+  {
+    "id": "GATE-ME-2025-Q4",
+    "type": "NAT",
+    "question": "A beam has bending moment M = 5000 N-m, y = 0.05 m, and I = 1.0e-5 m^4. Calculate bending stress in MPa.",
+    "calculation_steps": [
+      "1. Formula: sigma = M * y / I",
+      "2. sigma = 5000 * 0.05 / 1e-5 = 2.5e7 Pa = 25 MPa"
+    ],
+    "correct_answer": "25",
+    "physical_interpretation": "Bending stress increases linearly with distance from the neutral axis."
+  },
+  {
+    "id": "GATE-ME-2025-Q5",
+    "type": "NAT",
+    "question": "Find Carnot efficiency if hot reservoir temperature is 800 K and cold reservoir temperature is 300 K.",
+    "calculation_steps": [
+      "1. Formula: eta_C = 1 - T_C / T_H",
+      "2. eta_C = 1 - 300/800 = 1 - 0.375 = 0.625 = 62.5%"
+    ],
+    "correct_answer": "0.625",
+    "physical_interpretation": "Carnot efficiency is the theoretical maximum for any heat engine between these reservoirs."
   }
 ]

@@ -9,5 +9,49 @@
     ],
     "answer": "C",
     "explanation": "For fixed-free ends, the buckling shape represents a quarter wave, so the effective length is twice the physical length: L_e = 2L."
+  },
+  {
+    "question": "For a column with both ends pinned, the effective length factor K equals:",
+    "options": [
+      "A. 0.5",
+      "B. 0.7",
+      "C. 1.0",
+      "D. 2.0"
+    ],
+    "answer": "C",
+    "explanation": "Pinned-pinned end conditions give K = 1.0, so L_e = L."
+  },
+  {
+    "question": "For a column with both ends fixed, the effective length factor K equals:",
+    "options": [
+      "A. 0.5",
+      "B. 0.7",
+      "C. 1.0",
+      "D. 2.0"
+    ],
+    "answer": "A",
+    "explanation": "Fixed-fixed end conditions give K = 0.5, so L_e = 0.5L. This is the most stable configuration."
+  },
+  {
+    "question": "Reynolds number below 2000 in a pipe indicates:",
+    "options": [
+      "A. Turbulent flow",
+      "B. Laminar flow",
+      "C. Transitional flow",
+      "D. Compressible flow"
+    ],
+    "answer": "B",
+    "explanation": "Re < 2000 indicates laminar flow where viscous forces dominate over inertial forces."
+  },
+  {
+    "question": "The Carnot efficiency of a heat engine operating between 600 K and 300 K is:",
+    "options": [
+      "A. 25%",
+      "B. 50%",
+      "C. 75%",
+      "D. 100%"
+    ],
+    "answer": "B",
+    "explanation": "eta_C = 1 - T_C/T_H = 1 - 300/600 = 0.5 = 50%."
   }
 ]

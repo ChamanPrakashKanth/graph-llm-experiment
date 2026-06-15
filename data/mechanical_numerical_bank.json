@@ -1,11 +1,37 @@
 [
   {
-    "question": "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe. (density = 1000, v = 2.0, D = 0.05, viscosity = 0.001)",
+    "question": "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe.",
     "formula": "Re = rho * v * D / mu",
     "steps": [
       "Re = 1000 * 2.0 * 0.05 / 0.001",
       "Re = 100 / 0.001 = 100000"
     ],
     "answer": "100000"
+  },
+  {
+    "question": "Find axial stress when load is 50 kN and cross-sectional area is 0.0025 m^2.",
+    "formula": "sigma = P / A",
+    "steps": [
+      "P = 50 kN = 50000 N",
+      "sigma = 50000 / 0.0025 = 2.0e7 Pa = 20 MPa"
+    ],
+    "answer": "20000000"
+  },
+  {
+    "question": "A column has E = 200e9 Pa, I = 5.0e-6 m^4, and effective length L_e = 4.0 m. Calculate critical buckling load P_cr in kN.",
+    "formula": "P_cr = pi^2 * E * I / L_e^2",
+    "steps": [
+      "P_cr = 9.8696 * 200e9 * 5e-6 / 16",
+      "P_cr = 6.17e5 N = 617 kN"
+    ],
+    "answer": "617"
+  },
+  {
+    "question": "Calculate torque when moment of inertia I = 2.0 kg-m^2 and angular acceleration alpha = 5.0 rad/s^2.",
+    "formula": "T = I * alpha",
+    "steps": [
+      "T = 2.0 * 5.0 = 10.0 N-m"
+    ],
+    "answer": "10"
   }
 ]

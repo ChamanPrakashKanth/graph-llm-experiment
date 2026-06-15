@@ -3,6 +3,8 @@ import re
 import math
 from typing import Dict, Any, Tuple, Optional, List
 
+from grammar_parser import normalize_query
+
 EQUATIONS = {
     "Euler Buckling": {
         "formula": "P_{cr} = \\frac{\\pi^2 E I}{L_e^2}",
@@ -217,12 +219,14 @@ VAR_PATTERNS = {
         r"\\rho\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
     ],
     "v": [
+        r"\bflowing\s+at\s+([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bspeed\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bvelocity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bv\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
     ],
     "D": [
-        r"\bdiameter\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\s*m\s+diameter\b",
+        r"\bdiameter\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bpipe\s+diameter\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bD\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
     ],
@@ -349,28 +353,109 @@ def lookup_equations_by_concepts(activated_concepts: List[str]) -> List[Dict[str
                 break
     return matched
 
-def check_and_solve(question_text: str) -> Optional[Dict[str, Any]]:
-    # 1. Parse variables from question
-    vals = extract_variables(question_text)
+# GATE boundary-condition K-factors: L_e = K * L
+BOUNDARY_PATTERNS = [
+    (r"pinned\s+ends|pinned\s+pinned|both\s+ends\s+pinned", 1.0, "pinned-pinned (K=1.0)"),
+    (r"fixed\s+fixed|both\s+ends\s+fixed", 0.5, "fixed-fixed (K=0.5)"),
+    (r"fixed\s+pinned|fixed\s+at\s+one\s+end\s+and\s+pinned", 0.7, "fixed-pinned (K=0.7)"),
+    (r"fixed\s+free|cantilever|one\s+end\s+fixed.*free", 2.0, "fixed-free / cantilever (K=2.0)"),
+]
+
+
+def _format_value(solved_val: float, output_unit: str = "") -> str:
+    if output_unit == "kN" and solved_val >= 1e3:
+        solved_val /= 1e3
+    if abs(solved_val) >= 1e4 or (abs(solved_val) < 1e-2 and solved_val != 0):
+        return f"{solved_val:.4e}"
+    return f"{solved_val:.4f}"
+
+
+def _detect_output_unit(question_text: str, solved_var: str) -> str:
+    q = question_text.lower()
+    if solved_var in ("P_cr", "P") and "kn" in q:
+        return "kN"
+    if solved_var == "stress" and "mpa" in q:
+        return "MPa"
+    return ""
+
+
+def infer_effective_length(normalized_text: str, vals: Dict[str, float]) -> Tuple[Dict[str, float], List[str]]:
+    """Infer L_e from physical length L and GATE end-condition phrasing."""
+    steps: List[str] = []
+    if "L_e" in vals:
+        return vals, steps
+
+    L = vals.get("L")
+    if L is None:
+        m = re.search(
+            r"\b(?:column\s+)?length\s+(?:is\s+)?([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)",
+            normalized_text, re.IGNORECASE,
+        )
+        if m:
+            L = float(m.group(1))
+            vals["L"] = L
+
+    if L is None:
+        return vals, steps
+
+    for pattern, k, label in BOUNDARY_PATTERNS:
+        if re.search(pattern, normalized_text, re.IGNORECASE):
+            vals["L_e"] = k * L
+            steps.append(f"End condition: {label} → L_e = {k} × {L} = {vals['L_e']} m")
+            break
+    return vals, steps
+
+
+def _solve_equation(eq_name: str, vals: Dict[str, float]) -> Optional[Tuple[str, float]]:
+    data = EQUATIONS.get(eq_name)
+    if not data:
+        return None
+    return data["solve"](vals)
+
+
+def check_and_solve_chain(
+    question_text: str,
+    concept_path: Optional[List[str]] = None,
+    ranked_equations: Optional[List[str]] = None,
+) -> Optional[Dict[str, Any]]:
+    """Multi-hop symbolic solve: boundary inference → concept-ranked equation chain."""
+    normalized = normalize_query(question_text)
+    vals = extract_variables(normalized)
+    vals, boundary_steps = infer_effective_length(normalized, vals)
     if not vals:
         return None
-        
-    # 2. Iterate equations to see if we can solve one
-    for eq_name, data in EQUATIONS.items():
-        result = data["solve"](vals)
-        if result:
-            solved_var, solved_val = result
-            # Format solved value
-            if abs(solved_val) >= 1e4 or (abs(solved_val) < 1e-2 and solved_val != 0):
-                formatted_val = f"{solved_val:.4e}"
-            else:
-                formatted_val = f"{solved_val:.4f}"
-            return {
-                "equation": eq_name,
-                "formula": data["formula"],
-                "inputs": vals,
-                "solved_variable": solved_var,
-                "solved_value": formatted_val,
-                "variables_desc": data["variables"]
-            }
+
+    eq_order = list(ranked_equations or [])
+    for eq_name in EQUATIONS:
+        if eq_name not in eq_order:
+            eq_order.append(eq_name)
+
+    for eq_name in eq_order:
+        result = _solve_equation(eq_name, vals)
+        if not result:
+            continue
+        solved_var, solved_val = result
+        out_unit = _detect_output_unit(question_text, solved_var)
+        calc_steps = list(boundary_steps)
+        calc_steps.append(f"Apply {eq_name}: {EQUATIONS[eq_name]['formula']}")
+        formatted = _format_value(solved_val, out_unit)
+        if out_unit == "kN":
+            calc_steps.append(f"Convert N to kN: {solved_val:.4e} N = {formatted} kN")
+        else:
+            calc_steps.append(f"Substitute known values → {solved_var} = {formatted}")
+        return {
+            "equation": eq_name,
+            "formula": EQUATIONS[eq_name]["formula"],
+            "inputs": vals,
+            "solved_variable": solved_var,
+            "solved_value": formatted,
+            "output_unit": out_unit,
+            "variables_desc": EQUATIONS[eq_name]["variables"],
+            "calculation_steps": calc_steps,
+            "concept_path": concept_path or [],
+        }
     return None
+
+
+def check_and_solve(question_text: str) -> Optional[Dict[str, Any]]:
+    return check_and_solve_chain(question_text)

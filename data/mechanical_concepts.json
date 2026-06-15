@@ -2,11 +2,7 @@
   {
     "concept": "Euler Buckling",
     "definition": "The sudden lateral deflection of a slender column under an axial compressive load.",
-    "prerequisites": [
-      "Compressive Load",
-      "Stress",
-      "Column"
-    ],
+    "prerequisites": ["Compressive Load", "Stress", "Column", "Boundary Condition", "Effective Length"],
     "difficulty": "Medium",
     "revision_1_line": "Column buckling under compression governed by slenderness ratio.",
     "revision_5_lines": "Euler buckling occurs in slender columns.\nIt is triggered by compressive loads.\nThe critical buckling load is P_cr = pi^2 * E * I / L_e^2.\nShort columns yield before they buckle.\nBoundary conditions change the effective length.",
@@ -14,19 +10,38 @@
     "exam_summary": "P_cr formula is highly tested in GATE. Pay attention to end conditions: pinned-pinned (K=1.0), fixed-fixed (K=0.5), fixed-pinned (K=0.7), and fixed-free (K=2.0).",
     "typical_mistakes": "Forgetting to square the effective length in the denominator, or using the wrong boundary condition multiplier K.",
     "memory_aid": "Slender columns buckle easily; think of a thin plastic ruler under compression.",
-    "related_concepts": [
-      "Slenderness",
-      "Critical Load",
-      "Yielding"
-    ]
+    "related_concepts": ["Slenderness", "Critical Load", "Yielding", "Boundary Condition"]
+  },
+  {
+    "concept": "Boundary Condition",
+    "definition": "Constraints on displacement and rotation at structural supports that determine buckling mode shapes.",
+    "prerequisites": ["Column", "Compressive Load"],
+    "difficulty": "Easy",
+    "revision_1_line": "End conditions set the effective length factor K.",
+    "revision_5_lines": "Pinned ends allow rotation.\nFixed ends prevent rotation and translation.\nFree ends have no restraint.\nK-factor converts physical length to effective length.\nGATE frequently tests all four standard cases.",
+    "explanation": "Boundary conditions define how a column is supported at its ends. Each configuration produces a different buckling mode shape and effective length factor K.",
+    "exam_summary": "Memorize K values: pinned-pinned K=1.0, fixed-fixed K=0.5, fixed-pinned K=0.7, fixed-free K=2.0.",
+    "typical_mistakes": "Confusing fixed-pinned (K=0.7) with fixed-free (K=2.0).",
+    "memory_aid": "More restraint = smaller K = higher buckling load.",
+    "related_concepts": ["Effective Length", "Euler Buckling", "Critical Load"]
+  },
+  {
+    "concept": "Effective Length",
+    "definition": "The equivalent length of a pinned-pinned column that buckles at the same load as the actual column.",
+    "prerequisites": ["Boundary Condition", "Column"],
+    "difficulty": "Easy",
+    "revision_1_line": "L_e = K * L where K depends on end conditions.",
+    "revision_5_lines": "Effective length accounts for boundary conditions.\nL_e = K * L.\nPinned-pinned: L_e = L.\nFixed-free: L_e = 2L.\nAlways square L_e in the Euler formula.",
+    "explanation": "The effective length converts any end condition into an equivalent pinned-pinned column length for use in Euler's buckling formula.",
+    "exam_summary": "Always compute L_e before substituting into P_cr = pi^2*E*I/L_e^2.",
+    "typical_mistakes": "Using physical length L instead of effective length L_e in the buckling formula.",
+    "memory_aid": "L_e goes in the denominator squared — a small error here causes a 4× error in P_cr.",
+    "related_concepts": ["Boundary Condition", "Euler Buckling", "Critical Load"]
   },
   {
     "concept": "Reynolds Number",
     "definition": "A dimensionless quantity used to predict fluid flow transition from laminar to turbulent.",
-    "prerequisites": [
-      "Flow Speed",
-      "Viscosity"
-    ],
+    "prerequisites": ["Flow Speed", "Viscosity"],
     "difficulty": "Easy",
     "revision_1_line": "Ratio of inertial forces to viscous forces in fluid flow.",
     "revision_5_lines": "Reynolds number determines flow regime.\nRe = rho * v * D / mu.\nRe < 2000 is laminar flow in a pipe.\nRe > 4000 is turbulent flow in a pipe.\n2000 < Re < 4000 is transitional flow.",
@@ -34,10 +49,32 @@
     "exam_summary": "Crucial for pipe loss, boundary layers, and dimensionless modeling questions in exams.",
     "typical_mistakes": "Confusing dynamic viscosity (mu) with kinematic viscosity (nu = mu/rho) in the formula.",
     "memory_aid": "High speed, low viscosity, big pipe = Turbulent chaotic flow.",
-    "related_concepts": [
-      "Flow Speed",
-      "Turbulence",
-      "Boundary Layer"
-    ]
+    "related_concepts": ["Flow Speed", "Turbulence", "Boundary Layer"]
+  },
+  {
+    "concept": "Stress",
+    "definition": "Internal force per unit area in a structural member.",
+    "prerequisites": ["Load"],
+    "difficulty": "Easy",
+    "revision_1_line": "sigma = P / A for axial loading.",
+    "revision_5_lines": "Stress is force per unit area.\nAxial stress sigma = P/A.\nUnits are Pa (N/m^2).\nCompare stress to yield strength for safety.\nGATE often combines stress with buckling concepts.",
+    "explanation": "Normal stress quantifies the intensity of internal forces. For axial loading, stress is simply the applied force divided by the cross-sectional area.",
+    "exam_summary": "Basic but frequently tested. Watch unit conversions (kN to N, mm^2 to m^2).",
+    "typical_mistakes": "Forgetting to convert kN to N or mm^2 to m^2 before dividing.",
+    "memory_aid": "Bigger area = lower stress for the same load.",
+    "related_concepts": ["Load", "Strain", "Yielding"]
+  },
+  {
+    "concept": "Carnot cycle",
+    "definition": "The most efficient thermodynamic cycle operating between two temperature reservoirs.",
+    "prerequisites": [],
+    "difficulty": "Easy",
+    "revision_1_line": "Maximum efficiency eta = 1 - T_C/T_H.",
+    "revision_5_lines": "Carnot cycle is reversible.\nEfficiency depends only on reservoir temperatures.\neta_C = 1 - T_C/T_H.\nTemperatures must be in Kelvin.\nNo real engine exceeds Carnot efficiency.",
+    "explanation": "The Carnot cycle sets the theoretical upper limit on heat engine efficiency between two thermal reservoirs.",
+    "exam_summary": "Always use absolute temperatures (Kelvin). GATE loves efficiency calculation traps with Celsius.",
+    "typical_mistakes": "Using Celsius instead of Kelvin for temperature ratio.",
+    "memory_aid": "Carnot = ceiling. Real engines always perform worse.",
+    "related_concepts": ["Efficiency"]
   }
 ]

@@ -570,3 +570,76 @@ Open your browser and navigate to:
 * **Inline Reasoning Paths**: Each response includes a color-coded concept chain node visualization.
 * **Dual Backend**: Connects to the appropriate CAT V2 or VLCM model checkpoints for live CPU-level inference, falling back to pre-written datasets when checkpoints are offline.
 * **Source Badges**: Displays `⚡ VLCM/CAT Model` or `📚 Knowledge Base` badge for transparency.
+
+---
+
+## 🎓 GATE Mechanical Engineering Exam Mode
+
+The system now provides **LLM-style step-by-step GATE exam answers** for Mechanical Engineering — without changing the CAT V2 / VLCM neural architecture. A new orchestration layer (`gate_router.py`) fuses three components:
+
+```text
+Question Text
+  → grammar_parser (NL normalization: "ten kN" → 10 kN, boundary conditions)
+  → gate_router (multi-concept seeding + prerequisite hopping)
+  → equations_database (symbolic multi-hop solve with boundary inference)
+  → LLM-style composed answer (steps, exam tips, NAT validation)
+```
+
+### Multi-Concept Routing & Hopping
+
+`gate_router.py` performs **multi-hop concept routing** by:
+
+1. **Seeding** concepts from keyword overlap (`buckling` → `Euler Buckling`, `pinned` → `Boundary Condition`)
+2. **Fusing** neural model reasoning paths and top concept activations from VLCM/CAT V2
+3. **Hopping** through prerequisite and related-concept edges in `mechanical_concepts.json`
+4. **Stitching** curated GATE reasoning chains (e.g. `Compressive Load → Boundary Condition → Effective Length → Euler Buckling → Critical Load`)
+5. **Ranking** symbolic equations by the routed concept path
+
+### GATE Knowledge Banks (Wired to Runtime)
+
+| Bank | File | Types |
+| :--- | :--- | :--- |
+| NAT Questions | `data/mechanical_gate_questions.json` | Numerical answer type with step-by-step solutions |
+| MCQ Bank | `data/mechanical_mcq_bank.json` | Multiple choice with elimination explanations |
+| Numerical Bank | `data/mechanical_numerical_bank.json` | Formula-based practice problems |
+| Concept KB | `data/mechanical_concepts.json` | Exam tips, typical mistakes, prerequisite graph |
+
+### Symbolic Multi-Hop Solving
+
+`equations_database.check_and_solve_chain()` extends the symbolic solver with:
+
+* **Boundary condition inference**: `pinned ends` → K=1.0, `cantilever` → K=2.0, auto-computes L_e from L
+* **Concept-ranked equation selection**: routes to the right formula based on the concept path
+* **GATE NAT validation**: compares computed answer against bank solutions with ±2% tolerance
+* **Unit-aware output**: returns kN when the question asks for kN
+
+### API Endpoints
+
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/api/chat` | POST | Full pipeline: VLCM/CAT inference + GATE routing + symbolic solve |
+| `/api/gate/suggestions` | GET | Returns all GATE NAT, MCQ, and numerical practice questions |
+
+### Example GATE Queries
+
+```text
+"calculate stress if load equals ten kN and area measures five m^2"
+  → Concept path: Load → Stress
+  → Result: stress = 2000.0000 Pa
+
+"A steel column of length 2.0 m has pinned ends. E = 200e9 Pa, I = 1e-5 m^4. Critical buckling load in kN?"
+  → Concept path: Compressive Load → Boundary Condition → Effective Length → Euler Buckling
+  → Boundary inference: L_e = 1.0 × 2.0 = 2.0 m
+  → Result: P_cr = 4934.8 kN
+
+"For a column of length L, if one end is fixed and the other is free, what is the effective length?"
+  → GATE MCQ match → Answer: C (2L)
+```
+
+### Running GATE Tests
+
+```powershell
+python tests/test_grammar_parser.py -v
+```
+
+Tests cover: spelled-number conversion, boundary conditions, multi-hop concept routing, GATE bank matching, buckling NAT, Reynolds numerical, and chat server integration.
