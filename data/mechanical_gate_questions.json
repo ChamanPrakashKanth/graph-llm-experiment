@@ -32,9 +32,9 @@
     "calculation_steps": [
       "1. Cantilever = fixed-free, K = 2.0, L_e = 2L = 6.0 m",
       "2. P_cr = pi^2 * E * I / L_e^2",
-      "3. P_cr = 9.8696 * 210e9 * 2e-6 / 36 = 1.15e6 N = 1150 kN"
+      "3. P_cr = 9.8696 * 210e9 * 2e-6 / 36 = 1.15e5 N = 115.15 kN"
     ],
-    "correct_answer": "1150",
+    "correct_answer": "115.15",
     "physical_interpretation": "Cantilever columns have double the effective length of pinned columns."
   },
   {

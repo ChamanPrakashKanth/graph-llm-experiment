@@ -365,6 +365,12 @@ BOUNDARY_PATTERNS = [
 def _format_value(solved_val: float, output_unit: str = "") -> str:
     if output_unit == "kN" and solved_val >= 1e3:
         solved_val /= 1e3
+    elif output_unit == "MPa" and solved_val >= 1e6:
+        solved_val /= 1e6
+    elif output_unit == "GPa" and solved_val >= 1e9:
+        solved_val /= 1e9
+    elif output_unit == "kPa" and solved_val >= 1e3:
+        solved_val /= 1e3
     if abs(solved_val) >= 1e4 or (abs(solved_val) < 1e-2 and solved_val != 0):
         return f"{solved_val:.4e}"
     return f"{solved_val:.4f}"
