@@ -194,21 +194,199 @@ To retrain the Mechanical Engineering models:
 
 ---
 
-## 📊 Comparison & Benchmarks
+## 📐 Architectural Comparison: CAT V2/VLCM vs. Traditional LLMs
 
-Here is an empirical and theoretical comparison of the CAT V2 Concept SLM/VLCM against traditional token-level autoregressive models:
+A standard LLM and CAT V2/VLCM solve the same fundamental task—*given a user query, produce a structured technical answer*—but they operate on **completely different substrates**:
+
+*   **Standard LLMs**: Operate on **TOKENS** (subwords/words) and generate free-form text autoregressively.
+*   **CAT V2 / VLCM**: Operate on **CONCEPTS** (graph nodes/edges) and generate discrete reasoning paths.
+
+---
+
+### 1. Stage-by-Stage Architectural Comparison
+
+#### Stage 1: Input Encoding
+
+| Feature | Standard LLM (e.g., Llama-3 8B) | CAT V2 / VLCM |
+| :--- | :--- | :--- |
+| **Tokenizer** | Byte-Pair Encoding (BPE) with 128K vocabulary | `SimpleTokenizer` — Regex-based splitter, 100–1,500 domain concepts |
+| **Encoder** | 32-layer Transformer with RoPE position embeddings | `TinyTransformerEncoder` — 2-layer BertModel (4 heads, 128-dim hidden) |
+| **Output** | Full sequence of hidden states (one vector per token) | **Single CLS Vector** — 128-dim dense embedding for the entire query |
+| **Parameters** | ~8 Billion | ~200K (Encoder only) |
+
+**Key difference**: An LLM must keep representations for all tokens alive in memory for next-token generation. CAT V2/VLCM compresses the query context into a **single dense vector**, eliminating the need for a token sequence past this point.
+
+```mermaid
+graph LR
+    subgraph Standard LLM
+        A1[Token 1] --> B1[Hidden 1]
+        A2[Token 2] --> B2[Hidden 2]
+        A3[Token 3] --> B3[Hidden 3]
+        A4["..."] --> B4["..."]
+        AN[Token N] --> BN[Hidden N]
+    end
+
+    subgraph CAT V2
+        C1["Question Text"] --> D1["TinyTransformerEncoder"]
+        D1 --> E1["Single CLS Vector (128-d)"]
+    end
+```
+
+#### Stage 2: "What To Think About" — Attention vs. Concept Activation
+
+This is where the architectures fundamentally diverge.
+
+| Feature | Standard LLM (Self-Attention) | CAT V2 / VLCM (Concept Activation) |
+| :--- | :--- | :--- |
+| **Mechanism** | Soft attention across all tokens via $Q \cdot K^T / \sqrt{d}$ | Hard multi-label classification over concept vocabulary |
+| **Selection** | Dynamically determines token relevance per layer | Selects concrete graph nodes to activate (once per query) |
+| **Supervision** | Unsupervised (learned via next-token prediction) | **Directly supervised** via BCE loss against ground-truth concept labels |
+| **Interpretability** | Opaque (attention weight metrics do not guarantee explanation) | **100% Transparent** — activated concepts are human-readable nodes |
+
+```text
+question_embedding (128-d)
+       │
+       ▼
+  Linear(128 → 128) + GELU
+       │
+       ▼
+  Linear(128 → num_concepts)
+       │
+       ▼
+  sigmoid → multi-label probabilities
+       │
+       ▼
+  top-k(5) → activated concept nodes
+```
+
+#### Stage 3: "How To Reason" — Self-Attention vs. Graph Message Passing
+
+| Feature | LLM Stacked Self-Attention | CAT V2 / VLCM Graph Message Passing |
+| :--- | :--- | :--- |
+| **Connectivity** | All-to-all (dense $N \times N$) | **Edge-constrained** (sparse, only graph neighbors) |
+| **What Flows** | Arbitrary token representations | Concept activations along graph edges |
+| **Propagation Matrix** | Dynamic (learned $Q \cdot K^T$, calculated per input) | **Fixed from domain graph** (pre-computed, static) |
+| **Layers** | 32+ layers (billions of parameters) | 2 GNN layers (~130K parameters) |
+| **Compute Cost** | $O(N^2 \cdot d)$ where $N$ is sequence length | $O(E \cdot d)$ where $E$ is number of graph edges |
+| **Memory** | KV Cache grows linearly with context length | **Static**: $O(|V| \cdot d)$ (approx. 190 KB for MIT Math) |
+
+**Information routing**: LLMs route information freely between any two tokens across 32 layers. CAT V2/VLCM routes information **exclusively along graph edges** using a sparse `propagation_matrix` derived from the concept graph:
+
+$$\mathbf{M} = \text{propagation\_matrix} \times \mathbf{H}$$
+
+#### Stage 4: "What To Say Next" — Token Prediction vs. Path Generation
+
+| Feature | LLM Token Generation | CAT V2 / VLCM Path Generation |
+| :--- | :--- | :--- |
+| **Unit Generated** | 1 token (subword) | 1 concept (graph node) |
+| **Decoder** | Full transformer pass through all 32 layers | Single GRUCell or causal Transformer Decoder step |
+| **Constraints** | **None** — any vocabulary token is always valid | **Transition Mask** — only direct graph neighbors are allowed |
+| **Feedback Loop** | Previous tokens appended via KV Cache | **Re-runs GNN** with updated activations injected per step |
+| **Hallucination** | High (can generate arbitrary grammatically correct fiction) | **0% Path Hallucination** (constrained strictly to graph edges) |
+| **Cost Per Step** | ~8.2 Trillion FLOPs | ~1 Million FLOPs |
+
+**The Transition Mask constraint**: At each step, a boolean mask $M_{\text{trans}}$ is applied to the logit outputs, setting the probability of non-neighbor concepts to $-\infty$:
+
+$$\text{logits}_{\text{masked}}[j] = \begin{cases} \text{logits}[j] & \text{if } e_{i \to j} \in E \\ -\infty & \text{otherwise} \end{cases}$$
+
+#### Stage 5: Output Generation
+
+| Feature | Standard LLM | CAT V2 / VLCM |
+| :--- | :--- | :--- |
+| **Raw Output** | Sequence of tokens (direct natural language text) | Sequence of concept IDs (`["Gradient", "Hessian", "Eigenvalue"]`) |
+| **Post-Processing** | None | `TemplateAnswerDecoder` converts paths into technical answers |
+| **Verifiability** | Low (must verify facts post-generation) | **100% Verifiable** (path can be audited against the graph) |
+
+---
+
+### 2. Full Pipeline Visual Comparison
+
+```mermaid
+graph TD
+    subgraph Standard LLM Pipeline
+        L1["Input Text"] -->|BPE Tokenizer| L2["Token IDs"]
+        L2 -->|32-Layer Transformer| L3["Hidden States (all tokens)"]
+        L3 -->|Self-Attention × 32| L3
+        L3 -->|Linear → 128K vocab| L4["Next Token Probabilities"]
+        L4 -->|Sample/Argmax| L5["Generated Text Token"]
+        L5 -->|Append to context| L2
+    end
+
+    subgraph CAT V2 / VLCM Pipeline
+        C1["Input Text"] -->|SimpleTokenizer| C2["Token IDs"]
+        C2 -->|2-Layer TinyTransformer| C3["CLS Embedding (128-d)"]
+        C3 -->|ConceptActivator MLP| C4["Activated Concepts (top-5)"]
+        C3 -->|Question Projection| C5["Context Vector"]
+        C4 -->|Weighted Embeddings| C6["Concept Memory State"]
+        C6 -->|2-Layer GNN| C7["Propagated Graph State"]
+        C5 -->|Decoder Input| C8["Path Decoder Step (GRU/Transformer)"]
+        C7 -->|Concept Logits + Transition Mask| C8
+        C8 -->|Predicted Concept| C9["Reasoning Path"]
+        C9 -->|Feedback: inject into activations| C6
+        C9 -->|Template Decoder| C10["Natural Language Answer"]
+    end
+```
+
+---
+
+### 3. Empirical Comparison & Metrics
 
 | Dimension / Metric | Traditional Token LLM (e.g., Llama-3 8B) | CAT V2 / VLCM (Concept SLM) |
 | :--- | :--- | :--- |
 | **Fundamental Sequence Unit** | Token (Characters/Words) | Concept (Nodes/Edges) |
-| **Model Size (Parameters)** | 8,000,000,000 | **637,340** (Ultra-lightweight) |
+| **Model Size (Parameters)** | 8,000,000,000 (8B) | **637,340** (~12,500× smaller) |
 | **Reasoning Constraint** | Soft (Token Probability-based) | **Strict 100%** (Transition Mask) |
 | **Path Hallucinations** | High (frequently skips logical steps) | **0%** (Topologically constrained) |
-| **Memory Footprint (KV Cache / Graph)** | **50,000.00 MB** (at 100k context) | **2.43 MB** (~20,500x compression) |
-| **Generation Compute Cost** | ~8.2 Trillion FLOPs | **~7.6 Million FLOPs** (~1,000,000x saving) |
-| **Inference Hardware** | Multi-GPU Cloud Clusters / High-end RAM | CPU (Runs on microcontrollers & edge devices) |
+| **Memory Footprint (Inference)**| **~52,000 MB** (at 100k context KV cache) | **~190 KB - 2.43 MB** (Static graph state) |
+| **Compression Ratio** | 1× | **~280,000×** |
+| **Generation Compute Cost** | ~8.2 Trillion FLOPs | **~7.6 Million FLOPs** (~1,000,000× saving) |
+| **Inference Hardware** | Multi-GPU Cloud Clusters | CPU / Edge / Microcontrollers |
 | **Average Latency (CPU)** | Seconds to Minutes | **~19.17 ms** |
-| **GNN Graph Size (Python)** | N/A | **45 concepts**, **132 directed edges** |
+| **Concept Graph (Python Coding)** | N/A | **45 concepts, 132 edges** |
+| **Concept Graph (MIT Math)** | N/A | **374 concepts, 889 edges** |
+| **Concept Graph (Mech Eng)** | N/A | **1,477 concepts, 2,275 edges** |
+
+---
+
+### 4. The Core Tradeoff
+
+```text
+                    FLEXIBILITY ←————————————————————→ RELIABILITY
+
+  Standard LLMs ●
+  "Can answer anything,
+   but might hallucinate"
+
+                                          ● CAT V2 / VLCM
+                                      "Can only answer within
+                                       the graph, but guarantees
+                                       0% path hallucination"
+```
+
+#### Where Standard LLMs Win
+*   **Open-Ended Generation**: Can produce any text, code, translations, or creative outputs.
+*   **Self-Correction**: Attention maps can dynamically revise earlier reasoning mid-generation.
+*   **Scale Resilience**: Performance scales predictably with parameters and pre-training data.
+*   **Zero-Shot Generalization**: Strong generalization to completely unseen tasks and contexts.
+
+#### Where CAT V2 / VLCM Wins
+*   **Zero Logic Hallucinations**: Every step in a reasoning path is structurally checked against the domain graph.
+*   **100% Explainability**: The output is an explicit, human-readable chain of domain concepts.
+*   **Ultra-lightweight footprint**: Over 12,000× fewer parameters and 1,000,000× lower FLOP requirements per step.
+*   **Decoupled Memory**: Memory footprint remains $O(|V| \cdot d)$ and doesn't grow with planning path length, bypassing the transformer's linear KV cache growth.
+*   **Deterministic Safety**: Hard topological constraints make it impossible to traverse disconnected concepts.
+
+---
+
+### 5. Decoupling Planning from Generation: Architectural Implications
+
+CAT V2 / VLCM demonstrates that **abstract logical planning can be decoupled from natural language surface generation**. Standard LLMs perform planning and syntax generation concurrently, leading to hallucination and logical drift. By representing concepts explicitly, propagating activations neurally, and enforcing topological constraints, the architecture achieves:
+
+*   **Multi-hop logical reasoning** in a structured search space.
+*   **Zero-shot path traversal**: Inferring unseen concept chains ($A \rightarrow B$ and $B \rightarrow C$ yields $A \rightarrow C$ at test time).
+*   **100% auditable reasoning paths** before generating a single natural language token.
+
+The scaling frontier shown in experiments suggests **~50–80 concepts per domain** is the sweet spot for 128-dim embeddings. Beyond that, either the embedding dimensionality must scale, or the architecture needs a mid-path self-correction/jump mechanism to escape attractor traps.
 
 ---
 
