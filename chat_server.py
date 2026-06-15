@@ -131,7 +131,7 @@ def find_best_match(question, dataset):
     return best_entry
 
 @torch.no_grad()
-def predict_reasoning(loaded, question):
+def predict_reasoning(loaded, question, beam_width=1):
     model = loaded["model"]
     vocab = loaded["vocab"]
     tokenizer = loaded["tokenizer"]
@@ -143,7 +143,7 @@ def predict_reasoning(loaded, question):
     input_ids = encoded["input_ids"].unsqueeze(0).to(device)
     attention_mask = encoded["attention_mask"].unsqueeze(0).to(device)
 
-    outputs = model(input_ids, attention_mask)
+    outputs = model(input_ids, attention_mask, beam_width=beam_width)
 
     path_ids = outputs["predicted_path"][0].detach().cpu().tolist()
     path_scores = outputs["path_scores"][0].detach().cpu().tolist()
@@ -241,6 +241,8 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                 data = json.loads(body.decode("utf-8"))
                 question = data.get("question", "").strip()
                 domain = data.get("domain", "mechanical_engineering").strip()
+                beam_width = int(data.get("beam_width", 1))
+                beam_width = max(1, min(beam_width, 5))
 
                 if not question:
                     raise ValueError("Empty question")
@@ -254,7 +256,7 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                 dataset = get_dataset(domain)
 
                 if loaded:
-                    result = predict_reasoning(loaded, question)
+                    result = predict_reasoning(loaded, question, beam_width=beam_width)
                     response_data["reasoning_path"] = result["reasoning_path"]
                     response_data["path_probabilities"] = result["path_probabilities"]
                     response_data["top_concepts"] = result["top_concepts"]
@@ -1219,6 +1221,18 @@ CHAT_HTML = r"""<!DOCTYPE html>
                 </button>
             </div>
         </div>
+        <div class="sidebar-header" style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+            <h2>Decoding Settings</h2>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                <span>Beam Width:</span>
+                <select id="beam-width-select" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); color: var(--text-primary); border-radius: var(--radius-sm); padding: 0.25rem 0.5rem; outline: none; font-size: 0.8rem; cursor: pointer; font-family: inherit; font-weight: 600;">
+                    <option value="1" selected>1 (Greedy)</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
         <div class="sidebar-questions-title">Recommended Questions</div>
         <div class="sidebar-questions" id="questions-list">
             <!-- Populated by JS -->
@@ -1501,10 +1515,11 @@ async function sendMessage() {
     const typingEl = addTypingIndicator();
 
     try {
+        const beamWidth = parseInt(document.getElementById("beam-width-select")?.value || "1", 10);
         const res = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: text, domain: currentDomain })
+            body: JSON.stringify({ question: text, domain: currentDomain, beam_width: beamWidth })
         });
 
         if (!res.ok) throw new Error("Server error");
