@@ -211,6 +211,7 @@ class PathGenerator(nn.Module):
         # Track GNN activations and states iteratively
         activation_probs = initial_activation_probs.clone()
         final_graph_state = None
+        finished = torch.zeros(batch_size, dtype=torch.bool, device=question_context.device)
 
         for step in range(self.path_length):
             # Dynamic GNN memory propagation at each iteration
@@ -239,6 +240,10 @@ class PathGenerator(nn.Module):
             logits = logits.masked_fill(~allowed, -1.0e4)
 
             predicted = logits.argmax(dim=-1)
+
+            if target_paths is None:
+                predicted = torch.where(finished, torch.tensor(self.eos_id, device=question_context.device), predicted)
+
             log_probs = F.log_softmax(logits, dim=-1)
             scores = log_probs.gather(1, predicted.unsqueeze(1)).squeeze(1)
 
@@ -255,6 +260,18 @@ class PathGenerator(nn.Module):
                 )
             else:
                 next_ids = predicted
+
+            if target_paths is None:
+                finished = finished | (predicted == self.eos_id) | (predicted == self.pad_id)
+                if finished.all():
+                    remaining = self.path_length - len(prediction_steps)
+                    for _ in range(remaining):
+                        pad_logits = torch.full_like(logits, -1.0e4)
+                        pad_logits[:, self.eos_id] = 0.0
+                        logits_steps.append(pad_logits)
+                        prediction_steps.append(torch.full((batch_size,), self.eos_id, dtype=torch.long, device=question_context.device))
+                        score_steps.append(torch.zeros((batch_size,), device=question_context.device))
+                    break
 
             prev_ids = next_ids.clamp(min=0, max=num_concepts - 1)
             
@@ -385,12 +402,23 @@ class CATReasoningModel(nn.Module):
         input_ids: torch.Tensor,
         attention_mask: torch.Tensor,
         target_paths: Optional[torch.Tensor] = None,
+        beam_width: int = 1,
     ) -> Dict[str, torch.Tensor]:
         question_embedding = self.encode_question(input_ids, attention_mask)
         projected_question = self.question_projection(question_embedding)
 
         activated = self.activator(question_embedding, top_k=self.top_k)
         activation_probs = activated["activation_probs"]
+
+        if target_paths is None and beam_width > 1:
+            return self.beam_search(
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+                question_embedding=question_embedding,
+                projected_question=projected_question,
+                activated=activated,
+                beam_width=beam_width,
+            )
 
         path_output = self.path_generator(
             memory=self.memory,
@@ -418,6 +446,202 @@ class CATReasoningModel(nn.Module):
                 path_output["predicted_path"],
                 path_output["path_scores"],
             ),
+        }
+
+    @torch.no_grad()
+    def beam_search(
+        self,
+        input_ids: torch.Tensor,
+        attention_mask: torch.Tensor,
+        question_embedding: torch.Tensor,
+        projected_question: torch.Tensor,
+        activated: Dict[str, torch.Tensor],
+        beam_width: int = 3,
+    ) -> Dict[str, torch.Tensor]:
+        batch_size = input_ids.size(0)
+        device = input_ids.device
+        num_concepts = self.config["num_concepts"]
+        path_length = self.config["path_length"]
+
+        final_prediction_steps = []
+        final_score_steps = []
+        final_logits_steps = []
+        final_graph_state = None
+
+        for b in range(batch_size):
+            sample_question_context = projected_question[b].unsqueeze(0)
+            sample_activation_logits = activated["activation_logits"][b]
+            sample_initial_activation_probs = activated["activation_probs"][b]
+
+            hidden = torch.tanh(self.path_generator.question_init(sample_question_context))
+            context = torch.tanh(self.path_generator.context_projection(sample_question_context))
+
+            # Step 0
+            concept_memory = self.memory.all_embeddings().unsqueeze(0)
+            current_state = self.input_norm(
+                concept_memory
+                + sample_question_context.unsqueeze(1) * sample_initial_activation_probs.unsqueeze(0).unsqueeze(-1)
+            )
+            graph_state = self.graph_reasoner(current_state, self.propagation_matrix)
+            
+            prev_embedding = self.path_generator.start_embedding.unsqueeze(0)
+            decoder_input = torch.cat([prev_embedding, context], dim=-1)
+            hidden = self.path_generator.gru(decoder_input, hidden)
+
+            logits = self.path_generator.output_head(hidden) + 0.25 * sample_activation_logits.unsqueeze(0)
+            allowed = self.first_step_mask.unsqueeze(0)
+            logits = logits.masked_fill(~allowed, -1.0e4)
+
+            log_probs = F.log_softmax(logits, dim=-1).squeeze(0)
+            top_scores, top_ids = torch.topk(log_probs, k=min(beam_width, num_concepts))
+
+            active_beams = []
+            for score, cid in zip(top_scores.tolist(), top_ids.tolist()):
+                if score > -1.0e3:
+                    act_probs = sample_initial_activation_probs.clone()
+                    act_probs[int(cid)] = 1.0
+                    active_beams.append({
+                        "path": [int(cid)],
+                        "score": float(score),
+                        "hidden": hidden,
+                        "activation_probs": act_probs,
+                        "finished": (int(cid) == self.vocab_eos_id) or (int(cid) == self.vocab_pad_id)
+                    })
+
+            if not active_beams:
+                act_probs = sample_initial_activation_probs.clone()
+                act_probs[int(top_ids[0].item())] = 1.0
+                active_beams.append({
+                    "path": [int(top_ids[0].item())],
+                    "score": float(top_scores[0].item()),
+                    "hidden": hidden,
+                    "activation_probs": act_probs,
+                    "finished": False
+                })
+
+            for step in range(1, path_length):
+                if all(beam["finished"] for beam in active_beams):
+                    break
+
+                candidates = []
+                beams_to_run = [beam for beam in active_beams if not beam["finished"]]
+                beams_finished = [beam for beam in active_beams if beam["finished"]]
+
+                for beam in beams_to_run:
+                    concept_memory = self.memory.all_embeddings().unsqueeze(0)
+                    current_state = self.input_norm(
+                        concept_memory
+                        + sample_question_context.unsqueeze(1) * beam["activation_probs"].unsqueeze(0).unsqueeze(-1)
+                    )
+                    graph_state = self.graph_reasoner(current_state, self.propagation_matrix)
+                    final_graph_state = graph_state
+
+                    prev_embedding = graph_state[0, beam["path"][-1]].unsqueeze(0)
+                    decoder_input = torch.cat([prev_embedding, context], dim=-1)
+                    next_hidden = self.path_generator.gru(decoder_input, beam["hidden"])
+
+                    logits = self.path_generator.output_head(next_hidden) + 0.25 * sample_activation_logits.unsqueeze(0)
+                    prev_id = beam["path"][-1]
+                    allowed = self.transition_mask[prev_id].unsqueeze(0)
+                    logits = logits.masked_fill(~allowed, -1.0e4)
+
+                    beam_log_probs = F.log_softmax(logits, dim=-1).squeeze(0)
+                    top_k_scores, top_k_ids = torch.topk(beam_log_probs, k=min(beam_width, num_concepts))
+
+                    for next_score, next_cid in zip(top_k_scores.tolist(), top_k_ids.tolist()):
+                        if next_score > -1.0e3:
+                            next_cid_int = int(next_cid)
+                            next_act_probs = beam["activation_probs"].clone()
+                            next_act_probs[next_cid_int] = 1.0
+                            is_eos = (next_cid_int == self.vocab_eos_id) or (next_cid_int == self.vocab_pad_id)
+                            candidates.append({
+                                "path": beam["path"] + [next_cid_int],
+                                "score": beam["score"] + float(next_score),
+                                "hidden": next_hidden,
+                                "activation_probs": next_act_probs,
+                                "finished": is_eos
+                            })
+
+                for beam in beams_finished:
+                    candidates.append({
+                        "path": beam["path"] + [self.vocab_eos_id],
+                        "score": beam["score"],
+                        "hidden": beam["hidden"],
+                        "activation_probs": beam["activation_probs"],
+                        "finished": True
+                    })
+
+                candidates.sort(key=lambda x: x["score"], reverse=True)
+                active_beams = candidates[:beam_width]
+
+            active_beams.sort(key=lambda x: x["score"], reverse=True)
+            best_beam = active_beams[0]
+            best_path = best_beam["path"]
+
+            if len(best_path) < path_length:
+                best_path.extend([self.vocab_eos_id] * (path_length - len(best_path)))
+            best_path = best_path[:path_length]
+
+            final_pred_tensor = torch.tensor(best_path, device=device)
+            final_prediction_steps.append(final_pred_tensor)
+
+            # Re-run logits mapping for scores and logits shape
+            sample_logits_list = []
+            sample_scores_list = []
+
+            hidden = torch.tanh(self.path_generator.question_init(sample_question_context))
+            activation_probs = sample_initial_activation_probs.clone()
+
+            for step_idx in range(path_length):
+                concept_memory = self.memory.all_embeddings().unsqueeze(0)
+                current_state = self.input_norm(
+                    concept_memory
+                    + sample_question_context.unsqueeze(1) * activation_probs.unsqueeze(0).unsqueeze(-1)
+                )
+                graph_state = self.graph_reasoner(current_state, self.propagation_matrix)
+                final_graph_state = graph_state
+
+                if step_idx == 0:
+                    prev_embedding = self.path_generator.start_embedding.unsqueeze(0)
+                else:
+                    prev_embedding = graph_state[0, best_path[step_idx - 1]].unsqueeze(0)
+
+                decoder_input = torch.cat([prev_embedding, context], dim=-1)
+                hidden = self.path_generator.gru(decoder_input, hidden)
+
+                logits = self.path_generator.output_head(hidden) + 0.25 * sample_activation_logits.unsqueeze(0)
+                if step_idx == 0:
+                    allowed = self.first_step_mask.unsqueeze(0)
+                else:
+                    allowed = self.transition_mask[best_path[step_idx - 1]].unsqueeze(0)
+                logits = logits.masked_fill(~allowed, -1.0e4)
+                log_probs = F.log_softmax(logits, dim=-1)
+                
+                score = log_probs[0, best_path[step_idx]].item()
+                
+                sample_logits_list.append(logits.squeeze(0))
+                sample_scores_list.append(torch.tensor(score, device=device))
+
+                # Inject best path concept back
+                activation_probs[best_path[step_idx]] = 1.0
+
+            final_logits_steps.append(torch.stack(sample_logits_list, dim=0))
+            final_score_steps.append(torch.stack(sample_scores_list, dim=0))
+
+        path_logits = torch.stack(final_logits_steps, dim=0)
+        predicted_path = torch.stack(final_prediction_steps, dim=0)
+        path_scores = torch.stack(final_score_steps, dim=0)
+
+        return {
+            "question_embedding": question_embedding,
+            "activation_logits": activated["activation_logits"],
+            "activated_concepts": activated["concept_ids"],
+            "activation_scores": activated["concept_scores"],
+            "graph_state": final_graph_state,
+            "path_logits": path_logits,
+            "predicted_path": predicted_path,
+            "path_scores": path_scores,
+            "traversal_trace": self._build_traversal_trace(predicted_path, path_scores),
         }
 
 

@@ -191,5 +191,41 @@ class TrainerIntegrationTests(unittest.TestCase):
             self.assertIn("concept_f1", path_metrics)
 
 
+class CATBeamSearchAndEarlyStoppingTests(unittest.TestCase):
+    def test_beam_search_and_early_stopping(self):
+        with tempdir() as tmp:
+            root = Path(tmp)
+            dataset = ReasoningDataset(write_dataset(root), max_length=16, max_path_length=6)
+            loader = DataLoader(
+                dataset,
+                batch_size=2,
+                shuffle=False,
+                collate_fn=ReasoningCollator(),
+            )
+            model = tiny_model(dataset)
+            model.eval()
+
+            for batch in loader:
+                input_ids = batch["input_ids"]
+                attention_mask = batch["attention_mask"]
+                bsz = input_ids.size(0)
+                
+                with torch.no_grad():
+                    out_greedy = model(input_ids, attention_mask, beam_width=1)
+                
+                self.assertIn("predicted_path", out_greedy)
+                self.assertEqual(out_greedy["predicted_path"].shape, (bsz, 6))
+                
+                with torch.no_grad():
+                    out_beam = model(input_ids, attention_mask, beam_width=3)
+                
+                self.assertIn("predicted_path", out_beam)
+                self.assertEqual(out_beam["predicted_path"].shape, (bsz, 6))
+                
+                for path in out_beam["predicted_path"]:
+                    for cid in path.tolist():
+                        self.assertTrue(0 <= cid < dataset.vocab.size())
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -148,7 +148,7 @@ def load_or_build_system(args) -> VLCMReasoningSystem:
 
 def infer_command(args) -> None:
     system = load_or_build_system(args)
-    result = system.answer(args.question, max_length=args.max_length)
+    result = system.answer(args.question, max_length=args.max_length, beam_width=args.beam_width)
     print("Question:")
     print(result["question"])
     print("\nActivated Concepts:")
@@ -189,7 +189,7 @@ def evaluate_command(args) -> None:
         input_ids = batch["input_ids"].to(loaded["device"])
         attention_mask = batch["attention_mask"].to(loaded["device"])
         target = batch["path_ids"].to(loaded["device"])
-        outputs = model(input_ids, attention_mask)
+        outputs = model(input_ids, attention_mask, beam_width=args.beam_width)
         metrics = compute_path_metrics(
             outputs["predicted_path"],
             target,
@@ -295,6 +295,7 @@ def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--dropout", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--beam-width", type=int, default=1)
 
 
 def build_parser() -> argparse.ArgumentParser:

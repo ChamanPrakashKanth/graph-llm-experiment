@@ -72,13 +72,13 @@ class VLCMReasoningSystem:
         self.model.to(self.device)
         self.model.eval()
 
-    def predict_path_ids(self, question: str, max_length: int = 64) -> Dict[str, object]:
+    def predict_path_ids(self, question: str, max_length: int = 64, beam_width: int = 1) -> Dict[str, object]:
         encoded = self.tokenizer.encode(question, max_length=max_length)
         input_ids = encoded["input_ids"].unsqueeze(0).to(self.device)
         attention_mask = encoded["attention_mask"].unsqueeze(0).to(self.device)
 
         with torch.no_grad():
-            outputs = self.model(input_ids, attention_mask)
+            outputs = self.model(input_ids, attention_mask, beam_width=beam_width)
 
         path_ids = outputs["predicted_path"][0].detach().cpu().tolist()
         return {
@@ -86,8 +86,8 @@ class VLCMReasoningSystem:
             "outputs": outputs,
         }
 
-    def answer(self, question: str, max_length: int = 64) -> Dict[str, object]:
-        prediction = self.predict_path_ids(question, max_length=max_length)
+    def answer(self, question: str, max_length: int = 64, beam_width: int = 1) -> Dict[str, object]:
+        prediction = self.predict_path_ids(question, max_length=max_length, beam_width=beam_width)
         reasoning_path = self.vocab.decode_path(prediction["path_ids"])
         answer = self.decoder.generate_answer(question, reasoning_path)
         outputs = prediction["outputs"]

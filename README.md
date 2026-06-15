@@ -73,6 +73,8 @@ graph TD
 ## 🚀 Key Features
 
 * **Strict Graph Constraint**: Uses a topological transition mask to restrict path generation at each step. Logic-leap and path hallucination rate is **0%**.
+* **Constrained Beam Search Decoding (Option 1)**: Decodes multiple candidate planning paths in parallel (configured via `--beam-width`), selecting the path with the highest cumulative log-probability that strictly respects GNN edge transition constraints. Available in both CAT V2 and VLCM.
+* **Dynamic Path Early-Stopping (Option 2)**: Automatically halts inference loops early once all batch elements reach the `<EOS>` or `<PAD>` state, avoiding redundant forward passes while padding remaining steps with `<EOS>` to preserve downstream tensor shapes.
 * **Domain Checkpoints**: Includes pre-trained checkpoints for:
   * ⚙️ **Mechanical Engineering (VLCM)** (1000-chunk dataset trained with second-order loss)
   * 🧮 **Computational Fluid Dynamics (CFD)**
@@ -191,6 +193,24 @@ To retrain the Mechanical Engineering models:
 # Train Second-Order Model
 .\.venv\Scripts\python.exe vlcm/run_vlcm.py train --dataset data/mechanical_engineering_dataset.json --checkpoint-dir checkpoints/vlcm_mech_2nd_order --epochs 30 --batch-size 8 --lr 3e-4 --path-length 8 --concept-dim 128 --hidden-size 128 --graph-layers 2 --second-order-weight 0.1
 ```
+
+---
+
+## 🔍 Search and Decoding Enhancements
+
+We implemented two primary enhancements to the decoding mechanics of both CAT V2 and VLCM architectures:
+
+### 1. Constrained Beam Search Decoding (Option 1)
+Instead of decoding reasoning paths greedily, the model can search over multiple candidate sequences in parallel.
+* **Recursive Working Memory Synchronization**: In CAT V2, every candidate beam path recursively updates and carries its own historical copy of `activation_probs` because GNN state updates are run recursively at each step with path-modified concept activations.
+* **Transition Mask Filter**: Candidate paths are strictly pruned at each step to ensure only valid graph edges are traversed, keeping the **0% logic hallucination guarantee** active.
+* **Trace Score Re-computation**: To preserve compatibility with upstream visualization tools (e.g., GUI and Chat UI), the final selected path has its exact step logits and probabilities reconstructed.
+* **Activation**: Enabled via `--beam-width <N>` flag where `<N> > 1`.
+
+### 2. Dynamic Path Early-Stopping (Option 2)
+Prior to this enhancement, path decoding always executed for a fixed `path_length` steps. 
+* **Self-Termination**: The inference loop now detects when all queries in a batch have transitioned to `<EOS>` or `<PAD>`.
+* **Consistent Shapes**: To prevent shape mismatches and preserve backward compatibility with the training collator, validation metrics, and evaluation trace pipelines, remaining steps are automatically padded with `<EOS>` and score tensors are padded with `0.0`.
 
 ---
 
@@ -484,9 +504,13 @@ Train models on structural, CFD, python coding, or MIT mathematics reasoning dat
 ```
 
 ### 4. Path Inference
-Query a trained checkpoint to generate a planning path and solution:
+Query a trained checkpoint to generate a planning path and solution. Pass `--beam-width <N>` (default is 1) to enable Constrained Beam Search:
 ```powershell
-.\.venv\Scripts\python.exe run_reasoning.py infer --dataset data/python_coding_dataset.json --checkpoint-dir checkpoints/cat_v2_python_coding --graph-file data/python_coding_graph.json --question "How to filter a list of numbers to find even numbers?"
+# CAT V2 path inference with Constrained Beam Search (beam-width = 3)
+.\.venv\Scripts\python.exe run_reasoning.py infer --dataset data/python_coding_dataset.json --checkpoint-dir checkpoints/cat_v2_python_coding --graph-file data/python_coding_graph.json --question "How to filter a list of numbers to find even numbers?" --beam-width 3
+
+# VLCM path inference with Constrained Beam Search (beam-width = 3) on Mechanical Engineering
+.\.venv\Scripts\python.exe vlcm/run_vlcm.py infer --dataset data/mechanical_engineering_dataset.json --checkpoint-dir checkpoints/vlcm_mech_2nd_order --question "Why does a column buckle under compression?" --beam-width 3
 ```
 
 ### 5. Run the Benchmarks
