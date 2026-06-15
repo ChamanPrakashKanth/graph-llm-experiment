@@ -22,7 +22,7 @@ from reasoning_dataset import ConceptVocabulary, ReasoningCollator, ReasoningDat
 from vlcm.decoder import VLCMReasoningSystem
 from vlcm.graph_reasoner import ReasoningGraph
 from vlcm.path_generator import VLCMModel
-from vlcm.reasoning_loss import compute_path_metrics
+from vlcm.reasoning_loss import VLCMReasoningLoss, compute_path_metrics
 
 
 class VLCMEvaluator:
@@ -88,6 +88,9 @@ def run_engineering_domain_test(device: str = "cpu") -> bool:
       Pressure -> ? -> Cooling Rate
       We expect the model to infer: Pressure -> Velocity -> Turbulence -> Heat Transfer -> Cooling Rate
     """
+    import random
+    random.seed(42)
+    torch.manual_seed(42)
     print("=== Running Engineering Domain Test (Concept Chain Discovery) ===")
     
     # 1. Prepare vocabulary and simple tokenizer
@@ -162,7 +165,7 @@ def run_engineering_domain_test(device: str = "cpu") -> bool:
 
         # 5. Overfit on the subchains so the transition probabilities and embeddings are learned
         optimizer = torch.optim.AdamW(model.parameters(), lr=0.01)
-        loss_fn = torch.nn.CrossEntropyLoss(ignore_index=vocab.pad_id)
+        loss_fn = VLCMReasoningLoss(pad_id=vocab.pad_id, activation_weight=1.0)
         
         # Train for 50 epochs to guarantee learning of edge transitions
         model.train()
@@ -171,16 +174,16 @@ def run_engineering_domain_test(device: str = "cpu") -> bool:
                 input_ids = batch["input_ids"].to(device)
                 attention_mask = batch["attention_mask"].to(device)
                 path_ids = batch["path_ids"].to(device)
+                activation_targets = batch["activation_targets"].to(device)
                 
                 optimizer.zero_grad()
                 outputs = model(input_ids, attention_mask, target_paths=path_ids)
                 
-                # Simple path CE loss for verification
-                logits = outputs["path_logits"]
-                batch_sz, seq_len, vocab_sz = logits.shape
-                loss = loss_fn(
-                    logits.reshape(batch_sz * seq_len, vocab_sz),
-                    path_ids.reshape(batch_sz * seq_len),
+                loss, _ = loss_fn(
+                    outputs,
+                    path_ids,
+                    activation_targets,
+                    transition_mask=model.transition_mask,
                 )
                 loss.backward()
                 optimizer.step()

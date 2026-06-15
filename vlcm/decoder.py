@@ -11,6 +11,7 @@ from typing import Dict, List, Optional, Sequence
 import torch
 
 from reasoning_dataset import ConceptVocabulary, SimpleTokenizer
+from answer_decoder import T5AnswerDecoder
 
 
 def show_reasoning_path(concepts: Sequence[str]) -> str:
@@ -67,13 +68,29 @@ class VLCMReasoningSystem:
         self.model = model
         self.vocab = vocab
         self.tokenizer = tokenizer
-        self.decoder = decoder or TemplateAnswerDecoder()
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        
+        if decoder is None:
+            import os
+            t5_path = "checkpoints/answer_decoder_t5"
+            if os.path.exists(t5_path) and any(os.listdir(t5_path)):
+                try:
+                    decoder = T5AnswerDecoder(model_dir=t5_path, device=self.device)
+                    print(f"Loaded local T5 answer decoder from {t5_path}")
+                except Exception as e:
+                    print(f"Could not load T5 answer decoder from {t5_path}: {e}. Falling back to TemplateAnswerDecoder.")
+                    decoder = TemplateAnswerDecoder()
+            else:
+                decoder = TemplateAnswerDecoder()
+        self.decoder = decoder
+        
         self.model.to(self.device)
         self.model.eval()
 
     def predict_path_ids(self, question: str, max_length: int = 64, beam_width: int = 1) -> Dict[str, object]:
-        encoded = self.tokenizer.encode(question, max_length=max_length)
+        import grammar_parser
+        normalized = grammar_parser.normalize_query(question)
+        encoded = self.tokenizer.encode(normalized, max_length=max_length)
         input_ids = encoded["input_ids"].unsqueeze(0).to(self.device)
         attention_mask = encoded["attention_mask"].unsqueeze(0).to(self.device)
 

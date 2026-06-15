@@ -37,6 +37,65 @@ class TemplateAnswerDecoder:
         return f"The predicted reasoning path is {chain}, connecting {start} to {end}."
 
 
+class T5AnswerDecoder:
+    """T5-based local answer decoder fine-tuned on ME datasets."""
+
+    def __init__(self, model_dir: str = "checkpoints/answer_decoder_t5", device: Optional[str] = None) -> None:
+        from transformers import T5ForConditionalGeneration, T5Tokenizer
+        
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.tokenizer = T5Tokenizer.from_pretrained(model_dir, legacy=False)
+        self.model = T5ForConditionalGeneration.from_pretrained(model_dir).to(self.device)
+        self.model.eval()
+
+    def generate_answer(self, question: str, reasoning_path: Sequence[str]) -> str:
+        if not reasoning_path:
+            return "No stable reasoning path was found for the question."
+            
+        # Try symbolic solver first (Layer 4 - Better hands)
+        try:
+            import equations_database
+            from gate_router import route_concepts
+            routing = route_concepts(question, model_path=list(reasoning_path))
+            solved = equations_database.check_and_solve_chain(
+                question,
+                concept_path=list(reasoning_path),
+                ranked_equations=routing.get("ranked_equations")
+            )
+            if solved:
+                steps_str = "\n".join([f"  {s}" for s in solved["calculation_steps"]])
+                return (
+                    f"Symbolic Solver Output:\n"
+                    f"{steps_str}\n"
+                    f"Result: {solved['solved_variable']} = {solved['solved_value']}"
+                )
+        except Exception as e:
+            # Fallback to model output if solver fails or raises exception
+            pass
+            
+        path_str = " -> ".join(reasoning_path)
+        input_text = f"question: {question} path: {path_str}"
+        
+        inputs = self.tokenizer(
+            input_text,
+            max_length=128,
+            padding="max_length",
+            truncation=True,
+            return_tensors="pt"
+        ).to(self.device)
+        
+        with torch.no_grad():
+            outputs = self.model.generate(
+                input_ids=inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
+                max_length=128,
+                num_beams=3,
+                early_stopping=True
+            )
+            
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+
 class OptionalLLMAnswerDecoder:
     """Optional transformers decoder. It is never used unless a model is supplied."""
 
@@ -85,13 +144,29 @@ class CATReasoningSystem:
         self.reasoning_model = reasoning_model
         self.vocab = vocab
         self.tokenizer = tokenizer
-        self.decoder = decoder or TemplateAnswerDecoder()
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        
+        if decoder is None:
+            import os
+            t5_path = "checkpoints/answer_decoder_t5"
+            if os.path.exists(t5_path) and any(os.listdir(t5_path)):
+                try:
+                    decoder = T5AnswerDecoder(model_dir=t5_path, device=self.device)
+                    print(f"Loaded local T5 answer decoder from {t5_path}")
+                except Exception as e:
+                    print(f"Could not load T5 answer decoder from {t5_path}: {e}. Falling back to TemplateAnswerDecoder.")
+                    decoder = TemplateAnswerDecoder()
+            else:
+                decoder = TemplateAnswerDecoder()
+        self.decoder = decoder
+        
         self.reasoning_model.to(self.device)
         self.reasoning_model.eval()
 
     def predict_path_ids(self, question: str, max_length: int = 64, beam_width: int = 1) -> Dict[str, object]:
-        encoded = self.tokenizer.encode(question, max_length=max_length)
+        import grammar_parser
+        normalized = grammar_parser.normalize_query(question)
+        encoded = self.tokenizer.encode(normalized, max_length=max_length)
         input_ids = encoded["input_ids"].unsqueeze(0).to(self.device)
         attention_mask = encoded["attention_mask"].unsqueeze(0).to(self.device)
 

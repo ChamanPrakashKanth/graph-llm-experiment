@@ -12,3 +12,4 @@ cat_v2_test_tmp/
 *.pth
 *.pt
 *.ckpt
+checkpoints/

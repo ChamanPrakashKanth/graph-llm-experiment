@@ -88,6 +88,7 @@ def train_command(args) -> None:
         graph_layers=args.graph_layers,
         top_k=args.top_k,
         dropout=args.dropout,
+        pretrained_encoder_name=getattr(args, "pretrained_encoder", None),
     )
     trainer = VLCMTrainer(
         model=model,
@@ -137,6 +138,7 @@ def load_or_build_system(args) -> VLCMReasoningSystem:
         graph_layers=args.graph_layers,
         top_k=args.top_k,
         dropout=args.dropout,
+        pretrained_encoder_name=getattr(args, "pretrained_encoder", None),
     )
     return VLCMReasoningSystem(
         model,
@@ -296,6 +298,7 @@ def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--dropout", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--beam-width", type=int, default=1)
+    parser.add_argument("--pretrained-encoder", default=None)
 
 
 def build_parser() -> argparse.ArgumentParser:

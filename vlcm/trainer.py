@@ -219,6 +219,7 @@ def load_vlcm_checkpoint(
         graph_layers=int(config.get("graph_layers", 2)),
         top_k=int(config.get("top_k", 5)),
         dropout=float(config.get("dropout", 0.1)),
+        pretrained_encoder_name=config.get("pretrained_encoder_name", None),
     )
     model.load_state_dict(payload["model_state"])
     model.to(target_device)

@@ -243,6 +243,7 @@ class VLCMModel(nn.Module):
         graph_layers: int = 2,
         top_k: int = 5,
         dropout: float = 0.1,
+        pretrained_encoder_name: Optional[str] = None,
     ) -> None:
         super().__init__()
         self.config = {
@@ -257,6 +258,7 @@ class VLCMModel(nn.Module):
             "graph_layers": graph_layers,
             "top_k": top_k,
             "dropout": dropout,
+            "pretrained_encoder_name": pretrained_encoder_name,
         }
         self.vocab_pad_id = vocab.pad_id
         self.vocab_eos_id = vocab.eos_id
@@ -270,7 +272,11 @@ class VLCMModel(nn.Module):
             num_hidden_layers=num_hidden_layers,
             num_attention_heads=num_attention_heads,
             intermediate_size=intermediate_size,
+            pretrained_encoder_name=pretrained_encoder_name,
         )
+        if pretrained_encoder_name:
+            for p in self.encoder.parameters():
+                p.requires_grad = False
         encoder_dim = self.encoder.hidden_size
         self.question_projection = nn.Linear(encoder_dim, concept_dim)
 

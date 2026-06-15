@@ -100,6 +100,18 @@ def get_system(domain):
         print(f"Loading checkpoint for {domain}: {path_str}")
         try:
             loaded = loader(path, device="cpu")
+            import os
+            from answer_decoder import T5AnswerDecoder, TemplateAnswerDecoder
+            t5_path = "checkpoints/answer_decoder_t5"
+            if os.path.exists(t5_path) and any(os.listdir(t5_path)):
+                try:
+                    loaded["decoder"] = T5AnswerDecoder(model_dir=t5_path, device="cpu")
+                    print(f"Loaded and cached T5AnswerDecoder in chat_server for domain: {domain}")
+                except Exception as ex:
+                    print(f"Failed to load T5 decoder: {ex}. Falling back to TemplateAnswerDecoder.")
+                    loaded["decoder"] = TemplateAnswerDecoder()
+            else:
+                loaded["decoder"] = TemplateAnswerDecoder()
             _LOADED_SYSTEMS[path_str] = loaded
         except Exception as e:
             print(f"Failed to load checkpoint {path_str}: {e}")
@@ -140,6 +152,9 @@ def find_best_match(question, dataset):
 
 @torch.no_grad()
 def predict_reasoning(loaded, question, beam_width=1):
+    import grammar_parser
+    normalized_question = grammar_parser.normalize_query(question)
+
     model = loaded["model"]
     vocab = loaded["vocab"]
     tokenizer = loaded["tokenizer"]
@@ -147,7 +162,7 @@ def predict_reasoning(loaded, question, beam_width=1):
 
     model.eval()
 
-    encoded = tokenizer.encode(question, max_length=64)
+    encoded = tokenizer.encode(normalized_question, max_length=64)
     input_ids = encoded["input_ids"].unsqueeze(0).to(device)
     attention_mask = encoded["attention_mask"].unsqueeze(0).to(device)
 
@@ -165,6 +180,17 @@ def predict_reasoning(loaded, question, beam_width=1):
         path_probs.append(min(max(p, 0.0), 1.0))
 
     reasoning_path = vocab.decode_path(path_ids)
+
+    # Generate answer using cached decoder
+    decoder = loaded.get("decoder")
+    if decoder is not None:
+        try:
+            answer = decoder.generate_answer(normalized_question, reasoning_path)
+        except Exception as ex:
+            print(f"Error generating answer in predict_reasoning: {ex}")
+            answer = ""
+    else:
+        answer = ""
 
     # Sigmoid activations
     if "activation_logits" in outputs:
@@ -208,7 +234,8 @@ def predict_reasoning(loaded, question, beam_width=1):
         "path_probabilities": path_probs,
         "top_concepts": top_concepts[:12],
         "nodes": nodes_list,
-        "edges": edges_list
+        "edges": edges_list,
+        "answer": answer
     }
 
 class ChatRequestHandler(BaseHTTPRequestHandler):
@@ -283,21 +310,23 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                     response_data["top_concepts"] = result["top_concepts"]
                     response_data["nodes"] = result["nodes"]
                     response_data["edges"] = result["edges"]
+                    response_data["answer"] = result["answer"]
                     response_data["source"] = "model"
 
-                # Dataset match for the answer text
-                match = find_best_match(question, dataset)
-                if match:
-                    response_data["answer"] = match["answer"]
-                    if "reasoning_path" not in response_data:
-                        response_data["reasoning_path"] = match["reasoning_path"]
-                        response_data["source"] = "dataset"
-                    response_data["matched_question"] = match["question"]
-                else:
-                    if "reasoning_path" not in response_data:
-                        response_data["reasoning_path"] = []
-                        response_data["source"] = "none"
-                    response_data["answer"] = "I don't have a specific answer for this question in my knowledge base. Try rephrasing or selecting a suggested question."
+                # Dataset match for the answer text (only if model didn't load or didn't generate an answer)
+                if not response_data.get("answer"):
+                    match = find_best_match(question, dataset)
+                    if match:
+                        response_data["answer"] = match["answer"]
+                        if "reasoning_path" not in response_data:
+                            response_data["reasoning_path"] = match["reasoning_path"]
+                            response_data["source"] = "dataset"
+                        response_data["matched_question"] = match["question"]
+                    else:
+                        if "reasoning_path" not in response_data:
+                            response_data["reasoning_path"] = []
+                            response_data["source"] = "none"
+                        response_data["answer"] = "I don't have a specific answer for this question in my knowledge base. Try rephrasing or selecting a suggested question."
 
                 # Integrate GATE orchestration: multi-concept routing + symbolic solver
                 try:
