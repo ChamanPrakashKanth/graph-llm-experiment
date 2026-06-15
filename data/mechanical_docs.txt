@@ -1,0 +1,110 @@
+=== Engineering Mathematics ===
+Linear Algebra focuses on vector spaces, matrix eigenvalues, and eigenvectors.
+An Eigenvalue decomposition diagonalizes a square matrix to simplify linear systems.
+Differential Equations model rate changes, solved using Laplace transforms.
+Numerical Methods like the Runge-Kutta method solve ordinary differential equations iteratively.
+Vector Calculus includes divergence, curl, and Green's and Stokes' theorems for surface integration.
+=== Engineering Mechanics ===
+Static equilibrium requires that the sum of forces and moments on a body equal zero.
+Kinematics analyzes the motion of particles and rigid bodies without considering forces.
+Newton's Laws describe particle kinetics, relating net force to mass and acceleration.
+Friction forces oppose relative motion between surfaces, proportional to the normal force.
+Virtual Work principle states that the virtual work done by active forces is zero for equilibrium.
+=== Strength of Materials ===
+Normal stress causes elongation or compression, while shear stress causes angular distortion.
+Hooke's Law states that stress is linearly proportional to strain within the elastic limit.
+Bending moment along a beam produces bending stress, maximum at the outer fibers.
+Torsion of circular shafts creates shear stress that varies linearly from the center axis.
+Euler Buckling occurs when long slender columns collapse under critical compressive loads.
+Thin-walled pressure vessels experience hoop stress and longitudinal stress under internal pressure.
+=== Theory of Machines ===
+Kinematic links connect to form kinematic pairs, loops, and mechanical mechanisms.
+Gears transfer rotational speed and torque, governed by the law of gearing.
+Cams convert rotational motion into complex, pre-defined translational follower profiles.
+Flywheels act as energy reservoirs, smoothing speed fluctuations due to torque cycles.
+Gyroscopic couples occur when a spinning rotor's axis of rotation is forced to change direction.
+=== Machine Design ===
+Mechanical joints include threaded fasteners, welded connections, and riveted joints.
+Shafts are designed based on torsional rigidity, bending strength, and fatigue limits.
+Sliding contact bearings use hydrodynamic lubrication, while rolling contact bearings use balls or rollers.
+Springs store mechanical energy, designed to avoid surging and buckling under compressive loads.
+Gears design considers Lewis bending strength and Buckingham wear resistance criteria.
+=== Fluid Mechanics ===
+Fluid kinematics uses Eulerian and Lagrangian descriptions to model flow velocity fields.
+Bernoulli's equation represents conservation of energy for steady, inviscid, incompressible flow.
+Navier-Stokes equations express conservation of momentum for viscous Newtonian fluid flows.
+Reynolds number dictates whether the flow regime is laminar or turbulent.
+Boundary layer separation occurs when adverse pressure gradients slow fluid near walls.
+=== Heat Transfer ===
+Conduction transfers heat through material media, modeled by Fourier's law of conduction.
+Convection describes heat transfer between surfaces and moving fluids, using Newton's law of cooling.
+Radiation transfers energy via electromagnetic waves, governed by Stefan-Boltzmann's law.
+Heat Exchangers transfer heat between fluids, analyzed using LMTD or NTU methods.
+=== Mass Transfer ===
+Fick's First Law describes steady-state mass diffusion, relating mass flux to concentration gradients.
+Convective mass transfer models species transport between a boundary and fluid streams.
+=== Thermodynamics ===
+First Law of Thermodynamics represents conservation of energy, relating heat, work, and internal energy.
+Second Law states that entropy in isolated systems always increases, preventing 100% heat conversion.
+Carnot cycle defines the maximum theoretical efficiency limit for heat engines.
+Pure substances undergo phase changes, modeled using thermodynamic property tables and diagrams.
+=== Applied Thermodynamics ===
+Rankine cycle models steam power plants using pumps, boilers, turbines, and condensers.
+Brayton cycle represents gas turbine cycles, using isentropic compressors and turbines.
+Otto cycle represents spark-ignition gasoline engines, utilizing constant-volume heat addition.
+Diesel cycle represents compression-ignition engines, utilizing constant-pressure heat addition.
+=== IC Engines ===
+Engine performance parameters include indicated power, brake power, and thermal efficiency.
+Knocking in spark-ignition engines is caused by auto-ignition of end-gas ahead of the flame front.
+=== Power Plant Engineering ===
+Steam power plants use reheaters and regenerators to increase thermodynamic Rankine efficiency.
+Hydroelectric and nuclear power plants generate baseload electrical energy safely.
+=== Refrigeration and Air Conditioning ===
+Vapour compression refrigeration cycles use compressors, condensers, expansion valves, and evaporators.
+Psychrometric charts plot moist air properties, including dry-bulb, wet-bulb, and dew-point temperatures.
+=== Hydraulic Machines ===
+Centrifugal pumps transfer energy to fluids by converting rotational kinetic energy to pressure.
+Pelton, Francis, and Kaplan turbines extract kinetic and pressure energy from high-head water sources.
+=== Manufacturing Engineering ===
+Metal casting involves melting metal and pouring it into mold cavities for solidification.
+Metal forming processes shape metals plastically using rolling, forging, extrusion, and drawing.
+Metal joining includes arc welding, resistance welding, brazing, and soldering techniques.
+=== Machining ===
+Orthogonal cutting models tool geometries, shear angles, and chip thickness ratios.
+Taylor's tool life equation relates cutting speed and tool wear duration mathematically.
+=== Casting ===
+Casting patterns account for shrinkage and draft allowances, using risers to prevent shrinkage cavities.
+Casting defects include blowholes, cold shuts, hot tears, and shrinkage porosities.
+=== Forming ===
+Rolling reduces metal sheet thickness, while extrusion forces metal through dies for profiles.
+Forging shapes metal using compressive hammer forces, enhancing grain flow and strength.
+=== Metrology ===
+Limits, fits, and tolerances define permissible dimensional limits for assembly interchangeability.
+Linear and angular measurements use calipers, micrometers, slip gauges, and sine bars.
+=== Industrial Engineering ===
+Work study includes method study and work measurement to optimize production processes.
+Plant layout design minimizes material handling costs and improves production throughput.
+=== Operations Research ===
+Linear Programming solves optimization problems using graphical or simplex algorithms.
+PERT and CPM network techniques plan, schedule, and control complex projects.
+=== Control Systems ===
+PID controllers use proportional, integral, and derivative gains to reduce system error.
+Bode plots and Routh-Hurwitz criteria evaluate feedback loop system stability.
+=== Mechanical Vibrations ===
+Single degree-of-freedom systems experience free, damped, or forced harmonic vibrations.
+Vibration isolation reduces force transmission, while whirling critical speed causes shaft instability.
+=== Materials Science ===
+Crystal structures include BCC, FCC, and HCP packing alignments in metals.
+Iron-carbon phase diagram shows steel phases, including ferrite, austenite, cementite, and pearlite.
+=== Finite Element Analysis ===
+Finite Element Method discretizes domains into finite elements linked by nodes.
+Element stiffness equations relate nodal displacements to external applied forces.
+=== CFD ===
+Computational Fluid Dynamics discretizes conservation equations using finite volume methods.
+Turbulence models like k-epsilon close the Reynolds-averaged Navier-Stokes equations.
+=== Tribology ===
+Tribology studies friction, wear, and lubrication regimes in sliding mechanical interfaces.
+Journal bearings operate under hydrodynamic lubrication to support heavy rotating shafts.
+=== Engineering Drawing ===
+Orthographic projections display 3D objects in 2D plan, elevation, and side views.
+Isometric projections draw objects with three axes spaced equally at 120 degrees.

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "GATE-ME-2025-Q1",
+    "type": "NAT",
+    "question": "A steel column of length 2.0 m haspinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN? (E = 200e9, I = 1e-5, L_e = 2.0)",
+    "calculation_steps": [
+      "1. Formula: P_cr = pi^2 * E * I / L_e^2",
+      "2. Since ends are pinned, effective length L_e = L = 2.0 m.",
+      "3. Plug in values: P_cr = 3.14159^2 * 200e9 * 1e-5 / 2.0^2",
+      "4. P_cr = 9.8696 * 2e6 / 4 = 4.9348e6 N = 4934.8 kN"
+    ],
+    "correct_answer": "4934.8",
+    "physical_interpretation": "Loads exceeding 4934.8 kN will cause the column to deflect laterally and collapse."
+  }
+]

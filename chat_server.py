@@ -33,6 +33,14 @@ DOMAINS = {
         "symbol": "⚙️",
         "desc": "1000-chunk dataset trained with Second-Order Differential Loss",
     },
+    "mit_stanford_mech": {
+        "name": "MIT & Stanford ME Curriculum (VLCM)",
+        "checkpoint_dir": "checkpoints/vlcm_mit_stanford_curriculum",
+        "dataset_path": "data/mechanical_reasoning_paths.json",
+        "is_vlcm": True,
+        "symbol": "🎓",
+        "desc": "Complete 4-year undergraduate syllabus (Statics, Dynamics, Fluids, Thermo, Controls, Mfg)",
+    },
     "mit_math": {
         "name": "MIT OCW Mathematics (CAT V2)",
         "checkpoint_dir": "checkpoints/cat_v2_mit_math",
@@ -277,6 +285,21 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                         response_data["reasoning_path"] = []
                         response_data["source"] = "none"
                     response_data["answer"] = "I don't have a specific answer for this question in my knowledge base. Try rephrasing or selecting a suggested question."
+
+                # Integrate math solver and equation lookup
+                try:
+                    import equations_database
+                    solved = equations_database.check_and_solve(question)
+                    if solved:
+                        response_data["solved_equation"] = solved
+                        solved_text = f"\n\n⚙️ **Math Solver Output:**\nSolved {solved['equation']} for **{solved['solved_variable']} = {solved['solved_value']}** using the formula $${solved['formula']}$$."
+                        response_data["answer"] += solved_text
+                    
+                    path_for_eqs = response_data.get("reasoning_path", [])
+                    relevant_eqs = equations_database.lookup_equations_by_concepts(path_for_eqs)
+                    response_data["relevant_equations"] = relevant_eqs
+                except Exception as ex:
+                    print(f"Error in equation solver lookup: {ex}")
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")
@@ -1143,6 +1166,36 @@ CHAT_HTML = r"""<!DOCTYPE html>
             text-align: right;
         }
 
+        .equation-card-right {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md);
+            padding: 0.8rem;
+            margin-bottom: 0.6rem;
+            animation: popIn 0.3s ease-out;
+        }
+        .equation-title-right {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-indigo-light);
+            margin-bottom: 0.3rem;
+        }
+        .equation-formula-right {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            background: rgba(17, 24, 39, 0.4);
+            padding: 0.35rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.4rem;
+            text-align: center;
+        }
+        .equation-vars-right {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
         .panel-empty {
             text-align: center;
             padding: 2rem 1rem;
@@ -1202,6 +1255,10 @@ CHAT_HTML = r"""<!DOCTYPE html>
                 <button class="domain-tab active" data-domain="mechanical_engineering" id="tab-mech">
                     <span class="domain-symbol">⚙️</span>
                     <span>Mechanical Engineering</span>
+                </button>
+                <button class="domain-tab" data-domain="mit_stanford_mech" id="tab-curriculum">
+                    <span class="domain-symbol">🎓</span>
+                    <span>MIT & Stanford Curriculum</span>
                 </button>
                 <button class="domain-tab" data-domain="mit_math" id="tab-math">
                     <span class="domain-symbol">∫</span>
@@ -1286,7 +1343,7 @@ CHAT_HTML = r"""<!DOCTYPE html>
                 </div>
             </div>
         </div>
-        <div class="panel-section" style="border-bottom: none;">
+        <div class="panel-section">
             <div class="panel-section-title">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4m-9.5-9.5h4m14 0h4m-3.5-7l-2.83 2.83M6.33 17.67l-2.83 2.83m14-14l2.83-2.83M6.33 6.33L3.5 3.5"/></svg>
                 Top Concept Activations
@@ -1295,6 +1352,18 @@ CHAT_HTML = r"""<!DOCTYPE html>
                 <div class="panel-empty">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                     <div>Concept activations will<br>appear here</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-section" style="border-bottom: none;">
+            <div class="panel-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Relevant Equations & Solvers
+            </div>
+            <div id="panel-equations">
+                <div class="panel-empty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <div>Formulas, equations and solvers will<br>appear here</div>
                 </div>
             </div>
         </div>
@@ -1340,11 +1409,21 @@ const DOMAIN_QUESTIONS = {
         { q: "How to filter a list of numbers to find even numbers?", tag: "Lists" },
         { q: "How to fetch a URL and parse JSON in Python?", tag: "Network/APIs" },
         { q: "How to sort a list of dictionaries by a key?", tag: "Sorting" }
+    ],
+    "mit_stanford_mech": [
+        { q: "Why does a column buckle under compression?", tag: "Euler Buckling" },
+        { q: "Determine critical buckling load for E = 200e9, I = 1.0e-5, L_e = 2.0", tag: "GATE Numerical Solver" },
+        { q: "Why does repeated cyclic loading cause structural fatigue failure?", tag: "Fatigue failure" },
+        { q: "Why does an adverse pressure gradient cause flow separation?", tag: "Fluid Mechanics" },
+        { q: "Why does high fluid velocity cause turbulence in a pipe?", tag: "Fluid Mechanics" },
+        { q: "How does a temperature gradient produce structural thermal stress?", tag: "Heat Transfer" },
+        { q: "Why does pole placement determine feedback loop stability?", tag: "Control Systems" }
     ]
 };
 
 const DOMAIN_DETAILS = {
     "mechanical_engineering": { title: "Mechanical Engineering (VLCM)", icon: "⚙️", desc: "1000-chunk dataset trained with Second-Order Differential Loss", placeholder: "Ask about buckling, heat exchangers, fluid dynamics, stress tensors..." },
+    "mit_stanford_mech": { title: "MIT & Stanford ME Curriculum (VLCM)", icon: "🎓", desc: "Complete 4-year undergraduate syllabus (Statics, Dynamics, Fluids, Thermo, Controls, Mfg)", placeholder: "Ask about buckling, heat exchangers, control systems, Navier-Stokes..." },
     "mit_math": { title: "MIT OCW Mathematics (CAT V2)", icon: "∫", desc: "Calculus, Linear Algebra, ODEs, and Multivariable Calculus", placeholder: "Ask about eigenvalues, gradients, Laplace transforms, Fourier series..." },
     "structural": { title: "Structural Engineering (CAT V2)", icon: "🏗️", desc: "Beams, stress-strain, columns buckling, fatigue, and materials science", placeholder: "Ask about load distributions, Euler buckling, S-N curves, strain..." },
     "cfd": { title: "CFD & Fluid Dynamics (CAT V2)", icon: "🌪️", desc: "Pipe flow, pressure drop, turbulence, boundary layers, and mesh quality", placeholder: "Ask about boundary layers, adverse gradients, Navier-Stokes residuals..." },
@@ -1368,6 +1447,7 @@ const welcomeScreen = document.getElementById("welcome-screen");
 const questionsList = document.getElementById("questions-list");
 const panelPath = document.getElementById("panel-path");
 const panelActivations = document.getElementById("panel-activations");
+const panelEquations = document.getElementById("panel-equations");
 
 const headerLogoIcon = document.getElementById("header-logo-icon");
 const headerDomainTitle = document.getElementById("header-domain-title");
@@ -1431,6 +1511,12 @@ document.querySelectorAll(".domain-tab").forEach(tab => {
             <div class="panel-empty">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 <div>Concept activations will<br>appear here</div>
+            </div>
+        `;
+        panelEquations.innerHTML = `
+            <div class="panel-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <div>Formulas, equations and solvers will<br>appear here</div>
             </div>
         `;
     });
@@ -1544,6 +1630,20 @@ async function sendMessage() {
     scrollToBottom();
 }
 
+function formatMarkdown(text) {
+    if (!text) return "";
+    // Replace double dollars $$formula$$ or $formula$ with styled mono boxes
+    let html = text.replace(/\$\$(.*?)\$\$/g, '<div class="equation-formula-right">$1</div>');
+    html = html.replace(/\$(.*?)\$/g, '<code style="background: rgba(17, 24, 39, 0.4); padding: 0.1rem 0.3rem; border-radius: 4px; font-family: monospace;">$1</code>');
+    // Replace double newlines with <br><br>
+    html = html.replace(/\n\n/g, "<br><br>");
+    // Replace single newlines with <br>
+    html = html.replace(/\n/g, "<br>");
+    // Replace **text** with <strong>text</strong>
+    html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    return html;
+}
+
 function addMessage(role, text) {
     const msgDiv = document.createElement("div");
     msgDiv.className = `message ${role}`;
@@ -1581,7 +1681,7 @@ function addAssistantMessage(data) {
     // Answer bubble
     const bubble = document.createElement("div");
     bubble.className = "message-bubble";
-    bubble.textContent = data.answer || "Path generated — see reasoning below.";
+    bubble.innerHTML = formatMarkdown(data.answer || "Path generated — see reasoning below.");
     body.appendChild(bubble);
 
     // Reasoning path inline
@@ -1713,6 +1813,73 @@ function updateRightPanel(data) {
         });
         panelActivations.innerHTML = html;
     }
+
+    // Equations & Math Solvers
+    let eqHtml = '';
+    
+    // 1. Show solved equation if present
+    if (data.solved_equation) {
+        const solved = data.solved_equation;
+        const inputsStr = Object.entries(solved.inputs)
+            .map(([k, v]) => `${k} = ${v}`)
+            .join(', ');
+        
+        eqHtml += `
+            <div class="equation-card-right" style="background: rgba(52, 211, 153, 0.08); border-color: rgba(52, 211, 153, 0.35);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                    <div class="equation-title-right" style="color: var(--accent-emerald); font-weight: 800;">⚡ Solver: ${solved.equation}</div>
+                    <span class="source-badge" style="background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); border-color: rgba(52, 211, 153, 0.3); font-size: 0.58rem;">SOLVED</span>
+                </div>
+                <div class="equation-formula-right" style="border-left: 2px solid var(--accent-emerald); font-size: 0.9rem;">${solved.formula}</div>
+                <div class="equation-vars-right" style="color: var(--text-secondary); margin-bottom: 0.4rem;">
+                    <strong>Inputs:</strong> ${inputsStr}
+                </div>
+                <div style="background: rgba(52, 211, 153, 0.12); padding: 0.5rem; border-radius: var(--radius-sm); font-size: 0.75rem; border: 1px dashed rgba(52, 211, 153, 0.25);">
+                    <span style="color: var(--text-muted);">Result:</span>
+                    <strong style="color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">${solved.solved_variable} = ${solved.solved_value}</strong>
+                </div>
+            </div>
+        `;
+    }
+
+    // 2. Show relevant equations
+    if (data.relevant_equations && data.relevant_equations.length > 0) {
+        data.relevant_equations.forEach(eq => {
+            // Avoid repeating the solved one if it's already shown
+            if (data.solved_equation && data.solved_equation.equation === eq.name) {
+                return;
+            }
+            
+            let varsList = '';
+            if (eq.variables) {
+                varsList = Object.entries(eq.variables)
+                    .map(([k, v]) => `<div><strong>${k}</strong>: ${v}</div>`)
+                    .join('');
+            }
+            
+            eqHtml += `
+                <div class="equation-card-right">
+                    <div class="equation-title-right">⚙️ ${eq.name}</div>
+                    <div class="equation-formula-right">${eq.formula}</div>
+                    <div class="equation-vars-right">
+                        ${varsList}
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // If nothing matched, show empty message
+    if (!eqHtml) {
+        eqHtml = `
+            <div class="panel-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <div>Formulas, equations and solvers will<br>appear here</div>
+            </div>
+        `;
+    }
+    
+    panelEquations.innerHTML = eqHtml;
 }
 
 function scrollToBottom() {

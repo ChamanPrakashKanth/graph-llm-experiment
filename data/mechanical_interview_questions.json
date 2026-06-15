@@ -1,0 +1,10 @@
+[
+  {
+    "question": "Why does a thin-walled cylinder fail along the longitudinal seam rather than the circumferential direction?",
+    "answer": "Because hoop stress (sigma_h = P*D / 2t) is exactly twice the longitudinal stress (sigma_l = P*D / 4t). The higher stress in the hoop direction makes the cylinder twice as likely to fail along its longitudinal seam.",
+    "concepts": [
+      "Pressure Vessels",
+      "Hoop Stress"
+    ]
+  }
+]

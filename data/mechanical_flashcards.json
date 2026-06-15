@@ -1,0 +1,14 @@
+[
+  {
+    "front": "What is the formula for critical buckling load?",
+    "back": "P_cr = pi^2 * E * I / L_e^2"
+  },
+  {
+    "front": "Write the Reynolds number expression.",
+    "back": "Re = rho * v * D / mu"
+  },
+  {
+    "front": "State the Carnot efficiency expression.",
+    "back": "eta = 1 - T_C / T_H"
+  }
+]

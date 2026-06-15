@@ -1,0 +1,1304 @@
+[
+  {
+    "question": "Why does a column buckle under compression?",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure."
+  },
+  {
+    "question": "How does external structural load cause material yielding?",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure?",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress?",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe?",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence."
+  },
+  {
+    "question": "Why does feedback control stabilize a system?",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 6)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 7)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 8)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 9)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 10)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 11)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 12)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 13)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 14)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 15)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 16)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 17)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 18)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 19)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does a column buckle under compression? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Compression",
+      "Slenderness",
+      "Euler Buckling",
+      "Critical Load"
+    ],
+    "answer": "Euler buckling happens in slender columns under compressive load when the load exceeds the critical load limit. This triggers lateral deflection and structural failure. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does external structural load cause material yielding? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, which generates strain and elastic deformation. When stress exceeds yield strength, yielding occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause fatigue failure? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Repeated cyclic loading concentrates stress, initiating microcracks. These propagate until fatigue failure occurs. Covered in 4-year curriculum."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes thermal expansion, producing thermal stress. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does high fluid velocity transition to turbulence in a pipe? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number. Once it exceeds critical values, flow transitions to turbulence. Covered in 4-year curriculum."
+  },
+  {
+    "question": "Why does feedback control stabilize a system? (Syllabus Module 20)",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure output error. The PID controller adjusts control effort to minimize the error signal. Covered in 4-year curriculum."
+  }
+]

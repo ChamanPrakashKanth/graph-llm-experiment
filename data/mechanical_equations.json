@@ -1,0 +1,111 @@
+[
+  {
+    "equation": "P_cr = \\frac{\\pi^2 E I}{L_e^2}",
+    "name": "Euler Buckling Load",
+    "variables": {
+      "P_cr": "Critical buckling load (N)",
+      "E": "Young's modulus (Pa)",
+      "I": "Area moment of inertia (m^4)",
+      "L_e": "Effective column length (m)"
+    },
+    "units": "N",
+    "assumptions": "Prismatic column, homogeneous material, elastic behavior, pinned ends",
+    "domain": "Strength of Materials",
+    "derivation": "Solved from the column bending differential equation E*I*d2y/dx2 = -P*y.",
+    "limitations": "Does not apply to short columns where yielding occurs before buckling.",
+    "inverse_forms": {
+      "L_e": "L_e = \\sqrt{\\frac{\\pi^2 E I}{P_cr}}"
+    },
+    "related_equations": [
+      "Euler-Bernoulli Beam",
+      "Mohr's Circle"
+    ]
+  },
+  {
+    "equation": "\\sigma_b = \\frac{M y}{I}",
+    "name": "Bending Stress Formula",
+    "variables": {
+      "\\sigma_b": "Bending stress (Pa)",
+      "M": "Bending moment (N-m)",
+      "y": "Distance from neutral axis (m)",
+      "I": "Moment of inertia (m^4)"
+    },
+    "units": "Pa",
+    "assumptions": "Straight beam, elastic deformation, plane sections remain plane",
+    "domain": "Strength of Materials",
+    "derivation": "Derived from kinematics of bending and Hooke's Law.",
+    "limitations": "Pure bending load only.",
+    "inverse_forms": {
+      "M": "M = \\frac{\\sigma_b I}{y}"
+    },
+    "related_equations": [
+      "Hooke's Law",
+      "Shear Stress"
+    ]
+  },
+  {
+    "equation": "Re = \\frac{\\rho v D}{\\mu}",
+    "name": "Reynolds Number",
+    "variables": {
+      "Re": "Reynolds number (dimensionless)",
+      "\\rho": "Fluid density (kg/m^3)",
+      "v": "Flow speed (m/s)",
+      "D": "Pipe diameter (m)",
+      "\\mu": "Dynamic viscosity (Pa-s)"
+    },
+    "units": "dimensionless",
+    "assumptions": "Steady flow, Newtonian fluid",
+    "domain": "Fluid Mechanics",
+    "derivation": "Ratio of inertial forces to viscous forces.",
+    "limitations": "Macroscale Newtonian fluids only.",
+    "inverse_forms": {
+      "v": "v = \\frac{Re \\cdot \\mu}{\\rho \\cdot D}"
+    },
+    "related_equations": [
+      "Navier-Stokes",
+      "Darcy-Weisbach"
+    ]
+  },
+  {
+    "equation": "\\eta_C = 1 - \\frac{T_C}{T_H}",
+    "name": "Carnot Efficiency",
+    "variables": {
+      "\\eta_C": "Carnot efficiency limit (dimensionless)",
+      "T_C": "Cold reservoir temperature (K)",
+      "T_H": "Hot reservoir temperature (K)"
+    },
+    "units": "dimensionless",
+    "assumptions": "Reversible cycles, constant temperature reservoirs",
+    "domain": "Thermodynamics",
+    "derivation": "Derived from the definition of efficiency and Clausius inequality.",
+    "limitations": "Theoretical maximum limit only.",
+    "inverse_forms": {
+      "T_C": "T_C = T_H (1 - \\eta_C)"
+    },
+    "related_equations": [
+      "First Law",
+      "Second Law"
+    ]
+  },
+  {
+    "equation": "q = -k \\frac{dT}{dx}",
+    "name": "Fourier's Law of Conduction",
+    "variables": {
+      "q": "Heat flux (W/m^2)",
+      "k": "Thermal conductivity (W/m-K)",
+      "dT/dx": "Temperature gradient (K/m)"
+    },
+    "units": "W/m^2",
+    "assumptions": "1D heat transfer, isotropic medium, steady state",
+    "domain": "Heat Transfer",
+    "derivation": "Empirically observed relationship.",
+    "limitations": "Local relationship only.",
+    "inverse_forms": {
+      "gradient": "gradient = -q / k"
+    },
+    "related_equations": [
+      "Newton's Law of Cooling",
+      "Heat Equation"
+    ]
+  }
+]

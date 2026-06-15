@@ -1,0 +1,33 @@
+{
+  "name": "Mechanical Engineering",
+  "children": [
+    {
+      "name": "Design & Mechanics",
+      "children": [
+        {
+          "name": "Statics & Dynamics"
+        },
+        {
+          "name": "Strength of Materials"
+        },
+        {
+          "name": "Machine Design"
+        }
+      ]
+    },
+    {
+      "name": "Thermal & Fluids",
+      "children": [
+        {
+          "name": "Thermodynamics"
+        },
+        {
+          "name": "Fluid Mechanics"
+        },
+        {
+          "name": "Heat & Mass Transfer"
+        }
+      ]
+    }
+  ]
+}

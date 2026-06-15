@@ -1,0 +1,11 @@
+[
+  {
+    "question": "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe. (density = 1000, v = 2.0, D = 0.05, viscosity = 0.001)",
+    "formula": "Re = rho * v * D / mu",
+    "steps": [
+      "Re = 1000 * 2.0 * 0.05 / 0.001",
+      "Re = 100 / 0.001 = 100000"
+    ],
+    "answer": "100000"
+  }
+]

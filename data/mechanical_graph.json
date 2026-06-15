@@ -1,0 +1,308 @@
+{
+  "nodes": [
+    {
+      "name": "Compression",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Conduction",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Control effort",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Control systems",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Crack Propagation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Critical Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Cyclic Loading",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Elastic Deformation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Error Signal",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Euler Buckling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fatigue Failure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Flow Speed",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fourier Law",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Flux",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Microcrack",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "PID Controller",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Reynolds Number",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Slenderness",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Strain",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress Concentration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Temperature Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thermal Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Turbulence",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Yielding",
+      "activation": 0.0,
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "Compression",
+      "target": "Slenderness",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Conduction",
+      "target": "Heat Flux",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Control effort",
+      "target": "PID Controller",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Crack Propagation",
+      "target": "Fatigue Failure",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Cyclic Loading",
+      "target": "Stress Concentration",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Elastic Deformation",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Error Signal",
+      "target": "Control systems",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Euler Buckling",
+      "target": "Critical Load",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Flow Speed",
+      "target": "Reynolds Number",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Fourier Law",
+      "target": "Conduction",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Flux",
+      "target": "Thermal Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Load",
+      "target": "Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Microcrack",
+      "target": "Crack Propagation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "PID Controller",
+      "target": "Error Signal",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Reynolds Number",
+      "target": "Turbulence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Slenderness",
+      "target": "Euler Buckling",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Strain",
+      "target": "Elastic Deformation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Stress",
+      "target": "Compression",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Strain",
+      "weight": 0.9704545454545456,
+      "relation": "document_cooccurrence",
+      "evidence_count": 22,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress Concentration",
+      "target": "Microcrack",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    },
+    {
+      "source": "Temperature Gradient",
+      "target": "Fourier Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 21,
+      "metadata": {}
+    }
+  ]
+}

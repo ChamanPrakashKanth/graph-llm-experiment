@@ -1,0 +1,1110 @@
+[
+  {
+    "question": "How does structural load lead to material yielding?",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Strain",
+      "Elastic Deformation",
+      "Yielding"
+    ],
+    "answer": "External load produces stress, stress produces strain, strain leads to elastic deformation, and excessive stress eventually results in yielding."
+  },
+  {
+    "question": "Why does axial compression cause structural buckling?",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Compressive load initiates Euler buckling. Once the load exceeds the critical load, the column's slenderness triggers lateral deflection and buckling."
+  },
+  {
+    "question": "Why does repeated cyclic loading cause structural fatigue failure?",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Crack Propagation",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading causes local stress concentration, which initiates a microcrack. Continued loading drives crack propagation until fatigue failure occurs."
+  },
+  {
+    "question": "How does bending load on a beam lead to deflection?",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Curvature",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "An applied bending moment acts on the Euler-Bernoulli beam, causing curvature and bending stress, which results in physical deflection."
+  },
+  {
+    "question": "How does plane stress convert to principal stress via Mohr's circle?",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Bending Stress",
+      "Yielding"
+    ],
+    "answer": "Applied plane stress is transformed using Mohr's circle to find principal stresses, which are compared to the bending stress limit to predict yielding."
+  },
+  {
+    "question": "How does force translate into displacement for a moving particle?",
+    "reasoning_path": [
+      "Force",
+      "Newton Second Law",
+      "Acceleration",
+      "Velocity",
+      "Displacement"
+    ],
+    "answer": "An applied force, governed by Newton's Second Law, creates acceleration. Integrating acceleration yields velocity, which determines displacement."
+  },
+  {
+    "question": "Why does applied torque result in angular momentum changes for a rigid body?",
+    "reasoning_path": [
+      "Rigid Body",
+      "Moment of Inertia",
+      "Torque",
+      "Angular Acceleration",
+      "Angular Momentum"
+    ],
+    "answer": "A torque acting on a rigid body with a specific moment of inertia produces angular acceleration, changing its angular momentum."
+  },
+  {
+    "question": "Why does external harmonic forcing cause system resonance?",
+    "reasoning_path": [
+      "Vibration analysis",
+      "Free vibration frequency",
+      "Resonance"
+    ],
+    "answer": "Vibration analysis shows that when the harmonic forcing frequency matches the free vibration frequency, resonance occurs."
+  },
+  {
+    "question": "How does heat addition generate mechanical piston work?",
+    "reasoning_path": [
+      "Heat Addition",
+      "Gas Expansion",
+      "Piston Work",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "Heat addition causes gas expansion which performs piston work, satisfying the First Law of thermodynamics and defining cycle efficiency."
+  },
+  {
+    "question": "Why does heat absorption lead to power output in a steam turbine?",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Isentropic Expansion",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption vaporizes steam. Isentropic expansion in the Rankine cycle generates turbine work, producing power output."
+  },
+  {
+    "question": "Why does high fluid velocity cause turbulence in a pipe?",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, transitioning the fluid from laminar flow to turbulence."
+  },
+  {
+    "question": "Why does boundary layer shear cause skin friction drag on a plate?",
+    "reasoning_path": [
+      "Velocity Profile",
+      "Viscous Shear",
+      "Boundary Layer",
+      "Wall Shear Stress",
+      "Drag"
+    ],
+    "answer": "The fluid velocity profile creates viscous shear in the boundary layer. This yields wall shear stress, generating drag."
+  },
+  {
+    "question": "Why does an adverse pressure gradient cause flow separation?",
+    "reasoning_path": [
+      "Pressure Gradient",
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient opposes flow direction, slowing the boundary layer until separation occurs, resulting in aerodynamic stall."
+  },
+  {
+    "question": "How does a temperature gradient produce structural thermal stress?",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux",
+      "Thermal Stress"
+    ],
+    "answer": "A temperature gradient governed by Fourier's law drives heat conduction. The resulting heat flux causes expansion, creating thermal stress."
+  },
+  {
+    "question": "How does fluid motion increase heat transfer convection?",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion creates a convective boundary layer, facilitating heat convection and raising the Nusselt number."
+  },
+  {
+    "question": "How does feedback control minimize systemic error?",
+    "reasoning_path": [
+      "Control effort",
+      "PID Controller",
+      "Error Signal",
+      "Control systems"
+    ],
+    "answer": "Control systems measure the output error signal. The PID controller calculates control effort to minimize this error."
+  },
+  {
+    "question": "Why does pole placement determine feedback loop stability?",
+    "reasoning_path": [
+      "Transfer Function",
+      "Feedback Loop",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The feedback loop's closed-loop transfer function has poles. Placing poles in the left-half plane ensures system stability."
+  },
+  {
+    "question": "How does frequency response evaluate phase margin robustness?",
+    "reasoning_path": [
+      "Frequency Response",
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Frequency response is visualized on a Bode plot, which is used to measure the phase margin for feedback system stability."
+  },
+  {
+    "question": "Why do manufacturing limits require assembly tolerance checks?",
+    "reasoning_path": [
+      "CNC milling",
+      "Assembly tolerance",
+      "Statistical process control"
+    ],
+    "answer": "CNC milling has geometric variability. Setting assembly tolerance and monitoring with statistical process control ensures part fit."
+  },
+  {
+    "question": "How does element mesh refinement ensure accurate stress values in FEM?",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Boundary conditions",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis applies boundary conditions. Running a mesh convergence study ensures von Mises stress values are mathematically sound."
+  },
+  {
+    "question": "How does axial load cause column buckling? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Euler buckling happens under compressive load when column slenderness exceeds critical load limits. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain the relation between load and yield criteria. (Syllabus Module 1)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Von Mises stress",
+      "Yielding"
+    ],
+    "answer": "Load generates stress, which is converted to von Mises stress to evaluate material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes fatigue failure in machinery? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading focuses stress concentration, creating a microcrack that triggers fatigue failure. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Euler-Bernoulli beam deflection. (Syllabus Module 1)",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "Bending moment applied to an Euler-Bernoulli beam causes bending stress and vertical deflection. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does Mohr's circle relate stress to yielding? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Yielding"
+    ],
+    "answer": "Mohr's circle transforms normal and shear stress to principal stresses for predicting material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does the Carnot cycle limit efficiency? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Heat Addition",
+      "Carnot cycle",
+      "Efficiency"
+    ],
+    "answer": "Heat addition at constant temperature in a Carnot cycle sets the upper limit for thermodynamic efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Rankine steam turbine power generation. (Syllabus Module 1)",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption generates high-pressure steam. The Rankine cycle turbine work translates this to power output. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does gas compression in a turbine require compressor work? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Brayton cycle",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "The Brayton cycle uses the First Law to model gas compression, determining gas turbine efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does velocity affect turbulence in a pipe? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, converting laminar flow to turbulence. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes boundary layer separation on an airfoil? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient decelerates fluid in the boundary layer, leading to separation and stall. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Fourier conduction through a wall. (Syllabus Module 1)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux"
+    ],
+    "answer": "A temperature gradient drives conduction modeled by Fourier's law, generating heat flux. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does convection transfer heat from a cylinder? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion forms a convective boundary layer, increasing heat convection and Nusselt number. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does a PID controller reduce error? (Syllabus Module 1)",
+    "reasoning_path": [
+      "PID Controller",
+      "Error Signal",
+      "Control effort"
+    ],
+    "answer": "The PID controller monitors the error signal and adjusts control effort to stabilize the system. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain transfer function stability. (Syllabus Module 1)",
+    "reasoning_path": [
+      "Transfer Function",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The poles of a system's Laplace transfer function determine dynamic system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What determines gain and phase margin in controls? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Bode plot diagrams display open-loop response, indicating the phase margin required for system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How is a physical system modeled in state space? (Syllabus Module 1)",
+    "reasoning_path": [
+      "State-space representation",
+      "Newton Second Law",
+      "System Stability"
+    ],
+    "answer": "Newton's second law is converted to a first-order state-space representation to verify system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does CAD modeling translate to CNC manufacturing? (Syllabus Module 1)",
+    "reasoning_path": [
+      "CAD",
+      "CNC milling",
+      "Assembly tolerance"
+    ],
+    "answer": "CAD designs are converted into toolpaths for CNC milling, respecting assembly tolerance constraints. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does injection molding relate to process control? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Injection molding",
+      "Statistical process control",
+      "Assembly tolerance"
+    ],
+    "answer": "Injection molding quality is tracked using statistical process control to maintain assembly tolerance. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why run a mesh convergence study in FEA? (Syllabus Module 1)",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis requires a mesh convergence study to guarantee the accuracy of von Mises stress. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does axial load cause column buckling? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Euler buckling happens under compressive load when column slenderness exceeds critical load limits. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain the relation between load and yield criteria. (Syllabus Module 2)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Von Mises stress",
+      "Yielding"
+    ],
+    "answer": "Load generates stress, which is converted to von Mises stress to evaluate material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes fatigue failure in machinery? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading focuses stress concentration, creating a microcrack that triggers fatigue failure. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Euler-Bernoulli beam deflection. (Syllabus Module 2)",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "Bending moment applied to an Euler-Bernoulli beam causes bending stress and vertical deflection. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does Mohr's circle relate stress to yielding? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Yielding"
+    ],
+    "answer": "Mohr's circle transforms normal and shear stress to principal stresses for predicting material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does the Carnot cycle limit efficiency? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Heat Addition",
+      "Carnot cycle",
+      "Efficiency"
+    ],
+    "answer": "Heat addition at constant temperature in a Carnot cycle sets the upper limit for thermodynamic efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Rankine steam turbine power generation. (Syllabus Module 2)",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption generates high-pressure steam. The Rankine cycle turbine work translates this to power output. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does gas compression in a turbine require compressor work? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Brayton cycle",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "The Brayton cycle uses the First Law to model gas compression, determining gas turbine efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does velocity affect turbulence in a pipe? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, converting laminar flow to turbulence. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes boundary layer separation on an airfoil? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient decelerates fluid in the boundary layer, leading to separation and stall. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Fourier conduction through a wall. (Syllabus Module 2)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux"
+    ],
+    "answer": "A temperature gradient drives conduction modeled by Fourier's law, generating heat flux. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does convection transfer heat from a cylinder? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion forms a convective boundary layer, increasing heat convection and Nusselt number. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does a PID controller reduce error? (Syllabus Module 2)",
+    "reasoning_path": [
+      "PID Controller",
+      "Error Signal",
+      "Control effort"
+    ],
+    "answer": "The PID controller monitors the error signal and adjusts control effort to stabilize the system. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain transfer function stability. (Syllabus Module 2)",
+    "reasoning_path": [
+      "Transfer Function",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The poles of a system's Laplace transfer function determine dynamic system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What determines gain and phase margin in controls? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Bode plot diagrams display open-loop response, indicating the phase margin required for system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How is a physical system modeled in state space? (Syllabus Module 2)",
+    "reasoning_path": [
+      "State-space representation",
+      "Newton Second Law",
+      "System Stability"
+    ],
+    "answer": "Newton's second law is converted to a first-order state-space representation to verify system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does CAD modeling translate to CNC manufacturing? (Syllabus Module 2)",
+    "reasoning_path": [
+      "CAD",
+      "CNC milling",
+      "Assembly tolerance"
+    ],
+    "answer": "CAD designs are converted into toolpaths for CNC milling, respecting assembly tolerance constraints. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does injection molding relate to process control? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Injection molding",
+      "Statistical process control",
+      "Assembly tolerance"
+    ],
+    "answer": "Injection molding quality is tracked using statistical process control to maintain assembly tolerance. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why run a mesh convergence study in FEA? (Syllabus Module 2)",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis requires a mesh convergence study to guarantee the accuracy of von Mises stress. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does axial load cause column buckling? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Euler buckling happens under compressive load when column slenderness exceeds critical load limits. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain the relation between load and yield criteria. (Syllabus Module 3)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Von Mises stress",
+      "Yielding"
+    ],
+    "answer": "Load generates stress, which is converted to von Mises stress to evaluate material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes fatigue failure in machinery? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading focuses stress concentration, creating a microcrack that triggers fatigue failure. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Euler-Bernoulli beam deflection. (Syllabus Module 3)",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "Bending moment applied to an Euler-Bernoulli beam causes bending stress and vertical deflection. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does Mohr's circle relate stress to yielding? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Yielding"
+    ],
+    "answer": "Mohr's circle transforms normal and shear stress to principal stresses for predicting material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does the Carnot cycle limit efficiency? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Heat Addition",
+      "Carnot cycle",
+      "Efficiency"
+    ],
+    "answer": "Heat addition at constant temperature in a Carnot cycle sets the upper limit for thermodynamic efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Rankine steam turbine power generation. (Syllabus Module 3)",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption generates high-pressure steam. The Rankine cycle turbine work translates this to power output. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does gas compression in a turbine require compressor work? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Brayton cycle",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "The Brayton cycle uses the First Law to model gas compression, determining gas turbine efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does velocity affect turbulence in a pipe? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, converting laminar flow to turbulence. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes boundary layer separation on an airfoil? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient decelerates fluid in the boundary layer, leading to separation and stall. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Fourier conduction through a wall. (Syllabus Module 3)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux"
+    ],
+    "answer": "A temperature gradient drives conduction modeled by Fourier's law, generating heat flux. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does convection transfer heat from a cylinder? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion forms a convective boundary layer, increasing heat convection and Nusselt number. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does a PID controller reduce error? (Syllabus Module 3)",
+    "reasoning_path": [
+      "PID Controller",
+      "Error Signal",
+      "Control effort"
+    ],
+    "answer": "The PID controller monitors the error signal and adjusts control effort to stabilize the system. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain transfer function stability. (Syllabus Module 3)",
+    "reasoning_path": [
+      "Transfer Function",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The poles of a system's Laplace transfer function determine dynamic system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What determines gain and phase margin in controls? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Bode plot diagrams display open-loop response, indicating the phase margin required for system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How is a physical system modeled in state space? (Syllabus Module 3)",
+    "reasoning_path": [
+      "State-space representation",
+      "Newton Second Law",
+      "System Stability"
+    ],
+    "answer": "Newton's second law is converted to a first-order state-space representation to verify system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does CAD modeling translate to CNC manufacturing? (Syllabus Module 3)",
+    "reasoning_path": [
+      "CAD",
+      "CNC milling",
+      "Assembly tolerance"
+    ],
+    "answer": "CAD designs are converted into toolpaths for CNC milling, respecting assembly tolerance constraints. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does injection molding relate to process control? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Injection molding",
+      "Statistical process control",
+      "Assembly tolerance"
+    ],
+    "answer": "Injection molding quality is tracked using statistical process control to maintain assembly tolerance. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why run a mesh convergence study in FEA? (Syllabus Module 3)",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis requires a mesh convergence study to guarantee the accuracy of von Mises stress. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does axial load cause column buckling? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Euler buckling happens under compressive load when column slenderness exceeds critical load limits. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain the relation between load and yield criteria. (Syllabus Module 4)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Von Mises stress",
+      "Yielding"
+    ],
+    "answer": "Load generates stress, which is converted to von Mises stress to evaluate material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes fatigue failure in machinery? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading focuses stress concentration, creating a microcrack that triggers fatigue failure. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Euler-Bernoulli beam deflection. (Syllabus Module 4)",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "Bending moment applied to an Euler-Bernoulli beam causes bending stress and vertical deflection. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does Mohr's circle relate stress to yielding? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Yielding"
+    ],
+    "answer": "Mohr's circle transforms normal and shear stress to principal stresses for predicting material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does the Carnot cycle limit efficiency? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Heat Addition",
+      "Carnot cycle",
+      "Efficiency"
+    ],
+    "answer": "Heat addition at constant temperature in a Carnot cycle sets the upper limit for thermodynamic efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Rankine steam turbine power generation. (Syllabus Module 4)",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption generates high-pressure steam. The Rankine cycle turbine work translates this to power output. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does gas compression in a turbine require compressor work? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Brayton cycle",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "The Brayton cycle uses the First Law to model gas compression, determining gas turbine efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does velocity affect turbulence in a pipe? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, converting laminar flow to turbulence. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes boundary layer separation on an airfoil? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient decelerates fluid in the boundary layer, leading to separation and stall. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Fourier conduction through a wall. (Syllabus Module 4)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux"
+    ],
+    "answer": "A temperature gradient drives conduction modeled by Fourier's law, generating heat flux. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does convection transfer heat from a cylinder? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion forms a convective boundary layer, increasing heat convection and Nusselt number. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does a PID controller reduce error? (Syllabus Module 4)",
+    "reasoning_path": [
+      "PID Controller",
+      "Error Signal",
+      "Control effort"
+    ],
+    "answer": "The PID controller monitors the error signal and adjusts control effort to stabilize the system. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain transfer function stability. (Syllabus Module 4)",
+    "reasoning_path": [
+      "Transfer Function",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The poles of a system's Laplace transfer function determine dynamic system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What determines gain and phase margin in controls? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Bode plot diagrams display open-loop response, indicating the phase margin required for system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How is a physical system modeled in state space? (Syllabus Module 4)",
+    "reasoning_path": [
+      "State-space representation",
+      "Newton Second Law",
+      "System Stability"
+    ],
+    "answer": "Newton's second law is converted to a first-order state-space representation to verify system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does CAD modeling translate to CNC manufacturing? (Syllabus Module 4)",
+    "reasoning_path": [
+      "CAD",
+      "CNC milling",
+      "Assembly tolerance"
+    ],
+    "answer": "CAD designs are converted into toolpaths for CNC milling, respecting assembly tolerance constraints. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does injection molding relate to process control? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Injection molding",
+      "Statistical process control",
+      "Assembly tolerance"
+    ],
+    "answer": "Injection molding quality is tracked using statistical process control to maintain assembly tolerance. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why run a mesh convergence study in FEA? (Syllabus Module 4)",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis requires a mesh convergence study to guarantee the accuracy of von Mises stress. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does axial load cause column buckling? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Compressive Load",
+      "Euler Buckling",
+      "Critical Load",
+      "Slenderness",
+      "Buckling"
+    ],
+    "answer": "Euler buckling happens under compressive load when column slenderness exceeds critical load limits. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain the relation between load and yield criteria. (Syllabus Module 5)",
+    "reasoning_path": [
+      "Load",
+      "Stress",
+      "Von Mises stress",
+      "Yielding"
+    ],
+    "answer": "Load generates stress, which is converted to von Mises stress to evaluate material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes fatigue failure in machinery? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Cyclic Loading",
+      "Stress Concentration",
+      "Microcrack",
+      "Fatigue Failure"
+    ],
+    "answer": "Cyclic loading focuses stress concentration, creating a microcrack that triggers fatigue failure. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Euler-Bernoulli beam deflection. (Syllabus Module 5)",
+    "reasoning_path": [
+      "Bending Moment",
+      "Euler-Bernoulli Beam",
+      "Bending Stress",
+      "Deflection"
+    ],
+    "answer": "Bending moment applied to an Euler-Bernoulli beam causes bending stress and vertical deflection. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does Mohr's circle relate stress to yielding? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Stress",
+      "Mohr's circle",
+      "Yielding"
+    ],
+    "answer": "Mohr's circle transforms normal and shear stress to principal stresses for predicting material yielding. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does the Carnot cycle limit efficiency? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Heat Addition",
+      "Carnot cycle",
+      "Efficiency"
+    ],
+    "answer": "Heat addition at constant temperature in a Carnot cycle sets the upper limit for thermodynamic efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Rankine steam turbine power generation. (Syllabus Module 5)",
+    "reasoning_path": [
+      "Heat Absorption",
+      "Rankine Cycle",
+      "Turbine Work",
+      "Power Output"
+    ],
+    "answer": "Heat absorption generates high-pressure steam. The Rankine cycle turbine work translates this to power output. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why does gas compression in a turbine require compressor work? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Brayton cycle",
+      "First Law",
+      "Efficiency"
+    ],
+    "answer": "The Brayton cycle uses the First Law to model gas compression, determining gas turbine efficiency. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does velocity affect turbulence in a pipe? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Flow Speed",
+      "Reynolds Number",
+      "Turbulence"
+    ],
+    "answer": "High flow speed increases the Reynolds number, converting laminar flow to turbulence. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What causes boundary layer separation on an airfoil? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Adverse Pressure Gradient",
+      "Boundary Layer",
+      "Separation",
+      "Stall"
+    ],
+    "answer": "An adverse pressure gradient decelerates fluid in the boundary layer, leading to separation and stall. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain Fourier conduction through a wall. (Syllabus Module 5)",
+    "reasoning_path": [
+      "Temperature Gradient",
+      "Fourier Law",
+      "Conduction",
+      "Heat Flux"
+    ],
+    "answer": "A temperature gradient drives conduction modeled by Fourier's law, generating heat flux. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does convection transfer heat from a cylinder? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Fluid Motion",
+      "Convective Boundary Layer",
+      "Convection",
+      "Nusselt Number"
+    ],
+    "answer": "Fluid motion forms a convective boundary layer, increasing heat convection and Nusselt number. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does a PID controller reduce error? (Syllabus Module 5)",
+    "reasoning_path": [
+      "PID Controller",
+      "Error Signal",
+      "Control effort"
+    ],
+    "answer": "The PID controller monitors the error signal and adjusts control effort to stabilize the system. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Explain transfer function stability. (Syllabus Module 5)",
+    "reasoning_path": [
+      "Transfer Function",
+      "Poles",
+      "System Stability"
+    ],
+    "answer": "The poles of a system's Laplace transfer function determine dynamic system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "What determines gain and phase margin in controls? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Bode Plot",
+      "Phase Margin",
+      "System Stability"
+    ],
+    "answer": "Bode plot diagrams display open-loop response, indicating the phase margin required for system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How is a physical system modeled in state space? (Syllabus Module 5)",
+    "reasoning_path": [
+      "State-space representation",
+      "Newton Second Law",
+      "System Stability"
+    ],
+    "answer": "Newton's second law is converted to a first-order state-space representation to verify system stability. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does CAD modeling translate to CNC manufacturing? (Syllabus Module 5)",
+    "reasoning_path": [
+      "CAD",
+      "CNC milling",
+      "Assembly tolerance"
+    ],
+    "answer": "CAD designs are converted into toolpaths for CNC milling, respecting assembly tolerance constraints. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "How does injection molding relate to process control? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Injection molding",
+      "Statistical process control",
+      "Assembly tolerance"
+    ],
+    "answer": "Injection molding quality is tracked using statistical process control to maintain assembly tolerance. This is studied in MIT Course 2 and Stanford ME curricula."
+  },
+  {
+    "question": "Why run a mesh convergence study in FEA? (Syllabus Module 5)",
+    "reasoning_path": [
+      "Finite Element Analysis",
+      "Mesh convergence",
+      "Von Mises stress"
+    ],
+    "answer": "Finite Element Analysis requires a mesh convergence study to guarantee the accuracy of von Mises stress. This is studied in MIT Course 2 and Stanford ME curricula."
+  }
+]

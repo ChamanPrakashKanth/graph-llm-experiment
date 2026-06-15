@@ -1,0 +1,43 @@
+[
+  {
+    "concept": "Euler Buckling",
+    "definition": "The sudden lateral deflection of a slender column under an axial compressive load.",
+    "prerequisites": [
+      "Compressive Load",
+      "Stress",
+      "Column"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "Column buckling under compression governed by slenderness ratio.",
+    "revision_5_lines": "Euler buckling occurs in slender columns.\nIt is triggered by compressive loads.\nThe critical buckling load is P_cr = pi^2 * E * I / L_e^2.\nShort columns yield before they buckle.\nBoundary conditions change the effective length.",
+    "explanation": "Long, slender structural elements are prone to buckling under compression. Euler's theory calculates the maximum load a column can bear before bending laterally. This critical load is highly dependent on boundary constraints (pinned, fixed, free).",
+    "exam_summary": "P_cr formula is highly tested in GATE. Pay attention to end conditions: pinned-pinned (K=1.0), fixed-fixed (K=0.5), fixed-pinned (K=0.7), and fixed-free (K=2.0).",
+    "typical_mistakes": "Forgetting to square the effective length in the denominator, or using the wrong boundary condition multiplier K.",
+    "memory_aid": "Slender columns buckle easily; think of a thin plastic ruler under compression.",
+    "related_concepts": [
+      "Slenderness",
+      "Critical Load",
+      "Yielding"
+    ]
+  },
+  {
+    "concept": "Reynolds Number",
+    "definition": "A dimensionless quantity used to predict fluid flow transition from laminar to turbulent.",
+    "prerequisites": [
+      "Flow Speed",
+      "Viscosity"
+    ],
+    "difficulty": "Easy",
+    "revision_1_line": "Ratio of inertial forces to viscous forces in fluid flow.",
+    "revision_5_lines": "Reynolds number determines flow regime.\nRe = rho * v * D / mu.\nRe < 2000 is laminar flow in a pipe.\nRe > 4000 is turbulent flow in a pipe.\n2000 < Re < 4000 is transitional flow.",
+    "explanation": "The Reynolds number characterizes fluid flow behavior. At low values, viscous forces dominate, yielding smooth, parallel streamlines (laminar). At high values, inertial forces dominate, creating chaotic eddies and mixing (turbulent).",
+    "exam_summary": "Crucial for pipe loss, boundary layers, and dimensionless modeling questions in exams.",
+    "typical_mistakes": "Confusing dynamic viscosity (mu) with kinematic viscosity (nu = mu/rho) in the formula.",
+    "memory_aid": "High speed, low viscosity, big pipe = Turbulent chaotic flow.",
+    "related_concepts": [
+      "Flow Speed",
+      "Turbulence",
+      "Boundary Layer"
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "Strength of Materials": "Stress-strain curve (elastic, yielding, strain hardening, necking). Euler Buckling for columns is P_cr = pi^2*E*I/L_e^2. Torsion formula is T/J = tau/r = G*theta/L.",
+  "Fluid Mechanics": "Bernoulli equation is valid for steady, incompressible, frictionless flow along a streamline. Navier-Stokes equations represent momentum conservation for viscous fluids. Re determines laminar/turbulent.",
+  "Thermodynamics": "First Law is dQ = dU + dW. Second law defines entropy and shows isolated entropy must increase. Carnot efficiency is 1 - T_C/T_H."
+}

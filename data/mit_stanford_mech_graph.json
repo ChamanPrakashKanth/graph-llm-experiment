@@ -1,0 +1,1824 @@
+{
+  "nodes": [
+    {
+      "name": "Acceleration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Adverse Pressure Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Angular Acceleration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Angular Momentum",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Assembly tolerance",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Bending Moment",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Bending Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Bode Plot",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Boundary Layer",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Boundary conditions",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Brayton cycle",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Buckling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "CAD",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "CNC milling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Carnot cycle",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Compressive Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Conduction",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Control effort",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Control systems",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Convection",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Convective Boundary Layer",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Crack Propagation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Critical Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Curvature",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Cyclic Loading",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Deflection",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Displacement",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Drag",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Efficiency",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Elastic Deformation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Error Signal",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Euler Buckling",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Euler-Bernoulli Beam",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fatigue Failure",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Feedback Loop",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Finite Element Analysis",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "First Law",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Flow Speed",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fluid Motion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Force",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Fourier Law",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Free vibration frequency",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Frequency Response",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Gas Expansion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Absorption",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Addition",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Heat Flux",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Injection molding",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Isentropic Expansion",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Load",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Mesh convergence",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Microcrack",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Mohr's circle",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Moment of Inertia",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Newton Second Law",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Nusselt Number",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "PID Controller",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Phase Margin",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Piston Work",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Poles",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Power Output",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Pressure Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Rankine Cycle",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Resonance",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Reynolds Number",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Rigid Body",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Separation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Slenderness",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stall",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "State-space representation",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Statistical process control",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Strain",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Stress Concentration",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "System Stability",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Temperature Gradient",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Thermal Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Torque",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Transfer Function",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Turbine Work",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Turbulence",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Velocity",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Velocity Profile",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Vibration analysis",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Viscous Shear",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Von Mises stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Wall Shear Stress",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
+      "name": "Yielding",
+      "activation": 0.0,
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "Acceleration",
+      "target": "Displacement",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Acceleration",
+      "target": "Velocity",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Adverse Pressure Gradient",
+      "target": "Boundary Layer",
+      "weight": 0.9071428571428571,
+      "relation": "document_cooccurrence",
+      "evidence_count": 7,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Adverse Pressure Gradient",
+      "target": "Pressure Gradient",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Adverse Pressure Gradient",
+      "target": "Separation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Angular Acceleration",
+      "target": "Acceleration",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Angular Acceleration",
+      "target": "Angular Momentum",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Assembly tolerance",
+      "target": "Statistical process control",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Bending Moment",
+      "target": "Euler-Bernoulli Beam",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Bending Stress",
+      "target": "Deflection",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Bending Stress",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Bending Stress",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Bode Plot",
+      "target": "Phase Margin",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Separation",
+      "weight": 0.9071428571428571,
+      "relation": "document_cooccurrence",
+      "evidence_count": 7,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Stall",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Viscous Shear",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Wall Shear Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Boundary conditions",
+      "target": "Mesh convergence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Boundary conditions",
+      "target": "Rigid Body",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Brayton cycle",
+      "target": "First Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Buckling",
+      "target": "Boundary conditions",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Buckling",
+      "target": "Euler Buckling",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Buckling",
+      "target": "Load",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Buckling",
+      "target": "Slenderness",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "CAD",
+      "target": "CNC milling",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "CNC milling",
+      "target": "Assembly tolerance",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Carnot cycle",
+      "target": "Efficiency",
+      "weight": 0.8916666666666666,
+      "relation": "document_cooccurrence",
+      "evidence_count": 6,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Compressive Load",
+      "target": "Euler Buckling",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Conduction",
+      "target": "Convection",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Conduction",
+      "target": "Heat Flux",
+      "weight": 0.9071428571428571,
+      "relation": "document_cooccurrence",
+      "evidence_count": 7,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Conduction",
+      "target": "Temperature Gradient",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Control effort",
+      "target": "PID Controller",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Control systems",
+      "target": "Error Signal",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Convection",
+      "target": "Fluid Motion",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Convection",
+      "target": "Nusselt Number",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Convective Boundary Layer",
+      "target": "Boundary Layer",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Convective Boundary Layer",
+      "target": "Convection",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Crack Propagation",
+      "target": "Fatigue Failure",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Critical Load",
+      "target": "Slenderness",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Curvature",
+      "target": "Bending Moment",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Curvature",
+      "target": "Bending Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Cyclic Loading",
+      "target": "Crack Propagation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Cyclic Loading",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Cyclic Loading",
+      "target": "Stress Concentration",
+      "weight": 0.9071428571428571,
+      "relation": "document_cooccurrence",
+      "evidence_count": 7,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Elastic Deformation",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Error Signal",
+      "target": "Control effort",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Error Signal",
+      "target": "Control systems",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Euler Buckling",
+      "target": "Boundary conditions",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Euler Buckling",
+      "target": "Buckling",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Euler Buckling",
+      "target": "Critical Load",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Euler Buckling",
+      "target": "Slenderness",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Euler-Bernoulli Beam",
+      "target": "Bending Moment",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Euler-Bernoulli Beam",
+      "target": "Bending Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Euler-Bernoulli Beam",
+      "target": "Curvature",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Fatigue Failure",
+      "target": "Cyclic Loading",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Feedback Loop",
+      "target": "Poles",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Feedback Loop",
+      "target": "Transfer Function",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Finite Element Analysis",
+      "target": "Boundary conditions",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Finite Element Analysis",
+      "target": "Mesh convergence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "First Law",
+      "target": "Efficiency",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "First Law",
+      "target": "Heat Addition",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "First Law",
+      "target": "Piston Work",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Flow Speed",
+      "target": "Reynolds Number",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Fluid Motion",
+      "target": "Convective Boundary Layer",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Force",
+      "target": "Acceleration",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Force",
+      "target": "Displacement",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Force",
+      "target": "Load",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Force",
+      "target": "Newton Second Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Force",
+      "target": "Velocity",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Fourier Law",
+      "target": "Conduction",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Free vibration frequency",
+      "target": "Resonance",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Frequency Response",
+      "target": "Bode Plot",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Gas Expansion",
+      "target": "Piston Work",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Absorption",
+      "target": "Isentropic Expansion",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Absorption",
+      "target": "Rankine Cycle",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Addition",
+      "target": "Carnot cycle",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Addition",
+      "target": "Gas Expansion",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Heat Addition",
+      "target": "Piston Work",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Heat Flux",
+      "target": "Temperature Gradient",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Heat Flux",
+      "target": "Thermal Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Injection molding",
+      "target": "Statistical process control",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Isentropic Expansion",
+      "target": "Rankine Cycle",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Load",
+      "target": "Bending Moment",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Load",
+      "target": "Curvature",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Load",
+      "target": "Euler Buckling",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Load",
+      "target": "Euler-Bernoulli Beam",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Load",
+      "target": "Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Mesh convergence",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Mesh convergence",
+      "target": "Von Mises stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Microcrack",
+      "target": "Crack Propagation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Microcrack",
+      "target": "Fatigue Failure",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Mohr's circle",
+      "target": "Bending Stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Mohr's circle",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Mohr's circle",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Moment of Inertia",
+      "target": "Acceleration",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Moment of Inertia",
+      "target": "Angular Acceleration",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Moment of Inertia",
+      "target": "Torque",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Newton Second Law",
+      "target": "Acceleration",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Newton Second Law",
+      "target": "System Stability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Nusselt Number",
+      "target": "Boundary Layer",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "PID Controller",
+      "target": "Control effort",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "PID Controller",
+      "target": "Error Signal",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Phase Margin",
+      "target": "System Stability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Piston Work",
+      "target": "First Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Poles",
+      "target": "System Stability",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Poles",
+      "target": "Transfer Function",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Pressure Gradient",
+      "target": "Adverse Pressure Gradient",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Pressure Gradient",
+      "target": "Boundary Layer",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Pressure Gradient",
+      "target": "Separation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Pressure Gradient",
+      "target": "Stall",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Rankine Cycle",
+      "target": "Turbine Work",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Reynolds Number",
+      "target": "Turbulence",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Rigid Body",
+      "target": "Moment of Inertia",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Separation",
+      "target": "Stall",
+      "weight": 0.9071428571428571,
+      "relation": "document_cooccurrence",
+      "evidence_count": 7,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Slenderness",
+      "target": "Boundary conditions",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Slenderness",
+      "target": "Buckling",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "State-space representation",
+      "target": "Newton Second Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Statistical process control",
+      "target": "Assembly tolerance",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Strain",
+      "target": "Elastic Deformation",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Stress",
+      "target": "Crack Propagation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Drag",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Fatigue Failure",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Force",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Mohr's circle",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Stress",
+      "target": "Strain",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Stress Concentration",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress",
+      "target": "Von Mises stress",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Stress",
+      "target": "Yielding",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress Concentration",
+      "target": "Crack Propagation",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress Concentration",
+      "target": "Fatigue Failure",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Stress Concentration",
+      "target": "Microcrack",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Temperature Gradient",
+      "target": "Fourier Law",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Torque",
+      "target": "Angular Acceleration",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Torque",
+      "target": "Angular Momentum",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Transfer Function",
+      "target": "Feedback Loop",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Transfer Function",
+      "target": "Poles",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 5,
+      "metadata": {}
+    },
+    {
+      "source": "Turbine Work",
+      "target": "Power Output",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 6,
+      "metadata": {}
+    },
+    {
+      "source": "Velocity",
+      "target": "Displacement",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity",
+      "target": "Velocity Profile",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity",
+      "target": "Wall Shear Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity Profile",
+      "target": "Drag",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity Profile",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Velocity Profile",
+      "target": "Viscous Shear",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Velocity Profile",
+      "target": "Wall Shear Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Vibration analysis",
+      "target": "Free vibration frequency",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Viscous Shear",
+      "target": "Boundary Layer",
+      "weight": 1.0,
+      "relation": "reasoning_step",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
+      "source": "Von Mises stress",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Von Mises stress",
+      "target": "Yielding",
+      "weight": 0.8916666666666666,
+      "relation": "document_cooccurrence",
+      "evidence_count": 6,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Wall Shear Stress",
+      "target": "Drag",
+      "weight": 0.675,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Wall Shear Stress",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "document"
+      }
+    },
+    {
+      "source": "Yielding",
+      "target": "Stress",
+      "weight": 0.35,
+      "relation": "document_cooccurrence",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "document"
+      }
+    }
+  ]
+}

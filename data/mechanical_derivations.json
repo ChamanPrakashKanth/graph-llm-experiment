@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Euler Buckling Load Derivation",
+    "subject": "Strength of Materials",
+    "steps": [
+      "1. Consider a column of length L under axial compressive load P.",
+      "2. The bending moment at any cross section x is M(x) = -P * y(x).",
+      "3. Use Euler-Bernoulli bending equation: E * I * d2y/dx2 = M(x) = -P * y.",
+      "4. Rearrange to standard ODE: d2y/dx2 + (P / (E*I)) * y = 0.",
+      "5. General solution: y(x) = A*cos(k*x) + B*sin(k*x), where k = sqrt(P / (E*I)).",
+      "6. Boundary conditions for pinned ends: y(0) = 0 -> A = 0; y(L) = 0 -> B*sin(k*L) = 0.",
+      "7. For non-trivial solution (B != 0): sin(k*L) = 0 -> k*L = n*pi.",
+      "8. Smallest non-zero load occurs for n=1: k = pi / L -> P = pi^2 * E * I / L^2."
+    ],
+    "final_formula": "P_cr = \\frac{\\pi^2 E I}{L^2}"
+  }
+]

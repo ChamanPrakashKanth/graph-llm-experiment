@@ -1,0 +1,37 @@
+[
+  {
+    "subject": "Strength of Materials",
+    "name": "Euler Buckling",
+    "formula": "P_cr = \\pi^2 E I / L_e^2"
+  },
+  {
+    "subject": "Strength of Materials",
+    "name": "Torsion Formula",
+    "formula": "T/J = \\tau/r = G \\theta / L"
+  },
+  {
+    "subject": "Strength of Materials",
+    "name": "Bending Formula",
+    "formula": "M/I = \\sigma/y = E/R"
+  },
+  {
+    "subject": "Fluid Mechanics",
+    "name": "Reynolds Number",
+    "formula": "Re = \\rho v D / \\mu"
+  },
+  {
+    "subject": "Fluid Mechanics",
+    "name": "Bernoulli Equation",
+    "formula": "P/\\rho g + v^2/2g + z = const"
+  },
+  {
+    "subject": "Heat Transfer",
+    "name": "Fourier's Law",
+    "formula": "q = -k dT/dx"
+  },
+  {
+    "subject": "Thermodynamics",
+    "name": "Carnot Efficiency",
+    "formula": "\\eta = 1 - T_C / T_H"
+  }
+]

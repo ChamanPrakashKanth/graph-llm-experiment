@@ -1,0 +1,94 @@
+=== COURSE: MIT_2_001_Stanford_ENGR_14_Statics_and_Solid_Mechanics ===
+MIT 2.001 (Mechanics and Materials I) and Stanford ENGR 14 (Introduction to Solid Mechanics) cover the equations of static equilibrium.
+Static equilibrium requires that the sum of forces and sum of moments equal zero.
+Trusses are structural elements composed of two-force members connected at joints.
+Truss analysis uses the method of joints or method of sections to calculate axial force.
+Axial force in a member can be tension (pulling apart) or compression (pushing together).
+Stress is defined as force per unit area. Normal stress causes elongation, while shear stress causes deformation.
+Strain represents the ratio of deformation to original length.
+Hooke's Law states that stress is proportional to strain via the Elastic Modulus (Young's Modulus).
+Shear-force and bending-moment diagrams plot internal shear forces and moments along a beam under load.
+Under bending load, the Euler-Bernoulli beam theory relates curvature and bending moment.
+Bending stress is maximum at the outer fibers of the beam and zero at the neutral axis.
+Euler buckling occurs in long, slender columns subjected to axial compression.
+The critical buckling load is determined by the Euler buckling formula: P_cr = (pi^2 * E * I) / (L_e^2).
+Euler buckling is highly dependent on column slenderness and end boundary conditions.
+Fatigue failure happens due to cyclic loading below the ultimate tensile strength.
+Cyclic loading causes stress concentration at microcracks, which leads to crack propagation and fatigue failure.
+Mohr's circle is a graphical representation of the transformation equations for plane stress.
+Von Mises yield criterion predicts yielding of materials under multiaxial stress states.
+Yielding occurs when the von Mises equivalent stress exceeds the yield strength in simple tension.
+
+=== COURSE: MIT_2_003_Stanford_ENGR_15_Dynamics ===
+MIT 2.003 (Dynamics and Control I) and Stanford ENGR 15 (Dynamics) study the motion of particles and rigid bodies.
+Kinematics models motion without regard to forces, while kinetics relates forces to motion.
+Newton's Second Law relates force to acceleration, velocity, and displacement.
+For rigid bodies, torque equals the rate of change of angular momentum.
+Moment of inertia represents a body's resistance to angular acceleration.
+Euler's equations of motion describe the rotation of a rigid body in three dimensions.
+Work-energy principle states that the change in kinetic energy equals the work done by external forces.
+Vibration analysis models systems using mass, spring, and damper elements.
+Free vibration frequency depends on stiffness and mass, while damping ratio determines amplitude decay.
+Resonance occurs when the external forcing frequency matches the natural frequency of the system.
+
+=== COURSE: MIT_2_005_Stanford_ME_30_Thermodynamics ===
+MIT 2.005 (Thermal-Fluids Engineering I) and Stanford ME 30 (Engineering Thermodynamics) cover classical thermodynamics.
+First Law of Thermodynamics is the conservation of energy: heat addition equals internal energy change plus piston work.
+Second Law of Thermodynamics asserts that entropy in an isolated system always increases.
+Carnot cycle defines the maximum theoretical efficiency limit between two thermal reservoirs.
+The Carnot efficiency depends solely on the absolute temperatures of the hot and cold reservoirs.
+Rankine cycle models steam power plants using a pump, boiler, steam turbine, and condenser.
+Rankine efficiency is increased by reheating steam and reducing condenser pressure.
+Brayton cycle represents gas turbine engines consisting of a compressor, combustor, and turbine.
+Otto cycle models internal combustion spark-ignition engines with isentropic compression and constant-volume heat addition.
+Diesel cycle models compression-ignition engines with constant-pressure heat addition.
+Entropy change represents the measure of system disorder and irreversibility.
+
+=== COURSE: MIT_2_006_Stanford_ME_70_Fluid_Mechanics_and_Heat_Transfer ===
+MIT 2.006 (Thermal-Fluids Engineering II) and Stanford ME 70 (Fluid Mechanics and Heat Transfer) model mass and energy transport.
+Fluid mechanics uses conservation laws expressed via the Navier-Stokes equations for viscous fluid flow.
+Bernoulli's equation models inviscid flow along a streamline, balancing pressure, velocity, and elevation.
+Reynolds number determines whether flow is laminar (smooth) or turbulent (chaotic).
+Pipe flow friction loss is calculated using the Darcy-Weisbach equation and friction factor from the Moody diagram.
+Boundary layer theory describes the thin layer near solid walls where viscous shear forces are dominant.
+Velocity profile dictates wall shear stress, which causes skin friction drag on objects.
+An adverse pressure gradient slows fluid in the boundary layer, leading to flow separation and stall.
+Heat transfer occurs via conduction, convection, and radiation.
+Conduction is modeled by Fourier's Law, relating heat flux to temperature gradient.
+Convection describes heat transfer between a solid surface and fluid motion.
+Convective boundary layer determines the heat transfer coefficient.
+Nusselt number is the ratio of convective to conductive heat transfer across the boundary layer.
+Radiation heat transfer is proportional to the difference of absolute temperatures raised to the fourth power.
+
+=== COURSE: MIT_2_004_Stanford_ME_161_Controls ===
+MIT 2.004 (Dynamics and Control II) and Stanford ME 161 (Dynamic Systems and Control) cover feedback control systems.
+Control systems use sensor feedback to reduce the error signal between desired setpoint and output.
+A PID controller uses proportional, integral, and derivative gains to calculate the control effort.
+Transfer function models the input-output relationship of a linear time-invariant system in the Laplace domain.
+Feedback loop stability is determined by the poles of the closed-loop transfer function.
+Poles in the left-half plane indicate stability, while right-half plane poles cause system instability.
+Frequency response describes how a system responds to sinusoidal inputs of varying frequency.
+Bode plot displays the open-loop gain and phase shift over a range of frequencies.
+Gain margin and phase margin measure the stability robustness of a feedback system.
+State-space representation models dynamic systems using first-order differential vector equations.
+
+=== COURSE: MIT_2_007_2_008_Stanford_ME_103_203_Design_and_Manufacturing ===
+MIT 2.007 (Design and Manufacturing I), 2.008 (Design and Manufacturing II), Stanford ME 103, and ME 203 cover CAD, manufacturing processes, and systems.
+CAD (Computer-Aided Design) is used to create detailed 3D models and engineering drawings.
+Machining processes include turning (on a lathe) and milling (on a CNC machine) to remove material.
+Injection molding is a manufacturing process for producing parts by injecting molten plastic into a mold.
+CNC milling uses computer instructions to control high-speed cutting tools for precise material removal.
+Linkage synthesis designs mechanical linkages to trace a desired output path.
+Gears transfer torque and rotation; gear ratio determines speed reduction and torque multiplication.
+Assembly tolerance dictates the permissible limits of variation in physical dimensions.
+Statistical process control uses control charts to monitor manufacturing variability.
+Sheet metal forming uses presses to bend and shape metal sheets into structural parts.
+
+=== COURSE: MIT_2_094_Stanford_ME_309_Finite_Element_Analysis ===
+MIT 2.094 and Stanford ME 309 cover the Finite Element Method (FEM) for computational engineering.
+Finite Element Analysis discretizes a continuous domain into finite elements connected by nodes.
+The element stiffness matrix relates nodal displacements to nodal forces.
+Boundary conditions constrain nodes to prevent rigid body motion and apply external loads.
+Mesh convergence studies verify that refining the mesh size yields stable, accurate stress results.
+Von Mises stress is extracted from FEM models to evaluate structural safety and yielding.
+Element types include truss, beam, shell, and solid elements depending on geometry.

@@ -1,0 +1,13 @@
+[
+  {
+    "question": "For a column of length L, if one end is fixed and the other is free, what is the effective length?",
+    "options": [
+      "A. L/2",
+      "B. L",
+      "C. 2L",
+      "D. 4L"
+    ],
+    "answer": "C",
+    "explanation": "For fixed-free ends, the buckling shape represents a quarter wave, so the effective length is twice the physical length: L_e = 2L."
+  }
+]
