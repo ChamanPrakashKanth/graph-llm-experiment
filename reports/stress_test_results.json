@@ -1,7 +1,7 @@
 {
   "accuracy": 100.0,
-  "avg_latency_ms": 638.6950526918683,
-  "peak_memory_mb": 789.06640625,
+  "avg_latency_ms": 627.66204561506,
+  "peak_memory_mb": 774.8984375,
   "total_questions": 14,
   "correct_questions": 14,
   "details": [
@@ -12,9 +12,9 @@
       "question": "A steel column of length 2.0 m has pinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN?",
       "expected": "4934.8",
       "computed": "4934.8022",
-      "latency_ms": 353.58476638793945,
+      "latency_ms": 286.5893840789795,
       "status": "PASS",
-      "memory_mb": 640.80859375
+      "memory_mb": 623.32421875
     },
     {
       "index": 2,
@@ -23,9 +23,9 @@
       "question": "Calculate stress if load equals ten kN and area measures five m^2",
       "expected": "2000",
       "computed": "2000.0000",
-      "latency_ms": 95.56961059570312,
+      "latency_ms": 116.50609970092773,
       "status": "PASS",
-      "memory_mb": 641.375
+      "memory_mb": 623.78515625
     },
     {
       "index": 3,
@@ -34,9 +34,9 @@
       "question": "A cantilever column of length 3.0 m has E = 210e9 Pa and I = 2.0e-6 m^4. Find the critical buckling load in kN.",
       "expected": "115.15",
       "computed": "115.1454",
-      "latency_ms": 87.26739883422852,
+      "latency_ms": 70.25718688964844,
       "status": "PASS",
-      "memory_mb": 641.78515625
+      "memory_mb": 624.1484375
     },
     {
       "index": 4,
@@ -45,9 +45,9 @@
       "question": "A beam has bending moment M = 5000 N-m, y = 0.05 m, and I = 1.0e-5 m^4. Calculate bending stress in MPa.",
       "expected": "25",
       "computed": "25.0000",
-      "latency_ms": 102.22077369689941,
+      "latency_ms": 56.39934539794922,
       "status": "PASS",
-      "memory_mb": 641.8203125
+      "memory_mb": 624.37109375
     },
     {
       "index": 5,
@@ -56,9 +56,9 @@
       "question": "Find Carnot efficiency if hot reservoir temperature is 800 K and cold reservoir temperature is 300 K.",
       "expected": "0.625",
       "computed": "0.6250",
-      "latency_ms": 97.14865684509277,
+      "latency_ms": 88.01436424255371,
       "status": "PASS",
-      "memory_mb": 641.828125
+      "memory_mb": 624.3203125
     },
     {
       "index": 6,
@@ -67,9 +67,9 @@
       "question": "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe.",
       "expected": "100000",
       "computed": "1.0000e+05",
-      "latency_ms": 111.44042015075684,
+      "latency_ms": 110.6414794921875,
       "status": "PASS",
-      "memory_mb": 589.74609375
+      "memory_mb": 624.390625
     },
     {
       "index": 7,
@@ -78,9 +78,9 @@
       "question": "Find axial stress when load is 50 kN and cross-sectional area is 0.0025 m^2.",
       "expected": "20000000",
       "computed": "2.0000e+07",
-      "latency_ms": 81.52914047241211,
+      "latency_ms": 128.4332275390625,
       "status": "PASS",
-      "memory_mb": 598.078125
+      "memory_mb": 624.33984375
     },
     {
       "index": 8,
@@ -89,9 +89,9 @@
       "question": "A column has E = 200e9 Pa, I = 5.0e-6 m^4, and effective length L_e = 4.0 m. Calculate critical buckling load P_cr in kN.",
       "expected": "617",
       "computed": "616.8503",
-      "latency_ms": 82.32927322387695,
+      "latency_ms": 126.74379348754883,
       "status": "PASS",
-      "memory_mb": 566.34375
+      "memory_mb": 624.33984375
     },
     {
       "index": 9,
@@ -100,9 +100,9 @@
       "question": "Calculate torque when moment of inertia I = 2.0 kg-m^2 and angular acceleration alpha = 5.0 rad/s^2.",
       "expected": "10",
       "computed": "10.0000",
-      "latency_ms": 89.89620208740234,
+      "latency_ms": 93.17231178283691,
       "status": "PASS",
-      "memory_mb": 594.46875
+      "memory_mb": 624.33984375
     },
     {
       "index": 10,
@@ -111,9 +111,9 @@
       "question": "For a column of length L, if one end is fixed and the other is free, what is the effective length?",
       "expected": "C",
       "computed": "C",
-      "latency_ms": 2579.944610595703,
+      "latency_ms": 2483.711004257202,
       "status": "PASS",
-      "memory_mb": 778.82421875
+      "memory_mb": 765.0546875
     },
     {
       "index": 11,
@@ -122,9 +122,9 @@
       "question": "For a column with both ends pinned, the effective length factor K equals:",
       "expected": "C",
       "computed": "C",
-      "latency_ms": 1336.0278606414795,
+      "latency_ms": 1406.4505100250244,
       "status": "PASS",
-      "memory_mb": 783.171875
+      "memory_mb": 770.66015625
     },
     {
       "index": 12,
@@ -133,9 +133,9 @@
       "question": "For a column with both ends fixed, the effective length factor K equals:",
       "expected": "A",
       "computed": "A",
-      "latency_ms": 1337.1984958648682,
+      "latency_ms": 1321.7003345489502,
       "status": "PASS",
-      "memory_mb": 785.44140625
+      "memory_mb": 771.453125
     },
     {
       "index": 13,
@@ -144,9 +144,9 @@
       "question": "Reynolds number below 2000 in a pipe indicates:",
       "expected": "B",
       "computed": "B",
-      "latency_ms": 1369.7893619537354,
+      "latency_ms": 1428.7488460540771,
       "status": "PASS",
-      "memory_mb": 789.06640625
+      "memory_mb": 774.8984375
     },
     {
       "index": 14,
@@ -155,9 +155,9 @@
       "question": "The Carnot efficiency of a heat engine operating between 600 K and 300 K is:",
       "expected": "B",
       "computed": "B",
-      "latency_ms": 1217.7841663360596,
+      "latency_ms": 1069.9007511138916,
       "status": "PASS",
-      "memory_mb": 781.7578125
+      "memory_mb": 767.59765625
     }
   ]
 }
