@@ -255,9 +255,52 @@
       "metadata": {}
     },
     {
+      "name": "Automation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Auxiliary Inertia",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Availability",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The maximum useful work obtainable from a system as it comes into equilibrium with the environment.",
+        "formula": "Phi = (U - U_0) + P_0*(V - V_0) - T_0*(S - S_0)",
+        "causes": [
+          "Exergy input",
+          "Temperature difference from surroundings"
+        ],
+        "effects": [
+          "Potential for work output",
+          "Power generation"
+        ],
+        "dependencies": [
+          "Environment temperature",
+          "System state",
+          "Environment pressure"
+        ],
+        "applications": [
+          "Exergy analysis",
+          "Power plant optimization",
+          "Thermal efficiency improvement"
+        ],
+        "failure_modes": [
+          "Exergy destruction",
+          "Irreversibility losses"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Axial Compression",
@@ -295,9 +338,82 @@
       "metadata": {}
     },
     {
+      "name": "Balancing",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The process of designing or modifying a machine to reduce inertia forces and couples.",
+        "formula": "m_b * r_b = m_u * r_u",
+        "causes": [
+          "Mass eccentricity",
+          "Unbalanced rotating or reciprocating mass"
+        ],
+        "effects": [
+          "Centrifugal forces",
+          "System vibrations",
+          "Bearing stress"
+        ],
+        "dependencies": [
+          "Eccentric mass",
+          "Speed of rotation",
+          "Center of mass position"
+        ],
+        "applications": [
+          "Automotive wheels",
+          "Engine crankshafts",
+          "Turbine rotors"
+        ],
+        "failure_modes": [
+          "Excessive machine vibration",
+          "Bearing wear",
+          "Structural fatigue"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Bearing Failure",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Bearings",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Machine elements that constrain relative motion to only the desired motion and reduce friction between moving parts.",
+        "formula": "L_10 = (C / P)^p",
+        "causes": [
+          "Load support",
+          "Shaft rotation"
+        ],
+        "effects": [
+          "Friction reduction",
+          "Wear prevention",
+          "Shaft alignment"
+        ],
+        "dependencies": [
+          "Lubricant viscosity",
+          "Load magnitude",
+          "Rotating speed"
+        ],
+        "applications": [
+          "Automotive axles",
+          "Gearboxes",
+          "Electric motors",
+          "Engine crankshafts"
+        ],
+        "failure_modes": [
+          "Spalling (fatigue pitting)",
+          "Lubrication failure",
+          "Overheating"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Bellows Flexibility",
@@ -318,6 +434,42 @@
       "name": "Bend Radius",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Bending",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Structural deformation of a beam under lateral loads, causing normal stress along its length.",
+        "formula": "M / I = sigma / y = E / R",
+        "causes": [
+          "Transverse loads",
+          "Bending moments"
+        ],
+        "effects": [
+          "Flexural strain",
+          "Normal stress",
+          "Beam deflection"
+        ],
+        "dependencies": [
+          "Moment of inertia",
+          "Bending moment",
+          "Distance from neutral axis"
+        ],
+        "applications": [
+          "Bridge girders",
+          "Structural beams",
+          "Machine frames"
+        ],
+        "failure_modes": [
+          "Plastic hinge formation",
+          "Flexural buckling",
+          "Shear failure"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Bending Force",
@@ -351,8 +503,38 @@
     },
     {
       "name": "Bernoulli Equation",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "A relation between pressure, velocity, and elevation in steady, incompressible, frictionless flow.",
+        "formula": "P + 0.5 * rho * v^2 + rho * g * z = Constant",
+        "causes": [
+          "Gravity",
+          "Pressure forces",
+          "Flow velocity changes"
+        ],
+        "effects": [
+          "Lift generation",
+          "Pressure drop at high speed"
+        ],
+        "dependencies": [
+          "Incompressible flow",
+          "Steady flow",
+          "Inviscid flow"
+        ],
+        "applications": [
+          "Venturimeter",
+          "Pitot tube",
+          "Orifice meter"
+        ],
+        "failure_modes": [
+          "Flow separation",
+          "Cavitation"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Biaxial Stress State",
@@ -422,6 +604,40 @@
       "metadata": {}
     },
     {
+      "name": "Boiling",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Phase change from liquid to vapor occurring at a solid-liquid interface when the surface temperature exceeds saturation temperature.",
+        "formula": "q = h_boil * (T_s - T_sat)",
+        "causes": [
+          "High heat flux",
+          "Surface superheat"
+        ],
+        "effects": [
+          "Bubble generation",
+          "Extremely high heat transfer rate"
+        ],
+        "dependencies": [
+          "Surface roughness",
+          "Fluid pressure",
+          "Surface superheat"
+        ],
+        "applications": [
+          "Power plant boilers",
+          "Nuclear reactor cooling",
+          "Refrigerant evaporators"
+        ],
+        "failure_modes": [
+          "Critical heat flux (CHF) violation",
+          "Dryout"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Bolt Preload",
       "activation": 0.0,
       "metadata": {}
@@ -430,6 +646,41 @@
       "name": "Bolt Stiffness",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Bolted Joints",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Temporary mechanical fasteners used to join two or more parts together.",
+        "formula": "F_i = T / (C * d)",
+        "causes": [
+          "Tightening torque",
+          "Preload"
+        ],
+        "effects": [
+          "Clamping force",
+          "Clamping stress"
+        ],
+        "dependencies": [
+          "Bolt grade",
+          "Thread pitch",
+          "Friction coefficient"
+        ],
+        "applications": [
+          "Structural steel frames",
+          "Engine cylinder heads",
+          "Flange joints"
+        ],
+        "failure_modes": [
+          "Thread stripping",
+          "Bolt shear",
+          "Fatigue failure"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Bonded Gauge",
@@ -458,8 +709,37 @@
     },
     {
       "name": "Boundary Layer",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The thin layer of fluid adjacent to a solid surface where viscous forces are significant.",
+        "formula": "delta = 5.0 * x / sqrt(Re_x)",
+        "causes": [
+          "No-slip boundary condition",
+          "Viscous drag"
+        ],
+        "effects": [
+          "Skin friction drag",
+          "Velocity gradient development"
+        ],
+        "dependencies": [
+          "Fluid viscosity",
+          "Surface roughness",
+          "Flow velocity"
+        ],
+        "applications": [
+          "Aerodynamic drag reduction",
+          "Heat transfer coefficient estimation",
+          "Aircraft design"
+        ],
+        "failure_modes": [
+          "Boundary layer separation",
+          "Stall"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Boundary Layer Development",
@@ -516,6 +796,15 @@
       "metadata": {}
     },
     {
+      "name": "Buckingham Pi Theorem",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Buckling",
       "activation": 0.0,
       "metadata": {}
@@ -529,6 +818,50 @@
       "name": "Buoyancy Force",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "CFD",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
+      "name": "CNC",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Computer Numerical Control, the automated control of machining tools by means of a computer.",
+        "formula": "v_f = f * n",
+        "causes": [
+          "Programmed G-codes",
+          "Motor drive signals"
+        ],
+        "effects": [
+          "Precise tool path movement",
+          "Automated manufacturing"
+        ],
+        "dependencies": [
+          "Controller accuracy",
+          "Motor resolution",
+          "Slide friction"
+        ],
+        "applications": [
+          "Automated milling",
+          "Automated turning",
+          "3D printing"
+        ],
+        "failure_modes": [
+          "Controller error",
+          "Tool collision",
+          "Encoder drift"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "CTE Mismatch",
@@ -571,6 +904,15 @@
       "metadata": {}
     },
     {
+      "name": "Carnot cycle",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Cast Shape",
       "activation": 0.0,
       "metadata": {}
@@ -579,6 +921,42 @@
       "name": "Castigliano Theorem",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Casting",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A manufacturing process in which a liquid material is poured into a mold containing a hollow cavity and allowed to solidify.",
+        "formula": "t = B * (V / A)^n",
+        "causes": [
+          "Molten metal pouring",
+          "Temperature drop"
+        ],
+        "effects": [
+          "Solidified component",
+          "Microstructure formation"
+        ],
+        "dependencies": [
+          "Mold material",
+          "Pouring temperature",
+          "Solidification rate"
+        ],
+        "applications": [
+          "Engine blocks",
+          "Valve bodies",
+          "Turbine casing castings"
+        ],
+        "failure_modes": [
+          "Shrinkage cavities",
+          "Gas porosity",
+          "Cold shut",
+          "Misrun"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Casting Modulus",
@@ -665,6 +1043,15 @@
       "name": "Chaotic Motion",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Characteristic Equation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Characteristic Frequencies",
@@ -805,6 +1192,41 @@
       "name": "Collision Type",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Columns",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Vertical structural elements designed primarily to carry compressive loads along their longitudinal axis.",
+        "formula": "P_cr = pi^2 * E * I / L_e^2",
+        "causes": [
+          "Axial compressive loading",
+          "Structural weight support"
+        ],
+        "effects": [
+          "Compressive stress",
+          "Buckling"
+        ],
+        "dependencies": [
+          "Slenderness ratio",
+          "Boundary conditions",
+          "Cross-section"
+        ],
+        "applications": [
+          "Building pillars",
+          "Truss compression members",
+          "Piston rods"
+        ],
+        "failure_modes": [
+          "Lateral buckling",
+          "Crushing",
+          "Yielding"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Combined Damage",
@@ -957,9 +1379,77 @@
       "metadata": {}
     },
     {
+      "name": "Condensation",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Phase change from vapor to liquid occurring when the temperature of a vapor is reduced below its saturation temperature.",
+        "formula": "q = h_cond * (T_sat - T_s)",
+        "causes": [
+          "Vapor cooling",
+          "Contact with subcooled surfaces"
+        ],
+        "effects": [
+          "Liquid film or drop formation",
+          "High latent heat release"
+        ],
+        "dependencies": [
+          "Surface wettability",
+          "Vapor purity",
+          "Surface temperature"
+        ],
+        "applications": [
+          "Steam condensers",
+          "Distillation columns",
+          "Refrigerant condensers"
+        ],
+        "failure_modes": [
+          "Non-condensable gas accumulation",
+          "Film barrier formation"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Condenser Section",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Conduction",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Heat transfer through a stationary medium by molecular activity and electron transport.",
+        "formula": "q = -k * dT/dx",
+        "causes": [
+          "Temperature gradient",
+          "Thermal conductivity"
+        ],
+        "effects": [
+          "Temperature drop",
+          "Thermal energy flow"
+        ],
+        "dependencies": [
+          "Thermal conductivity",
+          "Temperature difference",
+          "Material thickness"
+        ],
+        "applications": [
+          "Insulation design",
+          "Cooling of microelectronics",
+          "Boiler walls"
+        ],
+        "failure_modes": [
+          "Thermal cracking",
+          "Insulation degradation"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Conduction Resistance",
@@ -1101,6 +1591,15 @@
       "metadata": {}
     },
     {
+      "name": "Control Systems",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Control Volume",
       "activation": 0.0,
       "metadata": {}
@@ -1109,6 +1608,40 @@
       "name": "Controlled Heating",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Convection",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Heat transfer between a solid surface and a moving fluid by combined bulk motion and conduction.",
+        "formula": "q = h * (T_s - T_inf)",
+        "causes": [
+          "Fluid motion",
+          "Temperature difference",
+          "Surface shear"
+        ],
+        "effects": [
+          "Rapid cooling or heating of surfaces"
+        ],
+        "dependencies": [
+          "Convective heat transfer coefficient",
+          "Fluid velocity",
+          "Viscosity"
+        ],
+        "applications": [
+          "Radiators",
+          "Boilers",
+          "Electronic heat sinks"
+        ],
+        "failure_modes": [
+          "Flow blockage",
+          "Fouling of surfaces"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Convection Coefficient",
@@ -1534,6 +2067,15 @@
       "metadata": {}
     },
     {
+      "name": "Darcy-Weisbach Equation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Dead State",
       "activation": 0.0,
       "metadata": {}
@@ -1562,6 +2104,15 @@
       "name": "Deflection Distribution",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Degrees of Freedom",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Density Change",
@@ -1654,6 +2205,39 @@
       "metadata": {}
     },
     {
+      "name": "Differential Equations",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Equations that relate one or more functions and their derivatives.",
+        "formula": "a_n * d^ny/dx^n + ... + a_0 * y = f(x)",
+        "causes": [
+          "Physical law modeling (e.g. F=ma, Fourier Law)"
+        ],
+        "effects": [
+          "Continuous trajectory profiles",
+          "System dynamics output"
+        ],
+        "dependencies": [
+          "Initial conditions",
+          "Boundary conditions",
+          "Forcing function"
+        ],
+        "applications": [
+          "Mechanical vibrations",
+          "Heat conduction equations",
+          "Fluid streamline analysis"
+        ],
+        "failure_modes": [
+          "Solution divergence",
+          "Numerical integration instability"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Differential Expansion",
       "activation": 0.0,
       "metadata": {}
@@ -1672,6 +2256,39 @@
       "name": "Digital Model",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Dimensional Analysis",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A method of analyzing relationships between physical quantities by identifying their fundamental dimensions.",
+        "formula": "Number of Pi terms = n - m",
+        "causes": [
+          "Scaling",
+          "Similarity requirements"
+        ],
+        "effects": [
+          "Reduction in experimental variables",
+          "Scale-up laws"
+        ],
+        "dependencies": [
+          "Physical variables",
+          "Fundamental dimensions"
+        ],
+        "applications": [
+          "Wind tunnel testing",
+          "Hydraulic model design",
+          "Dynamic similarity scaling"
+        ],
+        "failure_modes": [
+          "Missing critical variables",
+          "Scale effects"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Dimensional Change",
@@ -1792,6 +2409,15 @@
       "name": "Drawing Limit",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Dropwise Condensation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Dry Bulb Temperature",
@@ -1947,6 +2573,38 @@
       "metadata": {}
     },
     {
+      "name": "Elasticity",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The property of a material to return to its original shape and size after the forces causing deformation are removed.",
+        "formula": "sigma = E * epsilon",
+        "causes": [
+          "Atomic bond stretching under loading"
+        ],
+        "effects": [
+          "Recoverable deformation"
+        ],
+        "dependencies": [
+          "Young's Modulus",
+          "Crystal structure",
+          "Temperature"
+        ],
+        "applications": [
+          "Springs",
+          "Structural frames",
+          "Elastic components"
+        ],
+        "failure_modes": [
+          "Plastic deformation",
+          "Yielding"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Electric Current",
       "activation": 0.0,
       "metadata": {}
@@ -2007,6 +2665,15 @@
       "metadata": {}
     },
     {
+      "name": "Emissivity",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Encirclement Count",
       "activation": 0.0,
       "metadata": {}
@@ -2020,6 +2687,15 @@
       "name": "Endurance Limit",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Energy",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Energy Absorption",
@@ -2072,6 +2748,15 @@
       "metadata": {}
     },
     {
+      "name": "Engineering Mathematics",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Enhanced Convection",
       "activation": 0.0,
       "metadata": {}
@@ -2085,6 +2770,41 @@
       "name": "Enhanced Mixing",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Entropy",
+      "activation": 1.0,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ],
+        "description": "A thermodynamic property that measures the degree of molecular disorder or randomness in a system.",
+        "formula": "dS = dQ_rev / T",
+        "causes": [
+          "Heat transfer",
+          "Friction",
+          "Unrestrained expansion"
+        ],
+        "effects": [
+          "Increase in disorder",
+          "Decrease in available energy"
+        ],
+        "dependencies": [
+          "Temperature",
+          "Heat transfer",
+          "System irreversibility"
+        ],
+        "applications": [
+          "Thermal efficiency calculation",
+          "Cycle analysis",
+          "Exergy destruction"
+        ],
+        "failure_modes": [
+          "Exergy destruction",
+          "Entropy generation"
+        ],
+        "difficulty": "Hard"
+      }
     },
     {
       "name": "Entropy Generation",
@@ -2188,6 +2908,15 @@
         "sources": [
           "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
           "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
+      "name": "Euler-Bernoulli Beam",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
         ]
       }
     },
@@ -2336,6 +3065,39 @@
       "metadata": {}
     },
     {
+      "name": "Failure Theories",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Criteria used to predict the yielding or fracture of materials under multi-axial stress states.",
+        "formula": "sigma_v = sqrt(sigma_1^2 - sigma_1*sigma_2 + sigma_2^2) <= S_y / FOS",
+        "causes": [
+          "Complex multi-axial load states"
+        ],
+        "effects": [
+          "Yielding prediction"
+        ],
+        "dependencies": [
+          "Yield strength",
+          "Principal stresses",
+          "Material ductility"
+        ],
+        "applications": [
+          "Pressure vessels",
+          "Drive shafts under bending and torsion",
+          "Bolts"
+        ],
+        "failure_modes": [
+          "Yielding",
+          "Plastic deformation",
+          "Brittle fracture"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Fan or Pump",
       "activation": 0.0,
       "metadata": {}
@@ -2359,6 +3121,43 @@
       "name": "Fastest Return",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Fatigue",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The progressive and localized structural damage that occurs when a material is subjected to cyclic loading.",
+        "formula": "sigma_a / S_e + sigma_m / S_ut = 1 / FOS",
+        "causes": [
+          "Cyclic stress",
+          "Fluctuating loads",
+          "Stress concentration"
+        ],
+        "effects": [
+          "Crack initiation",
+          "Crack propagation",
+          "Sudden fracture"
+        ],
+        "dependencies": [
+          "Number of load cycles",
+          "Surface finish",
+          "Stress amplitude",
+          "Mean stress"
+        ],
+        "applications": [
+          "Transmission shafts",
+          "Automotive suspensions",
+          "Turbine blades"
+        ],
+        "failure_modes": [
+          "Fatigue fracture",
+          "Catastrophic failure without warning"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Fatigue Crack",
@@ -2418,6 +3217,15 @@
       "name": "Feasibility Check",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Feedback Control",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Feedback Loop",
@@ -2503,6 +3311,41 @@
       "metadata": {}
     },
     {
+      "name": "First Law",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The law of conservation of energy stating that energy cannot be created or destroyed, only transformed from one form to another.",
+        "formula": "dQ = dU + dW",
+        "causes": [
+          "Heat transfer",
+          "Work interaction"
+        ],
+        "effects": [
+          "Change in internal energy",
+          "Temperature change",
+          "Boundary work"
+        ],
+        "dependencies": [
+          "Heat interaction",
+          "Work interaction",
+          "State variables"
+        ],
+        "applications": [
+          "Internal combustion engines",
+          "Steam power plants",
+          "Gas turbines"
+        ],
+        "failure_modes": [
+          "Energy leakage",
+          "Thermal insulation failure"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "First Moment",
       "activation": 0.0,
       "metadata": {}
@@ -2583,9 +3426,27 @@
       "metadata": {}
     },
     {
+      "name": "Flow Speed",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Flow Variation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Fluid Mechanics",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Fluid Momentum",
@@ -2664,13 +3525,51 @@
     },
     {
       "name": "Forced Vibration",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "Oscillatory motion of a system driven by a continuous external periodic force.",
+        "formula": "X = F_0 / sqrt((k - m * omega^2)^2 + (c * omega)^2)",
+        "causes": [
+          "External harmonic force",
+          "Unbalanced rotating mass"
+        ],
+        "effects": [
+          "Steady-state oscillation at excitation frequency"
+        ],
+        "dependencies": [
+          "Excitation frequency",
+          "System mass",
+          "Stiffness",
+          "Damping"
+        ],
+        "applications": [
+          "Shaker tables",
+          "Reciprocating machinery mounts",
+          "Vibratory compaction"
+        ],
+        "failure_modes": [
+          "Resonance failure",
+          "Severe structural fatigue"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Formed Shape",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Fourier Law",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Fourier Number",
@@ -2718,6 +3617,39 @@
       "metadata": {}
     },
     {
+      "name": "Free Vibration",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Oscillatory motion of a system under the action of internal forces after an initial disturbance.",
+        "formula": "x(t) = A * cos(omega_n * t + phi)",
+        "causes": [
+          "Initial displacement or velocity",
+          "Elastic restoring force"
+        ],
+        "effects": [
+          "Periodic displacement oscillation",
+          "Energy transfer between kinetic and potential"
+        ],
+        "dependencies": [
+          "System mass",
+          "Stiffness",
+          "Initial conditions"
+        ],
+        "applications": [
+          "Tuning forks",
+          "Structural natural frequency tests"
+        ],
+        "failure_modes": [
+          "Amplitude growth (if negative damping)",
+          "Vibration fatigue"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Free-Stream Robustness",
       "activation": 0.0,
       "metadata": {}
@@ -2744,8 +3676,35 @@
     },
     {
       "name": "Frequency Response",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The steady-state response of a system to a sinusoidal input of varying frequency.",
+        "formula": "G(j * omega) = M * e^(j * phi)",
+        "causes": [
+          "Sinusoidal input excitation"
+        ],
+        "effects": [
+          "Output magnitude scaling",
+          "Output phase shifting"
+        ],
+        "dependencies": [
+          "Excitation frequency",
+          "Loop transfer function"
+        ],
+        "applications": [
+          "Bode plot design",
+          "Nyquist stability criteria",
+          "Low-pass/high-pass filter design"
+        ],
+        "failure_modes": [
+          "Gain/phase margin degradation",
+          "Feedback instability"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Frequency Spectrum",
@@ -2833,6 +3792,15 @@
       "metadata": {}
     },
     {
+      "name": "Fusion",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Fusion Zone",
       "activation": 0.0,
       "metadata": {}
@@ -2885,6 +3853,42 @@
       "metadata": {}
     },
     {
+      "name": "Gas Turbines",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Internal combustion engines that convert heat from fuel combustion into mechanical energy using rotating turbine blades.",
+        "formula": "W_net = W_t - W_c",
+        "causes": [
+          "High-pressure gas expansion",
+          "Combustion"
+        ],
+        "effects": [
+          "Thrust generation",
+          "Electrical power"
+        ],
+        "dependencies": [
+          "Compressor",
+          "Combustor",
+          "Turbine",
+          "Brayton cycle"
+        ],
+        "applications": [
+          "Jet engines",
+          "Power generation",
+          "Marine propulsion"
+        ],
+        "failure_modes": [
+          "High-temperature blade creep",
+          "Compressor stall",
+          "Thermal fatigue"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Gauge Calibration",
       "activation": 0.0,
       "metadata": {}
@@ -2898,6 +3902,42 @@
       "name": "Gear Ratio",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Gears",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Rotating machine parts having cut teeth which mesh with another toothed part to transmit torque and power.",
+        "formula": "F_t = P * 1000 / v",
+        "causes": [
+          "Meshing interaction",
+          "Torque conversion"
+        ],
+        "effects": [
+          "Speed reduction",
+          "Torque multiplication"
+        ],
+        "dependencies": [
+          "Teeth profile",
+          "Module",
+          "Pressure angle",
+          "Material strength"
+        ],
+        "applications": [
+          "Automotive transmissions",
+          "Differentials",
+          "Industrial gearboxes"
+        ],
+        "failure_modes": [
+          "Tooth pitting (fatigue)",
+          "Tooth bending fracture",
+          "Scoring"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Geometric Change",
@@ -2923,6 +3963,41 @@
       "name": "Goodman Diagram",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Governors",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Automatic feedback devices used to control the mean speed of an engine under varying load conditions.",
+        "formula": "h = g / omega^2",
+        "causes": [
+          "Engine speed fluctuations",
+          "Centrifugal force"
+        ],
+        "effects": [
+          "Control of fuel throttle valve",
+          "Engine speed stabilization"
+        ],
+        "dependencies": [
+          "Centrifugal force",
+          "Governor height",
+          "Sleeve weight"
+        ],
+        "applications": [
+          "Steam engines",
+          "Diesel generators",
+          "Industrial turbines"
+        ],
+        "failure_modes": [
+          "Hunting (overshooting)",
+          "Governor instability",
+          "Sleeve friction sticking"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Gradient Information",
@@ -2988,6 +4063,40 @@
       "name": "Growth Rate",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Gyroscopes",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Devices consisting of a spinning rotor mounted in gimbals, exhibiting conservation of angular momentum.",
+        "formula": "C_g = I * omega * omega_p",
+        "causes": [
+          "Spin velocity",
+          "Precession velocity"
+        ],
+        "effects": [
+          "Gyroscopic couple",
+          "Stabilization forces"
+        ],
+        "dependencies": [
+          "Moment of inertia",
+          "Spin velocity",
+          "Precession rate"
+        ],
+        "applications": [
+          "Ship stabilizers",
+          "Aircraft autopilot guidance",
+          "Gyroscopic compasses"
+        ],
+        "failure_modes": [
+          "Gimbal lock",
+          "Bearing friction drift"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Gyroscopic Effect",
@@ -3063,6 +4172,39 @@
       "name": "Heat Exchange",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Heat Exchangers",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Devices designed to transfer heat efficiently between two or more fluids at different temperatures.",
+        "formula": "Q = U * A * LMTD",
+        "causes": [
+          "Temperature difference between hot and cold fluid streams"
+        ],
+        "effects": [
+          "Fluid heating and cooling"
+        ],
+        "dependencies": [
+          "Heat transfer coefficient",
+          "Surface area",
+          "Flow arrangement"
+        ],
+        "applications": [
+          "Steam condensers",
+          "Car radiators",
+          "Evaporators"
+        ],
+        "failure_modes": [
+          "Fouling",
+          "Tube erosion",
+          "Thermal stress cracking"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Heat Flux",
@@ -3242,6 +4384,15 @@
       "name": "Hooke Joint",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Hooke's Law",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Hoop Stress",
@@ -3691,6 +4842,15 @@
       "metadata": {}
     },
     {
+      "name": "LMTD",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Lagrangian Mechanics",
       "activation": 0.5,
       "metadata": {
@@ -3706,8 +4866,32 @@
     },
     {
       "name": "Laplace Transform",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "An integral transform that converts a real variable function (time domain) to a complex variable function (s-domain).",
+        "formula": "F(s) = integral_0_to_inf(e^(-s * t) * f(t) * dt)",
+        "causes": [
+          "s-domain mapping"
+        ],
+        "effects": [
+          "Transforms differential equations into algebraic equations"
+        ],
+        "dependencies": [
+          "Function convergence conditions"
+        ],
+        "applications": [
+          "Control system transfer functions",
+          "Solving linear differential equations",
+          "Signal filters"
+        ],
+        "failure_modes": [
+          "Integral divergence"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Large Deformation",
@@ -3845,6 +5029,40 @@
       "name": "Linear Actuation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Linear Algebra",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The branch of mathematics concerning linear equations, vector spaces, and matrices.",
+        "formula": "A * x = b",
+        "causes": [
+          "Multi-variable system modeling"
+        ],
+        "effects": [
+          "Coordinate transformations",
+          "State projection"
+        ],
+        "dependencies": [
+          "Matrix dimensions",
+          "Matrix rank",
+          "Determinant",
+          "Trace"
+        ],
+        "applications": [
+          "Finite element structural analysis",
+          "State-space control systems",
+          "Computer graphics"
+        ],
+        "failure_modes": [
+          "Singularity (matrix not invertible)",
+          "Ill-conditioned system convergence failure"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Linear Elasticity",
@@ -4035,6 +5253,52 @@
       "metadata": {}
     },
     {
+      "name": "Machine Design",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
+      "name": "Machining",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Any of various processes in which a piece of raw material is cut into a desired final shape and size by a controlled material-removal process.",
+        "formula": "MRR = f * d * V",
+        "causes": [
+          "Cutting force",
+          "Tool-workpiece relative motion"
+        ],
+        "effects": [
+          "Material removal",
+          "Surface finish generation",
+          "Tool wear"
+        ],
+        "dependencies": [
+          "Cutting speed",
+          "Feed rate",
+          "Depth of cut",
+          "Tool geometry"
+        ],
+        "applications": [
+          "Shaft turning",
+          "Gear milling",
+          "Hole drilling"
+        ],
+        "failure_modes": [
+          "Tool breakage",
+          "Excessive tool wear",
+          "Vibration chatter"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Magnetization",
       "activation": 0.0,
       "metadata": {}
@@ -4043,6 +5307,15 @@
       "name": "Manufacturing Process",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Manufacturing Technology",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Martensite",
@@ -4165,6 +5438,15 @@
       "metadata": {}
     },
     {
+      "name": "Matrix",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Matrix Equation",
       "activation": 0.0,
       "metadata": {}
@@ -4249,6 +5531,11 @@
       "metadata": {}
     },
     {
+      "name": "Mechanical Engineering",
+      "activation": 0.0,
+      "metadata": {}
+    },
+    {
       "name": "Mechanical Loading",
       "activation": 0.0,
       "metadata": {}
@@ -4257,6 +5544,50 @@
       "name": "Mechanical Properties",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Mechanical Vibrations",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
+      "name": "Mechanisms",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Assemblies of rigid bodies connected by joints to transmit or modify motion and forces.",
+        "formula": "F = 3 * (N - 1) - 2 * P_1 - P_2",
+        "causes": [
+          "Input displacement",
+          "Crank rotation"
+        ],
+        "effects": [
+          "Output motion",
+          "Path tracing"
+        ],
+        "dependencies": [
+          "Degrees of freedom",
+          "Link lengths",
+          "Joint types"
+        ],
+        "applications": [
+          "Engine pistons",
+          "Robotic arms",
+          "Car windshield wipers"
+        ],
+        "failure_modes": [
+          "Link bending",
+          "Joint wear",
+          "Mechanism locking (dead center)"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Media Properties",
@@ -4307,6 +5638,41 @@
       "name": "Metal Deposition",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Metal Forming",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Manufacturing processes where plastic deformation is used to change the shape of metal workpieces.",
+        "formula": "sigma_flow = K * epsilon^n",
+        "causes": [
+          "Applied pressure exceeding material yield strength"
+        ],
+        "effects": [
+          "Plastic deformation",
+          "Work hardening"
+        ],
+        "dependencies": [
+          "Yield strength",
+          "Friction coefficient",
+          "Temperature",
+          "Strain rate"
+        ],
+        "applications": [
+          "Car body panels (stamping)",
+          "Crankshafts (forging)",
+          "Structural pipes (extrusion)"
+        ],
+        "failure_modes": [
+          "Die wear",
+          "Material tearing/cracking",
+          "Springback"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Metal Pouring",
@@ -4758,6 +6124,40 @@
       "metadata": {}
     },
     {
+      "name": "Numerical Methods",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Algorithms that use numerical approximation to solve mathematical analysis problems.",
+        "formula": "x_new = x - f(x) / f'(x)",
+        "causes": [
+          "Analytical insolvability of complex/non-linear equations"
+        ],
+        "effects": [
+          "Converging sequences",
+          "Approximate solutions"
+        ],
+        "dependencies": [
+          "Convergence criteria",
+          "Initial guess",
+          "Step size"
+        ],
+        "applications": [
+          "Finite Element Method (FEM)",
+          "CFD grid solvers",
+          "Roots of non-linear equations"
+        ],
+        "failure_modes": [
+          "Divergence",
+          "Division by zero",
+          "Truncation error accumulation"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Numerical Solution",
       "activation": 0.0,
       "metadata": {}
@@ -5143,6 +6543,42 @@
       "metadata": {}
     },
     {
+      "name": "Pipe Flow",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Flow of fluid inside closed conduits, driven by pressure gradients.",
+        "formula": "h_f = f * L * v^2 / (2 * g * D)",
+        "causes": [
+          "Pressure drop",
+          "Pumping power"
+        ],
+        "effects": [
+          "Fluid transportation",
+          "Friction losses"
+        ],
+        "dependencies": [
+          "Pipe diameter",
+          "Roughness",
+          "Pipe length",
+          "Flow speed"
+        ],
+        "applications": [
+          "Water distribution networks",
+          "Oil pipelines",
+          "Piping design"
+        ],
+        "failure_modes": [
+          "Pipe bursting",
+          "Scaling",
+          "Excessive pressure drop"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Pipe Roughness",
       "activation": 0.0,
       "metadata": {}
@@ -5253,6 +6689,43 @@
       "metadata": {}
     },
     {
+      "name": "Power Cycles",
+      "activation": 1.0,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ],
+        "description": "Thermodynamic cycles designed to continuously convert heat input into net work output.",
+        "formula": "eta_thermal = W_net / Q_in",
+        "causes": [
+          "Thermal energy input",
+          "Combustion",
+          "Nuclear fission"
+        ],
+        "effects": [
+          "Electricity generation",
+          "Mechanical power"
+        ],
+        "dependencies": [
+          "Working fluid",
+          "Turbine",
+          "Condenser",
+          "Combustor"
+        ],
+        "applications": [
+          "Rankine cycle plants",
+          "Otto cycle engines",
+          "Diesel engines"
+        ],
+        "failure_modes": [
+          "Turbine blade failure",
+          "Condenser leakage",
+          "Heat loss"
+        ],
+        "difficulty": "Medium"
+      }
+    },
+    {
       "name": "Power Output",
       "activation": 0.0,
       "metadata": {}
@@ -5301,6 +6774,15 @@
       "name": "Preheated Air",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Preload",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Premature Failure",
@@ -5407,6 +6889,40 @@
       }
     },
     {
+      "name": "Probability",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The mathematical branch concerned with the numerical description of how likely an event is to occur.",
+        "formula": "P(A | B) = P(B | A) * P(A) / P(B)",
+        "causes": [
+          "Uncertainty",
+          "Random processes"
+        ],
+        "effects": [
+          "Statistical predictions",
+          "Reliability metrics"
+        ],
+        "dependencies": [
+          "Sample space",
+          "Event definitions",
+          "Independence assumptions"
+        ],
+        "applications": [
+          "Quality control charting",
+          "Structural reliability engineering",
+          "Safety risk assessment"
+        ],
+        "failure_modes": [
+          "Incorrect probability model",
+          "Statistical overfitting"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Probability Distribution",
       "activation": 0.0,
       "metadata": {}
@@ -5482,6 +6998,15 @@
       "metadata": {}
     },
     {
+      "name": "Quality Control",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Quality Maintenance",
       "activation": 0.0,
       "metadata": {}
@@ -5515,6 +7040,39 @@
       "name": "Radial Velocity",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Radiation",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Electromagnetic wave energy emission by a body solely due to its temperature.",
+        "formula": "E = epsilon * sigma * A * T^4",
+        "causes": [
+          "Absolute temperature",
+          "Atomic excitation"
+        ],
+        "effects": [
+          "Medium-less energy transport"
+        ],
+        "dependencies": [
+          "Emissivity",
+          "Surface temperature",
+          "Surface area"
+        ],
+        "applications": [
+          "Spacecraft cooling",
+          "Solar collectors",
+          "Furnace design"
+        ],
+        "failure_modes": [
+          "Surface degradation",
+          "Overheating in vacuum"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Radiation Direction",
@@ -5732,6 +7290,41 @@
       "metadata": {}
     },
     {
+      "name": "Refrigeration",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The process of removing heat from a low-temperature space and transferring it to a higher-temperature environment.",
+        "formula": "COP = Q_L / W_in",
+        "causes": [
+          "Compressor work input",
+          "Refrigerant expansion"
+        ],
+        "effects": [
+          "Temperature drop in refrigerated space"
+        ],
+        "dependencies": [
+          "Refrigerant",
+          "Compressor",
+          "Condenser",
+          "Evaporator"
+        ],
+        "applications": [
+          "Air conditioning",
+          "Food preservation",
+          "Gas liquefaction"
+        ],
+        "failure_modes": [
+          "Refrigerant leakage",
+          "Compressor seizure",
+          "Expansion valve block"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Regenerative Rankine Cycle",
       "activation": 0.5,
       "metadata": {
@@ -5779,6 +7372,15 @@
       "name": "Relative Velocity",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Reliability Engineering",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Reliability Estimate",
@@ -5847,8 +7449,34 @@
     },
     {
       "name": "Resonance",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "A phenomenon in which a vibrating system responds with maximum amplitude when the frequency of excitation matches its natural frequency.",
+        "formula": "omega = omega_n",
+        "causes": [
+          "Match of excitation frequency to system natural frequency"
+        ],
+        "effects": [
+          "Extremely large vibration amplitudes",
+          "High structural stresses"
+        ],
+        "dependencies": [
+          "Damping ratio",
+          "Natural frequency"
+        ],
+        "applications": [
+          "Acoustic instruments",
+          "Radio antenna tuning"
+        ],
+        "failure_modes": [
+          "Tacoma Narrows bridge collapse",
+          "Turbine blade catastrophic fracture"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Resonance Passage",
@@ -5966,8 +7594,34 @@
     },
     {
       "name": "Root Locus",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "A graphical method showing the paths of closed-loop poles in the s-plane as a system parameter (gain K) varies from zero to infinity.",
+        "formula": "1 + K * G(s) * H(s) = 0",
+        "causes": [
+          "Feedback gain variation"
+        ],
+        "effects": [
+          "Pole trajectory tracing",
+          "Stability limit identification"
+        ],
+        "dependencies": [
+          "Open-loop poles and zeros",
+          "Loop gain K"
+        ],
+        "applications": [
+          "Controller gain selection",
+          "System stability analysis",
+          "Dominant pole design"
+        ],
+        "failure_modes": [
+          "High gain instability"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Rotating Mass",
@@ -6087,6 +7741,39 @@
       "metadata": {}
     },
     {
+      "name": "Second Law",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A law stating that heat cannot spontaneously flow from a cooler body to a warmer body, and the entropy of an isolated system always increases.",
+        "formula": "eta_max = 1 - T_C / T_H",
+        "causes": [
+          "Irreversibilities",
+          "Temperature differences"
+        ],
+        "effects": [
+          "Entropy generation",
+          "Degradation of energy quality"
+        ],
+        "dependencies": [
+          "Thermal reservoirs",
+          "Temperature gradients"
+        ],
+        "applications": [
+          "Heat engines",
+          "Refrigerators",
+          "Heat pumps"
+        ],
+        "failure_modes": [
+          "Excessive irreversibility",
+          "Thermal degradation"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Secondary Mass",
       "activation": 0.0,
       "metadata": {}
@@ -6175,6 +7862,43 @@
       "name": "Shaft Rotation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Shafts",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Rotating machine elements, usually of circular cross-section, used to transmit power and torque.",
+        "formula": "d^3 = 16 / (pi * tau_max) * sqrt((K_m * M)^2 + (K_t * T)^2)",
+        "causes": [
+          "Torque transmission",
+          "Bending loads from gears/pulleys"
+        ],
+        "effects": [
+          "Power transmission",
+          "Torsional deflection",
+          "Shaft bending"
+        ],
+        "dependencies": [
+          "Material strength",
+          "Polar moment of inertia",
+          "Bending moment",
+          "Torque"
+        ],
+        "applications": [
+          "Automobile axles",
+          "Turbine rotors",
+          "Electric motor shafts"
+        ],
+        "failure_modes": [
+          "Torsional fatigue",
+          "Excessive bending deflection",
+          "Keyway failure"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Shape Function Distortion",
@@ -6557,9 +8281,76 @@
       "metadata": {}
     },
     {
+      "name": "Springs",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Elastic objects used to store mechanical energy and deflect significantly under load.",
+        "formula": "k = G * d^4 / (8 * D^3 * n)",
+        "causes": [
+          "Compressive or tensile loading",
+          "Displacement"
+        ],
+        "effects": [
+          "Force control",
+          "Energy absorption",
+          "Vibration isolation"
+        ],
+        "dependencies": [
+          "Wire diameter",
+          "Coil diameter",
+          "Active coils count",
+          "Shear modulus"
+        ],
+        "applications": [
+          "Automotive suspensions",
+          "Engine valves",
+          "Mechanical clocks"
+        ],
+        "failure_modes": [
+          "Creep",
+          "Fatigue cracking",
+          "Solid bottoming"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Stability",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The property of a control system to produce bounded outputs in response to bounded inputs.",
+        "formula": "Real(s_i) < 0",
+        "causes": [
+          "Feedback loop gains",
+          "System parameters"
+        ],
+        "effects": [
+          "Controlled output tracking",
+          "Convergence of errors"
+        ],
+        "dependencies": [
+          "Closed-loop pole locations",
+          "Loop gain",
+          "Controller parameters"
+        ],
+        "applications": [
+          "Flight control guidance",
+          "Chemical process control temperature loops",
+          "Motor speed controllers"
+        ],
+        "failure_modes": [
+          "Unbounded oscillations",
+          "System thermal runaway",
+          "Actuator saturation damage"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Stability Assessment",
@@ -6727,6 +8518,15 @@
       "name": "Strength Reduction",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Strength of Materials",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Stress",
@@ -7144,6 +8944,15 @@
       "metadata": {}
     },
     {
+      "name": "Theory of Machines",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Thermal Conductivity",
       "activation": 0.0,
       "metadata": {}
@@ -7194,8 +9003,36 @@
     },
     {
       "name": "Thermal Resistance",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "A material's opposition to the flow of heat, analogous to electrical resistance.",
+        "formula": "R_t = L / (k * A)",
+        "causes": [
+          "Structural material layout",
+          "Low thermal conductivity"
+        ],
+        "effects": [
+          "Temperature difference across materials"
+        ],
+        "dependencies": [
+          "Thickness",
+          "Surface area",
+          "Thermal conductivity"
+        ],
+        "applications": [
+          "Building insulation",
+          "Thermal interface materials",
+          "Composite wall design"
+        ],
+        "failure_modes": [
+          "Delamination",
+          "Thermal interface degradation"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Thermal Stress",
@@ -7206,6 +9043,15 @@
       "name": "Thermo-Mechanical Fatigue",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Thermodynamics",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Thin Geometry",
@@ -7380,6 +9226,40 @@
       "metadata": {}
     },
     {
+      "name": "Torsion",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The twisting of a structural member about its longitudinal axis when subjected to torque.",
+        "formula": "T / J = shear_stress / r = G * theta / L",
+        "causes": [
+          "Applied torque",
+          "Twisting moments"
+        ],
+        "effects": [
+          "Shear stress",
+          "Angular twist"
+        ],
+        "dependencies": [
+          "Polar moment of inertia",
+          "Torsional rigidity",
+          "Shaft length"
+        ],
+        "applications": [
+          "Drive shafts",
+          "Torsion springs",
+          "Propeller shafts"
+        ],
+        "failure_modes": [
+          "Torsional buckling",
+          "Shear fracture"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Torsional Oscillation",
       "activation": 0.0,
       "metadata": {}
@@ -7400,6 +9280,38 @@
       "metadata": {}
     },
     {
+      "name": "Transfer Functions",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The mathematical representation of a linear time-invariant system relating output to input in Laplace domain under zero initial conditions.",
+        "formula": "G(s) = Y(s) / X(s)",
+        "causes": [
+          "Input signal excitation"
+        ],
+        "effects": [
+          "Output signal response",
+          "System characteristic equation"
+        ],
+        "dependencies": [
+          "System parameters",
+          "Differential equations"
+        ],
+        "applications": [
+          "Feedback loop control design",
+          "Bode plot analysis",
+          "Stability evaluation"
+        ],
+        "failure_modes": [
+          "Non-linear behavior failure",
+          "Initial condition mismatch"
+        ],
+        "difficulty": "Easy",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Transformation",
       "activation": 0.0,
       "metadata": {}
@@ -7418,6 +9330,15 @@
       "name": "Translation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Transmissibility",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Transmissibility Reduction",
@@ -7453,6 +9374,15 @@
       "name": "Tuned Response",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Turbine",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Turbine Expansion",
@@ -7659,6 +9589,38 @@
       "metadata": {}
     },
     {
+      "name": "Velocity Analysis",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The determination of linear and angular velocities of links in a mechanism.",
+        "formula": "v = omega * r",
+        "causes": [
+          "Driving link rotation",
+          "Input motion"
+        ],
+        "effects": [
+          "Link velocity vectors",
+          "Acceleration profiles"
+        ],
+        "dependencies": [
+          "Angular velocity",
+          "Instantaneous centers of rotation"
+        ],
+        "applications": [
+          "Cam profile design",
+          "Gear train speed analysis",
+          "Linkage kinematic optimization"
+        ],
+        "failure_modes": [
+          "Extreme inertia forces due to acceleration spikes"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Velocity Decrease",
       "activation": 0.0,
       "metadata": {}
@@ -7702,14 +9664,50 @@
       "metadata": {}
     },
     {
+      "name": "Venturimeter",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Vertical Acceleration",
       "activation": 0.0,
       "metadata": {}
     },
     {
       "name": "Vibration Isolation",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The process of isolating an object from a source of vibrations, characterized by transmissibility.",
+        "formula": "TR = sqrt((1 + (2*zeta*r)^2) / ((1 - r^2)^2 + (2*zeta*r)^2))",
+        "causes": [
+          "Machine mounting",
+          "Elastomeric isolation pads"
+        ],
+        "effects": [
+          "Reduction in force transmitted to foundation"
+        ],
+        "dependencies": [
+          "Frequency ratio r",
+          "Damping ratio"
+        ],
+        "applications": [
+          "Automotive engine mounts",
+          "Sensitive optical table isolation",
+          "Compressor feet pads"
+        ],
+        "failure_modes": [
+          "Elastomer degradation",
+          "Resonance amplification during start-up"
+        ],
+        "difficulty": "Hard",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Vibration Level",
@@ -7928,6 +9926,43 @@
       "metadata": {}
     },
     {
+      "name": "Welding",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A fabrication process that joins materials, usually metals, by causing fusion through high heat.",
+        "formula": "H = V * I / v",
+        "causes": [
+          "Arc heat release",
+          "Solidification of weld pool"
+        ],
+        "effects": [
+          "Coalescence of metals",
+          "Heat-affected zone (HAZ) creation"
+        ],
+        "dependencies": [
+          "Welding current",
+          "Voltage",
+          "Travel speed",
+          "Shielding gas"
+        ],
+        "applications": [
+          "Pressure vessels",
+          "Automobile chassis assembly",
+          "Bridge structures"
+        ],
+        "failure_modes": [
+          "Porosity",
+          "Weld cracking",
+          "Distortion",
+          "Residual stresses"
+        ],
+        "difficulty": "Medium",
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
+    },
+    {
       "name": "Wet Bulb Temperature",
       "activation": 0.0,
       "metadata": {}
@@ -8000,6 +10035,15 @@
       "name": "Yield Strength Increase",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Yielding",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Primary Engineering Textbooks (GATE ME Curriculum)"
+        ]
+      }
     },
     {
       "name": "Yielding Prediction",
@@ -8736,6 +10780,36 @@
       "metadata": {}
     },
     {
+      "source": "Availability",
+      "target": "Entropy",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Availability",
+      "target": "Second Law",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Availability",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Axial Compression",
       "target": "Expansion Absorption",
       "weight": 1.0,
@@ -8816,6 +10890,66 @@
       "metadata": {}
     },
     {
+      "source": "Balancing",
+      "target": "Centrifugal Force",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Balancing",
+      "target": "Mechanical Vibrations",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Balancing",
+      "target": "Theory of Machines",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bearings",
+      "target": "Friction",
+      "weight": 1.0,
+      "relation": "decreases",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bearings",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bearings",
+      "target": "Shafts",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Bellows Flexibility",
       "target": "Axial Compression",
       "weight": 1.0,
@@ -8861,6 +10995,36 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Bending",
+      "target": "Bending Stress",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bending",
+      "target": "Euler-Bernoulli Beam",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bending",
+      "target": "Strength of Materials",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -9004,6 +11168,36 @@
       }
     },
     {
+      "source": "Bernoulli Equation",
+      "target": "Flow Speed",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bernoulli Equation",
+      "target": "Fluid Mechanics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bernoulli Equation",
+      "target": "Venturimeter",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Biot Number",
       "target": "External Resistance",
       "weight": 0.35,
@@ -9096,6 +11290,36 @@
       }
     },
     {
+      "source": "Boiling",
+      "target": "Critical Heat Flux",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Boiling",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Boiling",
+      "target": "Phase Change",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Bolt Preload",
       "target": "Clamping Force",
       "weight": 1.0,
@@ -9110,6 +11334,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Bolted Joints",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bolted Joints",
+      "target": "Preload",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Bolted Joints",
+      "target": "Stress Concentration",
+      "weight": 1.0,
+      "relation": "causes",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Bonded Gauge",
@@ -9199,12 +11453,32 @@
     },
     {
       "source": "Boundary Layer",
+      "target": "Fluid Mechanics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Boundary Layer",
       "target": "Leading Edge",
       "weight": 0.35,
       "relation": "document_cooccurrence",
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Skin Friction Drag",
+      "weight": 1.0,
+      "relation": "causes",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -9245,6 +11519,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Boundary Layer",
+      "target": "Viscous Flow",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -9446,6 +11730,36 @@
       }
     },
     {
+      "source": "CNC",
+      "target": "Automation",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "CNC",
+      "target": "Machining",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "CNC",
+      "target": "Manufacturing Technology",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "CTE Mismatch",
       "target": "Thermal Cycling",
       "weight": 1.0,
@@ -9624,6 +11938,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Casting",
+      "target": "Chvorinov's Rule",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Casting",
+      "target": "Manufacturing Technology",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Casting",
+      "target": "Riser Design",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Cayley-Hamilton Theorem",
@@ -10196,6 +12540,36 @@
       }
     },
     {
+      "source": "Columns",
+      "target": "Euler Buckling",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Columns",
+      "target": "Strength of Materials",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Columns",
+      "target": "Stress",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Combined Damage",
       "target": "Thermo-Mechanical Fatigue",
       "weight": 1.0,
@@ -10688,12 +13062,72 @@
       }
     },
     {
+      "source": "Condensation",
+      "target": "Dropwise Condensation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Condensation",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Condensation",
+      "target": "Phase Change",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Condenser Section",
       "target": "Heat Pipe Transfer",
       "weight": 1.0,
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Conduction",
+      "target": "Fourier Law",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Conduction",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Conduction",
+      "target": "Thermal Resistance",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Conduction Resistance",
@@ -11169,6 +13603,36 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Convection",
+      "target": "Fluid Mechanics",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Convection",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Convection",
+      "target": "Nusselt Number",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -12510,6 +14974,36 @@
       "metadata": {}
     },
     {
+      "source": "Differential Equations",
+      "target": "Engineering Mathematics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Differential Equations",
+      "target": "Laplace Transform",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Differential Equations",
+      "target": "Systems of ODEs",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Differential Expansion",
       "target": "Interface Stress",
       "weight": 1.0,
@@ -12644,6 +15138,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Dimensional Analysis",
+      "target": "Buckingham Pi Theorem",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Dimensional Analysis",
+      "target": "Fluid Mechanics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Dimensional Analysis",
+      "target": "Reynolds Number",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Dimensional Change",
@@ -13186,6 +15710,36 @@
       "metadata": {}
     },
     {
+      "source": "Elasticity",
+      "target": "Hooke's Law",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Elasticity",
+      "target": "Strength of Materials",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Elasticity",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Electric Current",
       "target": "Metal Deposition",
       "weight": 1.0,
@@ -13589,6 +16143,36 @@
       "evidence_count": 2,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Entropy",
+      "target": "Clausius Inequality",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Entropy",
+      "target": "Second Law",
+      "weight": 1.0,
+      "relation": "derived_from",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Entropy",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -14070,6 +16654,36 @@
       "metadata": {}
     },
     {
+      "source": "Failure Theories",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Failure Theories",
+      "target": "Principal Stress",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Failure Theories",
+      "target": "Yield Criteria",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Fan or Pump",
       "target": "Higher Velocity",
       "weight": 1.0,
@@ -14122,6 +16736,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Fatigue",
+      "target": "Crack Growth",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Fatigue",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Fatigue",
+      "target": "Soderberg Line",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Fatigue Crack",
@@ -14254,6 +16898,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "First Law",
+      "target": "Entropy",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "First Law",
+      "target": "Power Cycles",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "First Law",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "First Moment",
@@ -14562,6 +17236,36 @@
       "metadata": {}
     },
     {
+      "source": "Forced Vibration",
+      "target": "Damping",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Forced Vibration",
+      "target": "Mechanical Vibrations",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Forced Vibration",
+      "target": "Resonance",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Fourier Number",
       "target": "Cooling Time",
       "weight": 0.675,
@@ -14680,6 +17384,36 @@
       "metadata": {}
     },
     {
+      "source": "Free Vibration",
+      "target": "Damping",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Free Vibration",
+      "target": "Mechanical Vibrations",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Free Vibration",
+      "target": "Natural Frequency",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Free-Stream Robustness",
       "target": "Blending Function",
       "weight": 1.0,
@@ -14753,11 +17487,41 @@
     },
     {
       "source": "Frequency Response",
+      "target": "Bode Plot",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Frequency Response",
+      "target": "Control Systems",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Frequency Response",
       "target": "Gain Margin",
       "weight": 1.0,
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Frequency Response",
+      "target": "Transfer Functions",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Friction",
@@ -15306,6 +18070,36 @@
       "metadata": {}
     },
     {
+      "source": "Gas Turbines",
+      "target": "Power Cycles",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gas Turbines",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gas Turbines",
+      "target": "Turbine",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Gear Mesh",
       "target": "Input Torque",
       "weight": 0.35,
@@ -15384,6 +18178,36 @@
       }
     },
     {
+      "source": "Gears",
+      "target": "Law of Gearing",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gears",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gears",
+      "target": "Torque Transfer",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Geometric Change",
       "target": "Stress Flow Lines",
       "weight": 1.0,
@@ -15414,6 +18238,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Governors",
+      "target": "Centrifugal Force",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Governors",
+      "target": "Feedback Control",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Governors",
+      "target": "Theory of Machines",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Gradient Information",
@@ -15658,6 +18512,36 @@
       }
     },
     {
+      "source": "Gyroscopes",
+      "target": "Angular Momentum",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gyroscopes",
+      "target": "Theory of Machines",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Gyroscopes",
+      "target": "Torque",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Gyroscopic Effect",
       "target": "Stability",
       "weight": 1.0,
@@ -15808,6 +18692,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Heat Exchangers",
+      "target": "Convection",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Heat Exchangers",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Heat Exchangers",
+      "target": "LMTD",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Heat Flux",
@@ -17523,11 +20437,41 @@
     },
     {
       "source": "Laplace Transform",
+      "target": "Differential Equations",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Laplace Transform",
+      "target": "Engineering Mathematics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Laplace Transform",
       "target": "Transfer Function",
       "weight": 1.0,
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Laplace Transform",
+      "target": "Transfer Functions",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Large Deformation",
@@ -17844,6 +20788,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Linear Algebra",
+      "target": "Cayley-Hamilton Theorem",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Linear Algebra",
+      "target": "Engineering Mathematics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Linear Algebra",
+      "target": "Matrix",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Linear Elasticity",
@@ -18536,6 +21510,36 @@
       "metadata": {}
     },
     {
+      "source": "Machining",
+      "target": "Cutting Speed",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Machining",
+      "target": "Manufacturing Technology",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Machining",
+      "target": "Taylor's Tool Life Equation",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Magnetization",
       "target": "Flux Leakage",
       "weight": 1.0,
@@ -19204,12 +22208,50 @@
       "metadata": {}
     },
     {
+      "source": "Mechanical Engineering",
+      "target": "Energy",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {}
+    },
+    {
       "source": "Mechanical Loading",
       "target": "Combined Damage",
       "weight": 1.0,
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Mechanisms",
+      "target": "Degrees of Freedom",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Mechanisms",
+      "target": "Static Equilibrium",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Mechanisms",
+      "target": "Theory of Machines",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Media Properties",
@@ -19354,6 +22396,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Metal Forming",
+      "target": "Manufacturing Technology",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Metal Forming",
+      "target": "Yield Criteria",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Metal Forming",
+      "target": "Yielding",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Metal Pouring",
@@ -20618,6 +23690,36 @@
       "metadata": {}
     },
     {
+      "source": "Numerical Methods",
+      "target": "CFD",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Numerical Methods",
+      "target": "Engineering Mathematics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Numerical Methods",
+      "target": "Numerical Instability",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Numerical Stability",
       "target": "Convergence",
       "weight": 1.0,
@@ -21476,6 +24578,36 @@
       "metadata": {}
     },
     {
+      "source": "Pipe Flow",
+      "target": "Darcy-Weisbach Equation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Pipe Flow",
+      "target": "Fluid Mechanics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Pipe Flow",
+      "target": "Reynolds Number",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Pipe Roughness",
       "target": "Reynolds Number",
       "weight": 1.0,
@@ -21796,6 +24928,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Power Cycles",
+      "target": "Clausius Inequality",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Power Cycles",
+      "target": "First Law",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Power Cycles",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Power Spectral Density",
@@ -22542,6 +25704,36 @@
       }
     },
     {
+      "source": "Probability",
+      "target": "Engineering Mathematics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Probability",
+      "target": "Quality Control",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Probability",
+      "target": "Reliability Engineering",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Probability Distribution",
       "target": "Failure Count",
       "weight": 1.0,
@@ -22739,6 +25931,36 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Radiation",
+      "target": "Emissivity",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Radiation",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Radiation",
+      "target": "Stefan-Boltzmann Law",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -23166,6 +26388,36 @@
       }
     },
     {
+      "source": "Refrigeration",
+      "target": "Carnot cycle",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Refrigeration",
+      "target": "Second Law",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Refrigeration",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Regenerative Rankine Cycle",
       "target": "Open Feedwater Heater",
       "weight": 1.0,
@@ -23539,6 +26791,16 @@
     },
     {
       "source": "Resonance",
+      "target": "Damping",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Resonance",
       "target": "Excitation Frequency",
       "weight": 0.35,
       "relation": "document_cooccurrence",
@@ -23549,12 +26811,22 @@
     },
     {
       "source": "Resonance",
-      "target": "Natural Frequency",
-      "weight": 0.35,
-      "relation": "document_cooccurrence",
+      "target": "Mechanical Vibrations",
+      "weight": 1.0,
+      "relation": "part_of",
       "evidence_count": 1,
       "metadata": {
-        "source": "document"
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Resonance",
+      "target": "Natural Frequency",
+      "weight": 0.675,
+      "relation": "depends_on",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -23839,9 +27111,31 @@
       "source": "Root Locus",
       "target": "Closed Loop Stability",
       "weight": 1.0,
-      "relation": "reasoning_step",
+      "relation": "used_in",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Root Locus",
+      "target": "Control Systems",
+      "weight": 1.0,
+      "relation": "part_of",
       "evidence_count": 1,
-      "metadata": {}
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Root Locus",
+      "target": "Transfer Functions",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Rotating Mass",
@@ -24130,6 +27424,36 @@
       "metadata": {}
     },
     {
+      "source": "Second Law",
+      "target": "Carnot cycle",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Second Law",
+      "target": "Entropy",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Second Law",
+      "target": "Thermodynamics",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Secondary Mass",
       "target": "Anti-Resonance",
       "weight": 0.35,
@@ -24392,6 +27716,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Shafts",
+      "target": "Bending",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Shafts",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Shafts",
+      "target": "Torsion",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Shape Function Distortion",
@@ -25231,6 +28585,66 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Springs",
+      "target": "Elasticity",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Springs",
+      "target": "Machine Design",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Springs",
+      "target": "Vibration Isolation",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Stability",
+      "target": "Closed Loop Stability",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Stability",
+      "target": "Control Systems",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Stability",
+      "target": "Routh-Hurwitz Criterion",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
       }
     },
     {
@@ -27377,6 +30791,36 @@
     },
     {
       "source": "Thermal Resistance",
+      "target": "Conduction",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Thermal Resistance",
+      "target": "Convection",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Thermal Resistance",
+      "target": "Heat Transfer",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Thermal Resistance",
       "target": "Reduced Heat Flow",
       "weight": 1.0,
       "relation": "reasoning_step",
@@ -27652,6 +31096,36 @@
       "metadata": {}
     },
     {
+      "source": "Torsion",
+      "target": "Shear Stress",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Torsion",
+      "target": "Strength of Materials",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Torsion",
+      "target": "Torque",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Torsional Oscillation",
       "target": "Auxiliary Inertia",
       "weight": 1.0,
@@ -27732,6 +31206,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Transfer Functions",
+      "target": "Characteristic Equation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Transfer Functions",
+      "target": "Control Systems",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Transfer Functions",
+      "target": "Laplace Transform",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Transformation",
@@ -28588,6 +32092,36 @@
       }
     },
     {
+      "source": "Velocity Analysis",
+      "target": "Coriolis Acceleration",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Velocity Analysis",
+      "target": "Mechanisms",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Velocity Analysis",
+      "target": "Theory of Machines",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
       "source": "Velocity Decrease",
       "target": "Pressure Recovery",
       "weight": 1.0,
@@ -28650,6 +32184,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Vibration Isolation",
+      "target": "Damping",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Vibration Isolation",
+      "target": "Mechanical Vibrations",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Vibration Isolation",
+      "target": "Transmissibility",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Vibration Level",
@@ -29214,6 +32778,36 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Welding",
+      "target": "Fusion",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Welding",
+      "target": "Heat Affected Zone",
+      "weight": 1.0,
+      "relation": "causes",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
+    },
+    {
+      "source": "Welding",
+      "target": "Manufacturing Technology",
+      "weight": 1.0,
+      "relation": "part_of",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Primary Engineering Textbooks (GATE ME Curriculum)"
+      }
     },
     {
       "source": "Wet Bulb Temperature",

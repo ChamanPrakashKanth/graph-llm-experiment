@@ -150,7 +150,6 @@ def find_best_match(question, dataset):
             best_entry = entry
     return best_entry
 
-@torch.no_grad()
 def predict_reasoning(loaded, question, beam_width=1):
     import grammar_parser
     normalized_question = grammar_parser.normalize_query(question)
@@ -162,42 +161,43 @@ def predict_reasoning(loaded, question, beam_width=1):
 
     model.eval()
 
-    encoded = tokenizer.encode(normalized_question, max_length=64)
-    input_ids = encoded["input_ids"].unsqueeze(0).to(device)
-    attention_mask = encoded["attention_mask"].unsqueeze(0).to(device)
+    with torch.no_grad():
+        encoded = tokenizer.encode(normalized_question, max_length=64)
+        input_ids = encoded["input_ids"].unsqueeze(0).to(device)
+        attention_mask = encoded["attention_mask"].unsqueeze(0).to(device)
 
-    outputs = model(input_ids, attention_mask, beam_width=beam_width)
+        outputs = model(input_ids, attention_mask, beam_width=beam_width)
 
-    path_ids = outputs["predicted_path"][0].detach().cpu().tolist()
-    path_scores = outputs["path_scores"][0].detach().cpu().tolist()
+        path_ids = outputs["predicted_path"][0].detach().cpu().tolist()
+        path_scores = outputs["path_scores"][0].detach().cpu().tolist()
 
-    path_probs = []
-    for s in path_scores:
-        try:
-            p = math.exp(s)
-        except OverflowError:
-            p = 0.0
-        path_probs.append(min(max(p, 0.0), 1.0))
+        path_probs = []
+        for s in path_scores:
+            try:
+                p = math.exp(s)
+            except OverflowError:
+                p = 0.0
+            path_probs.append(min(max(p, 0.0), 1.0))
 
-    reasoning_path = vocab.decode_path(path_ids)
+        reasoning_path = vocab.decode_path(path_ids)
 
-    # Generate answer using cached decoder
-    decoder = loaded.get("decoder")
-    if decoder is not None:
-        try:
-            answer = decoder.generate_answer(normalized_question, reasoning_path)
-        except Exception as ex:
-            print(f"Error generating answer in predict_reasoning: {ex}")
+        # Generate answer using cached decoder
+        decoder = loaded.get("decoder")
+        if decoder is not None:
+            try:
+                answer = decoder.generate_answer(normalized_question, reasoning_path)
+            except Exception as ex:
+                print(f"Error generating answer in predict_reasoning: {ex}")
+                answer = ""
+        else:
             answer = ""
-    else:
-        answer = ""
 
-    # Sigmoid activations
-    if "activation_logits" in outputs:
-        activation_logits = outputs["activation_logits"]
-        activation_probs = torch.sigmoid(activation_logits).squeeze(0).cpu().tolist()
-    else:
-        activation_probs = [0.0] * vocab.size()
+        # Sigmoid activations
+        if "activation_logits" in outputs:
+            activation_logits = outputs["activation_logits"]
+            activation_probs = torch.sigmoid(activation_logits).squeeze(0).cpu().tolist()
+        else:
+            activation_probs = [0.0] * vocab.size()
 
     # Collect top activated concepts
     top_concepts = []
