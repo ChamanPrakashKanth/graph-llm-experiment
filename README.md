@@ -426,20 +426,21 @@ graph TD
 
 ### 3. Empirical Comparison & Metrics
 
-| Dimension / Metric | Traditional Token LLM (e.g., Llama-3 8B) | CAT V2 / VLCM (Concept SLM) |
-| :--- | :--- | :--- |
-| **Fundamental Sequence Unit** | Token (Characters/Words) | Concept (Nodes/Edges) |
-| **Model Size (Parameters)** | 8,000,000,000 (8B) | **637,340** (~12,500× smaller) |
-| **Reasoning Constraint** | Soft (Token Probability-based) | **Strict 100%** (Transition Mask) |
-| **Path Hallucinations** | High (frequently skips logical steps) | **0%** (Topologically constrained) |
-| **Memory Footprint (Inference)**| **~52,000 MB** (at 100k context KV cache) | **~190 KB - 2.43 MB** (Static graph state) |
-| **Compression Ratio** | 1× | **~280,000×** |
-| **Generation Compute Cost** | ~8.2 Trillion FLOPs | **~7.6 Million FLOPs** (~1,000,000× saving) |
-| **Inference Hardware** | Multi-GPU Cloud Clusters | CPU / Edge / Microcontrollers |
-| **Average Latency (CPU)** | Seconds to Minutes | **~19.17 ms** |
-| **Concept Graph (Python Coding)** | N/A | **45 concepts, 132 edges** |
-| **Concept Graph (MIT Math)** | N/A | **374 concepts, 889 edges** |
-| **Concept Graph (Mech Eng)** | N/A | **1,477 concepts, 2,275 edges** |
+| Dimension / Metric | Traditional Token LLM (e.g., Llama-3 8B) | VLCM (Very Large Concepts Model) | CAT V2 (Concept Attention Transformer) |
+| :--- | :--- | :--- | :--- |
+| **Fundamental Sequence Unit** | Token (Characters/Words) | Concept (Nodes/Edges) | Concept (Nodes/Edges) |
+| **Model Size (Parameters)** | 8,000,000,000 (8B) | **868,095** (~868K) | **637,340** (~637K) |
+| **Model Weights Size** | ~16,000 MB (16 GB in FP16) | **3.312 MB** | **2.431 MB** |
+| **Reasoning Constraint** | Soft (Token Probability-based) | **Strict 100%** (Transition Mask) | **Strict 100%** (Transition Mask) |
+| **Path Hallucinations** | High (frequently skips logical steps) | **0%** (Topologically constrained) | **0%** (Topologically constrained) |
+| **Memory Footprint (Inference)**| **50,000.00 MB** (at 100k context KV cache) | **2.61 MB** (Static graph state) | **0.19 MB** (Static graph state) |
+| **Compression Ratio** | 1× | **~19,134.6x** | **~263,000x** |
+| **Generation Compute Cost** | ~8.192 Trillion FLOPs | **~7.656 Million FLOPs** (~1,000,000x saving) | **~5.098 Million FLOPs** |
+| **Inference Hardware** | Multi-GPU Cloud Clusters | CPU / Edge / Microcontrollers | CPU / Edge / Microcontrollers |
+| **Average Latency (CPU)** | Seconds to Minutes | **16.97 ms** | **8.46 ms** |
+| **Concept Graph (Python Coding)** | N/A | **45 concepts, 132 edges** | **45 concepts, 132 edges** |
+| **Concept Graph (MIT Math)** | N/A | **374 concepts, 889 edges** | **374 concepts, 889 edges** |
+| **Concept Graph (Mech Eng)** | N/A | **1,477 concepts, 2,275 edges** | **1,477 concepts, 2,275 edges** |
 
 ---
 
