@@ -31,7 +31,7 @@ DOMAINS = {
         "dataset_path": "data/mechanical_engineering_dataset.json",
         "is_vlcm": True,
         "symbol": "⚙️",
-        "desc": "1000-chunk dataset trained with Second-Order Differential Loss",
+        "desc": "Scaled 10k-concept dataset (140k edges, 58k causal) with Second-Order Loss",
     },
     "mit_stanford_mech": {
         "name": "MIT & Stanford ME Curriculum (VLCM)",
@@ -39,7 +39,7 @@ DOMAINS = {
         "dataset_path": "data/mechanical_reasoning_paths.json",
         "is_vlcm": True,
         "symbol": "🎓",
-        "desc": "Complete 4-year undergraduate syllabus (Statics, Dynamics, Fluids, Thermo, Controls, Mfg)",
+        "desc": "Complete syllabus (10k+ concepts, 50k+ reasoning paths)",
     },
     "mit_math": {
         "name": "MIT OCW Mathematics (CAT V2)",
@@ -126,8 +126,14 @@ def get_dataset(domain):
         path = Path(info["dataset_path"])
         if path.exists():
             try:
+                print(f"Loading dataset {domain} from {path}...")
                 with open(path, "r", encoding="utf-8") as f:
-                    _LOADED_DATASETS[domain] = json.load(f)
+                    data = json.load(f)
+                # Precompute token sets for fast search matching
+                for entry in data:
+                    entry["_q_words"] = set(entry["question"].lower().split())
+                _LOADED_DATASETS[domain] = data
+                print(f"Dataset {domain} loaded successfully. Size: {len(data)}.")
             except Exception as e:
                 print(f"Failed to load dataset {path}: {e}")
                 _LOADED_DATASETS[domain] = []
@@ -138,12 +144,16 @@ def get_dataset(domain):
 def find_best_match(question, dataset):
     if not dataset:
         return None
-    q_lower = question.lower()
+    q_words = set(question.lower().split())
+    if not q_words:
+        return None
     best_score = 0
     best_entry = None
     for entry in dataset:
-        words = set(entry["question"].lower().split())
-        q_words = set(q_lower.split())
+        words = entry.get("_q_words")
+        if words is None:
+            words = set(entry["question"].lower().split())
+            entry["_q_words"] = words
         overlap = len(words & q_words)
         if overlap > best_score:
             best_score = overlap
@@ -1493,8 +1503,8 @@ const DOMAIN_QUESTIONS = {
 };
 
 const DOMAIN_DETAILS = {
-    "mechanical_engineering": { title: "Mechanical Engineering (VLCM)", icon: "⚙️", desc: "1000-chunk dataset trained with Second-Order Differential Loss", placeholder: "Ask about buckling, heat exchangers, fluid dynamics, stress tensors..." },
-    "mit_stanford_mech": { title: "MIT & Stanford ME Curriculum (VLCM)", icon: "🎓", desc: "Complete 4-year undergraduate syllabus (Statics, Dynamics, Fluids, Thermo, Controls, Mfg)", placeholder: "Ask about buckling, heat exchangers, control systems, Navier-Stokes..." },
+    "mechanical_engineering": { title: "Mechanical Engineering (VLCM)", icon: "⚙️", desc: "Scaled 10k-concept dataset (140k edges, 58k causal) with Second-Order Loss", placeholder: "Ask about buckling, heat exchangers, fluid dynamics, stress tensors..." },
+    "mit_stanford_mech": { title: "MIT & Stanford ME Curriculum (VLCM)", icon: "🎓", desc: "Complete syllabus (10k+ concepts, 50k+ reasoning paths)", placeholder: "Ask about buckling, heat exchangers, control systems, Navier-Stokes..." },
     "mit_math": { title: "MIT OCW Mathematics (CAT V2)", icon: "∫", desc: "Calculus, Linear Algebra, ODEs, and Multivariable Calculus", placeholder: "Ask about eigenvalues, gradients, Laplace transforms, Fourier series..." },
     "structural": { title: "Structural Engineering (CAT V2)", icon: "🏗️", desc: "Beams, stress-strain, columns buckling, fatigue, and materials science", placeholder: "Ask about load distributions, Euler buckling, S-N curves, strain..." },
     "cfd": { title: "CFD & Fluid Dynamics (CAT V2)", icon: "🌪️", desc: "Pipe flow, pressure drop, turbulence, boundary layers, and mesh quality", placeholder: "Ask about boundary layers, adverse gradients, Navier-Stokes residuals..." },
