@@ -5,6 +5,61 @@ from typing import Dict, Any, Tuple, Optional, List
 
 from grammar_parser import normalize_query
 
+
+def solve_logarithmic_decrement(vals: Dict[str, float]) -> Optional[Tuple[str, float]]:
+    delta = None
+    if "log_dec" in vals:
+        delta = vals["log_dec"]
+    elif "damping_ratio" in vals:
+        zeta = vals["damping_ratio"]
+        if 0 <= zeta < 1.0:
+            if vals.get("neglect_higher_powers", 0.0) > 0.5:
+                delta = 2 * math.pi * zeta
+            else:
+                delta = (2 * math.pi * zeta) / math.sqrt(1.0 - zeta**2)
+
+    # 1. Solve for next_peak
+    if "initial_peak" in vals and "next_peak" not in vals:
+        if delta is not None:
+            return "next_peak", vals["initial_peak"] * math.exp(-delta)
+
+    # 2. Solve for initial_peak
+    if "next_peak" in vals and "initial_peak" not in vals:
+        if delta is not None:
+            return "initial_peak", vals["next_peak"] * math.exp(delta)
+
+    # 3. Solve for damping_ratio or log_dec from peaks
+    if "initial_peak" in vals and "next_peak" in vals:
+        computed_delta = math.log(vals["initial_peak"] / vals["next_peak"])
+        if "damping_ratio" not in vals:
+            if vals.get("neglect_higher_powers", 0.0) > 0.5:
+                zeta = computed_delta / (2.0 * math.pi)
+            else:
+                zeta = computed_delta / math.sqrt(4.0 * math.pi**2 + computed_delta**2)
+            return "damping_ratio", zeta
+        if "log_dec" not in vals:
+            return "log_dec", computed_delta
+
+    # 4. Standard single step
+    if "damping_ratio" in vals and "log_dec" not in vals:
+        zeta = vals["damping_ratio"]
+        if 0 <= zeta < 1.0:
+            if vals.get("neglect_higher_powers", 0.0) > 0.5:
+                return "log_dec", 2 * math.pi * zeta
+            else:
+                return "log_dec", (2 * math.pi * zeta) / math.sqrt(1.0 - zeta**2)
+
+    if "log_dec" in vals and "damping_ratio" not in vals:
+        d = vals["log_dec"]
+        if d >= 0:
+            if vals.get("neglect_higher_powers", 0.0) > 0.5:
+                return "damping_ratio", d / (2.0 * math.pi)
+            else:
+                return "damping_ratio", d / math.sqrt(4.0 * math.pi**2 + d**2)
+
+    return None
+
+
 EQUATIONS = {
     "Euler Buckling": {
         "formula": "P_{cr} = \\frac{\\pi^2 E I}{L_e^2}",
@@ -272,14 +327,12 @@ EQUATIONS = {
         "formula": "\\delta = \\frac{2 \\pi \\zeta}{\\sqrt{1 - \\zeta^2}}",
         "variables": {
             "log_dec": "Logarithmic decrement (dimensionless)",
-            "damping_ratio": "Damping ratio (dimensionless)"
+            "damping_ratio": "Damping ratio (dimensionless)",
+            "initial_peak": "Initial displacement peak (m)",
+            "next_peak": "Displacement peak at next cycle (m)"
         },
         "concepts": ["Logarithmic Decrement", "Damping Ratio", "Damped Vibration"],
-        "solve": lambda vals: (
-            ("log_dec", (2 * math.pi * vals["damping_ratio"]) / math.sqrt(1.0 - vals["damping_ratio"]**2)) if "damping_ratio" in vals and 0 <= vals["damping_ratio"] < 1.0 else (
-            ("damping_ratio", vals["log_dec"] / math.sqrt(4.0 * math.pi**2 + vals["log_dec"]**2)) if "log_dec" in vals and vals["log_dec"] >= 0 else None
-            )
-        )
+        "solve": solve_logarithmic_decrement
     },
     "Soderberg Line": {
         "formula": "\\frac{\\sigma_a}{S_e} + \\frac{\\sigma_m}{S_y} = \\frac{1}{FOS}",
@@ -587,8 +640,20 @@ VAR_PATTERNS = {
         r"\bdelta\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
     ],
     "damping_ratio": [
-        r"\bdamping\s+ratio\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bdamping\s+ratio\b.*?\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
         r"\\zeta\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "initial_peak": [
+        r"\bdisplacement\s+peak\b.*?\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\binitial\s+peak\b.*?\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bpeak\s+displacement\b.*?\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bx_0\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bx0\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "next_peak": [
+        r"\bnext\s+peak\b.*?\b([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bx_1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bx1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
     ],
     "sigma_a": [
         r"\bstress\s+amplitude\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
@@ -746,6 +811,8 @@ def _format_value(solved_val: float, output_unit: str = "") -> str:
         solved_val /= 1e9
     elif output_unit == "kPa" and solved_val >= 1e3:
         solved_val /= 1e3
+    elif output_unit == "mm":
+        solved_val /= 1e-3
     if abs(solved_val) >= 1e4 or (abs(solved_val) < 1e-2 and solved_val != 0):
         return f"{solved_val:.4e}"
     return f"{solved_val:.4f}"
@@ -757,6 +824,8 @@ def _detect_output_unit(question_text: str, solved_var: str) -> str:
         return "kN"
     if solved_var in ("stress", "sigma_a", "sigma_m", "S_e", "S_y") and "mpa" in q:
         return "MPa"
+    if solved_var in ("initial_peak", "next_peak", "L_e", "L", "D", "r_1", "r_2") and "mm" in q:
+        return "mm"
     return ""
 
 
@@ -802,6 +871,8 @@ def check_and_solve_chain(
     """Multi-hop symbolic solve: boundary inference → concept-ranked equation chain."""
     normalized = normalize_query(question_text)
     vals = extract_variables(normalized)
+    if "neglect" in normalized.lower():
+        vals["neglect_higher_powers"] = 1.0
     vals, boundary_steps = infer_effective_length(normalized, vals)
     if not vals:
         return None

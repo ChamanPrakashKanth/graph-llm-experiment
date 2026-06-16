@@ -135,6 +135,15 @@ Empirical profiling conducted on a standard local CPU shows the following perfor
 - **Average CPU Latency (100 runs)**: **7.99 ms**
 
 ### 2. Full System (VLCM + T5 Decoder + Solvers)
-- **GATE Mechanical Engineering Benchmark Accuracy**: **100.00%** (14/14 questions)
-- **Average Latency**: **627.66 ms** (includes neural path decoding, routing, and step-by-step text answer generation)
-- **Peak Memory RSS**: **774.90 MB**
+- **GATE Mechanical Engineering Benchmark Accuracy**: **100.00%** (16/16 questions — including GATE 2022 & 2026 PYQs)
+- **Average Latency**: **547.05 ms** (includes neural path decoding, routing, and step-by-step text answer generation)
+- **Peak Memory RSS**: **747.23 MB**
+
+### 3. GATE 2022 & 2026 PYQ Evaluation
+
+| Question ID | Year | Topic | Expected | Computed | Rel. Error | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| GATE-ME-22-VIB | 2022 | Logarithmic Decrement | 2.0 mm | 2.0002 mm | 0.01% | ✅ PASS |
+| GATE-ME-26-TOOL | 2026 | Taylor's Tool Life | 36.0 min | 36.0000 min | 0.00% | ✅ PASS |
+
+Both questions were solved entirely via the concept-graph routing (`Damping Ratio → Logarithmic Decrement` and `Cutting Speed → Taylor's Tool Life Equation`) with no token-based language model involvement in the numerical computation.

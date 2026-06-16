@@ -103,6 +103,39 @@ class TestSolverIntegration(unittest.TestCase):
         self.assertEqual(result["equation"], "Reynolds Number")
         self.assertAlmostEqual(float(result["solved_value"]), 100000.0, delta=1)
 
+    def test_logarithmic_decrement_solve(self):
+        # Test GATE 2022 question directly
+        question = (
+            "For a dynamical system governed by the equation, \\ddot{x}(t) + 2\\zeta\\omega_n \\dot{x}(t) + \\omega_n^2 x(t) = 0, "
+            "the damping ratio \\zeta is equal to 0.1103. The displacement x of this system is measured during a hammer test. "
+            "A displacement peak in the positive displacement direction is measured to be 4 mm. "
+            "Neglecting higher powers (>1) of the damping ratio, the displacement at the next peak in the positive direction will be ______ mm"
+        )
+        result = check_and_solve_chain(
+            question,
+            concept_path=["Logarithmic Decrement"],
+            ranked_equations=["Logarithmic Decrement"],
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(result["equation"], "Logarithmic Decrement")
+        self.assertEqual(result["solved_variable"], "next_peak")
+        self.assertEqual(result["output_unit"], "mm")
+        # delta = 2 * pi * 0.1103 = 0.693044
+        # next_peak = 4 * exp(-0.693044) = 2.0000 mm
+        self.assertAlmostEqual(float(result["solved_value"]), 2.0, delta=0.01)
+
+    def test_taylors_tool_life_solve(self):
+        question = "A cutting tool has a tool life exponent n = 0.5 and constant C = 150. If the cutting speed is 25 m/min, what is the tool life in minutes?"
+        result = check_and_solve_chain(
+            question,
+            concept_path=["Taylor's Tool Life Equation"],
+            ranked_equations=["Taylor's Tool Life Equation"],
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(result["equation"], "Taylor's Tool Life Equation")
+        self.assertEqual(result["solved_variable"], "tool_life")
+        self.assertAlmostEqual(float(result["solved_value"]), 36.0, delta=0.01)
+
 
 class TestChatServerIntegration(unittest.TestCase):
     @classmethod
