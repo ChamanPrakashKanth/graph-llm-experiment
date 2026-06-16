@@ -48,7 +48,7 @@ Traditional LLMs conflate **what to think** (logical planning) with **how to say
 
 ---
 
-## ⚖️ Why CAT V2 / VLCM Can Beat LLMs
+## ⚖️ Why CAT V2 / VLCM Can Beat LLMs (Strong Points)
 
 In closed-domain, high-precision technical fields, the hybrid GNN-Solver architecture holds significant advantages over monolithic token LLMs:
 
@@ -67,6 +67,9 @@ For traditional Transformers, the Key-Value (KV) cache grows linearly with seque
 ### 4. Direct Explainability & Audits
 Traditional LLMs are black boxes; extracting "why" they made a certain prediction requires analyzing attention maps, which do not guarantee actual causal relationships.
 * **The Visual Path**: Every step in a CAT V2/VLCM run is a concrete traversal of nodes in the concept graph. The system generates a clean, readable audit trail (`Pressure → Velocity → Turbulence → Heat Transfer`) that can be visually inspected and verified by human operators.
+
+### 5. High-Fidelity Contextual Specificity (Post-10k Scale-Up)
+* **The Advantage**: With the combinatorial scaling update, the graph now models highly specific contextual scenarios (e.g., `Normal Stress under Compressive Axial Load`). The model is no longer limited to generic concept nodes; it maintains precise environmental/load contexts throughout long reasoning steps without drifting or cross-contaminating unrelated contexts.
 
 ---
 
@@ -90,6 +93,15 @@ While the system is highly effective for technical reasoning, it has severe limi
 ### 4. Noisy Graph Growth
 * **The Limit**: Building graphs using text sentence co-occurrences creates semantic noise. If a textbook sentence mentions "Euler Buckling" and "Carnot cycle" in the same paragraph, the pipeline creates an edge between them.
 * **The Consequence**: These noisy edges act as logical "shortcuts" that the GNN can traverse, generating plans that make no logical sense to a human engineer despite being topologically valid on the graph.
+
+### 5. Combinatorial Database Bloat (Post-10k Scale-Up)
+* **The Limit**: Combining modifiers to core concepts scales the vocabulary space multiplicatively ($O(C \cdot M)$). At 10,000+ concepts, the database files grew to ~35 MB. Continuing to scale to 100,000+ concepts using flat JSON files would cause gigabytes of storage bloat, requiring transition to indexed databases (e.g., SQLite, GraphDB).
+
+### 6. Linear Dataset Search Bottlenecks (Post-10k Scale-Up)
+* **The Limit**: For fallback suggestion lookups, matching user queries against 50,500 reasoning paths using standard word-overlap checks represents an $O(N)$ linear time complexity. While mitigated in `chat_server.py` using precomputed token sets, this linear scanning will eventually cause latency degradation as paths scale to hundreds of thousands, requiring sub-linear vector search indices (e.g., HNSW).
+
+### 7. Over-Generalization of Context-Dependent Relations (Post-10k Scale-Up)
+* **The Limit**: Automated combinatorial generation assumes that all relations from a base causal chain hold true under every modifier context. In physical reality, specific environmental conditions (e.g., extreme high temperature) can change material properties, invalidating standard causal links (like brittle-failure paths). The model's static edge rules do not dynamically toggle relationships based on modifier-specific physical laws.
 
 ---
 
