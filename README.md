@@ -179,6 +179,16 @@ Both models achieve extremely high accuracy on the mechanical engineering datase
 * **Buckling Query**: `Compression -> Slenderness -> Lateral Deflection -> Buckling`
 * **Thermal Cracking Query**: `Temperature Gradient -> Thermal Expansion -> Thermal Stress -> Cracking`
 
+### 🚀 Expanded Priority Domains & Knowledge Integration
+
+The Mechanical Engineering Concept Graph has been autonomously expanded to include 4 new, high-quality technical domains:
+1. **Euler Turbomachinery Equation** (Fluid Mechanics & Hydraulic Machines): Connects velocity triangles, blade speed, absolute/relative velocity, and torque to turbomachinery power.
+2. **Regenerative Rankine Cycle** (Thermodynamics & Power Plant Engineering): Models steam extraction, extraction fractions, and direct mixing in an Open Feedwater Heater (OFWH).
+3. **Chvorinov's Rule** (Manufacturing Engineering & Casting): Relates casting modulus, mold constant, and solidification time to riser design for preventing shrinkage cavities.
+4. **Bode Plot Stability Margins** (Control Systems): Computes gain crossover frequency, phase crossover frequency, gain margin, and phase margin to evaluate closed-loop feedback stability.
+
+These additions are programmatically integrated into `data/mechanical_engineering_graph.json`, `data/mechanical_concepts.json`, and wired to the symbolic solver runtime in `equations_database.py`.
+
 ### Training Commands
 
 To retrain the Mechanical Engineering models:
@@ -696,6 +706,18 @@ Question Text
   → Concept path: Compressive Load → Boundary Condition → Effective Length → Euler Buckling
   → Boundary inference: L_e = 1.0 × 2.0 = 2.0 m
   → Result: P_cr = 4934.8 kN
+
+"Calculate solidification time if mold constant B is 2.5e6, volume is 0.001 and area is 0.05"
+  → Concept path: Chvorinov's Rule → Solidification Time
+  → Result: t = 1000.0000 s
+
+"Compute power if mass flow rate is 10, angular velocity is 150, r_1 is 0.2, V_u1 is 5, r_2 is 0.3, and V_u2 is 25"
+  → Concept path: Euler Turbomachinery Equation → Velocity Triangle → Turbomachinery Power
+  → Result: P = 9750.0000 W
+
+"What is the gain margin if the gain at phase crossover is -12 dB?"
+  → Concept path: Bode Plot → Phase Crossover Frequency → Gain Margin
+  → Result: GM_dB = 12.0000 dB
 
 "For a column of length L, if one end is fixed and the other is free, what is the effective length?"
   → GATE MCQ match → Answer: C (2L)

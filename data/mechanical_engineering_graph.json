@@ -16,6 +16,15 @@
       "metadata": {}
     },
     {
+      "name": "Absolute Velocity",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Accelerated Convergence",
       "activation": 0.0,
       "metadata": {}
@@ -371,6 +380,15 @@
       "metadata": {}
     },
     {
+      "name": "Blade Speed",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Blank Holder",
       "activation": 0.0,
       "metadata": {}
@@ -379,6 +397,24 @@
       "name": "Blending Function",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Bode Plot",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A frequency response plot representing open-loop magnitude and phase of a system over a logarithmic frequency scale.",
+        "difficulty": "Medium",
+        "aliases": [
+          "Bode diagram"
+        ],
+        "synonyms": [
+          "logarithmic frequency response plot"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Boiler Heat Input",
@@ -536,6 +572,15 @@
       "metadata": {}
     },
     {
+      "name": "Casting Modulus",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Cell Size",
       "activation": 0.0,
       "metadata": {}
@@ -614,6 +659,24 @@
       "name": "Cheap Evaluation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Chvorinov's Rule",
+      "activation": 1.0,
+      "metadata": {
+        "description": "An empirical relationship relating the solidification time of a casting to its volume and surface area.",
+        "difficulty": "Easy",
+        "aliases": [
+          "Chvorinov solidification rule"
+        ],
+        "synonyms": [
+          "Chvorinov's formula"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Circular Motion",
@@ -2021,6 +2084,26 @@
       "metadata": {}
     },
     {
+      "name": "Euler Turbomachinery Equation",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A fundamental equation expressing the relationship between torque/power and the change in angular momentum of fluid in a rotating turbomachine.",
+        "difficulty": "Hard",
+        "aliases": [
+          "Euler's pump equation",
+          "Euler turbine equation",
+          "Euler's turbomachinery equation"
+        ],
+        "synonyms": [
+          "Euler equation for turbomachines"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Eutectic Composition",
       "activation": 0.0,
       "metadata": {}
@@ -2114,6 +2197,15 @@
       "name": "External Work",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Extraction Fraction",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "FFT Analysis",
@@ -2229,6 +2321,24 @@
       "name": "Feasibility Check",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Feedback Loop",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
+      "name": "Feedwater Preheating",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Fiber Modulus",
@@ -2631,9 +2741,31 @@
       "metadata": {}
     },
     {
+      "name": "Gain Crossover Frequency",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Gain Margin",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The amount of open-loop gain increase required at the phase crossover frequency to make the closed-loop system unstable.",
+        "difficulty": "Medium",
+        "aliases": [
+          "gain stability margin"
+        ],
+        "synonyms": [
+          "GM"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Gain Variation",
@@ -4066,6 +4198,15 @@
       "metadata": {}
     },
     {
+      "name": "Mold Constant",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Mold Filling",
       "activation": 0.0,
       "metadata": {}
@@ -4431,6 +4572,25 @@
       "metadata": {}
     },
     {
+      "name": "Open Feedwater Heater",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A direct-contact heat exchanger in a regenerative Rankine cycle where extracted steam mixes directly with feedwater.",
+        "difficulty": "Medium",
+        "aliases": [
+          "OFWH",
+          "direct-contact feedwater heater"
+        ],
+        "synonyms": [
+          "open feed heater"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Open Loop Poles",
       "activation": 0.0,
       "metadata": {}
@@ -4671,6 +4831,15 @@
       "metadata": {}
     },
     {
+      "name": "Phase Crossover Frequency",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Phase Diagram",
       "activation": 0.0,
       "metadata": {}
@@ -4682,8 +4851,21 @@
     },
     {
       "name": "Phase Margin",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "The amount of additional phase lag required at the gain crossover frequency to make the closed-loop system unstable.",
+        "difficulty": "Medium",
+        "aliases": [
+          "phase stability margin"
+        ],
+        "synonyms": [
+          "PM"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Phase Region",
@@ -5316,6 +5498,15 @@
       "metadata": {}
     },
     {
+      "name": "Regenerative Rankine Cycle",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Regenerator",
       "activation": 0.0,
       "metadata": {}
@@ -5516,6 +5707,15 @@
       "metadata": {}
     },
     {
+      "name": "Riser Design",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Robust Design",
       "activation": 0.0,
       "metadata": {}
@@ -5619,6 +5819,15 @@
       "name": "Sag",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Saturated Liquid",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Scalar Transport",
@@ -5801,6 +6010,15 @@
       "metadata": {}
     },
     {
+      "name": "Shrinkage Cavity",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Signal-to-Noise Ratio",
       "activation": 0.0,
       "metadata": {}
@@ -5949,6 +6167,15 @@
       "name": "Solidification Shrinkage",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Solidification Time",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Solution Gradient",
@@ -6756,6 +6983,15 @@
       "metadata": {}
     },
     {
+      "name": "Torque",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
+    },
+    {
       "name": "Torque Application",
       "activation": 0.0,
       "metadata": {}
@@ -6869,6 +7105,15 @@
       "name": "Turbine Expansion",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Turbomachinery Power",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Turbulence",
@@ -7079,6 +7324,24 @@
       "name": "Velocity Profile",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Velocity Triangle",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A vector diagram representing the relationship between absolute velocity, relative velocity, and blade velocity of a fluid in turbomachinery.",
+        "difficulty": "Medium",
+        "aliases": [
+          "velocity vector diagram"
+        ],
+        "synonyms": [
+          "fluid velocity triangle"
+        ],
+        "sources": [
+          "MIT OpenCourseWare (Course 2: Mechanical Engineering)",
+          "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+        ]
+      }
     },
     {
       "name": "Velocity at Bottom",
@@ -8370,6 +8633,26 @@
       "metadata": {}
     },
     {
+      "source": "Bode Plot",
+      "target": "Gain Crossover Frequency",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Bode Plot",
+      "target": "Phase Crossover Frequency",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Boiler Heat Input",
       "target": "Power Output",
       "weight": 0.35,
@@ -9176,6 +9459,26 @@
       }
     },
     {
+      "source": "Chvorinov's Rule",
+      "target": "Riser Design",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Chvorinov's Rule",
+      "target": "Solidification Time",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Circular Motion",
       "target": "Angular Velocity",
       "weight": 0.675,
@@ -9262,6 +9565,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Closed Loop Stability",
+      "target": "Feedback Loop",
+      "weight": 1.0,
+      "relation": "optimized_by",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
     },
     {
       "source": "Closed System",
@@ -12952,6 +13265,36 @@
       "metadata": {}
     },
     {
+      "source": "Euler Turbomachinery Equation",
+      "target": "Angular Momentum Conservation",
+      "weight": 1.0,
+      "relation": "derived_from",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Euler Turbomachinery Equation",
+      "target": "Turbomachinery Power",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Euler Turbomachinery Equation",
+      "target": "Velocity Triangle",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Eutectic Composition",
       "target": "Invariant Reaction",
       "weight": 1.0,
@@ -13162,6 +13505,16 @@
       }
     },
     {
+      "source": "Extraction Fraction",
+      "target": "Energy Balance",
+      "weight": 1.0,
+      "relation": "calculated_by",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "FFT Analysis",
       "target": "Characteristic Frequencies",
       "weight": 1.0,
@@ -13290,6 +13643,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Feedwater Preheating",
+      "target": "Thermal Efficiency",
+      "weight": 1.0,
+      "relation": "increases",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
     },
     {
       "source": "Fiber Modulus",
@@ -14351,6 +14714,26 @@
       "evidence_count": 2,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Gain Crossover Frequency",
+      "target": "Phase Margin",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Gain Margin",
+      "target": "Closed Loop Stability",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
       }
     },
     {
@@ -19684,6 +20067,36 @@
       }
     },
     {
+      "source": "Open Feedwater Heater",
+      "target": "Extraction Fraction",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Open Feedwater Heater",
+      "target": "Feedwater Preheating",
+      "weight": 1.0,
+      "relation": "causes",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Open Feedwater Heater",
+      "target": "Saturated Liquid",
+      "weight": 1.0,
+      "relation": "constrained_by",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Open Loop Poles",
       "target": "Gain Variation",
       "weight": 1.0,
@@ -20244,6 +20657,16 @@
       }
     },
     {
+      "source": "Phase Crossover Frequency",
+      "target": "Gain Margin",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Phase Diagram",
       "target": "Composition",
       "weight": 0.35,
@@ -20280,6 +20703,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Phase Margin",
+      "target": "Closed Loop Stability",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
     },
     {
       "source": "Phase Margin",
@@ -22088,6 +22521,16 @@
       }
     },
     {
+      "source": "Regenerative Rankine Cycle",
+      "target": "Open Feedwater Heater",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Regenerator",
       "target": "Preheated Air",
       "weight": 1.0,
@@ -22688,6 +23131,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Riser Design",
+      "target": "Shrinkage Cavity",
+      "weight": 1.0,
+      "relation": "decreases",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
     },
     {
       "source": "Robust Design",
@@ -23938,6 +24391,26 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Solidification Time",
+      "target": "Casting Modulus",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Solidification Time",
+      "target": "Mold Constant",
+      "weight": 1.0,
+      "relation": "determines",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
     },
     {
       "source": "Solution Gradient",
@@ -26700,6 +27173,16 @@
       }
     },
     {
+      "source": "Turbomachinery Power",
+      "target": "Torque",
+      "weight": 1.0,
+      "relation": "measured_by",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
       "source": "Turbulence",
       "target": "Complex Geometry",
       "weight": 0.35,
@@ -27403,6 +27886,36 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Velocity Triangle",
+      "target": "Absolute Velocity",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Velocity Triangle",
+      "target": "Blade Speed",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Velocity Triangle",
+      "target": "Relative Velocity",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
       }
     },
     {

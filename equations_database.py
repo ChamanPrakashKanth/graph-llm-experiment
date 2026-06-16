@@ -148,6 +148,71 @@ EQUATIONS = {
             ("stress", (vals["M"] * vals["y"]) / vals["I"]) if "M" in vals and "y" in vals and "I" in vals else
             (("M", (vals["stress"] * vals["I"]) / vals["y"]) if "stress" in vals and "I" in vals and "y" in vals else None)
         )
+    },
+    "Euler Turbomachinery": {
+        "formula": "P = \\dot{m} \\omega (r_2 V_{u2} - r_1 V_{u1})",
+        "variables": {
+            "P": "Turbomachinery Power (W)",
+            "m_dot": "Mass flow rate (kg/s)",
+            "omega": "Rotor angular velocity (rad/s)",
+            "r_1": "Inlet radius (m)",
+            "V_u1": "Inlet absolute tangential velocity (m/s)",
+            "r_2": "Outlet radius (m)",
+            "V_u2": "Outlet absolute tangential velocity (m/s)"
+        },
+        "concepts": ["Euler Turbomachinery Equation", "Velocity Triangle", "Turbomachinery Power", "Torque"],
+        "solve": lambda vals: (
+            ("P", vals["m_dot"] * vals["omega"] * (vals["r_2"] * vals["V_u2"] - vals["r_1"] * vals["V_u1"])) if "m_dot" in vals and "omega" in vals and "r_1" in vals and "V_u1" in vals and "r_2" in vals and "V_u2" in vals else None
+        )
+    },
+    "Open Feedwater Heater Energy Balance": {
+        "formula": "y \\cdot h_{extracted} + (1 - y) \\cdot h_{feedwater,in} = h_{out}",
+        "variables": {
+            "y": "Extraction fraction (dimensionless)",
+            "h_extracted": "Extracted steam enthalpy (J/kg)",
+            "h_feedwater_in": "Inlet feedwater enthalpy (J/kg)",
+            "h_out": "Exit saturated liquid enthalpy (J/kg)"
+        },
+        "concepts": ["Open Feedwater Heater", "Extraction Fraction", "Energy Balance"],
+        "solve": lambda vals: (
+            ("y", (vals["h_out"] - vals["h_feedwater_in"]) / (vals["h_extracted"] - vals["h_feedwater_in"])) if "h_out" in vals and "h_feedwater_in" in vals and "h_extracted" in vals and (vals["h_extracted"] - vals["h_feedwater_in"]) != 0 else None
+        )
+    },
+    "Chvorinov's Rule": {
+        "formula": "t = B \\left( \\frac{V}{A} \\right)^n",
+        "variables": {
+            "t": "Solidification time (s)",
+            "B_const": "Mold constant (s/m^2)",
+            "volume": "Volume of casting (m^3)",
+            "A": "Surface area of casting (m^2)",
+            "n_exp": "Exponent (usually 2)"
+        },
+        "concepts": ["Chvorinov's Rule", "Solidification Time", "Casting Modulus", "Mold Constant", "Riser Design"],
+        "solve": lambda vals: (
+            ("t", vals["B_const"] * (vals["volume"] / vals["A"])**vals.get("n_exp", 2.0)) if "B_const" in vals and "volume" in vals and "A" in vals and vals["A"] != 0 else None
+        )
+    },
+    "Gain Margin": {
+        "formula": "GM_{dB} = 0 - |G(j\\omega_{pc})|_{dB}",
+        "variables": {
+            "GM_dB": "Gain margin (dB)",
+            "gain_at_pc": "Magnitude at phase crossover frequency (dB)"
+        },
+        "concepts": ["Bode Plot", "Phase Crossover Frequency", "Gain Margin", "Closed Loop Stability"],
+        "solve": lambda vals: (
+            ("GM_dB", 0.0 - vals["gain_at_pc"]) if "gain_at_pc" in vals else None
+        )
+    },
+    "Phase Margin": {
+        "formula": "PM = 180^\\circ + \\angle G(j\\omega_{gc})",
+        "variables": {
+            "PM": "Phase margin (degrees)",
+            "phase_at_gc": "Phase angle at gain crossover frequency (degrees)"
+        },
+        "concepts": ["Bode Plot", "Gain Crossover Frequency", "Phase Margin", "Closed Loop Stability"],
+        "solve": lambda vals: (
+            ("PM", 180.0 + vals["phase_at_gc"]) if "phase_at_gc" in vals else None
+        )
     }
 }
 
@@ -278,6 +343,67 @@ VAR_PATTERNS = {
     "M": [
         r"\bM\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bbending\s+moment\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "m_dot": [
+        r"\bm_dot\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bmass\s+flow\s+rate\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "omega": [
+        r"\bomega\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bangular\s+velocity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\brotational\s+speed\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "r_1": [
+        r"\br_1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\binlet\s+radius\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "V_u1": [
+        r"\bV_u1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\binlet\s+tangential\s+velocity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "r_2": [
+        r"\br_2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\boutlet\s+radius\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "V_u2": [
+        r"\bV_u2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\boutlet\s+tangential\s+velocity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "h_extracted": [
+        r"\bh_extracted\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bextracted\s+steam\s+enthalpy\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bsteam\s+enthalpy\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "h_feedwater_in": [
+        r"\bh_feedwater_in\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\binlet\s+feedwater\s+enthalpy\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "h_out": [
+        r"\bh_out\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bexit\s+feedwater\s+enthalpy\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bexit\s+enthalpy\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "volume": [
+        r"\bvolume\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bV\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "B_const": [
+        r"\bB\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bmold\s+constant\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "n_exp": [
+        r"\bn\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bexponent\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "gain_at_pc": [
+        r"\bgain\s+at\s+phase\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bmagnitude\s+at\s+phase\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bmagnitude\s+at\s+w_pc\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "phase_at_gc": [
+        r"\bphase\s+at\s+gain\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bphase\s+angle\s+at\s+gain\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bphase\s+at\s+w_gc\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
     ]
 }
 

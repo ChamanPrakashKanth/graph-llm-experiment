@@ -2,7 +2,13 @@
   {
     "concept": "Euler Buckling",
     "definition": "The sudden lateral deflection of a slender column under an axial compressive load.",
-    "prerequisites": ["Compressive Load", "Stress", "Column", "Boundary Condition", "Effective Length"],
+    "prerequisites": [
+      "Compressive Load",
+      "Stress",
+      "Column",
+      "Boundary Condition",
+      "Effective Length"
+    ],
     "difficulty": "Medium",
     "revision_1_line": "Column buckling under compression governed by slenderness ratio.",
     "revision_5_lines": "Euler buckling occurs in slender columns.\nIt is triggered by compressive loads.\nThe critical buckling load is P_cr = pi^2 * E * I / L_e^2.\nShort columns yield before they buckle.\nBoundary conditions change the effective length.",
@@ -10,12 +16,20 @@
     "exam_summary": "P_cr formula is highly tested in GATE. Pay attention to end conditions: pinned-pinned (K=1.0), fixed-fixed (K=0.5), fixed-pinned (K=0.7), and fixed-free (K=2.0).",
     "typical_mistakes": "Forgetting to square the effective length in the denominator, or using the wrong boundary condition multiplier K.",
     "memory_aid": "Slender columns buckle easily; think of a thin plastic ruler under compression.",
-    "related_concepts": ["Slenderness", "Critical Load", "Yielding", "Boundary Condition"]
+    "related_concepts": [
+      "Slenderness",
+      "Critical Load",
+      "Yielding",
+      "Boundary Condition"
+    ]
   },
   {
     "concept": "Boundary Condition",
     "definition": "Constraints on displacement and rotation at structural supports that determine buckling mode shapes.",
-    "prerequisites": ["Column", "Compressive Load"],
+    "prerequisites": [
+      "Column",
+      "Compressive Load"
+    ],
     "difficulty": "Easy",
     "revision_1_line": "End conditions set the effective length factor K.",
     "revision_5_lines": "Pinned ends allow rotation.\nFixed ends prevent rotation and translation.\nFree ends have no restraint.\nK-factor converts physical length to effective length.\nGATE frequently tests all four standard cases.",
@@ -23,25 +37,39 @@
     "exam_summary": "Memorize K values: pinned-pinned K=1.0, fixed-fixed K=0.5, fixed-pinned K=0.7, fixed-free K=2.0.",
     "typical_mistakes": "Confusing fixed-pinned (K=0.7) with fixed-free (K=2.0).",
     "memory_aid": "More restraint = smaller K = higher buckling load.",
-    "related_concepts": ["Effective Length", "Euler Buckling", "Critical Load"]
+    "related_concepts": [
+      "Effective Length",
+      "Euler Buckling",
+      "Critical Load"
+    ]
   },
   {
     "concept": "Effective Length",
     "definition": "The equivalent length of a pinned-pinned column that buckles at the same load as the actual column.",
-    "prerequisites": ["Boundary Condition", "Column"],
+    "prerequisites": [
+      "Boundary Condition",
+      "Column"
+    ],
     "difficulty": "Easy",
     "revision_1_line": "L_e = K * L where K depends on end conditions.",
     "revision_5_lines": "Effective length accounts for boundary conditions.\nL_e = K * L.\nPinned-pinned: L_e = L.\nFixed-free: L_e = 2L.\nAlways square L_e in the Euler formula.",
     "explanation": "The effective length converts any end condition into an equivalent pinned-pinned column length for use in Euler's buckling formula.",
     "exam_summary": "Always compute L_e before substituting into P_cr = pi^2*E*I/L_e^2.",
     "typical_mistakes": "Using physical length L instead of effective length L_e in the buckling formula.",
-    "memory_aid": "L_e goes in the denominator squared — a small error here causes a 4× error in P_cr.",
-    "related_concepts": ["Boundary Condition", "Euler Buckling", "Critical Load"]
+    "memory_aid": "L_e goes in the denominator squared \u2014 a small error here causes a 4\u00d7 error in P_cr.",
+    "related_concepts": [
+      "Boundary Condition",
+      "Euler Buckling",
+      "Critical Load"
+    ]
   },
   {
     "concept": "Reynolds Number",
     "definition": "A dimensionless quantity used to predict fluid flow transition from laminar to turbulent.",
-    "prerequisites": ["Flow Speed", "Viscosity"],
+    "prerequisites": [
+      "Flow Speed",
+      "Viscosity"
+    ],
     "difficulty": "Easy",
     "revision_1_line": "Ratio of inertial forces to viscous forces in fluid flow.",
     "revision_5_lines": "Reynolds number determines flow regime.\nRe = rho * v * D / mu.\nRe < 2000 is laminar flow in a pipe.\nRe > 4000 is turbulent flow in a pipe.\n2000 < Re < 4000 is transitional flow.",
@@ -49,12 +77,18 @@
     "exam_summary": "Crucial for pipe loss, boundary layers, and dimensionless modeling questions in exams.",
     "typical_mistakes": "Confusing dynamic viscosity (mu) with kinematic viscosity (nu = mu/rho) in the formula.",
     "memory_aid": "High speed, low viscosity, big pipe = Turbulent chaotic flow.",
-    "related_concepts": ["Flow Speed", "Turbulence", "Boundary Layer"]
+    "related_concepts": [
+      "Flow Speed",
+      "Turbulence",
+      "Boundary Layer"
+    ]
   },
   {
     "concept": "Stress",
     "definition": "Internal force per unit area in a structural member.",
-    "prerequisites": ["Load"],
+    "prerequisites": [
+      "Load"
+    ],
     "difficulty": "Easy",
     "revision_1_line": "sigma = P / A for axial loading.",
     "revision_5_lines": "Stress is force per unit area.\nAxial stress sigma = P/A.\nUnits are Pa (N/m^2).\nCompare stress to yield strength for safety.\nGATE often combines stress with buckling concepts.",
@@ -62,7 +96,11 @@
     "exam_summary": "Basic but frequently tested. Watch unit conversions (kN to N, mm^2 to m^2).",
     "typical_mistakes": "Forgetting to convert kN to N or mm^2 to m^2 before dividing.",
     "memory_aid": "Bigger area = lower stress for the same load.",
-    "related_concepts": ["Load", "Strain", "Yielding"]
+    "related_concepts": [
+      "Load",
+      "Strain",
+      "Yielding"
+    ]
   },
   {
     "concept": "Carnot cycle",
@@ -75,6 +113,155 @@
     "exam_summary": "Always use absolute temperatures (Kelvin). GATE loves efficiency calculation traps with Celsius.",
     "typical_mistakes": "Using Celsius instead of Kelvin for temperature ratio.",
     "memory_aid": "Carnot = ceiling. Real engines always perform worse.",
-    "related_concepts": ["Efficiency"]
+    "related_concepts": [
+      "Efficiency"
+    ]
+  },
+  {
+    "concept": "Euler Turbomachinery Equation",
+    "definition": "A fundamental equation expressing the relationship between torque/power and the change in angular momentum of fluid in a rotating turbomachine.",
+    "prerequisites": [
+      "Angular Momentum Conservation",
+      "Velocity Triangle",
+      "Torque"
+    ],
+    "difficulty": "Hard",
+    "revision_1_line": "Euler's equation relates fluid angular momentum change to rotor work.",
+    "revision_5_lines": "Euler turbomachinery equation applies to pumps and turbines.\nIt is based on conservation of angular momentum.\nPower is P = mass_flow * omega * (r2*Vu2 - r1*Vu1).\nVelocity triangles resolve fluid velocities.\nAssumes steady, one-dimensional, and adiabatic flow.",
+    "explanation": "The Euler turbomachinery equation determines the energy transfer between a fluid and a rotor. The torque exerted on the rotor equals the rate of change of angular momentum of the fluid. Combining this with rotor angular velocity yields power.",
+    "exam_summary": "Highly tested in turbomachinery questions. Be careful with absolute velocity tangential components (Vu1, Vu2) from velocity triangles.",
+    "typical_mistakes": "Using relative velocity instead of absolute velocity tangential component, or confusing inlet and outlet radius.",
+    "memory_aid": "Euler's turbomachine equation relates torque to delta angular momentum.",
+    "related_concepts": [
+      "Velocity Triangle",
+      "Rotor Speed",
+      "Mass Flow Rate"
+    ]
+  },
+  {
+    "concept": "Velocity Triangle",
+    "definition": "A vector diagram representing the relationship between absolute velocity, relative velocity, and blade velocity of a fluid in turbomachinery.",
+    "prerequisites": [
+      "Absolute Velocity",
+      "Relative Velocity",
+      "Blade Speed"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "Vector sum V = U + W relates absolute, blade, and relative velocities.",
+    "revision_5_lines": "Velocity triangles are drawn at rotor inlet and outlet.\nAbsolute velocity V is vector sum of blade speed U and relative velocity W.\nTangential component Vu drives torque.\nAxial component Vf determines mass flow rate.\nAngles alpha and beta define flow directions.",
+    "explanation": "Velocity triangles are crucial for analyzing turbomachinery. They graphically represent fluid velocities in stationary and rotating frames of reference at the inlet and exit of a blade row.",
+    "exam_summary": "Drawing velocity triangles correctly is key to solving any turbomachinery problem. Remember Vf = V * sin(alpha) and Vu = V * cos(alpha).",
+    "typical_mistakes": "Confusing flow angles (absolute vs relative) or drawing the vector sum in the wrong direction.",
+    "memory_aid": "Absolute = Blade + Relative (V = U + W).",
+    "related_concepts": [
+      "Absolute Velocity",
+      "Relative Velocity",
+      "Blade Speed",
+      "Euler Turbomachinery Equation"
+    ]
+  },
+  {
+    "concept": "Open Feedwater Heater",
+    "definition": "A direct-contact heat exchanger in a regenerative Rankine cycle where extracted steam mixes directly with feedwater.",
+    "prerequisites": [
+      "Regenerative Rankine Cycle",
+      "Steam Extraction"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "Direct-contact mixing chamber preheats feedwater with turbine bleed steam.",
+    "revision_5_lines": "Preheats feedwater to increase boiler inlet temperature.\nDirect contact mixing occurs at constant pressure.\nExit state is assumed to be saturated liquid.\nExtraction fraction y is determined by energy balance.\nReduces required boiler heat input, increasing efficiency.",
+    "explanation": "An open feedwater heater (OFWH) mixes steam bled from the turbine with low-temperature condensate. Preheating the feedwater before it enters the boiler reduces fuel consumption and increases overall cycle thermal efficiency.",
+    "exam_summary": "Frequently tested in Rankine cycle questions. Apply energy balance: y*h_extracted + (1-y)*h_in = h_out (where h_out is saturated liquid enthalpy).",
+    "typical_mistakes": "Forgetting that the exit state is saturated liquid, or using incorrect pump work terms.",
+    "memory_aid": "Open heater = direct mixing = saturated liquid exit.",
+    "related_concepts": [
+      "Regenerative Rankine Cycle",
+      "Extraction Fraction",
+      "Energy Balance"
+    ]
+  },
+  {
+    "concept": "Chvorinov's Rule",
+    "definition": "An empirical relationship relating the solidification time of a casting to its volume and surface area.",
+    "prerequisites": [
+      "Casting",
+      "Solidification Time",
+      "Casting Modulus"
+    ],
+    "difficulty": "Easy",
+    "revision_1_line": "t = B * (V/A)^n relates casting shape to solidification time.",
+    "revision_5_lines": "Total solidification time depends on casting modulus V/A.\nChvorinov's formula is t = B * (V/A)^n.\nExponent n is theoretically 2.0 but empirically 1.5 to 2.0.\nMold constant B depends on metal and mold properties.\nUsed to design risers that solidify after the casting.",
+    "explanation": "Chvorinov's Rule predicts solidification time, which is crucial to prevent shrinkage cavities. By ensuring the riser has a higher volume-to-area ratio (modulus) than the casting, the riser solidifies last, feeding molten metal to the casting.",
+    "exam_summary": "A favorite topic in manufacturing engineering. Remember to calculate V and A for different shapes (sphere, cylinder, slab).",
+    "typical_mistakes": "Using total surface area for a slab instead of heat-dissipating surface area, or forgetting to square the modulus.",
+    "memory_aid": "Thicker shapes solidify slower; t is proportional to modulus squared.",
+    "related_concepts": [
+      "Solidification Time",
+      "Mold Constant",
+      "Casting Modulus",
+      "Riser Design"
+    ]
+  },
+  {
+    "concept": "Bode Plot",
+    "definition": "A frequency response plot representing open-loop magnitude and phase of a system over a logarithmic frequency scale.",
+    "prerequisites": [
+      "Frequency Response",
+      "Transfer Function"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "Logarithmic plot of system magnitude and phase versus frequency.",
+    "revision_5_lines": "Magnitude is plotted in decibels (dB = 20 * log10(gain)).\nPhase is plotted in degrees.\nDetermines gain margin (GM) and phase margin (PM).\nUsed to evaluate closed-loop feedback stability.\nCrossover frequencies are key transition points.",
+    "explanation": "Bode plots display system behavior in the frequency domain. They enable engineers to determine stability margins and frequency-domain performance without computing closed-loop poles directly.",
+    "exam_summary": "Look for slope changes at corner frequencies: -20 dB/dec per pole, +20 dB/dec per zero.",
+    "typical_mistakes": "Confusing gain crossover and phase crossover frequencies when calculating margins.",
+    "memory_aid": "Bode plot = stability health check in frequency domain.",
+    "related_concepts": [
+      "Gain Margin",
+      "Phase Margin",
+      "Gain Crossover Frequency",
+      "Phase Crossover Frequency",
+      "Closed Loop Stability"
+    ]
+  },
+  {
+    "concept": "Gain Margin",
+    "definition": "The amount of open-loop gain increase required at the phase crossover frequency to make the closed-loop system unstable.",
+    "prerequisites": [
+      "Bode Plot",
+      "Phase Crossover Frequency"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "Reciprocal of open-loop gain at phase crossover frequency.",
+    "revision_5_lines": "Measured at phase crossover frequency omega_pc.\nGM_dB = 0 - |G(j*omega_pc)|_dB.\nPositive GM in dB indicates stable system gain headroom.\nNegative GM in dB indicates instability.\nGATE tests both formula and graphical reading.",
+    "explanation": "Gain Margin is the safety margin for system gain. It indicates how much the loop gain can be multiplied before the system oscillates.",
+    "exam_summary": "Find omega where phase = -180, read gain, GM is negative of that gain in dB.",
+    "typical_mistakes": "Using gain crossover frequency instead of phase crossover frequency.",
+    "memory_aid": "Gain Margin protects against gain drift.",
+    "related_concepts": [
+      "Bode Plot",
+      "Phase Crossover Frequency",
+      "Closed Loop Stability"
+    ]
+  },
+  {
+    "concept": "Phase Margin",
+    "definition": "The amount of additional phase lag required at the gain crossover frequency to make the closed-loop system unstable.",
+    "prerequisites": [
+      "Bode Plot",
+      "Gain Crossover Frequency"
+    ],
+    "difficulty": "Medium",
+    "revision_1_line": "PM = 180 + phase_angle at gain crossover frequency.",
+    "revision_5_lines": "Measured at gain crossover frequency omega_gc.\nPM = 180 + angle(G(j*omega_gc)).\nPositive PM indicates stability.\nNegative PM indicates instability.\nDetermines system damping ratio and overshoot.",
+    "explanation": "Phase Margin indicates how much delay or phase lag can be added to the system before it becomes unstable.",
+    "exam_summary": "Find omega where gain = 0 dB, read phase angle, add 180.",
+    "typical_mistakes": "Using phase angle in radians instead of degrees, or using phase crossover frequency.",
+    "memory_aid": "Phase Margin protects against system delay.",
+    "related_concepts": [
+      "Bode Plot",
+      "Gain Crossover Frequency",
+      "Closed Loop Stability"
+    ]
   }
 ]
