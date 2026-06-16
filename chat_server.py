@@ -1435,9 +1435,13 @@ const DOMAIN_QUESTIONS = {
         { q: "A steel column of length 2.0 m has pinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN?", tag: "GATE NAT" },
         { q: "For a column of length L, if one end is fixed and the other is free, what is the effective length?", tag: "GATE MCQ" },
         { q: "Calculate the Reynolds number for water (density = 1000 kg/m^3, viscosity = 0.001 Pa-s) flowing at 2.0 m/s in a 0.05 m diameter pipe.", tag: "GATE Numerical" },
-        { q: "Why does a column buckle under compression?", tag: "Statics & Buckling" },
-        { q: "How does thermal stress cause cracking?", tag: "Heat Transfer" },
-        { q: "Why does cyclic loading cause fatigue?", tag: "Fatigue Failure" }
+        { q: "Given a matrix A with trace of 5.0 and determinant is 6.0, what is the eigenvalue?", tag: "Math / Cayley-Hamilton" },
+        { q: "If output load is 100 N and output displacement is 0.05 m and input displacement is 0.2 m, find input force", tag: "Mechanics / Virtual Work" },
+        { q: "If gear 1 speed is 100 rad/s, pitch radius of gear 1 is 0.05 m, and pitch radius of gear 2 is 0.1 m, find the gear 2 speed", tag: "Gears / Law of Gearing" },
+        { q: "Determine the logarithmic decrement if damping ratio is 0.1", tag: "Vibrations / Log Dec" },
+        { q: "Find the factor of safety if mean stress is 100 MPa, yield strength is 300 MPa, stress amplitude is 50 MPa, and endurance limit is 150 MPa", tag: "Design / Soderberg" },
+        { q: "Calculate the tool life in min if cutting speed is 120 m/min, exponent n is 0.25, and constant C is 240", tag: "Mfg / Taylor's Tool Life" },
+        { q: "Compute the economic order quantity if annual demand is 10000 units, ordering cost is 50, and holding cost is 4", tag: "Industrial / EOQ" }
     ],
     "mit_math": [
         { q: "Why does the gradient point in the direction of steepest ascent?", tag: "18.02 Calculus" },
@@ -1470,10 +1474,13 @@ const DOMAIN_QUESTIONS = {
         { q: "A cantilever column of length 3.0 m has E = 210e9 Pa and I = 2.0e-6 m^4. Find the critical buckling load in kN.", tag: "GATE NAT" },
         { q: "For a column with both ends pinned, the effective length factor K equals:", tag: "GATE MCQ" },
         { q: "Find Carnot efficiency if hot reservoir temperature is 800 K and cold reservoir temperature is 300 K.", tag: "GATE NAT" },
-        { q: "Why does a column buckle under compression?", tag: "Euler Buckling" },
-        { q: "Determine critical buckling load for E = 200e9, I = 1.0e-5, L_e = 2.0", tag: "GATE Numerical Solver" },
-        { q: "Why does repeated cyclic loading cause structural fatigue failure?", tag: "Fatigue failure" },
-        { q: "Why does an adverse pressure gradient cause flow separation?", tag: "Fluid Mechanics" }
+        { q: "Given a matrix A with trace of 5.0 and determinant is 6.0, what is the eigenvalue?", tag: "Math / Cayley-Hamilton" },
+        { q: "If output load is 100 N and output displacement is 0.05 m and input displacement is 0.2 m, find input force", tag: "Mechanics / Virtual Work" },
+        { q: "If gear 1 speed is 100 rad/s, pitch radius of gear 1 is 0.05 m, and pitch radius of gear 2 is 0.1 m, find the gear 2 speed", tag: "Gears / Law of Gearing" },
+        { q: "Determine the logarithmic decrement if damping ratio is 0.1", tag: "Vibrations / Log Dec" },
+        { q: "Find the factor of safety if mean stress is 100 MPa, yield strength is 300 MPa, stress amplitude is 50 MPa, and endurance limit is 150 MPa", tag: "Design / Soderberg" },
+        { q: "Calculate the tool life in min if cutting speed is 120 m/min, exponent n is 0.25, and constant C is 240", tag: "Mfg / Taylor's Tool Life" },
+        { q: "Compute the economic order quantity if annual demand is 10000 units, ordering cost is 50, and holding cost is 4", tag: "Industrial / EOQ" }
     ]
 };
 

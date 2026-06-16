@@ -44,6 +44,13 @@ CONCEPT_KEYWORDS: Dict[str, List[str]] = {
     "Convection": ["convection", "nusselt", "heat transfer coefficient"],
     "Newton Second Law": ["newton", "f=ma", "acceleration", "mass"],
     "Euler-Bernoulli Beam": ["beam", "deflection", "neutral axis"],
+    "Cayley-Hamilton Theorem": ["cayley", "hamilton", "characteristic equation", "eigenvalue", "matrix power", "trace", "determinant"],
+    "Virtual Work Principle": ["virtual work", "displacement", "equilibrium", "active force", "constraint"],
+    "Law of Gearing": ["law of gearing", "gear", "angular velocity", "pitch radius", "velocity ratio"],
+    "Logarithmic Decrement": ["logarithmic decrement", "damping ratio", "amplitude decay", "decay rate", "damped vibration"],
+    "Soderberg Line": ["soderberg", "fatigue", "endurance limit", "yield strength", "mean stress", "stress amplitude", "factor of safety", "fos"],
+    "Taylor's Tool Life Equation": ["taylor", "tool life", "cutting speed", "tool wear", "exponent n", "constant c"],
+    "Economic Order Quantity (EOQ)": ["economic order quantity", "eoq", "inventory cost", "holding cost", "ordering cost", "annual demand"]
 }
 
 # Curated GATE exam multi-hop chains (prerequisite routing templates).
@@ -64,6 +71,13 @@ GATE_REASONING_CHAINS: Dict[str, List[str]] = {
     "Fourier's Law": ["Temperature Gradient", "Fourier Law", "Conduction"],
     "Carnot Efficiency": ["Carnot cycle", "Efficiency"],
     "Newton's Second Law": ["Force", "Acceleration", "Newton Second Law"],
+    "Cayley-Hamilton Theorem": ["Characteristic Polynomial", "Matrix Power", "Cayley-Hamilton Theorem"],
+    "Virtual Work Principle": ["Static Equilibrium", "Virtual Displacement", "Virtual Work Principle"],
+    "Law of Gearing": ["Conjugate Teeth Profile", "Angular Velocity", "Law of Gearing"],
+    "Logarithmic Decrement": ["Damping Ratio", "Amplitude Decay", "Logarithmic Decrement"],
+    "Soderberg Line": ["Yield Strength", "Endurance Limit", "Mean Stress", "Stress Amplitude", "Soderberg Line"],
+    "Taylor's Tool Life Equation": ["Cutting Speed", "Tool Wear", "Taylor's Tool Life Equation"],
+    "Economic Order Quantity (EOQ)": ["Holding Cost", "Ordering Cost", "Inventory Cost", "Economic Order Quantity (EOQ)"]
 }
 
 # Maps routed concepts to symbolic solver equations (priority order).
@@ -88,6 +102,30 @@ CONCEPT_EQUATION_MAP: Dict[str, str] = {
     "Newton Second Law": "Newton's Second Law",
     "Elastic Deformation": "Hooke's Law",
     "Strain": "Hooke's Law",
+    "Cayley-Hamilton Theorem": "Cayley-Hamilton Theorem",
+    "Eigenvalue": "Cayley-Hamilton Theorem",
+    "Matrix": "Cayley-Hamilton Theorem",
+    "Characteristic Polynomial": "Cayley-Hamilton Theorem",
+    "Virtual Work Principle": "Virtual Work Principle",
+    "Static Equilibrium": "Virtual Work Principle",
+    "Virtual Displacement": "Virtual Work Principle",
+    "Law of Gearing": "Law of Gearing",
+    "Gear": "Law of Gearing",
+    "Velocity Ratio": "Law of Gearing",
+    "Logarithmic Decrement": "Logarithmic Decrement",
+    "Damping Ratio": "Logarithmic Decrement",
+    "Damped Vibration": "Logarithmic Decrement",
+    "Soderberg Line": "Soderberg Line",
+    "Fatigue Design": "Soderberg Line",
+    "Yield Strength": "Soderberg Line",
+    "Endurance Limit": "Soderberg Line",
+    "Taylor's Tool Life Equation": "Taylor's Tool Life Equation",
+    "Tool Wear": "Taylor's Tool Life Equation",
+    "Cutting Speed": "Taylor's Tool Life Equation",
+    "Economic Order Quantity (EOQ)": "Economic Order Quantity (EOQ)",
+    "Inventory Cost": "Economic Order Quantity (EOQ)",
+    "Holding Cost": "Economic Order Quantity (EOQ)",
+    "Ordering Cost": "Economic Order Quantity (EOQ)"
 }
 
 
