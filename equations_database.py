@@ -213,6 +213,133 @@ EQUATIONS = {
         "solve": lambda vals: (
             ("PM", 180.0 + vals["phase_at_gc"]) if "phase_at_gc" in vals else None
         )
+    },
+    "Cayley-Hamilton Theorem": {
+        "formula": "\\lambda^2 - tr(A) \\cdot \\lambda + det(A) = 0",
+        "variables": {
+            "lambda_val": "Eigenvalue (dimensionless)",
+            "tr_A": "Trace of matrix A (dimensionless)",
+            "det_A": "Determinant of matrix A (dimensionless)"
+        },
+        "concepts": ["Cayley-Hamilton Theorem", "Eigenvalue", "Matrix", "Characteristic Polynomial"],
+        "solve": lambda vals: (
+            ("lambda_val", (vals["tr_A"] + math.sqrt(vals["tr_A"]**2 - 4 * vals["det_A"])) / 2.0) if "tr_A" in vals and "det_A" in vals and (vals["tr_A"]**2 - 4 * vals["det_A"]) >= 0 else (
+            ("det_A", vals["tr_A"] * vals["lambda_val"] - vals["lambda_val"]**2) if "tr_A" in vals and "lambda_val" in vals else (
+            ("tr_A", (vals["lambda_val"]**2 + vals["det_A"]) / vals["lambda_val"]) if "lambda_val" in vals and "det_A" in vals and vals["lambda_val"] != 0 else None
+            )
+            )
+        )
+    },
+    "Virtual Work Principle": {
+        "formula": "F_{force} \\cdot \\delta x = P_{load} \\cdot \\delta y",
+        "variables": {
+            "F_force": "Input force (N)",
+            "delta_x": "Virtual displacement of input (m)",
+            "P_load": "Output load force (N)",
+            "delta_y": "Virtual displacement of output (m)"
+        },
+        "concepts": ["Virtual Work Principle", "Static Equilibrium", "Virtual Displacement"],
+        "solve": lambda vals: (
+            ("F_force", (vals["P_load"] * vals["delta_y"]) / vals["delta_x"]) if "P_load" in vals and "delta_y" in vals and "delta_x" in vals and vals["delta_x"] != 0 else (
+            ("P_load", (vals["F_force"] * vals["delta_x"]) / vals["delta_y"]) if "F_force" in vals and "delta_x" in vals and "delta_y" in vals and vals["delta_y"] != 0 else (
+            ("delta_x", (vals["P_load"] * vals["delta_y"]) / vals["F_force"]) if "P_load" in vals and "delta_y" in vals and "F_force" in vals and vals["F_force"] != 0 else (
+            ("delta_y", (vals["F_force"] * vals["delta_x"]) / vals["P_load"]) if "F_force" in vals and "delta_x" in vals and "P_load" in vals and vals["P_load"] != 0 else None
+            )
+            )
+            )
+        )
+    },
+    "Law of Gearing": {
+        "formula": "\\omega_1 \\cdot R_1 = \\omega_2 \\cdot R_2",
+        "variables": {
+            "omega_1": "Angular velocity of gear 1 (rad/s)",
+            "R_1": "Pitch radius of gear 1 (m)",
+            "omega_2": "Angular velocity of gear 2 (rad/s)",
+            "R_2": "Pitch radius of gear 2 (m)"
+        },
+        "concepts": ["Law of Gearing", "Angular Velocity", "Velocity Ratio", "Gear"],
+        "solve": lambda vals: (
+            ("omega_1", (vals["omega_2"] * vals["R_2"]) / vals["R_1"]) if "omega_2" in vals and "R_2" in vals and "R_1" in vals and vals["R_1"] != 0 else (
+            ("omega_2", (vals["omega_1"] * vals["R_1"]) / vals["R_2"]) if "omega_1" in vals and "R_1" in vals and "R_2" in vals and vals["R_2"] != 0 else (
+            ("R_1", (vals["omega_2"] * vals["R_2"]) / vals["omega_1"]) if "omega_2" in vals and "R_2" in vals and "omega_1" in vals and vals["omega_1"] != 0 else (
+            ("R_2", (vals["omega_1"] * vals["R_1"]) / vals["omega_2"]) if "omega_1" in vals and "R_1" in vals and "omega_2" in vals and vals["omega_2"] != 0 else None
+            )
+            )
+            )
+        )
+    },
+    "Logarithmic Decrement": {
+        "formula": "\\delta = \\frac{2 \\pi \\zeta}{\\sqrt{1 - \\zeta^2}}",
+        "variables": {
+            "log_dec": "Logarithmic decrement (dimensionless)",
+            "damping_ratio": "Damping ratio (dimensionless)"
+        },
+        "concepts": ["Logarithmic Decrement", "Damping Ratio", "Damped Vibration"],
+        "solve": lambda vals: (
+            ("log_dec", (2 * math.pi * vals["damping_ratio"]) / math.sqrt(1.0 - vals["damping_ratio"]**2)) if "damping_ratio" in vals and 0 <= vals["damping_ratio"] < 1.0 else (
+            ("damping_ratio", vals["log_dec"] / math.sqrt(4.0 * math.pi**2 + vals["log_dec"]**2)) if "log_dec" in vals and vals["log_dec"] >= 0 else None
+            )
+        )
+    },
+    "Soderberg Line": {
+        "formula": "\\frac{\\sigma_a}{S_e} + \\frac{\\sigma_m}{S_y} = \\frac{1}{FOS}",
+        "variables": {
+            "sigma_a": "Stress amplitude (Pa)",
+            "S_e": "Endurance limit (Pa)",
+            "sigma_m": "Mean stress (Pa)",
+            "S_y": "Yield strength (Pa)",
+            "FOS": "Factor of Safety (dimensionless)"
+        },
+        "concepts": ["Soderberg Line", "Fatigue Design", "Stress Amplitude", "Mean Stress", "Yield Strength", "Endurance Limit"],
+        "solve": lambda vals: (
+            ("FOS", 1.0 / (vals["sigma_a"] / vals["S_e"] + vals["sigma_m"] / vals["S_y"])) if "sigma_a" in vals and "S_e" in vals and "sigma_m" in vals and "S_y" in vals and (vals["sigma_a"] / vals["S_e"] + vals["sigma_m"] / vals["S_y"]) != 0 else (
+            ("sigma_a", (1.0 / vals["FOS"] - vals["sigma_m"] / vals["S_y"]) * vals["S_e"]) if "FOS" in vals and "sigma_m" in vals and "S_y" in vals and "S_e" in vals else (
+            ("sigma_m", (1.0 / vals["FOS"] - vals["sigma_a"] / vals["S_e"]) * vals["S_y"]) if "FOS" in vals and "sigma_a" in vals and "S_e" in vals and "S_y" in vals else (
+            ("S_e", vals["sigma_a"] / (1.0 / vals["FOS"] - vals["sigma_m"] / vals["S_y"])) if "FOS" in vals and "sigma_m" in vals and "S_y" in vals and "sigma_a" in vals and (1.0 / vals["FOS"] - vals["sigma_m"] / vals["S_y"]) != 0 else (
+            ("S_y", vals["sigma_m"] / (1.0 / vals["FOS"] - vals["sigma_a"] / vals["S_e"])) if "FOS" in vals and "sigma_a" in vals and "S_e" in vals and "sigma_m" in vals and (1.0 / vals["FOS"] - vals["sigma_a"] / vals["S_e"]) != 0 else None
+            )
+            )
+            )
+            )
+        )
+    },
+    "Taylor's Tool Life Equation": {
+        "formula": "V \\cdot T^n = C",
+        "variables": {
+            "cutting_speed": "Cutting speed (m/min)",
+            "tool_life": "Tool life (min)",
+            "taylor_n": "Exponent n (dimensionless)",
+            "taylor_c": "Constant C (dimensionless)"
+        },
+        "concepts": ["Taylor's Tool Life Equation", "Tool Wear", "Cutting Speed"],
+        "solve": lambda vals: (
+            ("taylor_c", vals["cutting_speed"] * (vals["tool_life"] ** vals["taylor_n"])) if "cutting_speed" in vals and "tool_life" in vals and "taylor_n" in vals else (
+            ("cutting_speed", vals["taylor_c"] / (vals["tool_life"] ** vals["taylor_n"])) if "taylor_c" in vals and "tool_life" in vals and "taylor_n" in vals and vals["tool_life"] != 0 else (
+            ("tool_life", (vals["taylor_c"] / vals["cutting_speed"]) ** (1.0 / vals["taylor_n"])) if "taylor_c" in vals and "cutting_speed" in vals and "taylor_n" in vals and vals["cutting_speed"] != 0 and vals["taylor_n"] != 0 else (
+            ("taylor_n", math.log(vals["taylor_c"] / vals["cutting_speed"]) / math.log(vals["tool_life"])) if "taylor_c" in vals and "cutting_speed" in vals and "tool_life" in vals and vals["cutting_speed"] != 0 and vals["tool_life"] > 0 and vals["tool_life"] != 1.0 else None
+            )
+            )
+            )
+        )
+    },
+    "Economic Order Quantity (EOQ)": {
+        "formula": "Q = \\sqrt{\\frac{2 D S}{H}}",
+        "variables": {
+            "annual_demand": "Annual demand (units/year)",
+            "ordering_cost": "Ordering cost (currency/order)",
+            "holding_cost": "Holding cost (currency/unit-year)",
+            "eoq": "Economic Order Quantity (units)"
+        },
+        "concepts": ["Economic Order Quantity (EOQ)", "Inventory Cost", "Holding Cost", "Ordering Cost"],
+        "solve": lambda vals: (
+            ("eoq", math.sqrt((2.0 * vals["annual_demand"] * vals["ordering_cost"]) / vals["holding_cost"])) if "annual_demand" in vals and "ordering_cost" in vals and "holding_cost" in vals and vals["holding_cost"] > 0 else (
+            ("annual_demand", (vals["eoq"]**2 * vals["holding_cost"]) / (2.0 * vals["ordering_cost"])) if "eoq" in vals and "holding_cost" in vals and "ordering_cost" in vals and vals["ordering_cost"] > 0 else (
+            ("ordering_cost", (vals["eoq"]**2 * vals["holding_cost"]) / (2.0 * vals["annual_demand"])) if "eoq" in vals and "holding_cost" in vals and "annual_demand" in vals and vals["annual_demand"] > 0 else (
+            ("holding_cost", (2.0 * vals["annual_demand"] * vals["ordering_cost"]) / vals["eoq"]**2) if "annual_demand" in vals and "ordering_cost" in vals and "eoq" in vals and vals["eoq"] > 0 else None
+            )
+            )
+            )
+        )
     }
 }
 
@@ -404,6 +531,128 @@ VAR_PATTERNS = {
         r"\bphase\s+at\s+gain\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bphase\s+angle\s+at\s+gain\s+crossover\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
         r"\bphase\s+at\s+w_gc\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "tr_A": [
+        r"\btrace\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\btr\(A\)\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "det_A": [
+        r"\bdeterminant\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bdet\(A\)\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "lambda_val": [
+        r"\beigenvalue\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\blambda\s*(?:is|=|of)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "F_force": [
+        r"\binput\s+force\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bF_force\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "delta_x": [
+        r"\binput\s+displacement\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bdelta\s+x\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "P_load": [
+        r"\boutput\s+load\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bload\s+force\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bP_load\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "delta_y": [
+        r"\boutput\s+displacement\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bdelta\s+y\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "omega_1": [
+        r"\bomega_1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bgear\s+1\s+speed\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bangular\s+velocity\s+of\s+gear\s+1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "R_1": [
+        r"\bR_1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bradius\s+of\s+gear\s+1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bpitch\s+radius\s+of\s+gear\s+1\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "omega_2": [
+        r"\bomega_2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bgear\s+2\s+speed\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bangular\s+velocity\s+of\s+gear\s+2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "R_2": [
+        r"\bR_2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bradius\s+of\s+gear\s+2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bpitch\s+radius\s+of\s+gear\s+2\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "log_dec": [
+        r"\blogarithmic\s+decrement\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\blog\s+decrement\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bdelta\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "damping_ratio": [
+        r"\bdamping\s+ratio\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\\zeta\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "sigma_a": [
+        r"\bstress\s+amplitude\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bsigma_a\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bamplitude\s+stress\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "S_e": [
+        r"\bendurance\s+limit\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bendurance\s+strength\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bS_e\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "sigma_m": [
+        r"\bmean\s+stress\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bsigma_m\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "S_y": [
+        r"\byield\s+strength\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\byield\s+point\s+stress\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bS_y\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "FOS": [
+        r"\bfactor\s+of\s+safety\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bfos\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "cutting_speed": [
+        r"\bcutting\s+speed\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bcutting\s+velocity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bV\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "tool_life": [
+        r"\btool\s+life\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b",
+        r"\bT\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?(?:\s*[a-zA-Z0-9\^/_\-\*]+)?)\b"
+    ],
+    "taylor_n": [
+        r"\btaylor\s+exponent\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\btool\s+life\s+exponent\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bexponent\s+n\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bn\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "taylor_c": [
+        r"\btaylor\s+constant\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\btool\s+life\s+constant\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bconstant\s+C\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bC\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "annual_demand": [
+        r"\bannual\s+demand\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bdemand\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bD\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "ordering_cost": [
+        r"\bordering\s+cost\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bsetup\s+cost\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bS\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "holding_cost": [
+        r"\bholding\s+cost\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bcarrying\s+cost\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bH\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
+    ],
+    "eoq": [
+        r"\beoq\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\beconomic\s+order\s+quantity\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b",
+        r"\bQ\s*(?:is|=)\s*([+-]?[0-9]*\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\b"
     ]
 }
 
@@ -504,9 +753,9 @@ def _format_value(solved_val: float, output_unit: str = "") -> str:
 
 def _detect_output_unit(question_text: str, solved_var: str) -> str:
     q = question_text.lower()
-    if solved_var in ("P_cr", "P") and "kn" in q:
+    if solved_var in ("P_cr", "P", "F_force", "P_load") and "kn" in q:
         return "kN"
-    if solved_var == "stress" and "mpa" in q:
+    if solved_var in ("stress", "sigma_a", "sigma_m", "S_e", "S_y") and "mpa" in q:
         return "MPa"
     return ""
 

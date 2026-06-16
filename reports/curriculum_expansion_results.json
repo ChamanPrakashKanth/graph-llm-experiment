@@ -1,0 +1,981 @@
+{
+  "new_nodes": [
+    {
+      "name": "Cayley-Hamilton Theorem",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A mathematical theorem stating that every square matrix satisfies its own characteristic equation.",
+        "difficulty": "Medium",
+        "aliases": [
+          "Cayley Hamilton theorem"
+        ],
+        "synonyms": [
+          "Cayley-Hamilton formula"
+        ],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Virtual Work Principle",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A principle stating that for a system in static equilibrium under constraints, the virtual work done by external forces for any virtual displacement is zero.",
+        "difficulty": "Hard",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Mohr's Circle",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A graphical representation of stress transformation equations, displaying normal and shear stress on any plane.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Law of Gearing",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A condition for gears to transmit a constant angular velocity ratio, stating that the common normal at the point of contact must pass through the pitch point.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Logarithmic Decrement",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The natural logarithm of the ratio of any two successive amplitudes in a damped free vibration.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Soderberg Line",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A design limit line on a fatigue diagram connecting the endurance limit on the stress amplitude axis to the yield strength on the mean stress axis.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Navier-Stokes Equations",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Partial differential equations expressing conservation of momentum for viscous, incompressible fluid flow.",
+        "difficulty": "Hard",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Clausius Inequality",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A thermodynamic theorem stating that the cyclic integral of heat transfer divided by absolute temperature is less than or equal to zero for any thermodynamic cycle.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Taylor's Tool Life Equation",
+      "activation": 1.0,
+      "metadata": {
+        "description": "An empirical relationship relating cutting tool life to cutting speed.",
+        "difficulty": "Easy",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Economic Order Quantity (EOQ)",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The ideal order quantity a company should purchase to minimize total inventory costs, balancing holding and ordering costs.",
+        "difficulty": "Easy",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Iron-Carbon Phase Diagram",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A graphical representation of the phases present in steel and cast iron at various temperatures and carbon compositions under equilibrium.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Routh-Hurwitz Criterion",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A mathematical test that determines whether all poles of a system's transfer function lie in the open left-half of the complex s-plane, ensuring absolute stability.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Characteristic Polynomial",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Matrix Power",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Systems of ODEs",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Lagrangian Mechanics",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Static Equilibrium",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Structural Analysis",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Stress Transformation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Principal Stress",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Yield Criteria",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Conjugate Teeth Profile",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Vibration Mitigation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Fatigue Design",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Cyclic Loading Failure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Viscous Flow",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Boundary Layer Development",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Skin Friction Drag",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Thermal Radiation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Cycle Reversibility",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Tool Wear",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Tool Failure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Inventory Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Holding Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Ordering Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Microstructure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
+      "name": "Left Half Plane Poles",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    }
+  ],
+  "updated_nodes": [
+    {
+      "name": "Stefan-Boltzmann Law",
+      "previous_activation": 1.0,
+      "new_activation": 1.0,
+      "metadata_keys_updated": [
+        "description",
+        "difficulty",
+        "aliases",
+        "synonyms",
+        "sources"
+      ]
+    }
+  ],
+  "new_edges": [
+    {
+      "source": "Cayley-Hamilton Theorem",
+      "target": "Characteristic Polynomial",
+      "relation": "depends_on",
+      "weight": 1.0
+    },
+    {
+      "source": "Cayley-Hamilton Theorem",
+      "target": "Matrix Power",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Matrix Power",
+      "target": "Systems of ODEs",
+      "relation": "used_in",
+      "weight": 1.0
+    },
+    {
+      "source": "Virtual Work Principle",
+      "target": "Lagrangian Mechanics",
+      "relation": "prerequisite_for",
+      "weight": 1.0
+    },
+    {
+      "source": "Virtual Work Principle",
+      "target": "Static Equilibrium",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Virtual Work Principle",
+      "target": "Structural Analysis",
+      "relation": "used_in",
+      "weight": 1.0
+    },
+    {
+      "source": "Mohr's Circle",
+      "target": "Stress Transformation",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Stress Transformation",
+      "target": "Principal Stress",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Principal Stress",
+      "target": "Yield Criteria",
+      "relation": "prerequisite_for",
+      "weight": 1.0
+    },
+    {
+      "source": "Law of Gearing",
+      "target": "Angular Velocity",
+      "relation": "controls",
+      "weight": 1.0
+    },
+    {
+      "source": "Angular Velocity",
+      "target": "Torque Transfer",
+      "relation": "affects",
+      "weight": 1.0
+    },
+    {
+      "source": "Law of Gearing",
+      "target": "Conjugate Teeth Profile",
+      "relation": "requires",
+      "weight": 1.0
+    },
+    {
+      "source": "Logarithmic Decrement",
+      "target": "Damping Ratio",
+      "relation": "depends_on",
+      "weight": 1.0
+    },
+    {
+      "source": "Amplitude Decay",
+      "target": "Vibration Mitigation",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Soderberg Line",
+      "target": "Fatigue Design",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Fatigue Design",
+      "target": "Cyclic Loading Failure",
+      "relation": "controls",
+      "weight": 1.0
+    },
+    {
+      "source": "Soderberg Line",
+      "target": "Yield Strength",
+      "relation": "depends_on",
+      "weight": 1.0
+    },
+    {
+      "source": "Navier-Stokes Equations",
+      "target": "Viscous Flow",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Viscous Flow",
+      "target": "Boundary Layer Development",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Boundary Layer Development",
+      "target": "Skin Friction Drag",
+      "relation": "causes",
+      "weight": 1.0
+    },
+    {
+      "source": "Stefan-Boltzmann Law",
+      "target": "Thermal Radiation",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Thermal Radiation",
+      "target": "Heat Flux",
+      "relation": "increases",
+      "weight": 1.0
+    },
+    {
+      "source": "Heat Flux",
+      "target": "Cooling Rate",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Clausius Inequality",
+      "target": "Cycle Reversibility",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Cycle Reversibility",
+      "target": "Thermal Efficiency",
+      "relation": "affects",
+      "weight": 1.0
+    },
+    {
+      "source": "Clausius Inequality",
+      "target": "Entropy Generation",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Taylor's Tool Life Equation",
+      "target": "Tool Wear",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Tool Wear",
+      "target": "Tool Failure",
+      "relation": "leads_to",
+      "weight": 1.0
+    },
+    {
+      "source": "Cutting Speed",
+      "target": "Tool Wear",
+      "relation": "increases",
+      "weight": 1.0
+    },
+    {
+      "source": "Economic Order Quantity (EOQ)",
+      "target": "Inventory Cost",
+      "relation": "controls",
+      "weight": 1.0
+    },
+    {
+      "source": "Inventory Cost",
+      "target": "Holding Cost",
+      "relation": "depends_on",
+      "weight": 1.0
+    },
+    {
+      "source": "Inventory Cost",
+      "target": "Ordering Cost",
+      "relation": "depends_on",
+      "weight": 1.0
+    },
+    {
+      "source": "Iron-Carbon Phase Diagram",
+      "target": "Phase Transformation",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Phase Transformation",
+      "target": "Microstructure",
+      "relation": "affects",
+      "weight": 1.0
+    },
+    {
+      "source": "Microstructure",
+      "target": "Mechanical Properties",
+      "relation": "controls",
+      "weight": 1.0
+    },
+    {
+      "source": "Routh-Hurwitz Criterion",
+      "target": "Closed Loop Stability",
+      "relation": "governs",
+      "weight": 1.0
+    },
+    {
+      "source": "Closed Loop Stability",
+      "target": "Left Half Plane Poles",
+      "relation": "requires",
+      "weight": 1.0
+    }
+  ],
+  "updated_edges": [
+    {
+      "source": "Damping Ratio",
+      "target": "Amplitude Decay",
+      "relation": "controls",
+      "new_evidence_count": 2
+    }
+  ],
+  "evidence": [
+    {
+      "target_type": "node",
+      "target_name": "Cayley-Hamilton Theorem",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Virtual Work Principle",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Mohr's Circle",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Law of Gearing",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Logarithmic Decrement",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Soderberg Line",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Navier-Stokes Equations",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Stefan-Boltzmann Law",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "strengthened_confidence"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Clausius Inequality",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Taylor's Tool Life Equation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Economic Order Quantity (EOQ)",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Iron-Carbon Phase Diagram",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "node",
+      "target_name": "Routh-Hurwitz Criterion",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_node"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Cayley-Hamilton Theorem",
+      "target_node": "Characteristic Polynomial",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Cayley-Hamilton Theorem",
+      "target_node": "Matrix Power",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Matrix Power",
+      "target_node": "Systems of ODEs",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Virtual Work Principle",
+      "target_node": "Lagrangian Mechanics",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Virtual Work Principle",
+      "target_node": "Static Equilibrium",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Virtual Work Principle",
+      "target_node": "Structural Analysis",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Mohr's Circle",
+      "target_node": "Stress Transformation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Stress Transformation",
+      "target_node": "Principal Stress",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Principal Stress",
+      "target_node": "Yield Criteria",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Law of Gearing",
+      "target_node": "Angular Velocity",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Angular Velocity",
+      "target_node": "Torque Transfer",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Law of Gearing",
+      "target_node": "Conjugate Teeth Profile",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Logarithmic Decrement",
+      "target_node": "Damping Ratio",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Damping Ratio",
+      "target_node": "Amplitude Decay",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "incremented_evidence"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Amplitude Decay",
+      "target_node": "Vibration Mitigation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Soderberg Line",
+      "target_node": "Fatigue Design",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Fatigue Design",
+      "target_node": "Cyclic Loading Failure",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Soderberg Line",
+      "target_node": "Yield Strength",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Navier-Stokes Equations",
+      "target_node": "Viscous Flow",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Viscous Flow",
+      "target_node": "Boundary Layer Development",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Boundary Layer Development",
+      "target_node": "Skin Friction Drag",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Stefan-Boltzmann Law",
+      "target_node": "Thermal Radiation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Thermal Radiation",
+      "target_node": "Heat Flux",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Heat Flux",
+      "target_node": "Cooling Rate",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Clausius Inequality",
+      "target_node": "Cycle Reversibility",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Cycle Reversibility",
+      "target_node": "Thermal Efficiency",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Clausius Inequality",
+      "target_node": "Entropy Generation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Taylor's Tool Life Equation",
+      "target_node": "Tool Wear",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Tool Wear",
+      "target_node": "Tool Failure",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Cutting Speed",
+      "target_node": "Tool Wear",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Economic Order Quantity (EOQ)",
+      "target_node": "Inventory Cost",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Inventory Cost",
+      "target_node": "Holding Cost",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Inventory Cost",
+      "target_node": "Ordering Cost",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Iron-Carbon Phase Diagram",
+      "target_node": "Phase Transformation",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Phase Transformation",
+      "target_node": "Microstructure",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Microstructure",
+      "target_node": "Mechanical Properties",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Routh-Hurwitz Criterion",
+      "target_node": "Closed Loop Stability",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    },
+    {
+      "target_type": "edge",
+      "source_node": "Closed Loop Stability",
+      "target_node": "Left Half Plane Poles",
+      "source": "GATE Mechanical Engineering Syllabus Curriculum",
+      "action": "created_edge"
+    }
+  ]
+}

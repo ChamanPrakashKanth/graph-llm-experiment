@@ -462,6 +462,15 @@
       "metadata": {}
     },
     {
+      "name": "Boundary Layer Development",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Boundary Layer Growth",
       "activation": 0.0,
       "metadata": {}
@@ -581,6 +590,23 @@
       }
     },
     {
+      "name": "Cayley-Hamilton Theorem",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A mathematical theorem stating that every square matrix satisfies its own characteristic equation.",
+        "difficulty": "Medium",
+        "aliases": [
+          "Cayley Hamilton theorem"
+        ],
+        "synonyms": [
+          "Cayley-Hamilton formula"
+        ],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Cell Size",
       "activation": 0.0,
       "metadata": {}
@@ -651,6 +677,15 @@
       "metadata": {}
     },
     {
+      "name": "Characteristic Polynomial",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Charge Separation",
       "activation": 0.0,
       "metadata": {}
@@ -692,6 +727,19 @@
       "name": "Clamping Force",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Clausius Inequality",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A thermodynamic theorem stating that the cyclic integral of heat transfer divided by absolute temperature is less than or equal to zero for any thermodynamic cycle.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Clearance or Interference",
@@ -927,6 +975,15 @@
       "name": "Conductivity Variation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Conjugate Teeth Profile",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Conservation Equation",
@@ -1399,9 +1456,27 @@
       "metadata": {}
     },
     {
+      "name": "Cycle Reversibility",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Cyclic Load",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Cyclic Loading Failure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Cyclic Stress",
@@ -1767,6 +1842,19 @@
       "name": "Eccentric Shape",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Economic Order Quantity (EOQ)",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The ideal order quantity a company should purchase to minimize total inventory costs, balancing holding and ordering costs.",
+        "difficulty": "Easy",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Eddy Viscosity",
@@ -2276,6 +2364,15 @@
       "name": "Fatigue Crack",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Fatigue Design",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Fatigue Failure",
@@ -3133,6 +3230,15 @@
       "metadata": {}
     },
     {
+      "name": "Holding Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Hooke Joint",
       "activation": 0.0,
       "metadata": {}
@@ -3443,9 +3549,31 @@
       "metadata": {}
     },
     {
+      "name": "Inventory Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Inviscid Flow",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Iron-Carbon Phase Diagram",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A graphical representation of the phases present in steel and cast iron at various temperatures and carbon compositions under equilibrium.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Irreversibility",
@@ -3563,6 +3691,15 @@
       "metadata": {}
     },
     {
+      "name": "Lagrangian Mechanics",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Lame Equations",
       "activation": 0.0,
       "metadata": {}
@@ -3653,6 +3790,19 @@
       "metadata": {}
     },
     {
+      "name": "Law of Gearing",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A condition for gears to transmit a constant angular velocity ratio, stating that the common normal at the point of contact must pass through the pitch point.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Layer Deposition",
       "activation": 0.0,
       "metadata": {}
@@ -3671,6 +3821,15 @@
       "name": "Leading Edge",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Left Half Plane Poles",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Life Limitation",
@@ -3791,6 +3950,19 @@
       "name": "Log Mean Temperature Difference",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Logarithmic Decrement",
+      "activation": 1.0,
+      "metadata": {
+        "description": "The natural logarithm of the ratio of any two successive amplitudes in a damped free vibration.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Long Chain Molecules",
@@ -4013,6 +4185,15 @@
       "metadata": {}
     },
     {
+      "name": "Matrix Power",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Matrix Storage",
       "activation": 0.0,
       "metadata": {}
@@ -4138,6 +4319,15 @@
       "metadata": {}
     },
     {
+      "name": "Microstructure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Microstructure Change",
       "activation": 0.0,
       "metadata": {}
@@ -4191,6 +4381,19 @@
       "name": "Mohr Circle",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Mohr's Circle",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A graphical representation of stress transformation equations, displaying normal and shear stress on any plane.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Mold Cavity",
@@ -4355,6 +4558,19 @@
       "name": "Navier-Stokes Equation",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Navier-Stokes Equations",
+      "activation": 1.0,
+      "metadata": {
+        "description": "Partial differential equations expressing conservation of momentum for viscous, incompressible fluid flow.",
+        "difficulty": "Hard",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Near-Net Shape",
@@ -4624,6 +4840,15 @@
       "name": "Orbital Velocity",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Ordering Cost",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Orthogonal Array",
@@ -5171,6 +5396,15 @@
       "name": "Principal Strains",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Principal Stress",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Probability Distribution",
@@ -5786,6 +6020,19 @@
       "metadata": {}
     },
     {
+      "name": "Routh-Hurwitz Criterion",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A mathematical test that determines whether all poles of a system's transfer function lie in the open left-half of the complex s-plane, ensuring absolute stability.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Rupture Criterion",
       "activation": 0.0,
       "metadata": {}
@@ -6069,6 +6316,15 @@
       "metadata": {}
     },
     {
+      "name": "Skin Friction Drag",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Slenderness",
       "activation": 0.0,
       "metadata": {}
@@ -6142,6 +6398,19 @@
       "name": "Snap-Through",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Soderberg Line",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A design limit line on a fatigue diagram connecting the endurance limit on the stress amplitude axis to the yield strength on the mean stress axis.",
+        "difficulty": "Medium",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Soft Mount",
@@ -6333,6 +6602,15 @@
       "metadata": {}
     },
     {
+      "name": "Static Equilibrium",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Static Pressure",
       "activation": 0.0,
       "metadata": {}
@@ -6364,8 +6642,16 @@
     },
     {
       "name": "Stefan-Boltzmann Law",
-      "activation": 0.0,
-      "metadata": {}
+      "activation": 1.0,
+      "metadata": {
+        "description": "A law stating that the total energy radiated per unit surface area of a blackbody per unit time is directly proportional to the fourth power of its absolute temperature.",
+        "difficulty": "Easy",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Step Input",
@@ -6523,6 +6809,15 @@
       "metadata": {}
     },
     {
+      "name": "Stress Transformation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Stress-Strain Curve",
       "activation": 0.0,
       "metadata": {}
@@ -6536,6 +6831,15 @@
       "name": "Strong Coupling",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Structural Analysis",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Structural Deformation",
@@ -6733,9 +7037,31 @@
       "metadata": {}
     },
     {
+      "name": "Systems of ODEs",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Tangential Acceleration",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Taylor's Tool Life Equation",
+      "activation": 1.0,
+      "metadata": {
+        "description": "An empirical relationship relating cutting tool life to cutting speed.",
+        "difficulty": "Easy",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Temperature",
@@ -6858,6 +7184,15 @@
       "metadata": {}
     },
     {
+      "name": "Thermal Radiation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Thermal Resistance",
       "activation": 0.0,
       "metadata": {}
@@ -6973,9 +7308,27 @@
       "metadata": {}
     },
     {
+      "name": "Tool Failure",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Tool Temperature Rise",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Tool Wear",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Tooth Engagement",
@@ -7364,6 +7717,15 @@
       "metadata": {}
     },
     {
+      "name": "Vibration Mitigation",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
+    },
+    {
       "name": "Vibration Signal",
       "activation": 0.0,
       "metadata": {}
@@ -7377,6 +7739,19 @@
       "name": "View Factor",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Virtual Work Principle",
+      "activation": 1.0,
+      "metadata": {
+        "description": "A principle stating that for a system in static equilibrium under constraints, the virtual work done by external forces for any virtual displacement is zero.",
+        "difficulty": "Hard",
+        "aliases": [],
+        "synonyms": [],
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Viscoelastic Response",
@@ -7407,6 +7782,15 @@
       "name": "Viscous Effect",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Viscous Flow",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Viscous Force",
@@ -7592,6 +7976,15 @@
       "name": "X-Ray Penetration",
       "activation": 0.0,
       "metadata": {}
+    },
+    {
+      "name": "Yield Criteria",
+      "activation": 0.5,
+      "metadata": {
+        "sources": [
+          "GATE Mechanical Engineering Syllabus Curriculum"
+        ]
+      }
     },
     {
       "name": "Yield Prediction",
@@ -7943,6 +8336,16 @@
       "metadata": {}
     },
     {
+      "source": "Amplitude Decay",
+      "target": "Vibration Mitigation",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Analysis Approximation",
       "target": "Reliable Design",
       "weight": 0.35,
@@ -8116,6 +8519,16 @@
       "evidence_count": 2,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Angular Velocity",
+      "target": "Torque Transfer",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -8845,6 +9258,16 @@
       }
     },
     {
+      "source": "Boundary Layer Development",
+      "target": "Skin Friction Drag",
+      "weight": 1.0,
+      "relation": "causes",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Boundary Layer Growth",
       "target": "Velocity Profile",
       "weight": 1.0,
@@ -9203,6 +9626,26 @@
       "metadata": {}
     },
     {
+      "source": "Cayley-Hamilton Theorem",
+      "target": "Characteristic Polynomial",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Cayley-Hamilton Theorem",
+      "target": "Matrix Power",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Cell Size",
       "target": "Courant Number",
       "weight": 1.0,
@@ -9559,6 +10002,26 @@
       }
     },
     {
+      "source": "Clausius Inequality",
+      "target": "Cycle Reversibility",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Clausius Inequality",
+      "target": "Entropy Generation",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Clearance or Interference",
       "target": "Assembly Fit",
       "weight": 1.0,
@@ -9574,6 +10037,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "Standard Engineering Textbooks (Shigley, Cengel, Incropera)"
+      }
+    },
+    {
+      "source": "Closed Loop Stability",
+      "target": "Left Half Plane Poles",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -11579,6 +12052,16 @@
       "metadata": {}
     },
     {
+      "source": "Cutting Speed",
+      "target": "Tool Wear",
+      "weight": 1.0,
+      "relation": "increases",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Cutting Tool",
       "target": "Wear Progression",
       "weight": 1.0,
@@ -11593,6 +12076,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Cycle Reversibility",
+      "target": "Thermal Efficiency",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Cyclic Load",
@@ -11804,9 +12297,11 @@
       "source": "Damping Ratio",
       "target": "Amplitude Decay",
       "weight": 1.0,
-      "relation": "reasoning_step",
-      "evidence_count": 1,
-      "metadata": {}
+      "relation": "controls",
+      "evidence_count": 2,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Damping Ratio",
@@ -12484,6 +12979,16 @@
       "evidence_count": 2,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Economic Order Quantity (EOQ)",
+      "target": "Inventory Cost",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -13635,6 +14140,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Fatigue Design",
+      "target": "Cyclic Loading Failure",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Feasibility Check",
@@ -15296,6 +15811,16 @@
     },
     {
       "source": "Heat Flux",
+      "target": "Cooling Rate",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Heat Flux",
       "target": "Heat Transfer",
       "weight": 1.0,
       "relation": "reasoning_step",
@@ -16545,12 +17070,42 @@
       "metadata": {}
     },
     {
+      "source": "Inventory Cost",
+      "target": "Holding Cost",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Inventory Cost",
+      "target": "Ordering Cost",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Inviscid Flow",
       "target": "Steady State",
       "weight": 1.0,
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Iron-Carbon Phase Diagram",
+      "target": "Phase Transformation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Irreversibility",
@@ -17225,6 +17780,26 @@
       "metadata": {}
     },
     {
+      "source": "Law of Gearing",
+      "target": "Angular Velocity",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Law of Gearing",
+      "target": "Conjugate Teeth Profile",
+      "weight": 1.0,
+      "relation": "requires",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Layer Deposition",
       "target": "Material Fusion",
       "weight": 0.675,
@@ -17776,6 +18351,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Logarithmic Decrement",
+      "target": "Damping Ratio",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -18485,6 +19070,16 @@
       "metadata": {}
     },
     {
+      "source": "Matrix Power",
+      "target": "Systems of ODEs",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Matrix Storage",
       "target": "Cold Flow Period",
       "weight": 1.0,
@@ -18777,6 +19372,16 @@
       "metadata": {}
     },
     {
+      "source": "Microstructure",
+      "target": "Mechanical Properties",
+      "weight": 1.0,
+      "relation": "controls",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Microstructure Change",
       "target": "Property Modification",
       "weight": 1.0,
@@ -18892,6 +19497,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Mohr's Circle",
+      "target": "Stress Transformation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -19482,6 +20097,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Navier-Stokes Equations",
+      "target": "Viscous Flow",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -20752,6 +21377,16 @@
     },
     {
       "source": "Phase Transformation",
+      "target": "Microstructure",
+      "weight": 1.0,
+      "relation": "affects",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Phase Transformation",
       "target": "Microstructure Change",
       "weight": 0.675,
       "relation": "document_cooccurrence",
@@ -21895,6 +22530,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Principal Stress",
+      "target": "Yield Criteria",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Probability Distribution",
@@ -23397,6 +24042,16 @@
       "metadata": {}
     },
     {
+      "source": "Routh-Hurwitz Criterion",
+      "target": "Closed Loop Stability",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Rupture Criterion",
       "target": "Life Limitation",
       "weight": 1.0,
@@ -24349,6 +25004,26 @@
       "metadata": {}
     },
     {
+      "source": "Soderberg Line",
+      "target": "Fatigue Design",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Soderberg Line",
+      "target": "Yield Strength",
+      "weight": 1.0,
+      "relation": "depends_on",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Soft Mount",
       "target": "Frequency Ratio",
       "weight": 0.675,
@@ -24741,6 +25416,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Stefan-Boltzmann Law",
+      "target": "Thermal Radiation",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Step Input",
@@ -25561,6 +26246,16 @@
       "metadata": {}
     },
     {
+      "source": "Stress Transformation",
+      "target": "Principal Stress",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Stress-Strain Curve",
       "target": "Strain",
       "weight": 0.35,
@@ -26066,6 +26761,16 @@
       "evidence_count": 1,
       "metadata": {
         "source": "document"
+      }
+    },
+    {
+      "source": "Taylor's Tool Life Equation",
+      "target": "Tool Wear",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
       }
     },
     {
@@ -26661,6 +27366,16 @@
       "metadata": {}
     },
     {
+      "source": "Thermal Radiation",
+      "target": "Heat Flux",
+      "weight": 1.0,
+      "relation": "increases",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Thermal Resistance",
       "target": "Reduced Heat Flow",
       "weight": 1.0,
@@ -26863,6 +27578,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Tool Wear",
+      "target": "Tool Failure",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Tooth Engagement",
@@ -27951,6 +28676,36 @@
       "metadata": {}
     },
     {
+      "source": "Virtual Work Principle",
+      "target": "Lagrangian Mechanics",
+      "weight": 1.0,
+      "relation": "prerequisite_for",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Virtual Work Principle",
+      "target": "Static Equilibrium",
+      "weight": 1.0,
+      "relation": "governs",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
+      "source": "Virtual Work Principle",
+      "target": "Structural Analysis",
+      "weight": 1.0,
+      "relation": "used_in",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
+    },
+    {
       "source": "Viscoelasticity",
       "target": "Chain Entanglement",
       "weight": 0.35,
@@ -28043,6 +28798,16 @@
       "relation": "reasoning_step",
       "evidence_count": 1,
       "metadata": {}
+    },
+    {
+      "source": "Viscous Flow",
+      "target": "Boundary Layer Development",
+      "weight": 1.0,
+      "relation": "leads_to",
+      "evidence_count": 1,
+      "metadata": {
+        "source": "GATE Mechanical Engineering Syllabus Curriculum"
+      }
     },
     {
       "source": "Viscous Force",

@@ -181,13 +181,23 @@ Both models achieve extremely high accuracy on the mechanical engineering datase
 
 ### 🚀 Expanded Priority Domains & Knowledge Integration
 
-The Mechanical Engineering Concept Graph has been autonomously expanded to include 4 new, high-quality technical domains:
-1. **Euler Turbomachinery Equation** (Fluid Mechanics & Hydraulic Machines): Connects velocity triangles, blade speed, absolute/relative velocity, and torque to turbomachinery power.
-2. **Regenerative Rankine Cycle** (Thermodynamics & Power Plant Engineering): Models steam extraction, extraction fractions, and direct mixing in an Open Feedwater Heater (OFWH).
-3. **Chvorinov's Rule** (Manufacturing Engineering & Casting): Relates casting modulus, mold constant, and solidification time to riser design for preventing shrinkage cavities.
-4. **Bode Plot Stability Margins** (Control Systems): Computes gain crossover frequency, phase crossover frequency, gain margin, and phase margin to evaluate closed-loop feedback stability.
+The Mechanical Engineering Concept Graph has been programmatically expanded to master the complete GATE Mechanical Engineering syllabus, integrating 13 key domains, their governing equations, prerequisites, causal paths, and symbolic solvers:
 
-These additions are programmatically integrated into `data/mechanical_engineering_graph.json`, `data/mechanical_concepts.json`, and wired to the symbolic solver runtime in `equations_database.py`.
+1. **Engineering Mathematics (Cayley-Hamilton Theorem)**: Every square matrix satisfies its own characteristic equation, enabling efficient computation of matrix powers and inverses.
+2. **Applied Mechanics (Virtual Work Principle)**: The virtual work done by active forces is zero for any virtual displacement compatible with system constraints, simplifying static equilibrium of multi-link systems.
+3. **Strength of Materials (Mohr's Circle)**: Graphical representation of plane stress transformation mapping normal and shear stresses, principal stresses, and maximum shear stress.
+4. **Theory of Machines (Law of Gearing)**: Ensures constant angular velocity ratio by requiring the common normal at the point of tooth contact to always pass through the pitch point.
+5. **Vibrations (Logarithmic Decrement)**: Measures the rate of amplitude decay in damped free oscillations to experimentally determine the damping ratio ($\zeta$).
+6. **Machine Design (Soderberg Line)**: A conservative fatigue design boundary connecting endurance limit on the stress amplitude axis to yield strength on the mean stress axis.
+7. **Fluid Mechanics (Navier-Stokes Equations)**: Governing partial differential equations for momentum conservation of viscous, incompressible Newtonian fluid flow.
+8. **Heat Transfer (Stefan-Boltzmann Law)**: Governs electromagnetic thermal radiation, stating that total blackbody energy output is proportional to the fourth power of absolute temperature ($T^4$).
+9. **Thermodynamics (Clausius Inequality)**: States that the cyclic integral of heat transfer over absolute temperature is less than or equal to zero, defining entropy and cycle feasibility.
+10. **Manufacturing Engineering (Taylor's Tool Life Equation)**: Empirical relationship ($V \cdot T^n = C$) relating cutting speed to tool wear and life.
+11. **Industrial Engineering (Economic Order Quantity)**: Optimizes purchase quantities by balancing ordering costs and inventory holding costs.
+12. **Engineering Materials (Iron-Carbon Phase Diagram)**: Maps stable steel/iron phases (ferrite, austenite, cementite) across compositions and temperatures, governing heat treatment design.
+13. **Control Systems (Routh-Hurwitz Criterion)**: Algebraic method to evaluate absolute closed-loop stability by determining if any characteristic polynomial roots lie in the right-half s-plane.
+
+These additions are programmatically integrated into `data/mechanical_engineering_graph.json` and `data/mechanical_concepts.json`. Seven of these concepts are directly wired to the symbolic solver runtime in `equations_database.py` with multi-hop reasoning, variable extraction, and prefix/unit scaling conversions.
 
 ### Training Commands
 
