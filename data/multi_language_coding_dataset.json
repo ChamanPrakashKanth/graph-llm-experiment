@@ -1,0 +1,147 @@
+[
+  {
+    "question": "Python: How to read a file line by line and find a word?",
+    "reasoning_path": ["Python Script", "File Reader", "Loop Iteration", "Standard Output"],
+    "answer": "Use Python's `with open(filepath) as f:` to read, `for line in f:` to iterate, and search using `if word in line:`."
+  },
+  {
+    "question": "Python: How to filter a list of numbers to find even numbers?",
+    "reasoning_path": ["Python Script", "Data Input", "List Comprehension", "Standard Output"],
+    "answer": "Use list comprehension `[x for x in numbers if x % 2 == 0]` to filter a list."
+  },
+  {
+    "question": "Python: How to fetch a URL and parse JSON in Python?",
+    "reasoning_path": ["Python Script", "Network Request", "JSON Parser", "Standard Output"],
+    "answer": "Use `requests.get(url).json()` to fetch and parse JSON data in Python."
+  },
+  {
+    "question": "Python: How to handle exceptions and errors?",
+    "reasoning_path": ["Python Script", "Try Catch", "Error Logging", "Graceful Exit"],
+    "answer": "Wrap the code in `try...except Exception as e:` block and print the error message."
+  },
+  {
+    "question": "Python: How to run thread concurrently?",
+    "reasoning_path": ["Python Script", "Queue Process", "Loop Iteration", "Graceful Exit"],
+    "answer": "Import `threading`, instantiate threads, start them, and join them to run concurrently."
+  },
+  {
+    "question": "JavaScript: How to write a function to debounce a callback?",
+    "reasoning_path": ["Node Runtime", "Timer Delay", "Closure State", "Callback Execution"],
+    "answer": "Use `setTimeout` to delay callback execution and clear the previous timer on subsequent calls."
+  },
+  {
+    "question": "JavaScript: How to make an HTTP request and parse JSON?",
+    "reasoning_path": ["Node Runtime", "Network Request", "JSON Parser", "Standard Output"],
+    "answer": "Use `fetch(url)` or `axios.get(url)` and parse the JSON payload using `response.json()`."
+  },
+  {
+    "question": "JavaScript: How to select elements and append dynamic content in DOM?",
+    "reasoning_path": ["Node Runtime", "DOM Selector", "Event Listener", "CSS Styling"],
+    "answer": "Use `document.querySelector`, add click event listeners, and modify `.innerHTML` or `.style`."
+  },
+  {
+    "question": "JavaScript: How to handle errors with try catch block?",
+    "reasoning_path": ["Node Runtime", "Try Catch", "Error Logging", "Null Check"],
+    "answer": "Wrap asynchronous or synchronous code in `try...catch(err)` to catch runtime errors."
+  },
+  {
+    "question": "JavaScript: How to sort an array of objects by property?",
+    "reasoning_path": ["Node Runtime", "Data Input", "Algorithm Sort", "Standard Output"],
+    "answer": "Call `.sort((a, b) => a.prop - b.prop)` on the array of objects."
+  },
+  {
+    "question": "C++: How to read integers from standard input and sort them?",
+    "reasoning_path": ["C Plus Plus Compile", "Data Input", "Algorithm Sort", "Standard Output"],
+    "answer": "Use `std::vector`, read inputs using `std::cin`, sort using `std::sort`, and display values."
+  },
+  {
+    "question": "C++: How to create a dynamic array using pointers?",
+    "reasoning_path": ["C Plus Plus Compile", "Pointer Reference", "Memory Allocation", "Graceful Exit"],
+    "answer": "Allocate memory using `int* arr = new int[size]`, perform operations, and deallocate using `delete[] arr`."
+  },
+  {
+    "question": "C++: How to build a custom class with inheritance?",
+    "reasoning_path": ["C Plus Plus Compile", "Struct Define", "Pointer Reference", "Standard Output"],
+    "answer": "Declare a base class with virtual methods, inherit using `class Child : public Base`, and override functions."
+  },
+  {
+    "question": "C++: How to handle file input streaming?",
+    "reasoning_path": ["C Plus Plus Compile", "File Reader", "Loop Iteration", "Standard Output"],
+    "answer": "Use `std::ifstream` to open files, check status with `.is_open()`, and stream contents line by line."
+  },
+  {
+    "question": "Go: How to read command line arguments?",
+    "reasoning_path": ["Go Executable", "Command Arguments", "Array Manipulation", "Standard Output"],
+    "answer": "Read command arguments using `os.Args` and iterate through the slice."
+  },
+  {
+    "question": "Go: How to fetch raw JSON from web service?",
+    "reasoning_path": ["Go Executable", "Network Request", "JSON Parser", "Standard Output"],
+    "answer": "Use `http.Get(url)`, read the response body, and unpack using `json.Unmarshal` into structs."
+  },
+  {
+    "question": "Go: How to use channels and routines for concurrency?",
+    "reasoning_path": ["Go Executable", "Queue Process", "Timer Delay", "Graceful Exit"],
+    "answer": "Spawn concurrent routines using `go worker()`, communicate through channels, and use select blocks."
+  },
+  {
+    "question": "Go: How to read a file and handle errors?",
+    "reasoning_path": ["Go Executable", "File Reader", "Try Catch", "Graceful Exit"],
+    "answer": "Open file with `os.Open()`, check if `err != nil`, and scan content using `bufio.NewScanner`."
+  },
+  {
+    "question": "SQL: How to select columns and filter by condition?",
+    "reasoning_path": ["SQL Schema", "Query Select", "Where Filter", "Standard Output"],
+    "answer": "Use `SELECT columns FROM table WHERE condition;` to retrieve filtered records."
+  },
+  {
+    "question": "SQL: How to join two tables and filter records?",
+    "reasoning_path": ["SQL Schema", "Database Connect", "Query Select", "Where Filter"],
+    "answer": "Join tables using `SELECT * FROM t1 JOIN t2 ON t1.id = t2.id WHERE condition;`."
+  },
+  {
+    "question": "SQL: How to group records and calculate average?",
+    "reasoning_path": ["SQL Schema", "Query Select", "Algorithm Sort", "Standard Output"],
+    "answer": "Use `SELECT category, AVG(val) FROM table GROUP BY category ORDER BY AVG(val) DESC;`."
+  },
+  {
+    "question": "HTML: How to structure a landing page layout?",
+    "reasoning_path": ["HTML Structure", "DOM Selector", "CSS Styling", "Standard Output"],
+    "answer": "Structure headers, main content articles, section tabs, and link CSS styling stylesheets."
+  },
+  {
+    "question": "HTML: How to make responsive flexbox containers?",
+    "reasoning_path": ["HTML Structure", "CSS Styling", "DOM Selector", "Standard Output"],
+    "answer": "Create container divs and style them using `display: flex; flex-direction: row;` in CSS."
+  },
+  {
+    "question": "Java: How to write a main class and print to standard output?",
+    "reasoning_path": ["Java Main", "Data Input", "Standard Output", "Graceful Exit"],
+    "answer": "Define `public class Main`, include `public static void main(String[] args)`, and print using `System.out.println`."
+  },
+  {
+    "question": "Java: How to handle file streaming and exceptions?",
+    "reasoning_path": ["Java Main", "File Reader", "Try Catch", "Error Logging"],
+    "answer": "Use `BufferedReader` within a `try-with-resources` block to read files safely."
+  },
+  {
+    "question": "Java: How to check for null pointers and validate types?",
+    "reasoning_path": ["Java Main", "Null Check", "Type Casting", "Graceful Exit"],
+    "answer": "Perform standard checks `if (obj != null)` and use safe type casting or instancof checks."
+  },
+  {
+    "question": "Rust: How to parse arguments and print results?",
+    "reasoning_path": ["Rust Cargo", "Command Arguments", "Standard Output", "Graceful Exit"],
+    "answer": "Read arguments using `std::env::args()`, validate, and print using `println!` macros."
+  },
+  {
+    "question": "Rust: How to read a file and handle Result patterns?",
+    "reasoning_path": ["Rust Cargo", "File Reader", "Try Catch", "Graceful Exit"],
+    "answer": "Use `std::fs::File::open` and handle errors using `match` or `?` operator propagation."
+  },
+  {
+    "question": "Rust: How to allocate a vector and find values?",
+    "reasoning_path": ["Rust Cargo", "Data Input", "Pointer Reference", "Standard Output"],
+    "answer": "Declare a vector `let v = vec![1, 2, 3]`, borrow elements using references, and output results."
+  }
+]

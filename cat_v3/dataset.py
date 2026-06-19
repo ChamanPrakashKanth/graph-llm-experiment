@@ -15,7 +15,8 @@ DOMAINS = [
     "electrical",
     "physics",
     "mathematics",
-    "english"
+    "english",
+    "coding"
 ]
 
 # Domain-specific concept vocabularies
@@ -43,6 +44,11 @@ DOMAIN_CONCEPTS = {
     "english": [
         "syntax", "grammar", "semantics", "vocabulary", "metaphor",
         "sentence", "noun", "verb", "adjective"
+    ],
+    "coding": [
+        "syntax", "control_flow", "file_io", "http_request", "database",
+        "concurrency", "pointer", "exception", "test_case", "data_input",
+        "sort", "grammar", "semantics"
     ]
 }
 

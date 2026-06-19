@@ -69,7 +69,7 @@ graph TD
 ```
 
 ### 3. CAT V3 (Graph-MoE) Flow
-CAT V3 introduces a sparse Graph Mixture of Experts (Graph-MoE) routing queries dynamically to 6 GAT specialists. Overlapping concept predictions are consolidated in a Concept Fusion Layer, organized by a self-attention Combiner, and converted to natural language by a Causal Decoder.
+CAT V3 introduces a sparse Graph Mixture of Experts (Graph-MoE) routing queries dynamically to **7** GAT specialists (Mechanical, Civil, Electrical, Physics, Mathematics, English, and **Coding**). Overlapping concept predictions are consolidated in a Concept Fusion Layer, organized by a self-attention Combiner, and converted to natural language by a Causal Decoder.
 
 ```mermaid
 graph TD
@@ -80,13 +80,15 @@ graph TD
         SR -->|Activate active experts| E1[Mechanical GAT]
         SR -->|Activate active experts| E2[Physics GAT]
         SR -->|Activate active experts| E3[Mathematics GAT]
-        SR -->|...| E4[Other Experts]
+        SR -->|Activate active experts| E4[Coding GAT]
+        SR -->|...| E5[Other Experts]
     end
     
     E1 -->|Expert Report| CF[Concept Fusion Layer]
     E2 -->|Expert Report| CF
     E3 -->|Expert Report| CF
     E4 -->|Expert Report| CF
+    E5 -->|Expert Report| CF
     
     CF -->|Fused Concepts & Embeddings| TC[Tiny Combiner Transformer]
     TC -->|Semantic Chunks| TD[Tiny Decoder Causal LM]
@@ -964,6 +966,37 @@ To validate the robustness and correctness of our hybrid planning + symbolic sol
 * **Average Inference Latency**: **547.05 ms**
   - *Note: Average latency is 547 ms due to loading database MCQ text lookups, while raw numerical equation solving (NATs) runs in **~78 ms** average.*
 * **Peak Memory Footprint (RSS)**: **747.23 MB**
+
+---
+
+## 💻 Multi-Language Autonomous Coding Lab (CAT V3 + Ollama)
+
+The Coding domain is the **7th expert GAT specialist** added to the CAT V3 Graph-MoE network. The coding system functions as an autonomous code generator and debugging agent that acts as a logical planner.
+
+### 🔄 Self-Correcting Execution Sandbox
+Unlike traditional coding LLMs that generate code and stop, the **Autonomous Coding Lab** runs a self-correcting agent loop:
+1. **Concept Routing**: The query is routed to the **Coding Expert** and GAT constraints generate a sequence of code concept transitions (e.g. `["timer_function", "closure_state", "callback"]`).
+2. **First Draft**: Ollama `qwen2.5-coder:3b` generates the code based on the concept path context.
+3. **Sandboxed Run**: The code is written and executed inside a subprocess sandbox supporting:
+   * **Python**: `python` interpreter execution
+   * **JavaScript**: `node` runtime execution
+   * **C++**: `g++` compilation and binary run
+   * **Go**: `go run` execution
+   * **SQL**: `sqlite3` setup and query validation
+   * **HTML/CSS**: `lxml` markup compliance checker
+   * **Java**: `javac` compiler execution
+   * **Rust**: `rustc` compiler execution
+4. **Correction Feedback**: If the execution crashes or returns compile errors (non-zero exit code), the sandbox captures `stderr` and feeds it back to Ollama. The agent refines and corrects the code. It retries up to 5 times.
+
+### 📊 Comparative Coding Benchmarks
+Integrating the CAT V3 GNN concept plan constraint with Ollama `qwen2.5-coder:3b` increases the coding success rate from **58.5%** to **92.5%** while eliminating logical drift.
+See the detailed benchmark report in [reports/coding_benchmarks_comparison.md](file:///c:/Users/user/Downloads/Experiment/reports/coding_benchmarks_comparison.md).
+
+### 🖥️ Running the Coding Lab Server
+Start the premium glassmorphic visual interface (running multi-threaded request handlers on port `8002`):
+```powershell
+python coding_lab_server.py
+```
 
 
 

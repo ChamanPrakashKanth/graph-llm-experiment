@@ -4,7 +4,7 @@ import random
 import os
 
 # Define the DOMAINS and DOMAIN_CONCEPTS to be exactly consistent with dataset.py
-DOMAINS = ["mechanical", "civil", "electrical", "physics", "mathematics", "english"]
+DOMAINS = ["mechanical", "civil", "electrical", "physics", "mathematics", "english", "coding"]
 
 DOMAIN_CONCEPTS = {
     "mechanical": [
@@ -30,6 +30,11 @@ DOMAIN_CONCEPTS = {
     "english": [
         "syntax", "grammar", "semantics", "vocabulary", "metaphor",
         "sentence", "noun", "verb", "adjective"
+    ],
+    "coding": [
+        "syntax", "control_flow", "file_io", "http_request", "database",
+        "concurrency", "pointer", "exception", "test_case", "data_input",
+        "sort", "grammar", "semantics"
     ]
 }
 
@@ -492,6 +497,76 @@ base_templates = [
         "responses": [
             "High internal {c0} within the reinforced {c2} {c3} exceeds tensile strength, producing structural {c1}.",
             "Severe {c0} in the structural {c2} {c3} initiates micro-fractures, which propagate into visible {c1}."
+        ]
+    },
+    # 31. Coding: data_input, sort, syntax, control_flow
+    {
+        "active_experts": ["coding", "mathematics"],
+        "concept_path": ["data_input", "sort", "syntax", "control_flow"],
+        "questions": [
+            "How do we process a {c0} and {c1} the elements using proper {c2}?",
+            "Explain how to take {c0}, perform a {c1} operation, and implement {c3} loops.",
+            "Write a snippet to accept {c0}, apply {c1} algorithms, and verify {c2} and {c3}."
+        ],
+        "responses": [
+            "Accepting the {c0} is the first step, followed by running a {c1} routine that utilizes correct {c2} and {c3} blocks.",
+            "We parse the {c0}, {c1} the array, and structure the {c3} control flow while maintaining syntax rules."
+        ]
+    },
+    # 32. Coding: file_io, exception, control_flow, test_case
+    {
+        "active_experts": ["coding"],
+        "concept_path": ["file_io", "exception", "control_flow", "test_case"],
+        "questions": [
+            "How does safe {c0} handle an {c1} during execution?",
+            "Why should file operations use {c1} handlers and {c3} checks?",
+            "Explain structural {c0} with try catch {c1} blocks and executing {c3}s."
+        ],
+        "responses": [
+            "Safe {c0} opens the descriptor, catches any runtime {c1}, and directs {c2} to pass all validation {c3}s.",
+            "Using try-except for {c0} catches the {c1}, allowing graceful recovery validated by your {c3} suite."
+        ]
+    },
+    # 33. Coding: http_request, data_input, syntax, semantics
+    {
+        "active_experts": ["coding", "english"],
+        "concept_path": ["http_request", "data_input", "syntax", "semantics"],
+        "questions": [
+            "How does an {c0} fetch {c1} using standard code {c2}?",
+            "Explain the connection between {c0}, incoming {c1}, and decoding payload {c3}.",
+            "Analyze client {c0} parsing to ensure correct language {c2} and {c3}."
+        ],
+        "responses": [
+            "Sending the {c0} retrieves the raw {c1}, which is parsed into dictionary objects using standard {c2} and {c3}.",
+            "The client initiates an {c0} to fetch {c1}, checking syntax structures to extract valid semantics from the response."
+        ]
+    },
+    # 34. Coding: database, data_input, sort, control_flow
+    {
+        "active_experts": ["coding", "mathematics"],
+        "concept_path": ["database", "data_input", "sort", "control_flow"],
+        "questions": [
+            "How to connect to a {c0}, query the {c1}, and {c2} the records?",
+            "Explain relational {c0} selection using {c2} filters and {c3} iterations.",
+            "Analyze query operations on a {c0} to pull {c1} and {c2} the dataset."
+        ],
+        "responses": [
+            "Establish a connection to the {c0}, load the {c1}, and perform a query to {c2} records under a {c3} loop.",
+            "Querying the {c0} retrieves {c1} rows, sorting them by key, and executing control_flow logic over the result set."
+        ]
+    },
+    # 35. Coding: pointer, concurrency, exception, test_case
+    {
+        "active_experts": ["coding", "physics"],
+        "concept_path": ["pointer", "concurrency", "exception", "test_case"],
+        "questions": [
+            "How do we manage a {c0} reference safely under high {c1}?",
+            "Why do concurrent routines require safe {c0} checks to prevent memory {c2}?",
+            "Analyze resource locks, thread {c1}, {c2} checks, and running validation {c3}s."
+        ],
+        "responses": [
+            "Accessing the shared {c0} during high {c1} requires mutex locks to prevent race conditions and unhandled memory {c2} errors.",
+            "Managing {c0} variables inside concurrent routines requires strict {c2} handling to pass all automated {c3} runs."
         ]
     }
 ]

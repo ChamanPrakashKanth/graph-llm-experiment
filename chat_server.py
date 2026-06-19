@@ -55,7 +55,7 @@ def load_cat_v3_checkpoint(checkpoint_path, device="cpu"):
         "device": device
     }
 
-DOMAINS_V3_LIST = ["mechanical", "civil", "electrical", "physics", "mathematics", "english"]
+DOMAINS_V3_LIST = ["mechanical", "civil", "electrical", "physics", "mathematics", "english", "coding"]
 
 def predict_reasoning_cat_v3(loaded, question):
     import torch
@@ -151,7 +151,15 @@ DOMAINS = {
         "dataset_path": "data/cat_v3_reasoning_dataset.json",
         "is_cat_v3": True,
         "symbol": "🔮",
-        "desc": "Multi-expert routing with GAT graph reasoning & fusion across 6 engineering domains",
+        "desc": "Multi-expert routing with GAT graph reasoning & fusion across 7 engineering and coding domains",
+    },
+    "multi_language_coding": {
+        "name": "Multi-Language Coding AI (CAT V3)",
+        "checkpoint_dir": "checkpoints/cat_v3",
+        "dataset_path": "data/multi_language_coding_dataset.json",
+        "is_cat_v3": True,
+        "symbol": "💻",
+        "desc": "Graph-MoE multi-language concept routing & code compilation/verification using local Ollama qwen2.5-coder:3b",
     },
     "mechanical_engineering": {
         "name": "Mechanical Engineering (VLCM)",

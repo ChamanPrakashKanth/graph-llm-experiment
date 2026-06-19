@@ -130,10 +130,9 @@ class TestCATV3Architecture(unittest.TestCase):
         self.assertLessEqual(gen.size(1), 10)
 
     def test_end_to_end_model(self) -> None:
+        from cat_v3.dataset import DOMAINS
         expert_graphs = {
-            dom: (self.edge_index, self.edge_weight) for dom in [
-                "mechanical", "civil", "electrical", "physics", "mathematics", "english"
-            ]
+            dom: (self.edge_index, self.edge_weight) for dom in DOMAINS
         }
         
         model = CATV3Model(
@@ -162,7 +161,7 @@ class TestCATV3Architecture(unittest.TestCase):
             target_responses=target_responses
         )
         self.assertEqual(out["decoder_logits"].shape, (2, 12, 30))
-        self.assertEqual(out["router_logits"].shape, (2, 6))
+        self.assertEqual(out["router_logits"].shape, (2, len(DOMAINS)))
         
         # Test generate pass
         gen_out = model.generate_response(input_ids, mask, max_length=15)
