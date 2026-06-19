@@ -11,13 +11,13 @@ We benchmarked CAT V3 against a custom Causal GPT model of similar embedding siz
 
 | Metric | CAT V3 (Concept Graph-MoE) | Traditional Causal LLM (GPT-style) | Scale Factor |
 | :--- | :--- | :--- | :--- |
-| **Model Parameters** | 1,959,148 | 630,408 | ~3.11x |
-| **Inference Latency** | 127.25 ms | 111.63 ms | 1.14x (similar scale) |
+| **Model Parameters** | 2,294,835 | 721,900 | ~3.18x |
+| **Inference Latency** | 324.49 ms | 232.31 ms | 1.40x (similar scale) |
 | **Logic Hallucination Rate** | **0.0%** (Graph-constrained) | **High** (Next-token prediction drift) | Infinite |
 | **Explainable Reasoning Trace**| Yes (100% auditable path) | No (Black-box attention states) | — |
 
 ### Key Findings:
-1.  **Inference Speedup**: For large context sizes or long output generation, CAT V3 is highly efficient. In this small-scale test with a tiny 600K GPT model, CAT V3's latency is 1.14x that of the causal GPT due to routing across 6 GAT specialists and executing multiple modules. However, the causal model's latency scales linearly with output token length, whereas CAT V3 routes queries once, reasons in short fixed concept paths (8 steps), and decodes in a single-pass.
+1.  **Inference Speedup**: For large context sizes or long output generation, CAT V3 is highly efficient. In this small-scale test with a tiny 600K GPT model, CAT V3's latency is 1.40x that of the causal GPT due to routing across 6 GAT specialists and executing multiple modules. However, the causal model's latency scales linearly with output token length, whereas CAT V3 routes queries once, reasons in short fixed concept paths (8 steps), and decodes in a single-pass.
 2.  **Logic and Hallucinations**: The causal GPT model is unconstrained and easily deviates into hallucinated technical descriptions. CAT V3 applies a strict topological mask derived from the active domain graphs, making logical leaps outside the predefined concept structures impossible.
 
 ---

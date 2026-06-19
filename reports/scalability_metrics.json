@@ -6,55 +6,59 @@
       "english"
     ],
     "domain_probabilities": {
-      "mechanical": 0.0001074119281838648,
-      "civil": 0.009756519459187984,
-      "electrical": 1.6662270354572684e-05,
-      "physics": 1.0987846508214716e-05,
-      "mathematics": 3.60622176565073e-09,
-      "english": 0.9916772842407227
+      "mechanical": 2.6318844881245695e-09,
+      "civil": 7.203291715995874e-06,
+      "electrical": 6.790655277671975e-13,
+      "physics": 1.3845594892814006e-08,
+      "mathematics": 4.240622089590751e-11,
+      "english": 0.9999998807907104,
+      "coding": 1.1262766719255524e-08
     },
     "expert_paths": {
       "civil": [
+        "foundation",
         "concrete",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation"
+        "rebar",
+        "soil_bearing"
       ],
       "english": [
-        "vocabulary"
+        "syntax",
+        "grammar",
+        "sentence",
+        "semantics"
       ]
     },
     "fusion_report": {
       "concepts": [
         "concrete",
         "foundation",
-        "vocabulary"
+        "grammar",
+        "rebar",
+        "semantics",
+        "sentence",
+        "soil_bearing",
+        "syntax"
       ],
       "reasoning_paths": [
         [
+          "foundation",
           "concrete",
-          "foundation",
-          "foundation",
-          "foundation",
-          "foundation",
-          "foundation",
-          "foundation",
-          "foundation"
+          "rebar",
+          "soil_bearing"
         ],
         [
-          "vocabulary"
+          "syntax",
+          "grammar",
+          "sentence",
+          "semantics"
         ]
       ],
       "confidence": [
-        0.5162878073751926,
-        0.5335962772369385
+        0.9115070700645447,
+        0.9888665974140167
       ]
     },
-    "answer": "foundation transfers the load, causing a high bending moment in the beam which results in buckling."
+    "answer": "using reinforcing the foundation with concrete and rebar distributes the load to match the soil bearing capacity."
   },
   "multi_expert": {
     "question": "Why does compressor pressure ratio affect turbine efficiency?",
@@ -64,51 +68,42 @@
       "mathematics"
     ],
     "domain_probabilities": {
-      "mechanical": 0.9995946288108826,
-      "civil": 0.00010746438056230545,
-      "electrical": 0.0009598346659913659,
-      "physics": 0.9999997615814209,
-      "mathematics": 0.9999182224273682,
-      "english": 5.779741130140792e-10
+      "mechanical": 0.9999988079071045,
+      "civil": 5.881061415635713e-09,
+      "electrical": 5.558794669013878e-07,
+      "physics": 0.999996542930603,
+      "mathematics": 0.999977707862854,
+      "english": 5.524745699987677e-13,
+      "coding": 5.4739189181418624e-08
     },
     "expert_paths": {
       "mechanical": [
         "compressor",
         "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio"
-      ],
-      "physics": [
         "temperature_rise",
         "entropy",
+        "efficiency"
+      ],
+      "physics": [
+        "compressor",
+        "pressure_ratio",
+        "temperature_rise",
         "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy"
+        "efficiency"
       ],
       "mathematics": [
-        "matrix",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue"
+        "compressor",
+        "pressure_ratio",
+        "temperature_rise",
+        "entropy",
+        "efficiency"
       ]
     },
     "fusion_report": {
       "concepts": [
         "compressor",
-        "eigenvalue",
+        "efficiency",
         "entropy",
-        "matrix",
         "pressure_ratio",
         "temperature_rise"
       ],
@@ -116,48 +111,38 @@
         [
           "compressor",
           "pressure_ratio",
-          "pressure_ratio",
-          "pressure_ratio",
-          "pressure_ratio",
-          "pressure_ratio",
-          "pressure_ratio",
-          "pressure_ratio"
-        ],
-        [
           "temperature_rise",
           "entropy",
-          "entropy",
-          "entropy",
-          "entropy",
-          "entropy",
-          "entropy",
-          "entropy"
+          "efficiency"
         ],
         [
-          "matrix",
-          "eigenvalue",
-          "eigenvalue",
-          "eigenvalue",
-          "eigenvalue",
-          "eigenvalue",
-          "eigenvalue",
-          "eigenvalue"
+          "compressor",
+          "pressure_ratio",
+          "temperature_rise",
+          "entropy",
+          "efficiency"
+        ],
+        [
+          "compressor",
+          "pressure_ratio",
+          "temperature_rise",
+          "entropy",
+          "efficiency"
         ]
       ],
       "confidence": [
-        0.46498995274305344,
-        0.44482728838920593,
-        0.4456786923110485
+        0.998862373828888,
+        0.9986639857292176,
+        0.9995718121528625
       ]
     },
-    "answer": "compressor pressure ratio raises outlet temperature. this increases entropy generation and can reduce overall efficiency."
+    "answer": "fluid flow minimizes boundary layer separation, resulting in higher turbine efficiency. this increases entropy generation and can reduce overall turbine efficiency."
   },
   "fusion_quality": {
     "concepts": [
       "compressor",
-      "eigenvalue",
+      "efficiency",
       "entropy",
-      "matrix",
       "pressure_ratio",
       "temperature_rise"
     ],
@@ -165,94 +150,81 @@
       [
         "compressor",
         "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio",
-        "pressure_ratio"
-      ],
-      [
         "temperature_rise",
         "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy"
+        "efficiency"
       ],
       [
-        "matrix",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue",
-        "eigenvalue"
+        "compressor",
+        "pressure_ratio",
+        "temperature_rise",
+        "entropy",
+        "efficiency"
+      ],
+      [
+        "compressor",
+        "pressure_ratio",
+        "temperature_rise",
+        "entropy",
+        "efficiency"
       ]
     ],
     "confidence": [
-      0.46498995274305344,
-      0.44482728838920593,
-      0.4456786923110485
+      0.998862373828888,
+      0.9986639857292176,
+      0.9995718121528625
     ]
   },
   "multi_hop": {
     "query": "How does a foundation load affect beam buckling?",
-    "depth": 3,
+    "depth": 5,
     "path": [
       [
-        "temperature_rise",
-        "thermal_stress",
-        "cracking"
+        "foundation",
+        "load",
+        "bending_moment",
+        "beam",
+        "buckling"
       ],
       [
         "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation",
-        "foundation"
+        "load",
+        "bending_moment",
+        "beam",
+        "buckling"
       ],
       [
-        "temperature_rise",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy",
-        "entropy"
+        "foundation",
+        "load",
+        "bending_moment",
+        "beam",
+        "buckling"
       ]
     ]
   },
   "scalability": [
     {
       "concept_count": 100,
-      "latency_ms": 74.22378000000035,
-      "ram_footprint_mb": 1.44140625,
-      "vram_footprint_mb": 2.17333984375,
-      "avg_activations": 3.0,
+      "latency_ms": 167.82413999999974,
+      "ram_footprint_mb": 2.7578125,
+      "vram_footprint_mb": 2.3759765625,
+      "avg_activations": 5.0,
       "multi_hop_depth": 8
     },
     {
       "concept_count": 1000,
-      "latency_ms": 77.93756500000003,
-      "ram_footprint_mb": 3.76953125,
-      "vram_footprint_mb": 9.4423828125,
-      "avg_activations": 2.0,
+      "latency_ms": 232.5061649999997,
+      "ram_footprint_mb": 3.8203125,
+      "vram_footprint_mb": 10.77001953125,
+      "avg_activations": 3.7125,
       "multi_hop_depth": 8
     },
     {
       "concept_count": 10000,
-      "latency_ms": 83.22571500000001,
-      "ram_footprint_mb": -261.9765625,
-      "vram_footprint_mb": 598.86962890625,
-      "avg_activations": 2.5,
+      "latency_ms": 292.4224599999999,
+      "ram_footprint_mb": -728.453125,
+      "vram_footprint_mb": 697.0703125,
+      "avg_activations": 3.8125,
       "multi_hop_depth": 8
     }
   ]
