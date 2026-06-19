@@ -24,7 +24,135 @@ except ImportError:
 _LOADED_SYSTEMS = {}
 _LOADED_DATASETS = {}
 
+def load_cat_v3_checkpoint(checkpoint_path, device="cpu"):
+    import torch
+    from cat_v3.model import CATV3Model
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    vocab = checkpoint["vocab"]
+    tokenizer = checkpoint["tokenizer"]
+    expert_graphs = checkpoint["expert_graphs"]
+    
+    model = CATV3Model(
+        num_concepts=vocab.size(),
+        tokenizer_vocab_size=tokenizer.vocab_size(),
+        pad_id=tokenizer.pad_id,
+        eos_id=tokenizer.eos_id,
+        expert_graphs=expert_graphs,
+        concept_dim=128,
+        hidden_size=128,
+        path_length=8,
+        top_m=8,
+        decoder_vocab_size=tokenizer.vocab_size()
+    ).to(device)
+    model.load_state_dict(checkpoint["model_state_dict"])
+    model.eval()
+    
+    return {
+        "model": model,
+        "vocab": vocab,
+        "tokenizer": tokenizer,
+        "expert_graphs": expert_graphs,
+        "device": device
+    }
+
+DOMAINS_V3_LIST = ["mechanical", "civil", "electrical", "physics", "mathematics", "english"]
+
+def predict_reasoning_cat_v3(loaded, question):
+    import torch
+    import math
+    model = loaded["model"]
+    vocab = loaded["vocab"]
+    tokenizer = loaded["tokenizer"]
+    device = loaded["device"]
+    
+    model.eval()
+    
+    with torch.no_grad():
+        input_ids, attention_mask = tokenizer.encode(question, max_length=32)
+        input_ids = input_ids.unsqueeze(0).to(device)
+        attention_mask = attention_mask.unsqueeze(0).to(device)
+        
+        outputs = model.generate_response(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            router_top_k=2,
+            router_threshold=0.5
+        )
+        
+        router_probs = outputs["router_probs"][0].cpu().tolist()
+        active_mask = outputs["router_mask"][0].cpu().tolist()
+        
+        gen_tokens = outputs["generated_tokens"][0].cpu().tolist()
+        answer = tokenizer.decode(gen_tokens)
+        
+        fusion_report = model.fusion.get_symbolic_report(
+            vocab=vocab,
+            expert_reports=outputs["expert_reports"],
+            router_mask=outputs["router_mask"],
+            domain_names=DOMAINS_V3_LIST
+        )[0]
+        
+        reasoning_path = []
+        if fusion_report["reasoning_paths"]:
+            reasoning_path = fusion_report["reasoning_paths"][0]
+            
+        fused_scores = outputs["fused_concept_ids"][0].cpu().tolist()
+        top_concepts = []
+        for idx in fused_scores:
+            if idx in vocab.id_to_concept:
+                concept_name = vocab.id_to_concept[idx]
+                if concept_name not in ("<PAD>", "<EOS>"):
+                    top_concepts.append({
+                        "name": concept_name,
+                        "activation": 0.8
+                    })
+                    
+        nodes_list = []
+        for name in vocab.concepts:
+            if name not in ("<PAD>", "<EOS>"):
+                act = 0.9 if name in fusion_report["concepts"] else 0.05
+                nodes_list.append({
+                    "name": name,
+                    "activation": act
+                })
+                
+        edges_list = []
+        for domain_idx, domain_name in enumerate(DOMAINS_V3_LIST):
+            if active_mask[domain_idx]:
+                expert = model.experts[domain_name]
+                edge_index = expert.edge_index.cpu()
+                for i in range(edge_index.size(1)):
+                    u = vocab.id_to_concept[edge_index[0, i].item()]
+                    v = vocab.id_to_concept[edge_index[1, i].item()]
+                    if u not in ("<PAD>", "<EOS>") and v not in ("<PAD>", "<EOS>"):
+                        edges_list.append({
+                            "from": u,
+                            "to": v,
+                            "weight": 1.0
+                        })
+                        
+        active_experts_str = ", ".join([d.capitalize() for idx, d in enumerate(DOMAINS_V3_LIST) if active_mask[idx]])
+        answer = f"**[GAT Router activated experts: {active_experts_str}]**\n\n{answer}"
+        
+        return {
+            "reasoning_path": reasoning_path,
+            "path_probabilities": [0.9] * len(reasoning_path),
+            "top_concepts": top_concepts,
+            "nodes": nodes_list,
+            "edges": edges_list,
+            "answer": answer
+        }
+
+
 DOMAINS = {
+    "cat_v3_moe": {
+        "name": "CAT V3 / Graph-MoE (Prototype)",
+        "checkpoint_dir": "checkpoints/cat_v3",
+        "dataset_path": "data/reasoning_dataset.json",
+        "is_cat_v3": True,
+        "symbol": "🔮",
+        "desc": "Multi-expert routing with GAT graph reasoning & fusion across 6 engineering domains",
+    },
     "mechanical_engineering": {
         "name": "Mechanical Engineering (VLCM)",
         "checkpoint_dir": "checkpoints/vlcm_mech_2nd_order",
@@ -83,7 +211,26 @@ def get_system(domain):
 
     info = DOMAINS[domain]
     checkpoint_dir = info["checkpoint_dir"]
-    is_vlcm = info["is_vlcm"]
+    is_vlcm = info.get("is_vlcm", False)
+    is_cat_v3 = info.get("is_cat_v3", False)
+
+    if is_cat_v3:
+        path = Path(checkpoint_dir) / "cat_v3_model.pt"
+        if not path.exists():
+            return None
+        path_str = str(path)
+        if path_str not in _LOADED_SYSTEMS:
+            print(f"Loading checkpoint for {domain}: {path_str}")
+            try:
+                workspace_root = str(Path(__file__).parent)
+                if workspace_root not in sys.path:
+                    sys.path.insert(0, workspace_root)
+                loaded = load_cat_v3_checkpoint(path_str, device="cpu")
+                _LOADED_SYSTEMS[path_str] = loaded
+            except Exception as e:
+                print(f"Failed to load checkpoint {path_str}: {e}")
+                return None
+        return _LOADED_SYSTEMS[path_str]
 
     if is_vlcm:
         path = latest_vlcm_checkpoint(checkpoint_dir)
@@ -314,7 +461,11 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                 dataset = get_dataset(domain)
 
                 if loaded:
-                    result = predict_reasoning(loaded, question, beam_width=beam_width)
+                    info = DOMAINS[domain]
+                    if info.get("is_cat_v3"):
+                        result = predict_reasoning_cat_v3(loaded, question)
+                    else:
+                        result = predict_reasoning(loaded, question, beam_width=beam_width)
                     response_data["reasoning_path"] = result["reasoning_path"]
                     response_data["path_probabilities"] = result["path_probabilities"]
                     response_data["top_concepts"] = result["top_concepts"]
@@ -1321,6 +1472,10 @@ CHAT_HTML = r"""<!DOCTYPE html>
                     <span class="domain-symbol">⚙️</span>
                     <span>Mechanical Engineering</span>
                 </button>
+                <button class="domain-tab" data-domain="cat_v3_moe" id="tab-catv3">
+                    <span class="domain-symbol">🔮</span>
+                    <span>CAT V3 / Graph-MoE</span>
+                </button>
                 <button class="domain-tab" data-domain="mit_stanford_mech" id="tab-curriculum">
                     <span class="domain-symbol">🎓</span>
                     <span>MIT & Stanford Curriculum</span>
@@ -1440,6 +1595,14 @@ CHAT_HTML = r"""<!DOCTYPE html>
 //  Data: Multi-Domain Suggested Questions
 // ═══════════════════════════════════════════════════════════════
 const DOMAIN_QUESTIONS = {
+    "cat_v3_moe": [
+        { q: "Why does compressor pressure ratio affect turbine efficiency?", tag: "Mechanical/Physics" },
+        { q: "How does a foundation load affect beam buckling?", tag: "Civil/Mechanical" },
+        { q: "Why does capacitor impedance shift current phase angle?", tag: "Electrical/Physics" },
+        { q: "How do eigenvalues explain decay differential equations?", tag: "Mathematics/Physics" },
+        { q: "How does syntax affect semantic interpretation of a sentence?", tag: "English/Language" },
+        { q: "How does thermal stress lead to cracking in turbine blades?", tag: "Mechanical/Physics" }
+    ],
     "mechanical_engineering": [
         { q: "Calculate stress if load equals ten kN and area measures five m^2", tag: "GATE NAT" },
         { q: "A steel column of length 2.0 m has pinned ends. If E = 200e9 Pa and I = 1.0e-5 m^4, what is the critical buckling load in kN?", tag: "GATE NAT" },
@@ -1503,6 +1666,7 @@ const DOMAIN_QUESTIONS = {
 };
 
 const DOMAIN_DETAILS = {
+    "cat_v3_moe": { title: "CAT V3 / Graph-MoE (Prototype)", icon: "🔮", desc: "Multi-expert routing with GAT graph reasoning & fusion across 6 engineering domains", placeholder: "Ask multi-domain queries (e.g. pressure ratios, foundation loads, eigenvalues)..." },
     "mechanical_engineering": { title: "Mechanical Engineering (VLCM)", icon: "⚙️", desc: "Scaled 10k-concept dataset (140k edges, 58k causal) with Second-Order Loss", placeholder: "Ask about buckling, heat exchangers, fluid dynamics, stress tensors..." },
     "mit_stanford_mech": { title: "MIT & Stanford ME Curriculum (VLCM)", icon: "🎓", desc: "Complete syllabus (10k+ concepts, 50k+ reasoning paths)", placeholder: "Ask about buckling, heat exchangers, control systems, Navier-Stokes..." },
     "mit_math": { title: "MIT OCW Mathematics (CAT V2)", icon: "∫", desc: "Calculus, Linear Algebra, ODEs, and Multivariable Calculus", placeholder: "Ask about eigenvalues, gradients, Laplace transforms, Fourier series..." },

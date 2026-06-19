@@ -68,6 +68,31 @@ graph TD
     RP -->|Language Decoder| ANS[Final Technical Answer]
 ```
 
+### 3. CAT V3 (Graph-MoE) Flow
+CAT V3 introduces a sparse Graph Mixture of Experts (Graph-MoE) routing queries dynamically to 6 GAT specialists. Overlapping concept predictions are consolidated in a Concept Fusion Layer, organized by a self-attention Combiner, and converted to natural language by a Causal Decoder.
+
+```mermaid
+graph TD
+    Q[User Question] -->|Simple Tokenizer| TE[Tiny Transformer Encoder]
+    TE -->|Dense Embedding| SR[Semantic Router MLP]
+    
+    subgraph Graph Mixture of Experts
+        SR -->|Activate active experts| E1[Mechanical GAT]
+        SR -->|Activate active experts| E2[Physics GAT]
+        SR -->|Activate active experts| E3[Mathematics GAT]
+        SR -->|...| E4[Other Experts]
+    end
+    
+    E1 -->|Expert Report| CF[Concept Fusion Layer]
+    E2 -->|Expert Report| CF
+    E3 -->|Expert Report| CF
+    E4 -->|Expert Report| CF
+    
+    CF -->|Fused Concepts & Embeddings| TC[Tiny Combiner Transformer]
+    TC -->|Semantic Chunks| TD[Tiny Decoder Causal LM]
+    TD -->|Cross-Attention| R[Response Text]
+```
+
 ---
 
 ## 🚀 Key Features
@@ -565,6 +590,9 @@ Here is an in-depth critique of this recursive formulation:
 Ensure the environment and concept propagation logic are healthy:
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests
+
+# Verify CAT V3 GAT experts and components
+python -m unittest discover -s cat_v3/tests
 ```
 
 ### 2. Grow Graph from Documentation
@@ -587,6 +615,9 @@ Train models on structural, CFD, python coding, or MIT mathematics reasoning dat
 
 # Train MIT OCW Engineering Mathematics (30 Epochs, 374 concepts)
 .\.venv\Scripts\python.exe run_reasoning.py train --dataset data/mit_math_dataset.json --checkpoint-dir checkpoints/cat_v2_mit_math --graph-file data/mit_math_graph.json --epochs 30
+
+# Train CAT V3 Graph-MoE (30 Epochs, 6 specialists + fusion + decoder)
+python cat_v3/run_cat_v3.py train --epochs 30
 ```
 
 ### 4. Path Inference
@@ -597,12 +628,18 @@ Query a trained checkpoint to generate a planning path and solution. Pass `--bea
 
 # VLCM path inference with Constrained Beam Search (beam-width = 3) on Mechanical Engineering
 .\.venv\Scripts\python.exe vlcm/run_vlcm.py infer --dataset data/mechanical_engineering_dataset.json --checkpoint-dir checkpoints/vlcm_mech_2nd_order --question "Why does a column buckle under compression?" --beam-width 3
+
+# CAT V3 query routing, graph fusion, and response generation
+python cat_v3/run_cat_v3.py infer --question "Why does compressor pressure ratio affect turbine efficiency?"
 ```
 
 ### 5. Run the Benchmarks
 Execute the theoretical and empirical profiling benchmarks:
 ```powershell
 .\.venv\Scripts\python.exe vlcm/run_vlcm.py benchmark
+
+# Run CAT V3 scalability and MoE profiling benchmarks (100 -> 10,000 concepts)
+python cat_v3/run_cat_v3.py benchmark
 ```
 
 ---

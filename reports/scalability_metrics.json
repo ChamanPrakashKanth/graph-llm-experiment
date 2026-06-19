@@ -1,0 +1,259 @@
+{
+  "single_expert": {
+    "question": "How does syntax affect semantic interpretation of a sentence?",
+    "activated_domains": [
+      "civil",
+      "english"
+    ],
+    "domain_probabilities": {
+      "mechanical": 0.0001074119281838648,
+      "civil": 0.009756519459187984,
+      "electrical": 1.6662270354572684e-05,
+      "physics": 1.0987846508214716e-05,
+      "mathematics": 3.60622176565073e-09,
+      "english": 0.9916772842407227
+    },
+    "expert_paths": {
+      "civil": [
+        "concrete",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation"
+      ],
+      "english": [
+        "vocabulary"
+      ]
+    },
+    "fusion_report": {
+      "concepts": [
+        "concrete",
+        "foundation",
+        "vocabulary"
+      ],
+      "reasoning_paths": [
+        [
+          "concrete",
+          "foundation",
+          "foundation",
+          "foundation",
+          "foundation",
+          "foundation",
+          "foundation",
+          "foundation"
+        ],
+        [
+          "vocabulary"
+        ]
+      ],
+      "confidence": [
+        0.5162878073751926,
+        0.5335962772369385
+      ]
+    },
+    "answer": "foundation transfers the load, causing a high bending moment in the beam which results in buckling."
+  },
+  "multi_expert": {
+    "question": "Why does compressor pressure ratio affect turbine efficiency?",
+    "activated_domains": [
+      "mechanical",
+      "physics",
+      "mathematics"
+    ],
+    "domain_probabilities": {
+      "mechanical": 0.9995946288108826,
+      "civil": 0.00010746438056230545,
+      "electrical": 0.0009598346659913659,
+      "physics": 0.9999997615814209,
+      "mathematics": 0.9999182224273682,
+      "english": 5.779741130140792e-10
+    },
+    "expert_paths": {
+      "mechanical": [
+        "compressor",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio"
+      ],
+      "physics": [
+        "temperature_rise",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy"
+      ],
+      "mathematics": [
+        "matrix",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue"
+      ]
+    },
+    "fusion_report": {
+      "concepts": [
+        "compressor",
+        "eigenvalue",
+        "entropy",
+        "matrix",
+        "pressure_ratio",
+        "temperature_rise"
+      ],
+      "reasoning_paths": [
+        [
+          "compressor",
+          "pressure_ratio",
+          "pressure_ratio",
+          "pressure_ratio",
+          "pressure_ratio",
+          "pressure_ratio",
+          "pressure_ratio",
+          "pressure_ratio"
+        ],
+        [
+          "temperature_rise",
+          "entropy",
+          "entropy",
+          "entropy",
+          "entropy",
+          "entropy",
+          "entropy",
+          "entropy"
+        ],
+        [
+          "matrix",
+          "eigenvalue",
+          "eigenvalue",
+          "eigenvalue",
+          "eigenvalue",
+          "eigenvalue",
+          "eigenvalue",
+          "eigenvalue"
+        ]
+      ],
+      "confidence": [
+        0.46498995274305344,
+        0.44482728838920593,
+        0.4456786923110485
+      ]
+    },
+    "answer": "compressor pressure ratio raises outlet temperature. this increases entropy generation and can reduce overall efficiency."
+  },
+  "fusion_quality": {
+    "concepts": [
+      "compressor",
+      "eigenvalue",
+      "entropy",
+      "matrix",
+      "pressure_ratio",
+      "temperature_rise"
+    ],
+    "reasoning_paths": [
+      [
+        "compressor",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio",
+        "pressure_ratio"
+      ],
+      [
+        "temperature_rise",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy"
+      ],
+      [
+        "matrix",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue",
+        "eigenvalue"
+      ]
+    ],
+    "confidence": [
+      0.46498995274305344,
+      0.44482728838920593,
+      0.4456786923110485
+    ]
+  },
+  "multi_hop": {
+    "query": "How does a foundation load affect beam buckling?",
+    "depth": 3,
+    "path": [
+      [
+        "temperature_rise",
+        "thermal_stress",
+        "cracking"
+      ],
+      [
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation",
+        "foundation"
+      ],
+      [
+        "temperature_rise",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy",
+        "entropy"
+      ]
+    ]
+  },
+  "scalability": [
+    {
+      "concept_count": 100,
+      "latency_ms": 74.22378000000035,
+      "ram_footprint_mb": 1.44140625,
+      "vram_footprint_mb": 2.17333984375,
+      "avg_activations": 3.0,
+      "multi_hop_depth": 8
+    },
+    {
+      "concept_count": 1000,
+      "latency_ms": 77.93756500000003,
+      "ram_footprint_mb": 3.76953125,
+      "vram_footprint_mb": 9.4423828125,
+      "avg_activations": 2.0,
+      "multi_hop_depth": 8
+    },
+    {
+      "concept_count": 10000,
+      "latency_ms": 83.22571500000001,
+      "ram_footprint_mb": -261.9765625,
+      "vram_footprint_mb": 598.86962890625,
+      "avg_activations": 2.5,
+      "multi_hop_depth": 8
+    }
+  ]
+}

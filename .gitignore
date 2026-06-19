@@ -13,3 +13,5 @@ cat_v2_test_tmp/
 *.pt
 *.ckpt
 checkpoints/
+brain/
+
