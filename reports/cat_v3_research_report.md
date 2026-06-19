@@ -166,11 +166,30 @@ We scaled the vocabulary size ($N$) to stress-test the parameter size, execution
 | :--- | :--- | :--- |
 | **Fundamental Sequence Unit** | Concept (Nodes / Edges) | Token (Subwords / Characters) |
 | **Reasoning Substrate** | Sparse GAT Graph Message Passing | Dense Causal Self-Attention Layer |
-| **Memory footprint** | Static $O(\|V\| \cdot d)$ (No KV-cache scaling) | Linear/Quadratic KV-cache growth $O(T)$ |
 | **Logical Constraints** | **100% strict** (Topological transition mask) | Soft (Autoregressive probability logits) |
 | **Logical Hallucinations** | **0%** (Cannot step outside graph edges) | High (Prone to logical drift/hallucinations) |
 | **Creative / Open output** | Low (Closed vocabulary and connections) | **High** (Can formulate arbitrary prose/code) |
 | **Inference Hardware** | Edge CPU / Microcontrollers | High-end Multi-GPU Cloud Clusters |
+| **Memory Footprint** | Static Graph State $O(|V| \cdot d)$ + Causal Decoder KV Cache $O(L)$ | Linear Context KV Cache Growth $O(T)$ |
+
+### Detailed Memory Scaling & GQA Corrections
+
+A common misconception is that CAT V3 operates entirely without any KV Cache or sequence scaling. While the core reasoning substrate (the GAT experts and graph topology) is topologically static, a complete analysis must account for active generation context:
+
+1. **Tiny Decoder KV Cache ($O(L)$ scaling)**:
+   The Tiny Decoder is a causal Transformer that autoregressively generates the final natural language text response. Thus, it maintains a small KV cache scaling linearly with the response sequence length ($L$).
+   $$\text{Decoder KV Cache} = 2 \times N_{\text{layers}} \times N_{\text{heads}} \times d_{\text{head}} \times L \times 2\text{ bytes (FP16)}$$
+   For $N_{\text{layers}}=2$, $N_{\text{heads}}=4$, $d_{\text{head}}=32$, and $L=128$, this requires a negligible $\approx \mathbf{131\text{ KB}}$ of active memory, but it does scale with output length.
+
+2. **Tiny Encoder Activation Space ($O(T)$ transient scaling)**:
+   The input encoder processes the query of length $T$ using self-attention. While inference activations are transient (not cached autoregressively across tokens like the KV Cache), the memory required during the forward pass scales with the input query length $T$ (and the attention matrix calculation scales quadratically as $O(T^2)$).
+
+3. **Traditional LLM KV Cache with GQA**:
+   Standard calculations often assume Multi-Head Attention (MHA), which estimates a Llama-3 70B KV cache at $\approx 320\text{ GB}$ for $131\text{K}$ context. In practice, modern production models use **Grouped-Query Attention (GQA)**, reducing the KV heads by a factor of 8 (8 KV heads vs. 64 query heads).
+   $$\text{KV Cache}_{\text{GQA}} = 2 \times N_{\text{layers}} \times N_{\text{heads\_kv}} \times d_{\text{head}} \times T \times 2\text{ bytes (FP16)}$$
+   For Llama-3 70B ($N_{\text{layers}}=80, N_{\text{heads\_kv}}=8, d_{\text{head}}=128$), the actual KV Cache size at $131,072$ tokens is:
+   $$2 \times 80 \times 8 \times 128 \times 131,072 \times 2\text{ bytes} \approx \mathbf{40.0\text{ GB (42.95 GB)}}$$
+   While this is significantly lower than $320\text{ GB}$, it still represents a massive memory bottleneck compared to the static graph state of CAT V3 ($5.71\text{ MB}$ for $10\text{K}$ concepts) and the micro-scale decoder KV cache.
 
 ---
 

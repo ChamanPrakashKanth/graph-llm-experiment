@@ -282,14 +282,21 @@ Since $L \le 8$, the attention matrix computation is negligible.
 
 ### ⚡ VLCM Memory Compression Advantages
 
-Standard autoregressive language models store the Key-Value (KV) cache of all generated tokens in memory, which scales linearly with context window size and batch size.
+Standard autoregressive language models store the Key-Value (KV) cache of all generated tokens in memory, which scales linearly with context window size. Modern production models utilize Grouped-Query Attention (GQA) to reduce this footprint, sharing KV head pairs across groups of query heads.
 
-- **KV Cache Footprint (Traditional LLM)**: For a 7B param model with 32 layers, 32 heads, 128 head-dimension, generating a 100,000-token text window:
-  $$\text{Memory}_{\text{KV}} = 2 \times 32 \times 32 \times 128 \times 100,000 \times 2 \text{ bytes} \approx \mathbf{52.4 \text{ GB}}$$
+- **KV Cache Footprint (Traditional LLM with GQA)**: For a Llama-3 8B model (32 layers, 8 KV heads, 128 head-dimension) generating a 100,000-token window:
+  $$\text{Memory}_{\text{KV\_GQA}} = 2 \times 32 \times 8 \times 128 \times 100,000 \times 2 \text{ bytes} \approx \mathbf{13.1 \text{ GB}}$$
+  *(Without GQA, Multi-Head Attention would require $\approx 52.4\text{ GB}$.)*
+- **KV Cache Footprint (Llama-3 70B with GQA)**: For a Llama-3 70B model (80 layers, 8 KV heads, 128 head-dimension) at 100,000 context:
+  $$\text{Memory}_{\text{KV\_GQA}} = 2 \times 80 \times 8 \times 128 \times 100,000 \times 2 \text{ bytes} \approx \mathbf{32.8 \text{ GB}}$$
+  *(Without GQA, Multi-Head Attention would require $\approx 262.4\text{ GB}$.)*
 - **Graph State Footprint (VLCM)**: For a concept vocabulary of 5,000 concepts with 15,000 edges and $d=128$:
-  $$\text{Memory}_{\text{VLCM}} = (5,000 \times 128 \times 4) + (15,000 \times 3 \times 4) \text{ bytes} \approx \mathbf{2.73 \text{ MB}}$$
-  
-This represents a compression ratio of **~19,200x** in active memory footprint, enabling high-order reasoning graphs to be loaded directly onto edge hardware.
+  $$\text{Memory}_{\text{Graph}} = (5,000 \times 128 \times 4) + (15,000 \times 3 \times 4) \text{ bytes} \approx \mathbf{2.73 \text{ MB}}$$
+  *(For 10,000 concepts and 50,000 edges, the static graph size is $\approx 5.71\text{ MB}$.)*
+- **Decoder KV Cache (VLCM/CAT)**: The text generation phase (Tiny Decoder) does maintain a small KV cache that scales with generated response length $L$ ($O(L)$). For $N_{\text{layers}}=2, N_{\text{heads}}=4, d_{\text{head}}=32$, and $L=128$, the KV Cache is:
+  $$\text{Memory}_{\text{Decoder KV}} = 2 \times 2 \times 4 \times 32 \times 128 \times 2 \text{ bytes} \approx \mathbf{131 \text{ KB}}$$
+
+While the decoder's KV cache scales linearly with output length, it is exceptionally small, and the core reasoning path is mapped to the static graph state. This enables deploying these architectures on edge hardware.
 
 ### 🛡️ Failure Modes and Scaling Challenges
 
@@ -468,8 +475,8 @@ graph TD
 | **Model Weights Size** | ~16,000 MB (16 GB in FP16) | **3.312 MB** | **2.431 MB** |
 | **Reasoning Constraint** | Soft (Token Probability-based) | **Strict 100%** (Transition Mask) | **Strict 100%** (Transition Mask) |
 | **Path Hallucinations** | High (frequently skips logical steps) | **0%** (Topologically constrained) | **0%** (Topologically constrained) |
-| **Memory Footprint (Inference)**| **50,000.00 MB** (at 100k context KV cache) | **2.61 MB** (Static graph state) | **0.19 MB** (Static graph state) |
-| **Compression Ratio** | 1× | **~19,134.6x** | **~263,000x** |
+| **Memory Footprint (Inference)**| **13,100 MB** (at 100k context GQA KV cache) | **2.61 MB** (Static graph) + **0.13 MB** (Decoder KV) | **0.19 MB** (Static graph) + **0.13 MB** (Decoder KV) |
+| **Compression Ratio** | 1× | **~4,780x** | **~40,900x** |
 | **Generation Compute Cost** | ~8.192 Trillion FLOPs | **~7.656 Million FLOPs** (~1,000,000x saving) | **~5.098 Million FLOPs** |
 | **Inference Hardware** | Multi-GPU Cloud Clusters | CPU / Edge / Microcontrollers | CPU / Edge / Microcontrollers |
 | **Average Latency (CPU)** | Seconds to Minutes | **16.97 ms** | **8.46 ms** |
@@ -569,7 +576,7 @@ Here is an in-depth critique of this recursive formulation:
 * **Gradient Decay in the Loop**: Backpropagating through the feedback loop (BPTT over GNN updates) makes the model highly susceptible to vanishing gradients, making it difficult for the network to learn long-term conceptual dependencies during training.
 
 ### 4. Scalability of the Iterative Loop
-* **Memory Footprint ($O(1)$ Scaling)**: Unlike Transformers, where the KV Cache memory footprint grows linearly $O(T)$ with the sequence length (leading to massive memory requirements at long contexts), CAT V2's working memory size is static: $\text{Memory} = O(|V| \cdot d)$ which remains constant regardless of the planning path length. This represents an enormous scalability advantage for running long-chain reasoning on edge hardware.
+* **Memory Footprint (Decoupled Scaling)**: Unlike Transformers where the KV Cache grows linearly $O(T)$ with input context length, the working memory of CAT's planning loop is topologically static: $O(|V| \cdot d)$ representing node activations, remaining constant regardless of the reasoning path length. The final text generation phase (Tiny Decoder) does maintain a small autoregressive KV Cache scaling with response length $L$ ($O(L)$), but at micro-scale (e.g. $\approx 131\text{ KB}$ for 128 tokens) compared to standard LLMs.
 * **Computation ($O(E)$ Sparsity)**: Each iteration requires a GNN forward pass. For a sparse graph where the number of edges $E \ll |V|^2$, GNN propagation scales as $O(E \cdot d)$. This is highly compute-efficient compared to the $O(T^2)$ self-attention cost in transformers.
 * **Training Bottleneck**: While inference scales exceptionally well, training is the scalability bottleneck. BPTT through recurrent GNN states prevents parallelization across time steps, unlike the parallel training capability of transformers.
 

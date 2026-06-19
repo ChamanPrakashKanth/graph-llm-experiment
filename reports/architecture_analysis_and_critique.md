@@ -60,9 +60,10 @@ Traditional LLMs operate on soft probability distributions over the entire vocab
 Monolithic LLMs are notoriously bad at arithmetic and calculus because they process numbers as text tokens rather than mathematical values. 
 * **The Solver Integration**: When the reasoning graph routes through mathematical concepts, the system intercepts the execution, extracts variables using regexes, normalizes prefixes/units, and solves them using SymPy/Math runtimes. This guarantees **100% mathematical accuracy** on complex NAT (Numerical Answer Type) questions.
 
-### 3. $O(1)$ Memory Scaling (Eliminating KV Cache)
-For traditional Transformers, the Key-Value (KV) cache grows linearly with sequence length. Generating a 100,000-token window requires gigabytes of active GPU VRAM.
-* **The Graph Advantage**: The working memory footprint of the GNN is static and bounded by the size of the graph: $O(|V| \cdot d)$. It does not scale with generation length, enabling high-order reasoning pipelines to execute on **standard edge CPUs with < 750 MB of RAM**.
+### 3. Decoupled Memory Scaling (Bypassing Input KV Cache Bottleneck)
+For traditional Transformers, the Key-Value (KV) cache of the input context and generation history grows linearly with sequence length. A 70B model using Grouped-Query Attention (GQA) requires $\approx 32.8\text{ GB}$ of VRAM at 100,000 context (and up to $\approx 262.4\text{ GB}$ if Multi-Head Attention were used without GQA).
+* **The Graph Advantage**: CAT/VLCM performs its core domain reasoning strictly in a concept graph state space. The primary representation of the graph is static and scales as $O(|V| \cdot d)$ (only $\approx 5.71\text{ MB}$ for 10,000 concepts). It is completely independent of the input query context length.
+* **The Causal Decoder Footprint ($O(L)$ scaling)**: The text generation phase (done by the Tiny Decoder) still uses an autoregressive Transformer decoder, which maintains a KV cache scaling linearly with the response sequence length ($L$). However, because this decoder is extremely small ($2$ layers, $4$ heads, $32$ head-dim), generating 128 tokens requires a mere $\approx \mathbf{131\text{ KB}}$, compared to gigabytes for traditional LLMs. Additionally, self-attention activation memory in the Tiny Encoder scales with query length $T$, but is transient and not cached during inference. This decoupling allows reasoning pipelines to execute on edge CPUs.
 
 ### 4. Direct Explainability & Audits
 Traditional LLMs are black boxes; extracting "why" they made a certain prediction requires analyzing attention maps, which do not guarantee actual causal relationships.

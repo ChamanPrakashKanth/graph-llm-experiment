@@ -176,23 +176,22 @@ def run_empirical_comparison() -> Dict[str, Any]:
 
 
 def compute_theoretical_kv_cache() -> List[Dict[str, Any]]:
-    """Calculates KV Cache sizes across context sizes for various LLM configurations."""
-    # Models: (Name, layers, heads, head_dim)
+    """Calculates KV Cache sizes across context sizes for various LLM configurations, taking GQA into account."""
+    # Models: (Name, layers, query_heads, kv_heads, head_dim)
     model_configs = [
-        ("Llama-3 8B", 32, 32, 128),
-        ("Llama-3 70B", 80, 64, 128),
-        ("Custom LLM 1B", 24, 16, 64)
+        ("Llama-3 8B (GQA)", 32, 32, 8, 128),
+        ("Llama-3 70B (GQA)", 80, 64, 8, 128),
+        ("Custom LLM 1B (MHA)", 24, 16, 16, 64)
     ]
     
     contexts = [128, 1024, 8192, 32768, 131072]
     scaling_data = []
     
-    for name, layers, heads, head_dim in model_configs:
+    for name, layers, q_heads, kv_heads, head_dim in model_configs:
         config_data = {"model": name, "metrics": []}
         for ctx in contexts:
-            # Memory in Bytes = 2 * layers * heads * head_dim * seq_len * 2 (for FP16)
-            # Standard GQA / MQA might group heads. We assume Multi-Head Attention (MHA) for conservative scaling
-            kv_bytes = 2 * layers * heads * head_dim * ctx * 2
+            # Memory in Bytes = 2 (key & value) * layers * kv_heads * head_dim * seq_len * 2 (for FP16)
+            kv_bytes = 2 * layers * kv_heads * head_dim * ctx * 2
             kv_mb = kv_bytes / (1024 * 1024)
             config_data["metrics"].append({
                 "context_length": ctx,
@@ -222,12 +221,12 @@ We benchmarked CAT V3 against a custom Causal GPT model of similar embedding siz
 | Metric | CAT V3 (Concept Graph-MoE) | Traditional Causal LLM (GPT-style) | Scale Factor |
 | :--- | :--- | :--- | :--- |
 | **Model Parameters** | {cat['parameters']:,} | {gpt['parameters']:,} | ~{cat['parameters'] / gpt['parameters']:.2f}x |
-| **Inference Latency** | {cat['avg_latency_ms']:.2f} ms | {gpt['avg_latency_ms']:.2f} ms | {gpt['avg_latency_ms'] / cat['avg_latency_ms']:.1f}x faster |
+| **Inference Latency** | {cat['avg_latency_ms']:.2f} ms | {gpt['avg_latency_ms']:.2f} ms | {cat['avg_latency_ms'] / gpt['avg_latency_ms']:.2f}x (similar scale) |
 | **Logic Hallucination Rate** | **0.0%** (Graph-constrained) | **High** (Next-token prediction drift) | Infinite |
 | **Explainable Reasoning Trace**| Yes (100% auditable path) | No (Black-box attention states) | — |
 
 ### Key Findings:
-1.  **Inference Speedup**: CAT V3 generates answers **{gpt['avg_latency_ms'] / cat['avg_latency_ms']:.1f}x faster** than the token-level causal model. Because the causal model must autoregressively decode 32+ natural language tokens (running its entire transformer stack at each step), its latency scales linearly with output length. CAT V3 decouples these: GAT experts generate short concept paths (8 steps) in graph space, and the Tiny Decoder runs a single-pass cross-attention translation.
+1.  **Inference Speedup**: For large context sizes or long output generation, CAT V3 is highly efficient. In this small-scale test with a tiny 600K GPT model, CAT V3's latency is {cat['avg_latency_ms'] / gpt['avg_latency_ms']:.2f}x that of the causal GPT due to routing across 6 GAT specialists and executing multiple modules. However, the causal model's latency scales linearly with output token length, whereas CAT V3 routes queries once, reasons in short fixed concept paths (8 steps), and decodes in a single-pass.
 2.  **Logic and Hallucinations**: The causal GPT model is unconstrained and easily deviates into hallucinated technical descriptions. CAT V3 applies a strict topological mask derived from the active domain graphs, making logical leaps outside the predefined concept structures impossible.
 
 ---
@@ -236,9 +235,17 @@ We benchmarked CAT V3 against a custom Causal GPT model of similar embedding siz
 
 Autoregressive language models store the Key-Value (KV) cache of all generated tokens in memory, which scales linearly with context length, leading to severe bottlenecks at scale. 
 
-CAT V3 completely eliminates the KV Cache by compressing the query into a single dense vector and performing reasoning in a static concept state space.
+While CAT V3 performs domain reasoning strictly in a static concept state space, it does utilize a causal transformer for final text generation (Tiny Decoder). This means that during the autoregressive text generation phase, **the Tiny Decoder does maintain a small KV cache** that scales with the generated answer length ($L$).
 
-### KV Cache Memory Footprint (FP16 Precision):
+### Decoder KV Cache Size:
+The memory footprint of the Tiny Decoder's KV cache is:
+$$\\text{{Decoder KV Cache}} = 2 \\times N_{{\\text{{layers}}}} \\times N_{{\\text{{heads}}}} \\times d_{{\\text{{head}}}} \\times L \\times 2 \\text{{ bytes (FP16)}}$$
+For our Tiny Decoder ($N_{{\\text{{layers}}}}=2, N_{{\\text{{heads}}}}=4, d_{{\\text{{head}}}}=32$), generating a response of length $L=128$, the KV cache is:
+$$2 \\times 2 \\times 4 \\times 32 \\times 128 \\times 2 \\text{{ bytes}} \\approx \\mathbf{{131 \\text{{ KB}}}}$$
+This is a negligible footprint compared to standard LLMs, but it does scale linearly with response length $L$.
+
+### KV Cache Memory Footprint of Large LLMs (Grouped-Query Attention, FP16 Precision):
+Modern production models like Llama-3 utilize **Grouped-Query Attention (GQA)**, which groups query heads to share a single KV head pair, reducing the KV cache footprint (typically by a factor of 8x for Llama-3).
 
 | Model Config | Context = 128 | Context = 1,024 | Context = 8,192 | Context = 32,768 | Context = 131,072 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -257,12 +264,12 @@ CAT V3 completely eliminates the KV Cache by compressing the query into a single
         md_content += row
         
     md_content += f"""
-### CAT V3 Memory Footprint:
-For a concept vocabulary of **10,000 concepts** and **50,000 edges**:
-$$\\text{{Memory}}_{{\\text{{CAT V3}}}} = (|V| \\cdot d \\cdot 4) + (|E| \\cdot 3 \\cdot 4) \\text{{ bytes}} \\approx \\mathbf{{5.71 \\text{{ MB}}}}$$
+### CAT V3 Graph Memory Footprint:
+For a concept vocabulary of **10,000 concepts** and **50,000 edges**, the static GAT expert weights and concept embeddings footprint is:
+$$\\text{{Memory}}_{{\\text{{CAT V3 Graph}}}} = (|V| \\cdot d \\cdot 4) + (|E| \\cdot 3 \\cdot 4) \\text{{ bytes}} \\approx \\mathbf{{5.71 \\text{{ MB}}}}$$
 
 > [!NOTE]
-> While a standard **Llama-3 8B** model requires **256 MB** of KV Cache memory at 8,192 context (and a massive **4.00 GB** at 131,072 tokens), **CAT V3's active memory footprint remains constant at ~5.71 MB** regardless of sequence length. This represents a compression ratio of **700x** at long planning horizons.
+> Under production conditions, a standard **Llama-3 70B** utilizing GQA requires **2.50 GB** of KV Cache memory at 8,192 context (scaling up to **40.00 GB** at 131,072 tokens). In contrast, CAT V3's primary reasoning state remains strictly static in memory (~5.71 MB), modulated only by the Tiny Decoder's extremely compact output KV cache (~131 KB for 128 output tokens).
 
 ---
 
@@ -288,6 +295,7 @@ For large planning horizons, CAT V3 completely bypasses the quadratic attention 
     output_path.parent.mkdir(exist_ok=True)
     output_path.write_text(md_content, encoding="utf-8")
     print(f"Benchmark report written to {output_path}")
+
 
 
 if __name__ == "__main__":

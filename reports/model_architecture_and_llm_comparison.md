@@ -85,14 +85,25 @@ graph TD
 ## 🧮 Computational & Memory Footprint
 
 ### 1. Memory Footprint (KV Cache vs. Graph State)
-Traditional autoregressive transformers suffer from linear memory scaling of the Key-Value (KV) cache with sequence length. CAT/VLCM decouples the working memory footprint from the planning path length.
+Traditional autoregressive transformers suffer from linear memory scaling of the Key-Value (KV) cache with sequence length. CAT/VLCM decouples the core planning and reasoning memory from the input context length by mapping the query to a static graph state, although the final natural language decoding phase still scales with the response length.
 
-*   **KV Cache (Traditional LLM)**: For a 7B parameter model with 32 layers, 32 heads, 128 head-dimension, generating a 100,000-token window:
-    $$\text{Memory}_{\text{KV}} = 2 \cdot \text{layers} \cdot \text{heads} \cdot d_{\text{head}} \cdot \text{sequence\_length} \cdot 2 \text{ bytes} \approx \mathbf{52.4 \text{ GB}}$$
-*   **Graph State (VLCM)**: For a concept vocabulary of 5,000 concepts with 15,000 edges and $d=128$ dimensions:
-    $$\text{Memory}_{\text{VLCM}} = (|V| \cdot d \cdot 4) + (|E| \cdot 3 \cdot 4) \text{ bytes} \approx \mathbf{2.73 \text{ MB}}$$
-    
-*This represents a compression ratio of **~19,200x** in active memory footprint, allowing reasoning engines to run locally on resource-constrained edge CPUs.*
+*   **KV Cache (Traditional LLM with GQA)**: Production models like Llama-3 use Grouped-Query Attention (GQA), which groups query heads to share a single key-value head pair (typically 8 KV heads).
+    For Llama-3 8B (32 layers, 8 KV heads, 128 head-dimension) generating a 100,000-token window (FP16):
+    $$\text{Memory}_{\text{KV\_GQA}} = 2 \cdot \text{layers} \cdot \text{heads}_{\text{kv}} \cdot d_{\text{head}} \cdot \text{sequence\_length} \cdot 2 \text{ bytes} \approx \mathbf{13.1 \text{ GB}}$$
+    *(Without GQA, standard Multi-Head Attention would require $\approx 52.4\text{ GB}$.)*
+    For Llama-3 70B (80 layers, 8 KV heads, 128 head-dimension) at 100,000-token context:
+    $$\text{Memory}_{\text{KV\_GQA}} = 2 \cdot 80 \cdot 8 \cdot 128 \cdot 100,000 \cdot 2 \text{ bytes} \approx \mathbf{32.8 \text{ GB}}$$
+    *(Without GQA, Multi-Head Attention would require $\approx 262.4\text{ GB}$.)*
+
+*   **Graph State (VLCM/CAT)**: For a concept vocabulary of 5,000 concepts with 15,000 edges and $d=128$ dimensions:
+    $$\text{Memory}_{\text{Graph}} = (|V| \cdot d \cdot 4) + (|E| \cdot 3 \cdot 4) \text{ bytes} \approx \mathbf{2.73 \text{ MB}}$$
+    *(For 10,000 concepts and 50,000 edges, this static graph size is $\approx 5.71\text{ MB}$.)*
+
+*   **Decoder KV Cache (VLCM/CAT)**: Since the output text is decoded autoregressively, the Tiny Decoder maintains a KV cache scaling with response length $L$.
+    For $N_{\text{layers\_dec}}=2, N_{\text{heads\_dec}}=4, d_{\text{head\_dec}}=32$ generating a response of length $L=128$:
+    $$\text{Memory}_{\text{Decoder KV}} = 2 \cdot N_{\text{layers\_dec}} \cdot N_{\text{heads\_dec}} \cdot d_{\text{head\_dec}} \cdot L \cdot 2 \text{ bytes} \approx \mathbf{131 \text{ KB}}$$
+
+*While the text decoder's KV Cache does scale linearly with response length $L$, the footprint is orders of magnitude smaller than monolithic LLMs, and the main reasoning planning occurs over the static graph state.*
 
 ### 2. Computational Cost per Step
 - **Traditional LLMs**: $\approx 8.2\text{ Trillion FLOPs}$ (requires massive multi-GPU cloud instances).
