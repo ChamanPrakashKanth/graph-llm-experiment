@@ -60,10 +60,10 @@ class GATExpert(nn.Module):
         transition[pad_id, eos_id] = True
         self.register_buffer("transition_mask", transition)
 
-        # First-step mask: starting nodes must have outgoing edges in this domain
+        # First-step mask: starting nodes must have outgoing edges in this domain, or EOS (for empty paths)
         first_step = torch.zeros(num_concepts, dtype=torch.bool)
         first_step[src] = True
-        first_step[eos_id] = False
+        first_step[eos_id] = True
         first_step[pad_id] = False
         self.register_buffer("first_step_mask", first_step)
 
@@ -90,6 +90,25 @@ class GATExpert(nn.Module):
         # edge_weight acts as edge importance weights
         h = F.elu(self.gat1(global_embeddings, self.edge_index))
         node_states = self.gat2(h, self.edge_index) # [num_concepts, concept_dim]
+
+        # Filter target paths to keep only nodes in this expert's graph (avoid masking errors in other domains)
+        if target_paths is not None:
+            allowed_nodes = set(self.edge_index.view(-1).cpu().tolist())
+            allowed_nodes.add(self.eos_id)
+            allowed_nodes.add(self.pad_id)
+            
+            filtered_paths = []
+            for b in range(batch_size):
+                row = target_paths[b].cpu().tolist()
+                filtered = [c_id for c_id in row if c_id in allowed_nodes and c_id != self.pad_id and c_id != self.eos_id]
+                # Pad with EOS
+                filtered = filtered + [self.eos_id] * (self.path_length - len(filtered))
+                filtered = filtered[:self.path_length]
+                filtered_paths.append(filtered)
+                
+            filtered_target_paths = torch.tensor(filtered_paths, dtype=torch.long, device=device)
+        else:
+            filtered_target_paths = None
 
         # 2. Path generation loop
         hidden = torch.tanh(self.question_proj(query_context))
@@ -119,7 +138,7 @@ class GATExpert(nn.Module):
             predicted = logits.argmax(dim=-1)
 
             # Handle finished batches (early stop mask)
-            if target_paths is None:
+            if filtered_target_paths is None:
                 predicted = torch.where(
                     finished,
                     torch.tensor(self.eos_id, device=device),
@@ -133,8 +152,8 @@ class GATExpert(nn.Module):
             prediction_steps.append(predicted)
             score_steps.append(scores)
 
-            if target_paths is not None:
-                next_ids = target_paths[:, step].clone()
+            if filtered_target_paths is not None:
+                next_ids = filtered_target_paths[:, step].clone()
                 # Map pad to eos during training evaluation
                 next_ids = torch.where(
                     next_ids == self.pad_id,
@@ -144,7 +163,7 @@ class GATExpert(nn.Module):
             else:
                 next_ids = predicted
 
-            if target_paths is None:
+            if filtered_target_paths is None:
                 finished = finished | (predicted == self.eos_id) | (predicted == self.pad_id)
                 if finished.all():
                     # Pad remaining steps
@@ -163,5 +182,6 @@ class GATExpert(nn.Module):
             "predicted_path": torch.stack(prediction_steps, dim=1),
             "path_logits": torch.stack(logits_steps, dim=1),
             "path_scores": torch.stack(score_steps, dim=1),
-            "node_states": node_states
+            "node_states": node_states,
+            "target_path": filtered_target_paths
         }

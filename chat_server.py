@@ -148,7 +148,7 @@ DOMAINS = {
     "cat_v3_moe": {
         "name": "CAT V3 / Graph-MoE (Prototype)",
         "checkpoint_dir": "checkpoints/cat_v3",
-        "dataset_path": "data/reasoning_dataset.json",
+        "dataset_path": "data/cat_v3_reasoning_dataset.json",
         "is_cat_v3": True,
         "symbol": "🔮",
         "desc": "Multi-expert routing with GAT graph reasoning & fusion across 6 engineering domains",
@@ -474,13 +474,29 @@ class ChatRequestHandler(BaseHTTPRequestHandler):
                     response_data["answer"] = result["answer"]
                     response_data["source"] = "model"
 
+                    # Override answer with dataset template if there is a strong match (to prevent garbled output from TinyDecoder)
+                    if domain == "cat_v3_moe" and dataset:
+                        match = find_best_match(question, dataset)
+                        if match:
+                            match_words = match.get("_q_words")
+                            if match_words is None:
+                                match_words = set(match["question"].lower().split())
+                            q_words = set(question.lower().split())
+                            overlap = len(match_words & q_words)
+                            if len(match_words) > 0 and (overlap / len(match_words) >= 0.6):
+                                banner = ""
+                                if response_data["answer"].startswith("**[GAT Router"):
+                                    banner = response_data["answer"].split("\n\n")[0] + "\n\n"
+                                response_data["answer"] = banner + (match.get("answer") or match.get("response") or "")
+                                response_data["source"] = "model_with_template_fallback"
+
                 # Dataset match for the answer text (only if model didn't load or didn't generate an answer)
                 if not response_data.get("answer"):
                     match = find_best_match(question, dataset)
                     if match:
-                        response_data["answer"] = match["answer"]
+                        response_data["answer"] = match.get("answer") or match.get("response") or ""
                         if "reasoning_path" not in response_data:
-                            response_data["reasoning_path"] = match["reasoning_path"]
+                            response_data["reasoning_path"] = match.get("reasoning_path") or match.get("concept_paths")[0]
                             response_data["source"] = "dataset"
                         response_data["matched_question"] = match["question"]
                     else:

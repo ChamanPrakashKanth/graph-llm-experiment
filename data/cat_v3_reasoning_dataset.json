@@ -1,0 +1,152 @@
+[
+  {
+    "question": "Why does compressor pressure ratio affect turbine efficiency?",
+    "active_experts": [
+      "mechanical",
+      "physics",
+      "mathematics"
+    ],
+    "concept_paths": [
+      [
+        "compressor",
+        "pressure_ratio",
+        "temperature_rise",
+        "entropy",
+        "efficiency"
+      ]
+    ],
+    "response": "Increasing compressor pressure ratio raises outlet temperature. This increases entropy generation and can reduce overall efficiency."
+  },
+  {
+    "question": "How does thermal stress lead to cracking in turbine blades?",
+    "active_experts": [
+      "mechanical",
+      "physics"
+    ],
+    "concept_paths": [
+      [
+        "temperature_rise",
+        "thermal_stress",
+        "cracking"
+      ]
+    ],
+    "response": "High temperature rise induces severe thermal stress, which eventually leads to cracking."
+  },
+  {
+    "question": "How does a foundation load affect beam buckling?",
+    "active_experts": [
+      "civil",
+      "mechanical",
+      "physics"
+    ],
+    "concept_paths": [
+      [
+        "foundation",
+        "load",
+        "bending_moment",
+        "beam",
+        "buckling"
+      ]
+    ],
+    "response": "The foundation transfers the load, causing a high bending moment in the beam which results in buckling."
+  },
+  {
+    "question": "What is the relation between shear force and bending moment in concrete foundations?",
+    "active_experts": [
+      "civil"
+    ],
+    "concept_paths": [
+      [
+        "concrete",
+        "foundation",
+        "load",
+        "shear_force",
+        "bending_moment"
+      ]
+    ],
+    "response": "Applying load on concrete foundation structures produces shear force that integrates into bending moment distributions."
+  },
+  {
+    "question": "Why does capacitor impedance shift current phase angle?",
+    "active_experts": [
+      "electrical",
+      "physics",
+      "mathematics"
+    ],
+    "concept_paths": [
+      [
+        "capacitor",
+        "impedance",
+        "frequency",
+        "phase_angle",
+        "current"
+      ]
+    ],
+    "response": "A capacitor impedance varies with frequency, causing current phase angle to lead the voltage."
+  },
+  {
+    "question": "How do resistor and inductor values determine power factor?",
+    "active_experts": [
+      "electrical",
+      "physics"
+    ],
+    "concept_paths": [
+      [
+        "resistor",
+        "inductor",
+        "impedance",
+        "phase_angle",
+        "power_factor"
+      ]
+    ],
+    "response": "Combining resistor and inductor impedances increases the phase angle, which lowers the power factor."
+  },
+  {
+    "question": "How do eigenvalues explain decay differential equations?",
+    "active_experts": [
+      "mathematics",
+      "physics"
+    ],
+    "concept_paths": [
+      [
+        "matrix",
+        "eigenvalue",
+        "differential_equation",
+        "decay",
+        "logarithm"
+      ]
+    ],
+    "response": "Using matrix eigenvalues helps solve the differential equation, showing exponential decay governed by logarithms."
+  },
+  {
+    "question": "How does syntax affect semantic interpretation of a sentence?",
+    "active_experts": [
+      "english"
+    ],
+    "concept_paths": [
+      [
+        "syntax",
+        "grammar",
+        "sentence",
+        "semantics"
+      ]
+    ],
+    "response": "Proper syntax and grammar organize words in a sentence to deliver clear semantics."
+  },
+  {
+    "question": "How are nouns and verbs combined to form a metaphor?",
+    "active_experts": [
+      "english"
+    ],
+    "concept_paths": [
+      [
+        "vocabulary",
+        "noun",
+        "verb",
+        "sentence",
+        "metaphor"
+      ]
+    ],
+    "response": "Selecting noun and verb combinations from vocabulary builds a sentence representing a metaphor."
+  }
+]

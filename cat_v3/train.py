@@ -26,6 +26,7 @@ def cat_v3_loss(
     path_ids: torch.Tensor,
     response_targets: torch.Tensor,
     pad_id: int,
+    model: nn.Module,
 ) -> Tuple[torch.Tensor, Dict[str, float]]:
     """Computes joint multi-task loss: Router BCE + GAT Experts CE + Causal Decoder CE."""
     batch_size = router_target.size(0)
@@ -44,15 +45,33 @@ def cat_v3_loss(
         expert_logits = expert_out["path_logits"]  # [B, path_length, num_concepts]
         path_len = expert_logits.size(1)
         
-        # Calculate CE step-by-step
+        # Extract filtered target path for this expert
+        expert_target_path = expert_out.get("target_path")
+        if expert_target_path is None:
+            expert_target_path = path_ids[:, :path_len]
+            
+        # Calculate CE step-by-step against the filtered domain-specific path
         ce = F.cross_entropy(
             expert_logits.view(-1, num_concepts),
-            path_ids[:, :path_len].reshape(-1),
+            expert_target_path.reshape(-1),
             reduction="none"
         ).view(batch_size, path_len).mean(dim=1)  # [B]
         
-        # Mask out samples where this expert is NOT active in ground truth
-        active_weight = router_target[:, idx]  # [B]
+        # Mask out samples where this expert has no concepts in the path
+        expert_module = model.experts[domain]
+        domain_nodes = set(expert_module.edge_index.view(-1).cpu().tolist())
+        domain_nodes.discard(expert_module.eos_id)
+        domain_nodes.discard(expert_module.pad_id)
+        
+        has_domain_concept = torch.zeros(batch_size, dtype=torch.float, device=router_target.device)
+        for b in range(batch_size):
+            for val in expert_target_path[b].tolist():
+                if val in domain_nodes:
+                    has_domain_concept[b] = 1.0
+                    break
+                    
+        # Active weight is router activation * has_domain_concept
+        active_weight = router_target[:, idx] * has_domain_concept
         if active_weight.sum() > 0:
             loss_experts = loss_experts + (ce * active_weight).sum() / active_weight.sum()
             active_expert_count += 1
@@ -174,7 +193,8 @@ def train_cat_v3(
                 router_target=router_target,
                 path_ids=path_ids,
                 response_targets=decoder_targets,
-                pad_id=tokenizer.pad_id
+                pad_id=tokenizer.pad_id,
+                model=model
             )
             
             loss.backward()

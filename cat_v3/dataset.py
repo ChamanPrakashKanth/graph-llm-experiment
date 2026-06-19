@@ -293,39 +293,58 @@ class CATV3Dataset(Dataset):
 
 # Expert-specific GAT adjacency construction helpers
 def build_expert_graphs(vocab: ConceptVocabulary) -> Dict[str, Tuple[torch.Tensor, torch.Tensor]]:
-    """Returns edge_index and edge_weight for each GAT expert."""
+    """Returns edge_index and edge_weight for each GAT expert, ensuring dataset paths are valid edges."""
     expert_graphs = {}
     
-    # We define simple linear/connected relations for our mock concepts in each expert
     for domain in DOMAINS:
         concepts = DOMAIN_CONCEPTS[domain]
         concept_ids = [vocab.concept_to_id[c] for c in concepts if c in vocab.concept_to_id]
         
         sources = []
         targets = []
-        # Connect sequential concepts to form default traversal edges
+        weights = []
+        
+        # 1. Connect sequential concepts to form default traversal edges
         for i in range(len(concept_ids) - 1):
             sources.append(concept_ids[i])
             targets.append(concept_ids[i+1])
+            weights.append(1.0)
             
             # Bidirectional/backwards with lower weight
             sources.append(concept_ids[i+1])
             targets.append(concept_ids[i])
+            weights.append(0.5)
             
-        # Add self-loops
+        # 2. Add self-loops
         for c_id in concept_ids:
             sources.append(c_id)
             targets.append(c_id)
+            weights.append(1.0)
             
+        # 3. Add transitions from RAW_DATASET for this domain to ensure paths are topologically valid
+        for item in RAW_DATASET:
+            if domain in item["active_experts"]:
+                for path in item["concept_paths"]:
+                    for i in range(len(path) - 1):
+                        u = path[i].strip().lower()
+                        v = path[i+1].strip().lower()
+                        if u in vocab.concept_to_id and v in vocab.concept_to_id:
+                            u_id = vocab.concept_to_id[u]
+                            v_id = vocab.concept_to_id[v]
+                            # Check if edge already exists
+                            idx_match = -1
+                            for k in range(len(sources)):
+                                if sources[k] == u_id and targets[k] == v_id:
+                                    idx_match = k
+                                    break
+                            if idx_match == -1:
+                                sources.append(u_id)
+                                targets.append(v_id)
+                                weights.append(1.5) # Dataset paths get a weight boost
+                            else:
+                                weights[idx_match] = 1.5 # Boost weight to 1.5 if it exists
+                                
         edge_index = torch.tensor([sources, targets], dtype=torch.long)
-        # Default weight = 1.0 for forward, 0.5 for backward, 1.0 for self-loop
-        weights = []
-        for i in range(len(concept_ids) - 1):
-            weights.append(1.0) # forward
-            weights.append(0.5) # backward
-        for _ in concept_ids:
-            weights.append(1.0) # self-loop
-            
         edge_weight = torch.tensor(weights, dtype=torch.float)
         expert_graphs[domain] = (edge_index, edge_weight)
         
