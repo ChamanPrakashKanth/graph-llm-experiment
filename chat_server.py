@@ -2174,4 +2174,11 @@ def run_chat_server(port=8090):
         httpd.server_close()
 
 if __name__ == "__main__":
-    run_chat_server(8090)
+    import sys
+    port = 8090
+    if len(sys.argv) > 1:
+        try:
+            port = int(sys.argv[1])
+        except ValueError:
+            pass
+    run_chat_server(port)

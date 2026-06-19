@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import random
 from typing import Dict, List, Set, Tuple, Optional
 import torch
@@ -228,7 +229,21 @@ RAW_DATASET = [
 ]
 
 # Grow additional mock samples for better training size
+# Grow additional mock samples for better training size
 def grow_dataset() -> List[Dict[str, object]]:
+    # 1. Try to load scaled dataset from JSON if it exists
+    dataset_path = "data/cat_v3_reasoning_dataset.json"
+    if os.path.exists(dataset_path):
+        try:
+            import json
+            with open(dataset_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if len(data) >= 1000:
+                return data
+        except Exception as e:
+            print(f"Error loading {dataset_path} in grow_dataset: {e}")
+
+    # Fallback to base dataset variation generation
     data = list(RAW_DATASET)
     # Generate variations
     for _ in range(30):
@@ -292,10 +307,13 @@ class CATV3Dataset(Dataset):
 
 
 # Expert-specific GAT adjacency construction helpers
-def build_expert_graphs(vocab: ConceptVocabulary) -> Dict[str, Tuple[torch.Tensor, torch.Tensor]]:
+def build_expert_graphs(vocab: ConceptVocabulary, dataset_list: Optional[List[Dict[str, object]]] = None) -> Dict[str, Tuple[torch.Tensor, torch.Tensor]]:
     """Returns edge_index and edge_weight for each GAT expert, ensuring dataset paths are valid edges."""
     expert_graphs = {}
     
+    if dataset_list is None:
+        dataset_list = RAW_DATASET
+        
     for domain in DOMAINS:
         concepts = DOMAIN_CONCEPTS[domain]
         concept_ids = [vocab.concept_to_id[c] for c in concepts if c in vocab.concept_to_id]
@@ -321,8 +339,8 @@ def build_expert_graphs(vocab: ConceptVocabulary) -> Dict[str, Tuple[torch.Tenso
             targets.append(c_id)
             weights.append(1.0)
             
-        # 3. Add transitions from RAW_DATASET for this domain to ensure paths are topologically valid
-        for item in RAW_DATASET:
+        # 3. Add transitions from dataset_list for this domain to ensure paths are topologically valid
+        for item in dataset_list:
             if domain in item["active_experts"]:
                 for path in item["concept_paths"]:
                     for i in range(len(path) - 1):

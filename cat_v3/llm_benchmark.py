@@ -95,7 +95,7 @@ def run_empirical_comparison() -> Dict[str, Any]:
             concept_lists[d] = ["entropy", "load"]
             
     vocab = ConceptVocabulary(concept_lists)
-    expert_graphs = build_expert_graphs(vocab)
+    expert_graphs = build_expert_graphs(vocab, raw_data)
     
     # 2. Instantiate both models
     print("\nInitializing models...")

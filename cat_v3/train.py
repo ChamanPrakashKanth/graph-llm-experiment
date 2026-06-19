@@ -135,7 +135,7 @@ def train_cat_v3(
             concept_lists[d] = ["entropy", "load"]
             
     vocab = ConceptVocabulary(concept_lists)
-    expert_graphs = build_expert_graphs(vocab)
+    expert_graphs = build_expert_graphs(vocab, raw_data)
     
     dataset = CATV3Dataset(raw_data, concept_vocab=vocab, token_tokenizer=tokenizer)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
