@@ -314,9 +314,15 @@ class AutonomousCodingAgent:
         """
         path_str = " -> ".join(concept_path)
         system_prompt = (
-            "You are an expert autonomous software engineer. Your task is to write clean, fully functional, "
-            "and self-contained executable code that solves the user's problem. Use ONLY the specified programming "
-            "language. Always wrap your code in a single markdown block (e.g. ```python\\n# code here\\n```)."
+            "You are a world-class autonomous software engineer. Your task is to write highly optimized, "
+            "clean, fully functional, and self-contained executable code that solves the user's problem. "
+            "Use ONLY the specified programming language. Follow clean coding standards: use descriptive "
+            "variable names, write modular functions, include comments explaining complexities (Big-O), "
+            "and use idiomatic structures (e.g., list comprehensions or collections.Counter in Python). "
+            "CRITICAL: Never write interactive input queries (e.g., input() in Python, prompt() in JS, cin in C++) "
+            "as the code runs inside a non-interactive subprocess sandbox. Always include a main/test block with "
+            "representative mock input data and print the execution output. "
+            "Always wrap your code in a single markdown block (e.g. ```python\n# code here\n```)."
         )
 
         history = []
@@ -334,11 +340,16 @@ class AutonomousCodingAgent:
 
             if iteration == 1:
                 prompt = (
-                    f"Write a complete program in {language.capitalize()} that implements the following:\n"
+                    f"Write a complete, optimized program in {language.capitalize()} for the following task:\n"
                     f"Task: {task}\n\n"
                     f"To design your solution, you must strictly follow this logical reasoning path:\n"
                     f"Concept Plan: {path_str}\n\n"
-                    f"Provide only the code block. Make it self-contained and run-ready."
+                    f"Requirements:\n"
+                    f"- Write clean, modular, and self-contained code.\n"
+                    f"- Handle potential errors/exceptions gracefully.\n"
+                    f"- Do NOT use any blocking interactive input functions (no input(), prompt(), cin, etc.).\n"
+                    f"- Hardcode a main or test block with sample input data to run and display the results.\n"
+                    f"Provide only the markdown code block. Make it compile and run-ready."
                 )
             else:
                 prompt = (
