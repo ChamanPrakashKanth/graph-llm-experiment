@@ -198,6 +198,13 @@ def main():
                 rel_path = file_path.relative_to(workspace_dir)
                 files_to_upload[file_path] = str(rel_path).replace("\\", "/")
 
+        # Add generated scaled coding data files
+        data_dir = workspace_dir / "data"
+        for file_path in data_dir.glob("coding*"):
+            if file_path.is_file():
+                rel_path = file_path.relative_to(workspace_dir)
+                files_to_upload[file_path] = str(rel_path).replace("\\", "/")
+
     print(f"\nFound {len(files_to_upload)} files to upload to Hugging Face Model Hub:")
     for local, hub in files_to_upload.items():
         print(f" - {hub}")
