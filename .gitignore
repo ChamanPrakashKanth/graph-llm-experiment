@@ -15,3 +15,8 @@ cat_v2_test_tmp/
 checkpoints/
 brain/
 
+scratch/tmp*/
+scratch/coding_test_results.json
+
+data/coding*
+

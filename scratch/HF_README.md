@@ -1,14 +1,4 @@
-# push_to_hf.py
-"""Helper script to upload the CAT V3 Coding Agent code and checkpoints to Hugging Face Hub."""
-
-import os
-import sys
-import argparse
-from pathlib import Path
-from huggingface_hub import HfApi, login
-
-def generate_model_card(repo_id: str) -> str:
-    return f"""---
+---
 language: py
 tags:
 - concept-reasoning
@@ -25,7 +15,7 @@ license: mit
 
 Welcome to the official repository for the **CAT V3 Coding Agent**. This project represents a state-of-the-art **neural-symbolic coding agent** designed for edge deployment. It decouples high-level logical path planning (System 2) from code syntax generation (System 1) and pairs them with a multi-language self-correcting execution sandbox.
 
-👉 **Model Repository**: [huggingface.co/{repo_id}](https://huggingface.co/{repo_id})
+👉 **Model Repository**: [huggingface.co/Chaman1234/cat-v3-coding-agent](https://huggingface.co/Chaman1234/cat-v3-coding-agent)
 
 ---
 
@@ -146,82 +136,3 @@ if __name__ == "__main__":
 
 ## ⚖️ License
 This project is licensed under the MIT License.
-"""
-
-def main():
-    parser = argparse.ArgumentParser(description="Upload CAT V3 Coding Agent to Hugging Face Model Hub")
-    parser.add_argument("--repo-id", required=True, help="HF repository ID (e.g., username/repo-name)")
-    parser.add_argument("--token", required=True, help="Hugging Face API Write Token")
-    parser.add_argument("--readme-only", action="store_true", help="Only generate and upload the README.md")
-    args = parser.parse_args()
-
-    # Step 1: Login
-    print("Logging into Hugging Face Hub...")
-    try:
-        login(token=args.token)
-    except Exception as e:
-        print(f"Error logging in: {e}")
-        sys.exit(1)
-
-    api = HfApi()
-
-    # Step 2: Create Repository
-    print(f"Ensuring repository '{args.repo_id}' exists...")
-    try:
-        api.create_repo(repo_id=args.repo_id, repo_type="model", exist_ok=True)
-    except Exception as e:
-        print(f"Error creating/verifying repository: {e}")
-        sys.exit(1)
-
-    # Step 3: Compile and upload files
-    workspace_dir = Path(__file__).parent.resolve()
-    
-    files_to_upload = {}
-    
-    # Generate model card README
-    readme_path = workspace_dir / "scratch" / "HF_README.md"
-    readme_path.parent.mkdir(exist_ok=True)
-    readme_path.write_text(generate_model_card(args.repo_id), encoding="utf-8")
-    files_to_upload[readme_path] = "README.md"
-
-    if not args.readme_only:
-        files_to_upload.update({
-            workspace_dir / "agent_executor.py": "agent_executor.py",
-            workspace_dir / "coding_lab_server.py": "coding_lab_server.py",
-            workspace_dir / "checkpoints" / "cat_v3" / "cat_v3_model.pt": "checkpoints/cat_v3/cat_v3_model.pt",
-        })
-
-        # Add all files in cat_v3 directory except cache and tests
-        cat_v3_dir = workspace_dir / "cat_v3"
-        for file_path in cat_v3_dir.rglob("*"):
-            if file_path.is_file() and "__pycache__" not in file_path.parts and "tests" not in file_path.parts:
-                rel_path = file_path.relative_to(workspace_dir)
-                files_to_upload[file_path] = str(rel_path).replace("\\", "/")
-
-    print(f"\nFound {len(files_to_upload)} files to upload to Hugging Face Model Hub:")
-    for local, hub in files_to_upload.items():
-        print(f" - {hub}")
-
-    # Perform uploads
-    print("\nStarting upload...")
-    for local_path, hub_path in files_to_upload.items():
-        if not local_path.exists():
-            print(f"Warning: File {local_path} does not exist. Skipping.")
-            continue
-            
-        print(f"Uploading {hub_path}...")
-        try:
-            api.upload_file(
-                path_or_fileobj=str(local_path),
-                path_in_repo=hub_path,
-                repo_id=args.repo_id,
-                repo_type="model",
-            )
-        except Exception as e:
-            print(f"Error uploading {hub_path}: {e}")
-            sys.exit(1)
-
-    print(f"\n[SUCCESS] Successfully uploaded target files to: https://huggingface.co/{args.repo_id}")
-
-if __name__ == "__main__":
-    main()

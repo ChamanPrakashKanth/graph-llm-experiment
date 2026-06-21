@@ -488,6 +488,42 @@ graph TD
 
 ---
 
+### 3.4 Code Generation Test (CAT V3 + Qwen Coder 2.5 3B)
+We run an end-to-end autonomous coding test using the local `qwen2.5-coder:3b` model to evaluate the coding performance:
+
+*   **User Query**: *"Write a Python function fibonacci(n) that returns the first n Fibonacci numbers. In the main block, call this function with n=10, print the result, and do not use any interactive input() calls."*
+*   **CAT V3 GAT Routing**: Routes to **physics** and **mathematics** experts. Fused reasoning concept path: `force ➔ acceleration ➔ velocity ➔ gravity`
+*   **System 1 Generative Model**: Ollama `qwen2.5-coder:3b`
+*   **Execution Sandbox**: Python 3 Subprocess Sandbox
+*   **Execution Outcome**: **Success** (exited with code 0 on the first iteration)
+
+#### Generated Python Code Example:
+```python
+def fibonacci(n):
+    # Initialize the first two Fibonacci numbers
+    fib_sequence = [0, 1]
+    
+    # Generate the Fibonacci sequence up to n numbers
+    for i in range(2, n):
+        next_fib = fib_sequence[i-1] + fib_sequence[i-2]
+        fib_sequence.append(next_fib)
+    
+    return fib_sequence
+
+# Main block: call the fibonacci function with n=10 and print the result
+if __name__ == "__main__":
+    n = 10
+    result = fibonacci(n)
+    print(result)
+```
+
+#### Execution Stdout:
+```text
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+---
+
 ### 4. The Core Tradeoff
 
 ```text
