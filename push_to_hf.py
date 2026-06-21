@@ -83,52 +83,211 @@ Comparison representing 100,000 tokens of corpus knowledge:
 - **Graph state memory**: **2.61 MB** (VLCM) ➔ **19,134.6x memory compression**
 - **Generation FLOPs per query**: ~8.19 Trillion FLOPs vs. **~7.66 Million FLOPs** (1,000,000x savings)
 
-### 4. Code Generation Test (CAT V3 + Qwen Coder 2.5 3B)
-We run an end-to-end autonomous coding test using the local `qwen2.5-coder:3b` model to evaluate the coding performance:
+### 4. End-to-End Stress Test: 100,000 Concepts & Actual Code Generation
 
-*   **User Query**: *"Write a Python function fibonacci(n) that returns the first n Fibonacci numbers. In the main block, call this function with n=10, print the result, and do not use any interactive input() calls."*
-*   **CAT V3 GAT Routing**: Routes to **physics** and **mathematics** experts. Fused reasoning concept path: `force ➔ acceleration ➔ velocity ➔ gravity`
-*   **System 1 Generative Model**: Ollama `qwen2.5-coder:3b`
-*   **Execution Sandbox**: Python 3 Subprocess Sandbox
-*   **Execution Outcome**: **Success** (exited with code 0 on the first iteration)
+We stress-tested the performance, memory footprint, and reliability of the scaled symbolic reasoning engine using a **100,001-node coding concept graph with 1.2 Million directed edges**, paired with the local **Qwen 2.5 Coder 3B** model (`qwen2.5-coder:3b`) and a multi-language subprocess execution sandbox.
 
-#### Generated Python Code Example:
+#### 📈 Stress Test Performance & Memory Metrics:
+*   **Graph Sizing**: **100,001 nodes** and **1,200,000 directed edges**
+*   **Graph Load Time**: **14.58 seconds** (deserializing and building the in-memory graph structure)
+*   **RAM Memory Footprint**: **1,501.59 MB** (approx. 1.50 GB)
+*   **Symbolic Traversal Latency (5-hop Beam Search)**: **121.81 ms** (average over 50 runs, highly optimized via pre-calculated activation mappings)
+*   **Average Code Generation Time**: **8.94 seconds** per task (System 1 inference)
+*   **Sandbox Code Execution Time**: **0.41 seconds** (System 2 sandbox execution)
+*   **Sandbox Compilation/Execution Success Rate**: **100.0%** (5 out of 5 tasks successfully compiled and passed on the first attempt)
+
+---
+
+#### 💻 Multi-Language Code Generation & Sandbox Results
+
+We ran 5 distinct coding tasks across Python and JavaScript, enforcing strict concept planning paths to test compliance, syntax validity, and execution outcomes.
+
+````carousel
+### 🐍 Task 1: Fibonacci Sequence (Python)
+*   **Prompt**: *"Write a Python function fibonacci(n) that returns the first n Fibonacci numbers. In the main block, call this function with n=10, print the result, and do not use any interactive input() calls."*
+*   **GNN Concept Path**: `Array Allocation in Python` ➔ `Array Execution in Python` ➔ `Array Optimization in Python`
+*   **Generation Time**: 10.99 seconds
+*   **Sandbox Output**: `The first 10 Fibonacci numbers are: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]`
+
 ```python
+# Fibonacci sequence generator in Python
+
 def fibonacci(n):
-    # Initialize the first two Fibonacci numbers
-    fib_sequence = [0, 1]
+    """
+    Generate the first n Fibonacci numbers.
+
+    Parameters:
+    n (int): The number of Fibonacci numbers to generate.
+
+    Returns:
+    list: A list containing the first n Fibonacci numbers.
+    """
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
     
-    # Generate the Fibonacci sequence up to n numbers
+    fib_sequence = [0, 1]
     for i in range(2, n):
         next_fib = fib_sequence[i-1] + fib_sequence[i-2]
         fib_sequence.append(next_fib)
     
     return fib_sequence
 
-# Main block: call the fibonacci function with n=10 and print the result
+# Main block to test the fibonacci function
 if __name__ == "__main__":
     n = 10
-    result = fibonacci(n)
-    print(result)
+    try:
+        result = fibonacci(n)
+        print(f"The first {n} Fibonacci numbers are: {result}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 ```
+<!-- slide -->
+### 🐍 Task 2: Greatest Common Divisor (Python)
+*   **Prompt**: *"Write a Python function calculate_gcd(a, b) that computes the greatest common divisor using the Euclidean algorithm. Test it with inputs a=48 and b=18, print the result, and do not use interactive input() calls."*
+*   **GNN Concept Path**: `Variable Normalization in Python` ➔ `Variable Execution in Python` ➔ `Variable Optimization in Python`
+*   **Generation Time**: 6.26 seconds
+*   **Sandbox Output**: `The greatest common divisor of 48 and 18 is: 6`
 
-#### Execution Stdout:
-```text
-[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```python
+# Function to calculate the greatest common divisor using the Euclidean algorithm
+def calculate_gcd(a, b):
+    # Ensure both numbers are positive
+    a = abs(a)
+    b = abs(b)
+    
+    # Use the Euclidean algorithm to find GCD
+    while b:
+        a, b = b, a % b
+    
+    return a
+
+# Main block with test data
+if __name__ == "__main__":
+    a = 48
+    b = 18
+    try:
+        result = calculate_gcd(a, b)
+        print(f"The greatest common divisor of {a} and {b} is: {result}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 ```
+<!-- slide -->
+### 🐍 Task 3: Matrix Transpose (Python)
+*   **Prompt**: *"Write a Python function transpose(matrix) that transposes a 2D list (matrix) of size 3x3. Test it with matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]], print the transposed matrix, and do not use interactive input() calls."*
+*   **GNN Concept Path**: `Matrix Normalization in Python` ➔ `Matrix Execution in Python` ➔ `Matrix Optimization in Python`
+*   **Generation Time**: 8.75 seconds
+*   **Sandbox Output**:
+    ```text
+    Original Matrix:
+    [1, 2, 3]
+    [4, 5, 6]
+    [7, 8, 9]
 
-### 5. Large-Scale Stress Test (100,000 Concepts & 1.2M Edges)
-We stress-tested the memory footprint and traversal performance of the scaled symbolic reasoning engine using the newly generated 1 lakh concept coding graph:
+    Transposed Matrix:
+    [1, 4, 7]
+    [2, 5, 8]
+    [3, 6, 9]
+    ```
 
-*   **Graph Sizing**: **100,001 nodes** and **1,200,000 directed edges**
-*   **Graph Load Time**: **14.69 seconds** (deserializing and building the memory structure)
-*   **RAM Memory Footprint**: **1,255.68 MB** (approx. 1.25 GB in Python)
-*   **Graph Traversal Latency (Beam Search)**: **133.61 ms** (average over 50 iterations for a 5-hop path search)
-*   **System 1 Generation Latency (Qwen Coder 2.5 3B)**: **15.27 seconds**
-*   **Sandbox Sandbox Run Latency**: **0.52 seconds**
+```python
+import numpy as np
 
-> [!TIP]
-> Traversal is highly optimized via pre-calculated activation mappings. Performing a 5-hop search on a graph of 100,000 nodes takes only **133 milliseconds**, proving that CAT V3's System 2 reasoning layer is extremely lightweight and ready for edge deployments.
+def transpose(matrix):
+    try:
+        if len(matrix) != 3 or any(len(row) != 3 for row in matrix):
+            raise ValueError("Input must be a 3x3 matrix.")
+        
+        # Transpose using numpy's transpose function
+        transposed_matrix = np.array(matrix).T.tolist()
+        return transposed_matrix
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+if __name__ == "__main__":
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    transposed_matrix = transpose(matrix)
+    if transposed_matrix is not None:
+        print("Original Matrix:")
+        for row in matrix:
+            print(row)
+        print("\nTransposed Matrix:")
+        for row in transposed_matrix:
+            print(row)
+```
+<!-- slide -->
+### 🟨 Task 4: Run-length Encoding (JavaScript)
+*   **Prompt**: *"Write a JavaScript function rle(input) that performs run-length encoding on a string. For example, 'AABBBCCCC' should return 'A2B3C4'. Call it with 'AABBBCCCC' in the main block and print the result using console.log. Do not use interactive prompt() calls."*
+*   **GNN Concept Path**: `String Parsing in JavaScript` ➔ `String Execution in JavaScript` ➔ `String Validation in JavaScript`
+*   **Generation Time**: 9.93 seconds
+*   **Sandbox Output**: `A2B3C4`
+
+```javascript
+// Function to perform run-length encoding on a string
+function rle(input) {
+    if (typeof input !== 'string') {
+        throw new Error('Input must be a string');
+    }
+
+    let encoded = '';
+    let count = 1;
+
+    for (let i = 1; i < input.length; i++) {
+        if (input[i] === input[i - 1]) {
+            count++;
+        } else {
+            encoded += input[i - 1] + count;
+            count = 1;
+        }
+    }
+
+    // Add the last character and its count
+    encoded += input[input.length - 1] + count;
+    return encoded;
+}
+
+// Main block to test the rle function
+try {
+    const inputString = 'AABBBCCCC';
+    const result = rle(inputString);
+    console.log(result); // Output: A2B3C4
+} catch (error) {
+    console.error('Error:', error.message);
+}
+```
+<!-- slide -->
+### 🐍 Task 5: Bubble Sort (Python)
+*   **Prompt**: *"Write a Python function bubble_sort(arr) that sorts an array of integers in ascending order. Test it with inputs arr=[64, 34, 25, 12, 22, 11, 90], print the sorted array, and do not use interactive input() calls."*
+*   **GNN Concept Path**: `Array Optimization in Python` ➔ `Array Parsing in Python` ➔ `Array Execution in Python`
+*   **Generation Time**: 8.75 seconds
+*   **Sandbox Output**:
+    ```text
+    Original array: [64, 34, 25, 12, 22, 11, 90]
+    Sorted array: [11, 12, 22, 25, 34, 64, 90]
+    ```
+
+```python
+# Bubble Sort Function in Python
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    try:
+        print("Original array:", arr)
+        bubble_sort(arr)
+        print("Sorted array:", arr)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+```
+````
 
 ---
 
