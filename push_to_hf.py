@@ -113,7 +113,7 @@ We ran 5 distinct coding tasks across Python and JavaScript, enforcing strict co
 # Fibonacci sequence generator in Python
 
 def fibonacci(n):
-    """
+    '''
     Generate the first n Fibonacci numbers.
 
     Parameters:
@@ -121,7 +121,7 @@ def fibonacci(n):
 
     Returns:
     list: A list containing the first n Fibonacci numbers.
-    """
+    '''
     if n <= 0:
         return []
     elif n == 1:
@@ -139,9 +139,9 @@ if __name__ == "__main__":
     n = 10
     try:
         result = fibonacci(n)
-        print(f"The first {n} Fibonacci numbers are: {result}")
+        print(f"The first {{n}} Fibonacci numbers are: {{result}}")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred: {{e}}")
 ```
 <!-- slide -->
 ### 🐍 Task 2: Greatest Common Divisor (Python)
@@ -169,9 +169,9 @@ if __name__ == "__main__":
     b = 18
     try:
         result = calculate_gcd(a, b)
-        print(f"The greatest common divisor of {a} and {b} is: {result}")
+        print(f"The greatest common divisor of {{a}} and {{b}} is: {{result}}")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred: {{e}}")
 ```
 <!-- slide -->
 ### 🐍 Task 3: Matrix Transpose (Python)
@@ -203,7 +203,7 @@ def transpose(matrix):
         transposed_matrix = np.array(matrix).T.tolist()
         return transposed_matrix
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred: {{e}}")
         return None
 
 if __name__ == "__main__":
@@ -226,36 +226,36 @@ if __name__ == "__main__":
 
 ```javascript
 // Function to perform run-length encoding on a string
-function rle(input) {
-    if (typeof input !== 'string') {
+function rle(input) {{
+    if (typeof input !== 'string') {{
         throw new Error('Input must be a string');
-    }
+    }}
 
     let encoded = '';
     let count = 1;
 
-    for (let i = 1; i < input.length; i++) {
-        if (input[i] === input[i - 1]) {
+    for (let i = 1; i < input.length; i++) {{
+        if (input[i] === input[i - 1]) {{
             count++;
-        } else {
+        }} else {{
             encoded += input[i - 1] + count;
             count = 1;
-        }
-    }
+        }}
+    }}
 
     // Add the last character and its count
     encoded += input[input.length - 1] + count;
     return encoded;
-}
+}}
 
 // Main block to test the rle function
-try {
+try {{
     const inputString = 'AABBBCCCC';
     const result = rle(inputString);
     console.log(result); // Output: A2B3C4
-} catch (error) {
+}} catch (error) {{
     console.error('Error:', error.message);
-}
+}}
 ```
 <!-- slide -->
 ### 🐍 Task 5: Bubble Sort (Python)
@@ -285,7 +285,7 @@ if __name__ == "__main__":
         bubble_sort(arr)
         print("Sorted array:", arr)
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred: {{e}}")
 ```
 ````
 
