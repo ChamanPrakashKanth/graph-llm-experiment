@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use CAT V2, CAT V3, or VLCM in research, please cite this repository."
+title: "CAT V2, CAT V3 and VLCM: Concept-Based Neural-Symbolic Reasoning"
+type: software
+authors:
+  - family-names: "Kanth"
+    given-names: "Chaman Prakash"
+repository-code: "https://github.com/ChamanPrakashKanth/graph-llm-experiment"
+url: "https://github.com/ChamanPrakashKanth/graph-llm-experiment"
+abstract: >-
+  Experimental concept-based neural-symbolic reasoning systems that map queries
+  to explicit concept graphs, use graph neural networks and constrained path
+  decoding, and explore sparse Graph-MoE routing for engineering, mathematics,
+  and coding tasks.
+keywords:
+  - "concept graph"
+  - "graph neural network"
+  - "neural symbolic reasoning"
+  - "Graph-MoE"
+  - "concept attention transformer"
+  - "VLCM"
+  - "CAT V3"
+  - "explainable AI"
+  - "mechanical engineering AI"
